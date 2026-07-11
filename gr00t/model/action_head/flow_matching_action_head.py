@@ -417,6 +417,21 @@ class FlowmatchingActionHead(nn.Module):
         # Embed state.
         state_features = self.state_encoder(action_input.state, embodiment_id)
 
+        # Optional CUDA-graph capture of the whole denoising loop
+        # (GR00T_DIT_CUDA_GRAPH=1): the loop is CPU-launch-bound under
+        # quantized runtimes; graph replay collapses it to one launch.
+        from gr00t.quantization.dit_graph import DiTGraphRunner, enabled as _graph_enabled
+        if _graph_enabled():
+            runner = getattr(self, "_dit_graph_runner", None)
+            if runner is None:
+                runner = DiTGraphRunner(self._denoise_loop)
+                self._dit_graph_runner = runner
+            actions = runner(vl_embs, state_features, embodiment_id)
+            return BatchFeature(data={"action_pred": actions})
+        actions = self._denoise_loop(vl_embs, state_features, embodiment_id)
+        return BatchFeature(data={"action_pred": actions})
+
+    def _denoise_loop(self, vl_embs, state_features, embodiment_id) -> torch.Tensor:
         # Set initial actions as the sampled noise.
         batch_size = vl_embs.shape[0]
         device = vl_embs.device
@@ -478,7 +493,7 @@ class FlowmatchingActionHead(nn.Module):
 
             # Update actions using euler integration.
             actions = actions + dt * pred_velocity
-        return BatchFeature(data={"action_pred": actions})
+        return actions
 
     @property
     def device(self):

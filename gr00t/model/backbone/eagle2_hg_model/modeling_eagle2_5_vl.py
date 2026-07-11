@@ -245,16 +245,11 @@ class Eagle2_5_VLForConditionalGeneration(Eagle2_5_VLPreTrainedModel, Generation
 
         input_ids = input_ids.reshape(B * N)
         selected = input_ids == self.image_token_index
-        try:
-            input_embeds[selected] = input_embeds[selected] * 0.0 + vit_embeds.reshape(-1, C)
-        except Exception as e:
-            vit_embeds = vit_embeds.reshape(-1, C)
-            print(
-                f"warning: {e}, input_embeds[selected].shape={input_embeds[selected].shape}, "
-                f"vit_embeds.shape={vit_embeds.shape}"
-            )
-            n_token = selected.sum()
-            input_embeds[selected] = input_embeds[selected] * 0.0 + vit_embeds[:n_token]
+        # CUDA-graph-safe ordered scatter (no boolean indexing -> no device sync)
+        vit_flat = vit_embeds.reshape(-1, C)
+        vit_idx = (torch.cumsum(selected.to(torch.long), dim=0) - 1).clamp_(min=0, max=vit_flat.shape[0] - 1)
+        vit_rows = vit_flat.index_select(0, vit_idx)
+        input_embeds = torch.where(selected.unsqueeze(-1), vit_rows.to(input_embeds.dtype), input_embeds)
 
         input_embeds = input_embeds.reshape(B, N, C)
 

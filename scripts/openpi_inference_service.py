@@ -61,6 +61,13 @@ def _apply_quantization_if_requested(policy) -> None:
         for k in os.environ
     )
     want_rtn = any(k.startswith("GR00T_RTN") for k in os.environ)
+    want_qvla_act = bool(os.environ.get("QVLA_ACT_BITS"))
+    if want_qvla_act:
+        if not getattr(policy, "_is_pytorch_model", False):
+            raise RuntimeError("QVLA_ACT_BITS requires an OpenPI PyTorch checkpoint")
+        from gr00t.quantization.qvla_act import enable_qvla_act_if_configured
+
+        enable_qvla_act_if_configured(policy._model)
     if not (want_gptq or want_duquant or want_rtn):
         return
 
@@ -79,6 +86,14 @@ def _apply_quantization_if_requested(policy) -> None:
         applied = enable_gptq_if_configured(model)
         if not applied:
             raise RuntimeError("GR00T_GPTQ=1 was set, but no GPTQ layers were wrapped")
+        # GptqLinear buffers are created on CPU (pack loaded with
+        # map_location="cpu") and the model is already on GPU here — re-sync,
+        # otherwise every forward re-uploads weights/rotations per call.
+        try:
+            device = next(model.parameters()).device
+            model.to(device)
+        except StopIteration:
+            pass
 
     if want_duquant:
         from gr00t.quantization import enable_duquant_if_configured
@@ -91,6 +106,30 @@ def _apply_quantization_if_requested(policy) -> None:
             device = next(model.parameters()).device
             model.to(device)
         except StopIteration:
+            pass
+
+    # Optional: pre-calibrate act scales on recorded obs and freeze the
+    # compile-friendly fast path before serving (GR00T_GPTQ_CALIB_OBS=path).
+    calib_obs = os.environ.get("GR00T_GPTQ_CALIB_OBS")
+    if want_gptq and calib_obs:
+        import torch
+
+        data = torch.load(calib_obs, weights_only=False)
+        samples = data["samples"] if isinstance(data, dict) else data
+        n = int(os.environ.get("GR00T_GPTQ_CALIB_N", "6"))
+        try:
+            torch.compiler.set_stance("force_eager")
+        except Exception:
+            pass
+        with torch.no_grad():
+            for s in samples[:n]:
+                policy.infer(s)
+        from gr00t.quantization.gptq_layers import freeze_gptq_fast_paths
+
+        freeze_gptq_fast_paths(policy._model)
+        try:
+            torch.compiler.set_stance("default")
+        except Exception:
             pass
 
     if want_rtn:

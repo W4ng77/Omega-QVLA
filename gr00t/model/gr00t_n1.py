@@ -174,7 +174,15 @@ class GR00T_N1_5(PreTrainedModel):
     ) -> BatchFeature:
         backbone_inputs, action_inputs = self.prepare_input(inputs)
         # Because the behavior of backbones remains the same for training and inference, we can use `forward` for backbones.
-        backbone_outputs = self.backbone(backbone_inputs)
+        from gr00t.quantization.dit_graph import DictGraphRunner, backbone_graph_enabled
+        if backbone_graph_enabled():
+            runner = getattr(self, "_bb_graph_runner", None)
+            if runner is None:
+                runner = DictGraphRunner(self.backbone)
+                self._bb_graph_runner = runner
+            backbone_outputs = runner(backbone_inputs)
+        else:
+            backbone_outputs = self.backbone(backbone_inputs)
         action_head_outputs = self.action_head.get_action(backbone_outputs, action_inputs)
         self.validate_data(action_head_outputs, backbone_outputs, is_training=False)
         return action_head_outputs

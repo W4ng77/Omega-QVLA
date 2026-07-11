@@ -52,6 +52,16 @@ def enable_quant_if_configured(model: nn.Module) -> bool:
         except Exception as e:
             print(f"[GR00T] RTN failed to apply: {e}")
 
+    if os.environ.get("QVLA_ACT_BITS"):
+        try:
+            from .qvla_act import enable_qvla_act_if_configured
+
+            if enable_qvla_act_if_configured(model):
+                applied = True
+                print("[GR00T] QVLA activation quant applied")
+        except Exception as e:
+            print(f"[GR00T] QVLA act quant failed to apply: {e}")
+
     if any(k.startswith("GR00T_DUQUANT_") and k != "GR00T_DUQUANT_PACKDIR" for k in os.environ):
         try:
             from .duquant_layers import enable_duquant_if_configured

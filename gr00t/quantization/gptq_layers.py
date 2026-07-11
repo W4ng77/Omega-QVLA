@@ -303,6 +303,10 @@ class GptqLinear(nn.Module):
         # paligemma down_proj where in=16384 dense matmul = ~1GB/layer.
         self._has_duquant_rotation_blocks = False
         self._has_duquant_rotation_out_blocks = False
+        # Fused Triton rot+act-quant path (GR00T_GPTQ_FUSED=1) + promoted-weight cache.
+        self._fused_enabled = os.environ.get("GR00T_GPTQ_FUSED", "0") not in ("0", "false", "False")
+        self._fused_min_tokens = int(os.environ.get("GR00T_GPTQ_FUSED_MIN_TOKENS", "64"))
+        self._w_promoted_cache: Optional[torch.Tensor] = None
         if record is None:
             if cfg.missing == "error":
                 raise FileNotFoundError(f"No GPTQ record found for layer '{name}' in {cfg.path}")
@@ -446,12 +450,26 @@ class GptqLinear(nn.Module):
                     self.register_buffer("_duquant_rotation_perm", perm_t, persistent=False)
                     self._has_duquant_rotation_blocks = True
             # Dense fallback (legacy packs): full in×in R. Slow on large in.
+            # DuQuant rotations are (perm ∘ block-diag) by construction, so
+            # first try to decompose the dense matrix and take the 32x-cheaper
+            # block bmm fast path at runtime.
             rot_raw = _record_get(record, ("duquant_rotation",))
             if rot_raw is not None and not self._has_duquant_rotation_blocks:
                 rot_t = _to_tensor(rot_raw).to(dtype=torch.float32)
                 if rot_t.dim() == 2 and rot_t.shape[0] == self.in_features and rot_t.shape[1] == self.in_features:
-                    self.register_buffer("_duquant_rotation", rot_t, persistent=False)
-                    self._has_duquant_rotation = True
+                    if os.environ.get("GR00T_GPTQ_DENSE_ROT", "0") in ("0", "false", "False"):
+                        from gr00t.quantization.fused_rot_quant import try_decompose_rotation
+
+                        perm_d, blocks_d = try_decompose_rotation(rot_t, block=64)
+                    else:
+                        perm_d, blocks_d = None, None
+                    if blocks_d is not None:
+                        self.register_buffer("_duquant_rotation_blocks", blocks_d, persistent=False)
+                        self.register_buffer("_duquant_rotation_perm", perm_d, persistent=False)
+                        self._has_duquant_rotation_blocks = True
+                    else:
+                        self.register_buffer("_duquant_rotation", rot_t, persistent=False)
+                        self._has_duquant_rotation = True
             # Optional DuQuant output rotation: applied as y_restored = y @ R_out
             # AFTER matmul, BEFORE bias.
             #
@@ -526,6 +544,259 @@ class GptqLinear(nn.Module):
     def weight(self) -> torch.Tensor:
         return self._weight_q if self._quant_available else self._weight_fp
 
+    @torch.no_grad()
+    def freeze_fast_path(self, compute_dtype: torch.dtype = torch.bfloat16) -> bool:
+        """Fold all runtime state into buffers and enable a branch-free,
+        torch.compile-friendly forward. Returns False if act calibration is
+        still pending (call again after more warmup forwards).
+
+        Numerics match the eager path's steady state, with one deliberate
+        choice: layers with a per-step act_scale_table use the step-MEAN scale
+        (identical to the eager fallback used when no step context is set,
+        which is the case for the pi0.5 openpi loop).
+        """
+        if getattr(self, "_fast", False):
+            return True
+        eff_bits = (
+            int(self._record_a_bits)
+            if self._record_a_bits is not None
+            else int(self.cfg.act_bits or 0)
+        )
+        scale = None
+        if eff_bits > 0:
+            if self._has_act_scale_table:
+                scale = self._act_scale_table.float().mean(dim=0).reshape(-1)
+            elif self._act_scale_initialized and self._act_scale is not None:
+                scale = self._act_scale.float().reshape(-1)
+            else:
+                return False  # calibration pending
+            if scale.numel() == 1:
+                scale = scale.expand(self.in_features)
+            mq = qmax(eff_bits)
+            self._fr_qmin, self._fr_qmax = float(-mq - 1), float(mq)
+        self._fr_bits = eff_bits
+        dev = (self._weight_q if self._quant_available else self._weight_fp).device
+        if scale is not None:
+            self.register_buffer(
+                "_fr_scale", scale.to(device=dev, dtype=torch.float32).contiguous(), persistent=False
+            )
+        else:
+            self._fr_scale = None
+
+        self._fr_rot_mode = 0  # 0=none 1=blocks 2=dense
+        if self._has_duquant_rotation_blocks:
+            blk = self._duquant_rotation_blocks.to(device=dev, dtype=compute_dtype).contiguous()
+            self.register_buffer("_fr_blocks", blk, persistent=False)
+            self.register_buffer(
+                "_fr_perm",
+                self._duquant_rotation_perm.to(device=dev, dtype=torch.int64).contiguous(),
+                persistent=False,
+            )
+            self._fr_nb, self._fr_B = int(blk.shape[0]), int(blk.shape[1])
+            self._fr_rot_mode = 1
+        elif self._has_duquant_rotation:
+            self.register_buffer(
+                "_fr_R",
+                self._duquant_rotation.to(device=dev, dtype=compute_dtype).contiguous(),
+                persistent=False,
+            )
+            self._fr_rot_mode = 2
+
+        w = self._weight_q if self._quant_available else self._weight_fp
+        # Rotation folding (GR00T_GPTQ_FOLD_ROT=1): reconstruct the effective
+        # unrotated linear map W_eq = R_out^T · W · R^T so the runtime carries
+        # ZERO rotation cost. Activations are then quantized per-token by the
+        # real-quant kernels (QServe int4/int8 small-M, FP8 large-M).
+        self._fr_fold_rot = False
+        if (
+            os.environ.get("GR00T_GPTQ_FOLD_ROT", "0") not in ("0", "false", "False")
+            and os.environ.get("GR00T_GPTQ_QSERVE", "0") not in ("0", "false", "False")
+            and (
+                os.environ.get("GR00T_GPTQ_FP8", "0") not in ("0", "false", "False")
+                or os.environ.get("GR00T_GPTQ_A16_LARGE_M", "0") not in ("0", "false", "False")
+            )
+        ):
+            wf = w.detach().float()
+            # Fold input rotation blockwise: W_eq = W · R^T with R = P∘blockdiag.
+            # (x@R)[j-th block col] mixes x[perm[block j]] — so W·R^T means:
+            # W_eq[:, perm[b*B+i]] = sum_j W[:, b*B+j] * blk[b][i, j].
+            if self._has_duquant_rotation_blocks:
+                blk = self._duquant_rotation_blocks.float().to(wf.device)   # [nb,B,B]
+                perm = self._duquant_rotation_perm.to(torch.int64).to(wf.device)
+                nb, B, _ = blk.shape
+                wcols = wf.reshape(self.out_features, nb, B)                # W in rotated-in basis
+                mixed = torch.einsum("onb,nib->oni", wcols, blk)            # W[:,bB+j]·blk[b,i,j]
+                weq = torch.empty_like(wf)
+                weq[:, perm] = mixed.reshape(self.out_features, nb * B)
+                wf = weq
+            elif self._has_duquant_rotation:
+                wf = wf @ self._duquant_rotation.float().to(wf.device).t()
+            # Fold output rotation blockwise: W_eq = R_out^T · W (block-diagonal, no perm)
+            if self._has_duquant_rotation_out_blocks:
+                ob = self._duquant_rotation_out_blocks.float().to(wf.device)  # [nbo,Bo,Bo]
+                nbo, Bo, _ = ob.shape
+                wrows = wf.reshape(nbo, Bo, self.in_features)
+                wf = torch.einsum("nji,njk->nik", ob, wrows).reshape(self.out_features, self.in_features)
+            elif self._has_duquant_rotation_out:
+                wf = self._duquant_rotation_out.float().to(wf.device).t() @ wf
+            w = wf.to(w.dtype)
+            self._fr_fold_rot = True
+            self._fr_rot_mode = 0  # rotations are folded into the weight
+        self.register_buffer("_fr_weight", w.to(dtype=compute_dtype).contiguous(), persistent=False)
+        # Real W4A8 via QServe (GR00T_GPTQ_QSERVE=1): int4-packed weights +
+        # per-token dynamic int8 activations on INT8 tensor cores. Wins at
+        # small M (expert/DiT calls); gated by GR00T_GPTQ_QSERVE_MAX_M.
+        self._fr_qserve = False
+        if os.environ.get("GR00T_GPTQ_QSERVE", "0") not in ("0", "false", "False"):
+            try:
+                import omniserve_backend.qgemm_w4a8_per_chn  # noqa: F401
+
+                wq = w.detach().float()
+                mx, mn = wq.amax(1), wq.amin(1)
+                s1 = ((mx - mn) / 15.0).clamp_min(1e-6)
+                zr = torch.clamp(torch.round(-mn / s1), 0, 15)
+                qg = torch.clamp(torch.round(wq / s1[:, None]) + zr[:, None], 0, 15).to(torch.int8)
+                # QServe tensor-core packing (per-channel branch of from_linear)
+                oc, ic = wq.shape
+                r = (
+                    qg.reshape(oc // 32, 2, 2, 8, ic // 32, 2, 4, 4)
+                    .permute(0, 4, 3, 6, 1, 5, 2, 7)
+                    .contiguous()
+                    .permute(0, 1, 2, 3, 5, 6, 7, 4)
+                    .contiguous()
+                )
+                packed = ((r[..., 1] << 4) + r[..., 0]).reshape(oc, ic // 2)
+                self.register_buffer("_qs_qweight", packed.to(device=dev).contiguous(), persistent=False)
+                self.register_buffer("_qs_s1", s1.half().to(dev).contiguous(), persistent=False)
+                self.register_buffer("_qs_szeros", (zr * s1).half().to(dev).contiguous(), persistent=False)
+                self._qs_max_m = int(os.environ.get("GR00T_GPTQ_QSERVE_MAX_M", "128"))
+                self._fr_qserve = oc % 32 == 0 and ic % 32 == 0
+            except Exception as e:  # pragma: no cover
+                print(f"[GPTQ] qserve pack failed for {self.name}: {e}")
+        # FP8 path for large-M calls (GR00T_GPTQ_FP8=1): per-row fp8 weights +
+        # per-token fp8 activations via torch._scaled_mm (H100 native, ~2x
+        # bf16 on compute-bound GEMMs). Used when M exceeds the QServe gate.
+        self._fr_fp8 = False
+        if os.environ.get("GR00T_GPTQ_FP8", "0") not in ("0", "false", "False"):
+            try:
+                wf8 = w.detach().float()
+                s_wr = (wf8.abs().amax(dim=1) / 448.0).clamp_min(1e-12)  # e4m3 max
+                w_fp8 = (wf8 / s_wr[:, None]).to(torch.float8_e4m3fn).contiguous()
+                # [K, N] column-major view — the layout _scaled_mm requires for mat2
+                self.register_buffer("_fp8_w_t", w_fp8.t(), persistent=False)
+                self.register_buffer("_fp8_w_scale", s_wr.to(torch.float32).reshape(1, -1).contiguous(), persistent=False)
+                self._fr_fp8 = True
+            except Exception as e:  # pragma: no cover
+                print(f"[GPTQ] fp8 pack failed for {self.name}: {e}")
+        # Real-INT8 path (GR00T_GPTQ_REAL_INT8=1): fold the static per-channel
+        # act scale into the weight, re-quantize rows to int8, and run the
+        # main GEMM on INT8 tensor cores via torch._int_mm. Requires a static
+        # act scale (frozen above).
+        self._fr_int8 = False
+        if (
+            os.environ.get("GR00T_GPTQ_REAL_INT8", "0") not in ("0", "false", "False")
+            and scale is not None
+        ):
+            wf = w.detach().float() * scale.to(w.device).reshape(1, -1)  # fold s_act
+            s_row = (wf.abs().amax(dim=1) / 127.0).clamp_min(1e-12)      # [out]
+            w_i8 = torch.clamp(torch.round(wf / s_row[:, None]), -127, 127).to(torch.int8)
+            self.register_buffer("_fr_w_int8_t", w_i8.t().contiguous(), persistent=False)  # [in, out]
+            self.register_buffer("_fr_w_row_scale", s_row.to(torch.float32), persistent=False)
+            aq = qmax(eff_bits)
+            self._fr_a_qmax = float(aq)
+            self._fr_int8 = True
+        if self.bias is not None:
+            self.register_buffer(
+                "_fr_bias", self.bias.to(dtype=compute_dtype, device=dev).contiguous(), persistent=False
+            )
+        else:
+            self._fr_bias = None
+        # SmoothQuant fold: x/s before quant == scale_eff = s*scale on divide,
+        # multiply-back stays `scale`. Not supported in fast path — bail out.
+        if self._has_smooth_scale and self._smooth_scale.numel() == self.in_features:
+            return False
+        if self._has_svdquant and self._lowrank_A.numel() > 0:
+            return False
+        self._fr_out_mode = 0
+        if self._fr_fold_rot:
+            pass  # output rotation folded into the weight
+        elif self._has_duquant_rotation_out_blocks:
+            ob = self._duquant_rotation_out_blocks.to(device=dev, dtype=compute_dtype).contiguous()
+            self.register_buffer("_fr_out_blocks", ob, persistent=False)
+            self._fr_nb_out, self._fr_B_out = int(ob.shape[0]), int(ob.shape[1])
+            self._fr_out_mode = 1
+        elif self._has_duquant_rotation_out:
+            self.register_buffer(
+                "_fr_R_out",
+                self._duquant_rotation_out.to(device=dev, dtype=compute_dtype).contiguous(),
+                persistent=False,
+            )
+            self._fr_out_mode = 2
+        # A16 fallback for large-M calls (GR00T_GPTQ_A16_LARGE_M=1): skip
+        # activation quantization when the QServe small-M gate doesn't apply.
+        # Weights stay W4 (baked); prefill GEMM runs at native bf16 speed and
+        # accuracy is strictly better than A8 there.
+        self._fr_a16_large = os.environ.get("GR00T_GPTQ_A16_LARGE_M", "0") not in ("0", "false", "False")
+        self._fast = True
+        return True
+
+    def _forward_fast(self, x: torch.Tensor) -> torch.Tensor:
+        orig_dtype = x.dtype
+        w = self._fr_weight
+        if self._fr_rot_mode == 1:
+            sh = x.shape
+            x2 = x.reshape(-1, sh[-1]).index_select(-1, self._fr_perm)
+            x2 = x2.reshape(-1, self._fr_nb, self._fr_B).transpose(0, 1)
+            x2 = torch.bmm(x2.to(w.dtype), self._fr_blocks)
+            x = x2.transpose(0, 1).reshape(sh)
+        elif self._fr_rot_mode == 2:
+            x = torch.matmul(x.to(w.dtype), self._fr_R)
+        if self._fr_qserve and x.numel() // x.shape[-1] <= self._qs_max_m:
+            from gr00t.quantization.qserve_op import qserve_linear
+
+            sh = x.shape
+            y16 = qserve_linear(x.reshape(-1, sh[-1]), self._qs_qweight, self._qs_s1, self._qs_szeros)
+            y = y16.reshape(*sh[:-1], y16.shape[-1]).to(w.dtype)
+        elif getattr(self, "_fr_a16_large", False):
+            y = torch.nn.functional.linear(x.to(w.dtype), w)
+        elif self._fr_fp8:
+            sh = x.shape
+            x2 = x.reshape(-1, sh[-1]).float()
+            s_a = (x2.abs().amax(dim=1, keepdim=True) / 448.0).clamp_min(1e-12)
+            a8 = (x2 / s_a).to(torch.float8_e4m3fn)
+            from gr00t.quantization.qserve_op import fp8_rowwise_mm
+
+            y = fp8_rowwise_mm(a8, self._fp8_w_t, s_a.contiguous(), self._fp8_w_scale)
+            y = y.reshape(*sh[:-1], y.shape[-1]).to(w.dtype)
+        elif self._fr_int8:
+            sh = x.shape
+            a = torch.clamp(
+                torch.round(x.reshape(-1, sh[-1]).float() / self._fr_scale),
+                -self._fr_a_qmax - 1, self._fr_a_qmax,
+            ).to(torch.int8)
+            m = a.shape[0]
+            if m < 17:  # cuBLAS int8 GEMM requires M > 16
+                a = torch.nn.functional.pad(a, (0, 0, 0, 17 - m))
+            y = torch._int_mm(a, self._fr_w_int8_t)[:m]  # [M, out] int32, INT8 tensor cores
+            y = y.to(torch.float32) * self._fr_w_row_scale
+            y = y.reshape(*sh[:-1], y.shape[-1]).to(w.dtype)
+        else:
+            if self._fr_scale is not None:
+                s = self._fr_scale
+                x = torch.clamp(torch.round(x.float() / s), self._fr_qmin, self._fr_qmax) * s
+            y = torch.nn.functional.linear(x.to(w.dtype), w)
+        if self._fr_out_mode == 1:
+            sh_y = y.shape
+            y2 = y.reshape(-1, self._fr_nb_out, self._fr_B_out).transpose(0, 1)
+            y2 = torch.bmm(y2.to(self._fr_out_blocks.dtype), self._fr_out_blocks)
+            y = y2.transpose(0, 1).reshape(sh_y)
+        elif self._fr_out_mode == 2:
+            y = torch.matmul(y.to(self._fr_R_out.dtype), self._fr_R_out)
+        if self._fr_bias is not None:
+            y = y + self._fr_bias
+        return y.to(orig_dtype)
+
+    @torch._dynamo.disable
     def _get_act_scale(self, x: torch.Tensor) -> torch.Tensor:
         if self.cfg.act_bits <= 0:
             return torch.ones(x.shape[-1], dtype=x.dtype, device=x.device)
@@ -583,11 +854,111 @@ class GptqLinear(nn.Module):
         except Exception:
             pass
 
+    def _resolve_fused_act_scale(self, x: torch.Tensor):
+        """Static per-channel act scale (rotated space) for the fused path.
+
+        Returns (scale_or_None, eff_act_bits). scale None with bits>0 means
+        no static scale available yet (calibration pending) -> use eager path.
+        """
+        eff = (
+            int(self._record_a_bits)
+            if self._record_a_bits is not None
+            else int(self.cfg.act_bits or 0)
+        )
+        if eff <= 0:
+            return None, 0
+        if self._has_act_scale_table:
+            from gr00t.quantization.dit_step_context import get_current_dit_step
+
+            cur = get_current_dit_step()
+            if cur is not None and 0 <= cur < self._act_scale_table.shape[0]:
+                return self._act_scale_table[cur], eff
+            if not hasattr(self, "_act_scale_table_mean_buf"):
+                self.register_buffer(
+                    "_act_scale_table_mean_buf",
+                    self._act_scale_table.mean(dim=0),
+                    persistent=False,
+                )
+            return self._act_scale_table_mean_buf, eff
+        if self._act_scale_initialized and self._act_scale is not None:
+            return self._act_scale, eff
+        return None, eff
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        if getattr(self, "_fast", False):
+            return self._forward_fast(x)
+        did_fused = False
+        # Fused Triton path: permute + block-rotation + act fake-quant in one
+        # kernel. Only when no SmoothQuant scale / SVDQuant branch is involved
+        # and a static act scale is available (or act quant disabled).
+        if (
+            self._fused_enabled
+            and x.numel() // x.shape[-1] >= self._fused_min_tokens
+            and (self._has_duquant_rotation_blocks or self._has_duquant_rotation)
+            and (not self._has_svdquant or self._lowrank_A.numel() == 0)
+            and not (self._has_smooth_scale and self._smooth_scale.numel() == x.shape[-1])
+        ):
+            f_scale, f_bits = self._resolve_fused_act_scale(x)
+            if f_bits == 0 or f_scale is not None:
+                from gr00t.quantization.fused_rot_quant import rot_quant
+
+                if not hasattr(self, "_rot_blocks_f32"):
+                    if self._has_duquant_rotation_blocks:
+                        blocks = self._duquant_rotation_blocks.to(
+                            device=x.device, dtype=torch.float32
+                        ).contiguous()
+                        perm = self._duquant_rotation_perm.to(
+                            device=x.device, dtype=torch.int32
+                        ).contiguous()
+                    else:
+                        # Dense R from the pack. DuQuant rotations are
+                        # (permutation ∘ block-diagonal) with B=64: every ROW
+                        # of R has support inside exactly one 64-column block.
+                        # Recover perm+blocks; verify by reconstruction; fall
+                        # back to eager permanently if the structure is absent.
+                        R = self._duquant_rotation.to(device=x.device, dtype=torch.float32)
+                        Bsz = 64
+                        in_f = R.shape[0]
+                        blocks = None
+                        if in_f % Bsz == 0:
+                            n_b = in_f // Bsz
+                            # energy of each row within each column-block
+                            e = (R.reshape(in_f, n_b, Bsz) ** 2).sum(-1)  # [in, n_b]
+                            row_blk = e.argmax(dim=1)                      # [in]
+                            off_energy = float(e.sum() - e.gather(1, row_blk[:, None]).sum())
+                            counts = torch.bincount(row_blk, minlength=n_b)
+                            if off_energy < 1e-4 and bool((counts == Bsz).all()):
+                                order = torch.argsort(row_blk * in_f + torch.arange(in_f, device=R.device))
+                                perm = order.to(torch.int32).contiguous()
+                                rows = R.index_select(0, order)            # [in, in]
+                                blocks = torch.stack(
+                                    [rows[b * Bsz:(b + 1) * Bsz, b * Bsz:(b + 1) * Bsz] for b in range(n_b)]
+                                ).contiguous()
+                                # algebraic verification: rebuild dense R from
+                                # (perm, blocks) and compare exactly.
+                                rec = torch.zeros_like(R)
+                                for b in range(n_b):
+                                    rec[order[b * Bsz:(b + 1) * Bsz], b * Bsz:(b + 1) * Bsz] = blocks[b]
+                                if float((rec - R).abs().max()) > 1e-5:
+                                    blocks = None
+                        if blocks is None:
+                            self._fused_enabled = False
+                    if blocks is not None:
+                        self.register_buffer("_rot_blocks_f32", blocks, persistent=False)
+                        self.register_buffer("_rot_perm_i32", perm, persistent=False)
+                if hasattr(self, "_rot_blocks_f32"):
+                    orig_shape = x.shape
+                    x2 = x.reshape(-1, orig_shape[-1])
+                    if not x2.is_contiguous():
+                        x2 = x2.contiguous()
+                    y2 = rot_quant(x2, self._rot_perm_i32, self._rot_blocks_f32, f_scale, f_bits)
+                    x = y2.reshape(*orig_shape)
+                    did_fused = True
+                    self._fused_calls = getattr(self, "_fused_calls", 0) + 1
         # DuQuant rotation preprocessing (if present): x' = x @ R
         # Applied BEFORE SmoothQuant scaling because R is on raw input space;
         # the pack's smooth_scale was computed on rotated activations.
-        if self._has_duquant_rotation_blocks:
+        if not did_fused and self._has_duquant_rotation_blocks:
             # Fast path: x[:, perm].view(..., n_blocks, B) @ R_blocks (bmm).
             # Equivalent to x @ (P @ block_diag(R_b)) where P is perm matrix.
             blocks = self._duquant_rotation_blocks.to(dtype=x.dtype, device=x.device)  # [n, B, B]
@@ -603,7 +974,10 @@ class GptqLinear(nn.Module):
             x2 = x2.transpose(0, 1).contiguous().reshape(-1, in_f)
             x = x2.reshape(*orig_shape[:-1], in_f)
         elif self._has_duquant_rotation:
-            R = self._duquant_rotation.to(dtype=x.dtype, device=x.device)
+            R = getattr(self, "_rot_R_cast", None)
+            if R is None or R.dtype != x.dtype or R.device != x.device:
+                R = self._duquant_rotation.to(dtype=x.dtype, device=x.device)
+                self._rot_R_cast = R
             x = torch.matmul(x, R)
         # SmoothQuant: divide input by per-channel smooth scale so that the
         # forward sees activations matched to the smoothed-W stored in pack.
@@ -625,7 +999,7 @@ class GptqLinear(nn.Module):
             if self._record_a_bits is not None
             else int(self.cfg.act_bits or 0)
         )
-        if eff_act_bits > 0:
+        if eff_act_bits > 0 and not did_fused:
             # Per-DiT-step scale dispatch: if this layer has an act_scale_table
             # AND a denoising-step context is active AND the step is in range,
             # use that step's row.
@@ -634,7 +1008,11 @@ class GptqLinear(nn.Module):
                 from gr00t.quantization.dit_step_context import get_current_dit_step
                 cur = get_current_dit_step()
                 if cur is not None and 0 <= cur < self._act_scale_table.shape[0]:
-                    step_scale = self._act_scale_table[cur].to(dtype=x.dtype, device=x.device)
+                    tbl = getattr(self, "_act_table_cast", None)
+                    if tbl is None or tbl.dtype != x.dtype or tbl.device != x.device:
+                        tbl = self._act_scale_table.to(dtype=x.dtype, device=x.device)
+                        self._act_table_cast = tbl
+                    step_scale = tbl[cur]
                 elif cur is not None and not getattr(self, "_act_table_oob_warned", False):
                     print(
                         f"[GPTQ][WARN] {self.name}: act_scale_table has "
@@ -674,7 +1052,10 @@ class GptqLinear(nn.Module):
             else torch.float32
         )
         x_q_p = x_q.to(promote_dtype)
-        w_p = weight.to(dtype=promote_dtype, device=x_q.device)
+        w_p = self._w_promoted_cache
+        if w_p is None or w_p.dtype != promote_dtype or w_p.device != x_q.device:
+            w_p = weight.to(dtype=promote_dtype, device=x_q.device)
+            self._w_promoted_cache = w_p
         y = torch.nn.functional.linear(x_q_p, w_p, None)
         # SVDQuant: add lowrank correction y += (x_s @ B) @ A.T (also promoted)
         if self._has_svdquant and x_s_for_lowrank is not None:
@@ -704,7 +1085,11 @@ class GptqLinear(nn.Module):
         # Cast back to original dtype
         y = y.to(dtype=out_dtype)
         if self.bias is not None:
-            y = y + self.bias.to(dtype=y.dtype, device=y.device)
+            b = getattr(self, "_bias_cast", None)
+            if b is None or b.dtype != y.dtype or b.device != y.device:
+                b = self.bias.to(dtype=y.dtype, device=y.device)
+                self._bias_cast = b
+            y = y + b
         if self._debug_enabled and not hasattr(self, "_debug_forward_logged"):
             print(
                 f"[GR00T-GPTQ][FORWARD] {self.name} input={tuple(x.shape)} output={tuple(y.shape)} "
@@ -713,6 +1098,22 @@ class GptqLinear(nn.Module):
             )
             self._debug_forward_logged = True
         return y
+
+
+@torch.no_grad()
+def freeze_gptq_fast_paths(model: nn.Module, compute_dtype: torch.dtype = torch.bfloat16):
+    """Freeze all GptqLinear layers into the compile-friendly fast path.
+    Call after enough warmup forwards for act-scale calibration to finish.
+    Returns (frozen, pending) counts."""
+    frozen = pending = 0
+    for m in model.modules():
+        if isinstance(m, GptqLinear):
+            if m.freeze_fast_path(compute_dtype=compute_dtype):
+                frozen += 1
+            else:
+                pending += 1
+    print(f"[GPTQ] fast-path frozen: {frozen}, pending: {pending}")
+    return frozen, pending
 
 
 def wrap_gptq(
