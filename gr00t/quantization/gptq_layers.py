@@ -250,6 +250,56 @@ def gptq_quantize_weight(
     return Q
 
 
+@torch.no_grad()
+def _gptq_requant_asym(
+    W: torch.Tensor,
+    H: torch.Tensor,
+    s: torch.Tensor,
+    z: torch.Tensor,
+    block_size: int = 128,
+    damp_percent: float = 0.01,
+) -> torch.Tensor:
+    """GPTQ error-compensated requantization onto a fixed per-row asymmetric
+    int4 grid: q = clamp(round(w/s)+z, 0, 15). Used when repacking (folded)
+    weights for the QServe per-channel kernel — same grid and buffers as the
+    naive snap, strictly lower output error under the calibration Gram H.
+    """
+    W = W.detach().float().clone()
+    in_f = W.shape[1]
+    H = H.detach().float().clone()
+    dead = H.diagonal() == 0
+    H.diagonal()[dead] = 1.0
+    W[:, dead] = 0
+    H.diagonal().add_(damp_percent * H.diagonal().mean())
+    try:
+        Hinv = torch.cholesky_inverse(torch.linalg.cholesky(H))
+        U = torch.linalg.cholesky(Hinv, upper=True)
+    except RuntimeError:
+        U = None
+    sq = s[:, None]
+    if U is None:
+        return torch.clamp(torch.round(W / sq) + z[:, None], 0, 15).to(torch.int8)
+    Q = torch.empty_like(W, dtype=torch.int8)
+    for bs in range(0, in_f, block_size):
+        be = min(bs + block_size, in_f)
+        Wb = W[:, bs:be]
+        Err = torch.zeros_like(Wb)
+        for i in range(be - bs):
+            col = bs + i
+            w = Wb[:, i]
+            q = torch.clamp(torch.round(w / s) + z, 0, 15)
+            dq = (q - z) * s
+            d = float(U[col, col])
+            err = (w - dq) / (d if abs(d) > 1e-12 else 1.0)
+            if i + 1 < be - bs:
+                Wb[:, i + 1:] -= err[:, None] * U[col, col + 1:be][None, :]
+            Err[:, i] = err
+            Q[:, col] = q.to(torch.int8)
+        if be < in_f:
+            W[:, be:] -= Err @ U[bs:be, be:]
+    return Q
+
+
 class GptqLinear(nn.Module):
     """Runtime wrapper for offline-built GPTQ quantized weights."""
 
@@ -307,6 +357,17 @@ class GptqLinear(nn.Module):
         self._fused_enabled = os.environ.get("GR00T_GPTQ_FUSED", "0") not in ("0", "false", "False")
         self._fused_min_tokens = int(os.environ.get("GR00T_GPTQ_FUSED_MIN_TOKENS", "64"))
         self._w_promoted_cache: Optional[torch.Tensor] = None
+        # Input-Gram collection for GPTQ-compensated QServe repack
+        # (GR00T_GPTQ_QSERVE_GPTQ_REQUANT=1): during pre-freeze calibration,
+        # accumulate x^T x for calls that will take the QServe small-M path,
+        # so freeze can error-compensate the per-row int4 requantization of
+        # the (folded) weight instead of naive rounding.
+        self._gram_collect = (
+            os.environ.get("GR00T_GPTQ_QSERVE_GPTQ_REQUANT", "0") not in ("0", "false", "False")
+            and os.environ.get("GR00T_GPTQ_QSERVE", "0") not in ("0", "false", "False")
+        )
+        self._gram_max_m = int(os.environ.get("GR00T_GPTQ_QSERVE_MAX_M", "128"))
+        self._qs_gram: Optional[torch.Tensor] = None
         if record is None:
             if cfg.missing == "error":
                 raise FileNotFoundError(f"No GPTQ record found for layer '{name}' in {cfg.path}")
@@ -655,7 +716,13 @@ class GptqLinear(nn.Module):
                 mx, mn = wq.amax(1), wq.amin(1)
                 s1 = ((mx - mn) / 15.0).clamp_min(1e-6)
                 zr = torch.clamp(torch.round(-mn / s1), 0, 15)
-                qg = torch.clamp(torch.round(wq / s1[:, None]) + zr[:, None], 0, 15).to(torch.int8)
+                gram = self._qs_gram
+                if gram is not None and gram.shape[0] == wq.shape[1]:
+                    qg = _gptq_requant_asym(wq.to(gram.device), gram, s1.to(gram.device), zr.to(gram.device))
+                    qg = qg.to(wq.device)
+                    self._qs_gram = None
+                else:
+                    qg = torch.clamp(torch.round(wq / s1[:, None]) + zr[:, None], 0, 15).to(torch.int8)
                 # QServe tensor-core packing (per-channel branch of from_linear)
                 oc, ic = wq.shape
                 r = (
@@ -887,6 +954,10 @@ class GptqLinear(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         if getattr(self, "_fast", False):
             return self._forward_fast(x)
+        if self._gram_collect and x.numel() // x.shape[-1] <= self._gram_max_m:
+            xf = x.detach().reshape(-1, x.shape[-1]).float()
+            g = xf.t() @ xf
+            self._qs_gram = g if self._qs_gram is None else self._qs_gram + g
         did_fused = False
         # Fused Triton path: permute + block-rotation + act fake-quant in one
         # kernel. Only when no SmoothQuant scale / SVDQuant branch is involved
