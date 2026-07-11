@@ -23,6 +23,13 @@ INCLUDE_BOTH = (
     r".*paligemma_with_expert\.(paligemma\.model\.language_model|gemma_expert\.model)"
     r"\.layers\.[0-9]+\..*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj).*"
 )
+# QuantVLA paper layout (arXiv 2602.20309): LM all linears + expert MLP only
+INCLUDE_QUANTVLA_PAPER = (
+    r".*paligemma_with_expert\.("
+    r"paligemma\.model\.language_model\.layers\.[0-9]+\..*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)"
+    r"|gemma_expert\.model\.layers\.[0-9]+\.mlp\.(gate_proj|up_proj|down_proj)"
+    r").*"
+)
 
 
 def clear_env():
@@ -58,8 +65,10 @@ def build(args, mode: str):
         # unified real-quant deployment: baked method weights + QServe small-M
         # + A16 large-M. Method identity lives in the checkpoint weights only.
         os.environ["GR00T_GPTQ"] = "1"
-        os.environ["GR00T_GPTQ_PATH"] = "/work/sicheng/vla-quant/out/empty_pack.pt"
-        os.environ["GR00T_GPTQ_INCLUDE"] = INCLUDE_BOTH
+        os.environ["GR00T_GPTQ_PATH"] = args.empty_pack
+        os.environ["GR00T_GPTQ_INCLUDE"] = (
+            INCLUDE_QUANTVLA_PAPER if "paper" in mode else INCLUDE_BOTH
+        )
         os.environ["GR00T_GPTQ_ABITS"] = "8"
         os.environ["GR00T_GPTQ_CALIB_STEPS"] = "4"
         os.environ["GR00T_GPTQ_MISSING"] = "fallback"
@@ -118,7 +127,11 @@ def build(args, mode: str):
     if mode.startswith("qvla_real"):
         ckpt = args.qvla_checkpoint
     elif mode.startswith("quantvla_real"):
-        ckpt = "/work/sicheng/models/quantvla-pi05-w4"
+        ckpt = (
+            args.quantvla_paper_checkpoint
+            if "paper" in mode
+            else args.quantvla_checkpoint
+        )
     elif mode.startswith("qvla"):
         ckpt = args.qvla_checkpoint
     else:
@@ -144,6 +157,9 @@ def main():
     p.add_argument("--pack", default="/work/sicheng/models/omega-qvla-pi05-w4a4/pi05_long/quantized.pt")
     p.add_argument("--obs-path", default="/work/sicheng/vla-quant/out/pi05_calib_obs.pt")
     p.add_argument("--qvla-checkpoint", default="/work/sicheng/models/qvla-pi05-w4")
+    p.add_argument("--quantvla-checkpoint", default="/work/sicheng/models/quantvla-pi05-w4")
+    p.add_argument("--quantvla-paper-checkpoint", default="/work/sicheng/models/quantvla-pi05-w4-paper")
+    p.add_argument("--empty-pack", default="/work/sicheng/vla-quant/out/empty_pack.pt")
     p.add_argument("--obs-slice", default="30:40", help="python slice into obs list (long suite = 30:40)")
     p.add_argument("--data-config", default="pi05_libero")
     p.add_argument("--device", default="cuda")

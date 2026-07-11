@@ -11,6 +11,7 @@ and bake W_eq into a checkpoint copy. Deployment then packs W_eq with the
 same QServe/A16 pipeline used for all methods. Run in the openpi venv.
 """
 
+import os
 import re
 import shutil
 import sys
@@ -25,11 +26,22 @@ from gr00t.quantization.duquant_preprocess import compute_duquant_rotation_only 
 from gr00t.quantization.rtn_layers import _quant_dequant_weight_groupwise  # noqa: E402
 
 SRC = "/work/sicheng/models/pi05_libero_pytorch"
-OUT = "/work/sicheng/models/quantvla-pi05-w4"
-INCLUDE = re.compile(
-    r".*paligemma_with_expert\.(paligemma\.model\.language_model|gemma_expert\.model)"
-    r"\.layers\.[0-9]+\..*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)\.weight$"
-)
+OUT = os.environ.get("QUANTVLA_BAKE_OUT", "/work/sicheng/models/quantvla-pi05-w4")
+# Default: unified 252-layer scope. QUANTVLA_SCOPE=paper switches to the
+# QuantVLA paper layout (arXiv 2602.20309): LM all linears quantized, action
+# expert MLP-only (attention projections stay FP) -> 126 + 54 = 180 layers.
+if os.environ.get("QUANTVLA_SCOPE", "") == "paper":
+    INCLUDE = re.compile(
+        r".*paligemma_with_expert\.("
+        r"paligemma\.model\.language_model\.layers\.[0-9]+\..*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)"
+        r"|gemma_expert\.model\.layers\.[0-9]+\.mlp\.(gate_proj|up_proj|down_proj)"
+        r")\.weight$"
+    )
+else:
+    INCLUDE = re.compile(
+        r".*paligemma_with_expert\.(paligemma\.model\.language_model|gemma_expert\.model)"
+        r"\.layers\.[0-9]+\..*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)\.weight$"
+    )
 
 
 def main():
