@@ -27,6 +27,7 @@ def _pack_input(X, SM, TABLE, PACKED, SCALES, M: tl.constexpr, K: tl.constexpr,
             value = value.to(tl.float16).to(tl.float32)
             peak = tl.maximum(peak, tl.max(tl.abs(value)))
         scalar = (peak / 7).to(tl.float16).to(tl.float32)
+    scalar = tl.where(row < M, scalar, 1.0)
     word = tl.full((B,), 0, tl.int32)
     for nibble in range(8):
         col = j * 8 + nibble

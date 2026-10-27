@@ -19,6 +19,10 @@ def main():
     root = Path("results/holoq_object")
     out = root / "evaluation_best_s4"
     status = json.loads((out / "queue.json").read_text())
+    if "nunchaku_pilot_finished" in status:
+        status.setdefault("nunchaku_prior_attempts", []).append(
+            {key: status.pop(key) for key in ["nunchaku_pilot_finished", "nunchaku_pilot_failure", "nunchaku_pilot_success"] if key in status}
+        )
     status.update(nunchaku_pilot_requested=time.time(), pilot_extension_complete=False)
 
     def save():
