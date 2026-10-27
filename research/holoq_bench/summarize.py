@@ -304,6 +304,13 @@ def main():
         ]
         for name in quant:
             text.append("| " + name + " | " + " | ".join(f"{speeds[c][name]:.3f}x" for c in ours) + " |")
+    task_names = {}
+    for r in rows:
+        if r["episodes"] == 100:
+            episodes_path = a.runs / r["case"] / r["execution"] / "rollout/episodes.jsonl"
+            task_names = {str(e["task_id"]): e["task"] for line in episodes_path.read_text().splitlines() for e in [json.loads(line)]}
+            break
+    (a.output / "tasks.json").write_text(json.dumps(task_names, indent=2) + "\n")
     task_rows = []
     for r in rows:
         values = json.loads(r["per_task_successes"])
@@ -315,7 +322,9 @@ def main():
                     "case": r["case"],
                     "execution": r["execution"],
                     "task": task,
+                    "task_name": task_names.get(str(task), ""),
                     "successes": successes,
+                    "trials": 10,
                 }
             )
     if task_rows:
