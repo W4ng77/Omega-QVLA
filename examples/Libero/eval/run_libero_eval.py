@@ -2,6 +2,7 @@ import collections
 import os
 import pprint
 import json
+import time
 from dataclasses import dataclass
 
 import cv2
@@ -348,6 +349,7 @@ def eval_libero(cfg: GenerateConfig) -> None:
 
         # Start episodes
         task_episodes, task_successes = 0, 0
+        task_policy_ms, task_rollout_s = [], []
         offset = max(0, cfg.init_offset)
         max_trials = min(cfg.num_trials_per_task, len(initial_states) - offset)
         if max_trials <= 0:
@@ -373,6 +375,9 @@ def eval_libero(cfg: GenerateConfig) -> None:
 
             print(f"Starting episode {task_episodes+1}...")
             log_file.write(f"Starting episode {task_episodes+1}...\n")
+            episode_start = time.perf_counter()
+            episode_policy_ms = []
+            episode_error = None
             while t < max_steps + cfg.num_steps_wait:
                 try:
                     # IMPORTANT: Do nothing for the first few timesteps because the simulator drops objects
@@ -390,10 +395,12 @@ def eval_libero(cfg: GenerateConfig) -> None:
                     wrist_view.append(wrist_img)
 
                     # Query model to get action
+                    action_start = time.perf_counter()
                     action = policy.get_action(
                         obs,
                         task.language,
                     )
+                    episode_policy_ms.append((time.perf_counter() - action_start) * 1000)
 
                     # Execute action in environment
                     obs, reward, done, info = env.step(action.tolist())
@@ -404,10 +411,24 @@ def eval_libero(cfg: GenerateConfig) -> None:
                     t += 1
 
                 except Exception as e:
+                    episode_error = str(e)
                     print(f"Caught exception: {e}")
                     log_file.write(f"Caught exception: {e}\n")
                     break
 
+            rollout_s = time.perf_counter() - episode_start
+            task_rollout_s.append(rollout_s)
+            task_policy_ms.extend(episode_policy_ms)
+            if cfg.summary_json:
+                episode_path = os.path.splitext(cfg.summary_json)[0] + "_episodes.jsonl"
+                os.makedirs(os.path.dirname(episode_path) or ".", exist_ok=True)
+                with open(episode_path, "a") as episode_file:
+                    episode_file.write(json.dumps({
+                        "task_id": task_id, "episode": episode_idx,
+                        "init_state_index": offset + episode_idx, "success": bool(done),
+                        "rollout_s": rollout_s, "policy_calls": len(episode_policy_ms),
+                        "policy_rpc_ms": episode_policy_ms, "error": episode_error,
+                    }) + "\n")
             task_episodes += 1
             total_episodes += 1
 
@@ -453,6 +474,11 @@ def eval_libero(cfg: GenerateConfig) -> None:
                 "episodes": task_episodes,
                 "successes": task_successes,
                 "success_rate": task_success_rate,
+                "policy_calls": len(task_policy_ms),
+                "policy_rpc_mean_ms": float(np.mean(task_policy_ms)) if task_policy_ms else None,
+                "policy_rpc_p50_ms": float(np.percentile(task_policy_ms, 50)) if task_policy_ms else None,
+                "policy_rpc_p95_ms": float(np.percentile(task_policy_ms, 95)) if task_policy_ms else None,
+                "rollout_mean_s": float(np.mean(task_rollout_s)),
             }
         )
 

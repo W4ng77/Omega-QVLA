@@ -109,6 +109,7 @@ class PerStepBackend(nn.Module):
         if record.get("version") != 1 or record.get("mode") not in MODES:
             raise ValueError("Unsupported perstep backend record")
         self.mode = record["mode"]
+        self.act_qmin = int(record.get("act_qmin", -8))
         self.group_size = int(record["group_size"])
         self.in_features = int(record["in_features"])
         self.out_features = int(record["out_features"])
@@ -119,6 +120,8 @@ class PerStepBackend(nn.Module):
             self.register_buffer("group_scale_table", record["group_scale_table"].contiguous())
             self.register_buffer("mean_group_scale", self.group_scale_table.mean(dim=0))
         self._validate_shapes()
+        self._native_cache = {}
+        self._native_calls = 0
 
     def _validate_shapes(self):
         t = self.act_scale_table.shape[0]
@@ -159,6 +162,14 @@ class PerStepBackend(nn.Module):
             raise ValueError("Move PerStepBackend to the input device before forwarding")
         if engine == "torch_reference":
             return self.reference(x, p, s, a)
+        if engine == "native_s4":
+            if self.mode not in ("step_weight", "group_int") or not x.is_cuda:
+                raise RuntimeError("native_s4 requires a CUDA integer per-step backend")
+            from research.native_int4.backend import cached_linear
+            self._native_calls += 1
+            return cached_linear(x, p, s, a, self.group_size, self.mode, self._native_cache, self.act_qmin)
+        if self.act_qmin != -8:
+            raise RuntimeError("The legacy Triton engine only supports activation qmin=-8")
         if engine != "triton" or not x.is_cuda:
             raise RuntimeError("Triton CUDA is required; use engine='torch_reference' only for debugging")
         from .perstep_kernels import residual_linear
@@ -169,7 +180,7 @@ class PerStepBackend(nn.Module):
         k, g = self.in_features, self.group_size
         index = torch.arange(k, device=x.device) // g
         channel_scale = a[index] if self.mode == "group_int" else a
-        q = (x.float() / channel_scale).round().clamp(-8, 7)
+        q = (x.float() / channel_scale).round().clamp(self.act_qmin, 7)
         w = dequant_weight(p, s, k, g)
         if self.mode == "fused_float":
             # Matches FP16 operand conversion of fused_float, FP32 accumulation.

@@ -96,6 +96,9 @@ class ArgsConfig:
     warmup_steps: int = 32
     """Number of dummy forwards to run before serving (populates DuQuant activation calibration). Default 32 matches GR00T_DUQUANT_CALIB_STEPS so DuQuant percentile-99.9 scale is fully populated from diverse LIBERO task prompts before the server begins accepting real eval queries (eliminates per-task calibration leakage). Set 0 to disable."""
 
+    warmup_only: bool = False
+    """Exit after model warmup, for full-policy integration checks."""
+
 
 #####################################################################################
 
@@ -194,13 +197,29 @@ def main(args: ArgsConfig):
             policy.warmup(num_steps=args.warmup_steps)
             print(f"[inference_service] Warmup done in {time.time() - t0:.2f}s")
 
+        import torch
+
+        native_modules = [m for m in policy.model.modules() if getattr(m, "_native_calls", 0)]
+        expected_native = int(os.environ.get("GR00T_EXPECT_NATIVE_LAYERS", "0"))
+        if expected_native and len(native_modules) != expected_native:
+            raise RuntimeError(f"Expected {expected_native} active native layers, got {len(native_modules)}")
+        print(
+            f"[native_s4] active_layers={len(native_modules)} warmup_calls={sum(m._native_calls for m in native_modules)} "
+            f"allocated_bytes={torch.cuda.memory_allocated()} peak_bytes={torch.cuda.max_memory_allocated()}",
+            flush=True,
+        )
+        if args.warmup_only:
+            return
+        if os.environ.get("GR00T_LATENCY_DIR"):
+            from research.native_int4.policy_timing import install_timing
+
+            install_timing(policy, args.port)
+
         # Start the server
         if args.http_server:
             from gr00t.eval.http_server import HTTPInferenceServer  # noqa: F401
 
-            server = HTTPInferenceServer(
-                policy, port=args.port, host=args.host, api_token=args.api_token
-            )
+            server = HTTPInferenceServer(policy, port=args.port, host=args.host, api_token=args.api_token)
             server.run()
         else:
             server = RobotInferenceServer(policy, port=args.port, api_token=args.api_token)

@@ -31,7 +31,7 @@ from gr00t.data.schema import DatasetMetadata
 from gr00t.data.transform.base import ComposedModalityTransform
 from gr00t.model.gr00t_n1 import GR00T_N1_5
 
-COMPUTE_DTYPE = torch.bfloat16
+COMPUTE_DTYPE = torch.float16 if os.environ.get("HOLOQ_COMPUTE_DTYPE") == "float16" else torch.bfloat16
 
 
 class BasePolicy(ABC):
@@ -330,6 +330,13 @@ class Gr00tPolicy(BasePolicy):
         return True
 
     def _load_model(self, model_path):
+        if os.environ.get("HOLOQ_DEPLOY"):
+            from research.holoq_bench.deployment import load
+            self.model, self.holoq_meta = load(
+                Path(os.environ["HOLOQ_DEPLOY"]), self.device,
+                len(self._modality_config["action"].delta_indices),
+            )
+            return
         model = GR00T_N1_5.from_pretrained(model_path, torch_dtype=COMPUTE_DTYPE)
         model.eval()  # Set model to eval mode
 
@@ -367,6 +374,12 @@ class Gr00tPolicy(BasePolicy):
 
             print("[GR00T] Action head was recreated - will re-apply DuQuant if configured")
 
+        if os.environ.get("HOLOQ_COMPUTE_DTYPE") == "float16":
+            # Eagle is constructed with BF16 embeddings. Merely changing the
+            # autocast dtype promotes its image/text merge to FP32 and fails
+            # indexed assignment. Convert the common unquantized model first.
+            model.to(dtype=torch.float16)
+
         # Ensure DiT attention processors are ATM-aware before any quantization or scaling is applied
         try:
             ensure_dit_attention_patch(model)
@@ -380,7 +393,11 @@ class Gr00tPolicy(BasePolicy):
         # gr00t.quantization.quant.enable_quant_if_configured).
         from gr00t.quantization import enable_quant_if_configured
 
-        enable_quant_if_configured(model)
+        if os.environ.get("HOLOQ_PACK"):
+            from research.holoq_bench.packed_runtime import enable
+            self.holoq_meta = enable(model, os.environ["HOLOQ_PACK"])
+        else:
+            enable_quant_if_configured(model)
 
         # Apply ATM scaling if configured (uses pre-loaded alpha JSON)
         try:
