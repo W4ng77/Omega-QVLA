@@ -17,7 +17,6 @@ def main():
     primary = a.root / "evaluation_v3"
     extra = a.root / "evaluation_best_s4"
     while True:
-        q = json.loads((primary / "queue.json").read_text())
         pilot_path = extra / "queue.json"
         pilot = json.loads(pilot_path.read_text()) if pilot_path.exists() else {}
         if pilot.get("pilot_finished") and pilot.get("pilot_extension_complete"):
