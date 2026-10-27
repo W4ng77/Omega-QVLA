@@ -160,3 +160,6 @@ results/**/logs/
 /third_party/
 /.kernel_sources/
 /research/holoq_bench/paper/
+
+# Compressed audited experiment logs are publication artifacts.
+!experiment_results/holoq_object_20261027/**/*.log.gz
