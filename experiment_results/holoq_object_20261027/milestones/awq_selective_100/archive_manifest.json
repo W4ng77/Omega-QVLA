@@ -1,0 +1,42 @@
+{
+  "audit.json": {
+    "bytes": 9126,
+    "sha256": "8ef3c429874f64aec15f70cfd74e173f8fcb96bddca919203e6e76dd180e332e"
+  },
+  "run.log.gz": {
+    "bytes": 2670,
+    "sha256": "8b2ab5b429b25fa0b3f871aa9a44350b2bd0c8b915e44e755b28aa6b2e9140ba"
+  },
+  "README.md": {
+    "bytes": 822,
+    "sha256": "a63307dca2f42277f66eb410abb9553ffc9acbf82919a910e10e8c9139af6707"
+  },
+  "summary.json": {
+    "bytes": 45834,
+    "sha256": "0f35958ec134d47f1efc3b65104b5f3810f0a1f36e65c84b3b1205b2f8a0ca0e"
+  },
+  "metadata.json": {
+    "bytes": 45349,
+    "sha256": "7da08113d5e3234f8d8ffca57d30b0745f977fecf7bf162daa43196f304dab3e"
+  },
+  "episodes.jsonl.gz": {
+    "bytes": 8557,
+    "sha256": "ce8ae77699abc74f6f9cf66b4cc85916fc6ab0cede31675fbe6434c3293bba80"
+  },
+  "replay_summary.json": {
+    "bytes": 43863,
+    "sha256": "49737efa78fe9b52e4e771ae91ae5fa07dbe0db5447294f1adce3ba260b6df72"
+  },
+  "rollout_calls.jsonl.gz": {
+    "bytes": 200291,
+    "sha256": "4bd6308b2020d76c5d723a5608bd13e7049c7d4e23f27905552dcfcff455c90d"
+  },
+  "completed.json": {
+    "bytes": 158,
+    "sha256": "31c24fe109120f7c4ef077887ef4b0503211746c6a0ce89201e326be60dbcd37"
+  },
+  "reused_smoke.json": {
+    "bytes": 765,
+    "sha256": "5f835d9e96d5cce157cec064a892c52c53816516511e23e1ce3f79fe179dbf8c"
+  }
+}
