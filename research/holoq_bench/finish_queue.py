@@ -140,6 +140,11 @@ def main():
     shutil.copy2(extra / "backend_selection.json", merged / "backend_selection.json")
     # Keep nonselected timing candidates separately; no task score is invented.
     candidates = merged / "timing_candidates"
+    for case in records[0].get("accuracy_focus", {}).get("preserved_prior_valid_cases", []):
+        if case not in records[0]["valid_cases"]:
+            shutil.copytree(primary / case, candidates / ("common_" + case), dirs_exist_ok=True)
+    if (primary / "queue_before_backend_focus.json").exists():
+        shutil.copy2(primary / "queue_before_backend_focus.json", merged / "queue_before_backend_focus.json")
     for case in pilot.get("candidate_cases", []):
         shutil.copytree(extra / case, candidates / case, dirs_exist_ok=True)
     subprocess.run(

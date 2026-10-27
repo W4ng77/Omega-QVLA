@@ -40,7 +40,15 @@ def main():
     args = p.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
-    status = {"started": time.time(), "cases": {}, "commands": []}
+    status_path = args.output / "queue.json"
+    if status_path.exists():
+        status = json.loads(status_path.read_text())
+        status.setdefault("resumptions", []).append(
+            {"time": time.time(), "cases": args.cases, "argv": sys.argv}
+        )
+        status.pop("finished", None)
+    else:
+        status = {"started": time.time(), "cases": {}, "commands": []}
     (args.output / "environment.txt").write_text(
         subprocess.check_output([sys.executable, "-m", "pip", "freeze"], text=True)
     )
