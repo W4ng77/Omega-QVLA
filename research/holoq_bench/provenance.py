@@ -51,6 +51,7 @@ def main():
             "url": "https://arxiv.org/pdf/2605.28803v3",
             "main_table": "Table 2 p5",
             "efficiency_table": "Table 3 p6 (Pi-0.5 static footprint, not latency)",
+            "real_latency_table": "Table 8 p13 (Pi-0.5, RTX4080 SUPER, Nunchaku INT4, full sample_actions with10 steps, batches1/8/16/24; not GR00T quantized-baseline latency)",
             "config_table": "Table 5 p11",
             "calibration": "Baseline appendix p10",
         },

@@ -1,51 +1,58 @@
 {
   "ActQuant": {
-    "url": "https://github.com/arashakb/ActQuant.git",
-    "commit": "b64791125070652fe6b554e244fe809c79ef5246"
+    "commit": "b64791125070652fe6b554e244fe809c79ef5246",
+    "url": "https://github.com/arashakb/ActQuant.git"
   },
   "DuQuant": {
-    "url": "https://github.com/Hsu1023/DuQuant.git",
-    "commit": "d56cfc6fe97c34c0eb100fec82fe439865905679"
+    "commit": "d56cfc6fe97c34c0eb100fec82fe439865905679",
+    "url": "https://github.com/Hsu1023/DuQuant.git"
   },
   "GPTQModel": {
-    "url": "https://github.com/ModelCloud/GPTQModel.git",
-    "commit": "536b7f9b6af3c1e39f1e7a1b2e58a50d8793af4e"
+    "commit": "536b7f9b6af3c1e39f1e7a1b2e58a50d8793af4e",
+    "url": "https://github.com/ModelCloud/GPTQModel.git"
   },
   "OmniQuant": {
-    "url": "https://github.com/OpenGVLab/OmniQuant.git",
-    "commit": "feffe8ea87d80f7bb57b6e25e7cff9dc950fcc14"
+    "commit": "feffe8ea87d80f7bb57b6e25e7cff9dc950fcc14",
+    "url": "https://github.com/OpenGVLab/OmniQuant.git"
   },
   "QVLA": {
-    "url": "https://github.com/AutoLab-SAI-SJTU/QVLA.git",
-    "commit": "26cc4821a3be4c003d09d3c7997b38db2a347982"
-  },
-  "QuantVLA": {
-    "url": "https://github.com/AIoT-MLSys-Lab/QuantVLA.git",
-    "commit": "9e435e56aac4e743526557e5d9ba6e4fddd6ccca"
-  },
-  "gptq": {
-    "url": "https://github.com/IST-DASLab/gptq.git",
-    "commit": "2d65066eeb06a5c9ff5184d8cebdf33662c67faf"
-  },
-  "llm-awq": {
-    "url": "https://github.com/mit-han-lab/llm-awq.git",
-    "commit": "d6e797a42b9ef7778de8ee2352116e0f48a78d61"
-  },
-  "marlin": {
-    "url": "https://github.com/IST-DASLab/marlin.git",
-    "commit": "1f25790bdd49fba53106164a24666dade68d7c90"
-  },
-  "omniserve": {
-    "url": "https://github.com/mit-han-lab/omniserve.git",
-    "commit": "02b2925aa6fa3b92b06316a1524b7f38922cd9c8"
-  },
-  "smoothquant": {
-    "url": "https://github.com/mit-han-lab/smoothquant.git",
-    "commit": "c61476d728e42ae0d8a35e7e78494edcac3237b5"
+    "commit": "26cc4821a3be4c003d09d3c7997b38db2a347982",
+    "url": "https://github.com/AutoLab-SAI-SJTU/QVLA.git"
   },
   "QuaRot": {
-    "url": "https://github.com/spcl/QuaRot.git",
     "commit": "5008669b08c1f11f9b64d52d16fddd47ca754c5a",
-    "cutlass_submodule": "ffa34e70756b0bc744e1dfcc115b5a991a68f132"
+    "cutlass_submodule": "ffa34e70756b0bc744e1dfcc115b5a991a68f132",
+    "url": "https://github.com/spcl/QuaRot.git"
+  },
+  "QuantVLA": {
+    "commit": "9e435e56aac4e743526557e5d9ba6e4fddd6ccca",
+    "url": "https://github.com/AIoT-MLSys-Lab/QuantVLA.git"
+  },
+  "gptq": {
+    "commit": "2d65066eeb06a5c9ff5184d8cebdf33662c67faf",
+    "url": "https://github.com/IST-DASLab/gptq.git"
+  },
+  "llm-awq": {
+    "commit": "d6e797a42b9ef7778de8ee2352116e0f48a78d61",
+    "url": "https://github.com/mit-han-lab/llm-awq.git"
+  },
+  "marlin": {
+    "commit": "1f25790bdd49fba53106164a24666dade68d7c90",
+    "url": "https://github.com/IST-DASLab/marlin.git"
+  },
+  "nunchaku": {
+    "commit": "302e0e97024ebd68688fe890e5df83731edf7b54",
+    "header_submodules": {
+      "third_party/spdlog": "27cb4c76708608465c413f6d0e6b8d99a4d84302"
+    },
+    "url": "https://github.com/nunchux-ai/nunchaku.git"
+  },
+  "omniserve": {
+    "commit": "02b2925aa6fa3b92b06316a1524b7f38922cd9c8",
+    "url": "https://github.com/mit-han-lab/omniserve.git"
+  },
+  "smoothquant": {
+    "commit": "c61476d728e42ae0d8a35e7e78494edcac3237b5",
+    "url": "https://github.com/mit-han-lab/smoothquant.git"
   }
 }

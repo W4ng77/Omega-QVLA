@@ -12,6 +12,13 @@ specified in **Table 5, PDF page 11**, and the calibration/evaluation protocol
 is in the appendix **Description of Baselines and Benchmarks, PDF page 10**.
 Table 3, PDF page 6, measures **Pi-0.5 static storage**, not GR00T latency.
 The paper ran H100; these experiments explicitly target RTX 4080 SUPER SM89.
+The appendix also contains **Table 8, PDF page 13**, a real-quantized Pi-0.5
+latency measurement on RTX 4080 SUPER: all252 target projections, complete
+`sample_actions` including vision/language and **ten** denoising steps, batch
+1/8/16/24, using native INT4 from Nunchaku. It does not compare quantization
+baselines on GR00T, whose Table5 recipe uses eight steps. Nunchaku is therefore
+also being checked as a backend, not invented as an additional quantization
+method or a substitute GR00T success result.
 
 | Method | Priority paper configuration | Object result in Table 2, for identification only | Configuration source | Algorithm / backend source |
 |---|---|---:|---|---|
