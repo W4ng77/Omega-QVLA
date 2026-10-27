@@ -1,0 +1,1 @@
+Interim measurements only. The common 13 configurations have completed 300-call fixed-input replay in eager and head-Graph modes. Full 100-episode accuracy remains in progress. Missing scores are pending; smoke scores are not 100-episode results. All final claims require the completed audit and selected-backend runs.

@@ -1,0 +1,97 @@
+{
+  "saved_utc": "2026-10-27T21:07:35.388082+00:00",
+  "status": "incomplete; no final 100-episode claim",
+  "cases": [
+    {
+      "case": "holoq",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 8,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "holoq_step_weight",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 6,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "awq_qwen_selective",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 8,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "smoothquant_a8",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 9,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "quantvla_selective_a8_atm_g128",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 9,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "gptq_selective",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 9,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "omniquant_selective",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 8,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "duquant_a8_g128",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 9,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "smoothquant_a4",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 7,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "quantvla_selective_a4_atm_g128",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 9,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "duquant_a4_g128",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 9,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "awq_qwen_full",
+      "actual_unique_episodes": 10,
+      "successes_in_those_episodes": 8,
+      "smoke_episodes_completed": 10,
+      "target_episodes": 100
+    },
+    {
+      "case": "gptq_full",
+      "actual_unique_episodes": 0,
+      "successes_in_those_episodes": 0,
+      "smoke_episodes_completed": 0,
+      "target_episodes": 100
+    }
+  ]
+}
