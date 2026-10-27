@@ -6,6 +6,19 @@ import json
 from pathlib import Path
 
 CONFIGS = {
+    "holoq_llm_s4": ("HoloQ-VLA", "original grid / LLM CUTLASS S4 + DiT Marlin", "4/4", "180 (84 LLM + 96 DiT)"),
+    "holoq_step_weight_llm_s4": (
+        "HoloQ-VLA conversion",
+        "step_weight / LLM CUTLASS S4 + DiT native S4",
+        "4/4",
+        "180 (84 LLM + 96 DiT)",
+    ),
+    "smoothquant_a4_cutlass": (
+        "SmoothQuant",
+        "original grid / CUTLASS native S4 all targets",
+        "4/4",
+        "180 (84 LLM + 96 DiT)",
+    ),
     "holoq": (
         "HoloQ-VLA",
         "original-definition / packed Marlin + block rotations",

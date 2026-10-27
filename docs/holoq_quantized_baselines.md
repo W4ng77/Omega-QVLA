@@ -333,3 +333,39 @@ Use those four `_g128` exports in `deployment.py`, as listed in the final
 regressions) passed in the frozen environment before this final queue. Their
 complete pytest output is archived, including the newly exposed smoothing and
 large-input reduction cases.
+
+### Additional true-S4 deployment variants (backend, not another method)
+
+The mature [QuaRot kernel](https://github.com/spcl/QuaRot/blob/5008669b08c1f11f9b64d52d16fddd47ca754c5a/quarot/kernels/gemm.cu)
+uses the official CUTLASS signed-INT4 GEMM template; its pinned CUTLASS submodule
+is `ffa34e70756b0bc744e1dfcc115b5a991a68f132`. It supports the separable
+per-token activation/per-output weight scale contract. The build preserves the
+official template/configuration, patches the CUDA stream to PyTorch's current
+stream, and adds checked Torch bindings. Seven GPU tests verify exact INT32
+dot products, canonical token scale/clamp/smoothing and current-stream/Graph
+behavior at M=1/49/558. This kernel source is **not** the QuaRot quantization
+method added as a paper baseline.
+
+Explicit extra variants, with unchanged weight codes/scales and activation
+quantization grids:
+
+- `smoothquant_a4_cutlass`: all 180 selected linears use genuine S4 MMA instead
+  of QServe's INT8 container for numerically four-bit activations.
+- `holoq_llm_s4`: 84 language linears use CUTLASS S4; 96 per-column/per-step DiT
+  linears retain Marlin, because that scale contract is not separable.
+- `holoq_step_weight_llm_s4`: 84 language linears use CUTLASS S4 and 96 converted
+  DiT linears use native S4. Step-weight conversion remains a different weight
+  quantization with eight step banks plus fallback; the LLM backend switch
+  does not introduce another weight requantization.
+
+Integer dot followed by FP32 rescaling can differ from FP16 operand-product
+rounding. Each backend variant receives its own full-policy accuracy evaluation,
+not copied scores. All variants retain the common unquantized vision/auxiliary
+parts and full get_action timing boundary. The three additional cases run in
+`evaluation_best_s4` after `evaluation_v3` completes; they receive the same eager
+and head-Graph optimization options, warmup/replay/rollout protocol and held-out
+states. The base operator implementations in the first 13 cases are unchanged.
+Individual runtime-source hashes distinguish the additive dispatcher patch.
+A host-wide shared/exclusive file lock prevents any correctness job, even on
+GPU1, from overlapping a measured policy process on GPU0. Monitoring remains
+active throughout and is audited separately.

@@ -42,5 +42,10 @@
   "smoothquant": {
     "url": "https://github.com/mit-han-lab/smoothquant.git",
     "commit": "c61476d728e42ae0d8a35e7e78494edcac3237b5"
+  },
+  "QuaRot": {
+    "url": "https://github.com/spcl/QuaRot.git",
+    "commit": "5008669b08c1f11f9b64d52d16fddd47ca754c5a",
+    "cutlass_submodule": "ffa34e70756b0bc744e1dfcc115b5a991a68f132"
   }
 }

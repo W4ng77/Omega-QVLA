@@ -5,6 +5,7 @@ before/after the entire get_action, including preprocessing/transfers/output.
 """
 
 import argparse
+import fcntl
 from collections import Counter
 import hashlib
 import json
@@ -54,6 +55,11 @@ def main():
     p.add_argument("--warmup", type=int, default=32)
     p.add_argument("--repeats", type=int, default=3)
     args = p.parse_args()
+    # Correctness-only processes may overlap across cards. A measured full
+    # policy owns this host-wide experiment lock exclusively, so another
+    # preflight/rollout cannot interfere even on the second GPU.
+    timing_guard = open("/tmp/holoq-vla-policy-timing.lock", "a")
+    fcntl.flock(timing_guard, fcntl.LOCK_SH if args.stage == "smoke" else fcntl.LOCK_EX)
     args.output.mkdir(parents=True, exist_ok=True)
     args.deployment = args.deployment.resolve()
     os.environ.update(HOLOQ_DEPLOY=str(args.deployment), HOLOQ_COMPUTE_DTYPE="float16")
@@ -80,6 +86,7 @@ def main():
     source_files = [
         *source_root.glob("research/holoq_bench/*.py"),
         *source_root.glob("research/native_int4/*"),
+        source_root / "research/holoq_bench/cutlass_bindings.cpp",
         source_root / "gr00t/model/policy.py",
         source_root / "gr00t/model/action_head/flow_matching_action_head.py",
         source_root / "gr00t/quantization/perstep_backends.py",

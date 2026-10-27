@@ -16,6 +16,25 @@ def main():
         actual = subprocess.check_output(["git", "-C", str(directory), "rev-parse", "HEAD"], text=True).strip()
         if actual != source["commit"]:
             raise RuntimeError(f"Wrong dependency revision: {name} {actual}")
+        if "cutlass_submodule" in source:
+            subprocess.run(
+                [
+                    "git",
+                    "-C",
+                    str(directory),
+                    "submodule",
+                    "update",
+                    "--init",
+                    "--depth",
+                    "1",
+                    "third-party/cutlass",
+                ],
+                check=True,
+            )
+            cutlass = subprocess.check_output(
+                ["git", "-C", str(directory / "third-party/cutlass"), "rev-parse", "HEAD"], text=True
+            ).strip()
+            assert cutlass == source["cutlass_submodule"]
         print(name, actual, flush=True)
 
 

@@ -211,7 +211,15 @@ def enable(model, path):
         if not isinstance(old, nn.Linear) or old.in_features != record["K"] or old.out_features != record["N"]:
             raise ValueError(f"Packed replacement mismatch: {name}")
         parent_name, attr = name.rsplit(".", 1)
-        setattr(names[parent_name], attr, PackedLinear(record, name))
+        if record["backend"] == "cutlass_s4":
+            if pack["meta"].get("runtime_plugin") != "cutlass_s4":
+                raise ValueError("CUTLASS S4 requires an explicitly exported variant")
+            from research.holoq_bench.cutlass_s4 import CutlassLinear
+
+            replacement = CutlassLinear(record, name)
+        else:
+            replacement = PackedLinear(record, name)
+        setattr(names[parent_name], attr, replacement)
     for name, entry in pack.get("atm", {}).items():
         attention = names[name]
         alpha = torch.tensor(entry["all"], dtype=torch.float16)

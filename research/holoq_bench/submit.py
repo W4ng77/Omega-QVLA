@@ -35,6 +35,7 @@ def main():
     p.add_argument("--root", type=Path, default=Path("results/holoq_object"))
     p.add_argument("--cases", nargs="+", default=CASES)
     p.add_argument("--trials", type=int, default=10)
+    p.add_argument("--preflight-only", action="store_true")
     p.add_argument("--output", type=Path, required=True)
     args = p.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -123,6 +124,10 @@ def main():
         common = "head_graph" if set(graphs) == set(valid) else "eager"
         status.update(common_mode=common, valid_cases=valid, graph_supported=graphs)
         save()
+        if args.preflight_only:
+            status["preflight_finished"] = time.time()
+            save()
+            return
         for case in valid:
             job(case, "eager", "replay")
             if case in graphs:
