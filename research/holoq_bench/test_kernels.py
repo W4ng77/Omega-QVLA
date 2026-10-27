@@ -115,3 +115,58 @@ def test_native_minus_seven_activation_grid():
         actual = layer(x, step, engine="native_s4")
         oracle = layer(x, step, engine="torch_reference")
         torch.testing.assert_close(actual, oracle, rtol=1e-4, atol=1e-4)
+
+
+@pytest.mark.parametrize("backend,bits", [("awq", 16), ("qserve", 8), ("qserve", 4)])
+def test_smoothing_parameter_dtype_and_quantized_arithmetic(backend, bits):
+    torch.manual_seed(409)
+    n, k, m = 256, 512, 49
+    smooth = (torch.rand(k) * 1.7 + 0.2).half()
+    if backend == "awq":
+        scales = (torch.rand(n, 4) * 0.03 + 0.01).half()
+        zeros = torch.randint(4, 12, (n, 4))
+        codes = torch.randint(0, 16, (n, k), dtype=torch.int32)
+        packed = pack_awq(codes, scales, zeros)
+        w = (codes - zeros.repeat_interleave(128, 1)).float() * scales.float().repeat_interleave(128, 1)
+    else:
+        scales = (torch.rand(n, 1) * 0.03 + 0.01).half()
+        codes = torch.randint(-8, 8, (n, k), dtype=torch.int8)
+        packed = pack_qserve(codes, scales)
+        w = codes.float() * scales.float()
+    layer = PackedLinear(
+        dict(
+            packed,
+            K=k,
+            N=n,
+            smooth=smooth,
+            act_bits=bits,
+            act_mode="token" if bits < 16 else "none",
+            act_qmin=-7 if bits == 4 else -127,
+        ),
+        "smooth_dtype",
+    ).cuda()
+    x = torch.randn(m, k, device="cuda", dtype=torch.float16)
+    xx = (x.float() / smooth.cuda().float()).half().float()
+    if bits < 16:
+        s = (xx.abs().amax(1, keepdim=True).clamp_min(1e-5) / ((1 << (bits - 1)) - 1)).half().float()
+        xx = (xx / s).round().clamp(layer.act_qmin, (1 << (bits - 1)) - 1) * s
+    expected = (xx @ w.cuda().t()).half()
+    actual = layer(x)
+    nmse = (actual.float() - expected.float()).square().sum() / expected.float().square().sum()
+    assert torch.isfinite(actual).all() and nmse < 1e-4
+
+
+def test_repeated_row_scales_prevent_unscaled_reduction_overflow():
+    torch.manual_seed(112)
+    n, k, m = 256, 4096, 49
+    codes = torch.randint(-8, 8, (n, k), dtype=torch.int8)
+    row = (torch.rand(n, 1) * 0.004 + 0.006).half()
+    packed = pack_marlin(codes, row.repeat(1, k // 128))
+    layer = PackedLinear(dict(packed, K=k, N=n, act_bits=16, act_mode="none"), "g128_row_grid").cuda()
+    x = torch.full((m, k), 512.0, device="cuda", dtype=torch.float16)
+    w = (codes.float() * row.float()).half().cuda()
+    expected = x.float() @ w.float().t()
+    assert torch.isfinite(expected).all() and expected.abs().max() < 65504
+    actual = layer(x)
+    nmse = (actual.float() - expected).square().sum() / expected.square().sum()
+    assert torch.isfinite(actual).all() and nmse < 1e-4

@@ -76,7 +76,21 @@ def main():
     pack = torch.load(args.deployment / "packed.pt", map_location="cpu", mmap=True, weights_only=False)
     layers = {n: m for n, m in policy.model.named_modules() if isinstance(m, PackedLinear)}
     assert set(layers) == set(pack["layers"])
+    source_root = Path(__file__).resolve().parents[2]
+    source_files = [
+        *source_root.glob("research/holoq_bench/*.py"),
+        *source_root.glob("research/native_int4/*"),
+        source_root / "gr00t/model/policy.py",
+        source_root / "gr00t/model/action_head/flow_matching_action_head.py",
+        source_root / "gr00t/quantization/perstep_backends.py",
+    ]
+    source_hashes = {
+        str(f.relative_to(source_root)): hashlib.sha256(f.read_bytes()).hexdigest()
+        for f in source_files
+        if f.is_file() and f.suffix in (".py", ".cpp", ".cu")
+    }
     report = {
+        "source_files_sha256": source_hashes,
         "method": pack["meta"]["method"],
         "mode": args.mode,
         "stage": args.stage,
@@ -162,9 +176,17 @@ def main():
     report["execution_drift_checks"] = checks
     # Do not infer task equivalence from this tolerance. Each deployed execution
     # mode has its OWN rollout score, even if differences are only FP16 roundoff.
-    assert max(c["nmse"] for c in checks) < 0.02, "Large eager/deployed action drift, investigate before rollout"
+    drift_limit = max(0.02, 10 * max(c["nmse"] for c in eager_self_checks))
+    report["drift_guard_nmse"] = drift_limit
+    report["drift_guard_note"] = (
+        "coarse bug guard relative to eager self variance, not numerical equivalence or a task-accuracy guarantee"
+    )
+    assert max(c["nmse"] for c in checks) < drift_limit, (
+        "Large eager/deployed action drift, investigate before rollout"
+    )
     assert all(m.calls > 0 for m in layers.values())
     report["active_layer_calls_after_smoke"] = {n: m.calls for n, m in layers.items()}
+    report["per_layer_input_shapes"] = {n: sorted(m.input_shapes) for n, m in layers.items()}
     for i in range(args.warmup):
         seed(2000 + i)
         policy.get_action(selected[i % 10]["obs"])

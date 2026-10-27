@@ -30,7 +30,7 @@ def _prepare(
     kk = tl.arange(0, BK)
     x = tl.load(X + row * K + kk, kk < K, 0).to(tl.float32)
     if SMOOTH:
-        x = tl.div_rn(x, tl.load(SM + kk, kk < K, 1))
+        x = tl.div_rn(x, tl.load(SM + kk, kk < K, 1).to(tl.float32))
     x = x.to(tl.float16).to(tl.float32)
     if BITS < 16:
         if MODE == 1:
@@ -102,6 +102,7 @@ class PackedLinear(nn.Module):
         self.act_qmin = int(record.get("act_qmin", -(2 ** (self.act_bits - 1))))
         self.group = int(record.get("group", self.in_features))
         self.calls = 0
+        self.input_shapes = set()
         for key in ("B", "s", "z", "s2", "z2", "smooth", "a_scale", "rot_in", "rot_out", "perm", "bias"):
             value = record.get(key)
             self.register_buffer(key, value if value is not None else torch.empty(0), persistent=True)
@@ -125,6 +126,7 @@ class PackedLinear(nn.Module):
 
     def forward(self, x):
         self.calls += 1
+        self.input_shapes.add(tuple(x.shape))
         # Adaptive layer normalization can emit FP32 even in an FP16 policy.
         # Match an autocast FP16 Linear's operand conversion explicitly.
         if x.dtype != torch.float16:

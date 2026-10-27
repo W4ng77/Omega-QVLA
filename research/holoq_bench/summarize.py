@@ -40,15 +40,15 @@ CONFIGS = {
     ),
     "smoothquant_a8": ("SmoothQuant", "QServe packed INT8 MMA", "4/8", "180 (84 LLM + 96 DiT)"),
     "smoothquant_a4": ("SmoothQuant", "QServe INT8 container, numerical A4", "4/4", "180 (84 LLM + 96 DiT)"),
-    "duquant_a8": ("DuQuant", "paper GR00T SVD port / Marlin FP16 MMA", "4/8", "180 (84 LLM + 96 DiT)"),
-    "duquant_a4": ("DuQuant", "paper GR00T SVD port / Marlin FP16 MMA", "4/4", "180 (84 LLM + 96 DiT)"),
-    "quantvla_selective_a8_atm": (
+    "duquant_a8_g128": ("DuQuant", "paper GR00T SVD port / Marlin FP16 MMA", "4/8", "180 (84 LLM + 96 DiT)"),
+    "duquant_a4_g128": ("DuQuant", "paper GR00T SVD port / Marlin FP16 MMA", "4/4", "180 (84 LLM + 96 DiT)"),
+    "quantvla_selective_a8_atm_g128": (
         "QuantVLA",
         "released GR00T port + ATM/OHB / Marlin",
         "4/8",
         "116 (84 LLM + 32 DiT MLP)",
     ),
-    "quantvla_selective_a4_atm": (
+    "quantvla_selective_a4_atm_g128": (
         "QuantVLA",
         "released GR00T port + ATM/OHB / Marlin",
         "4/4",

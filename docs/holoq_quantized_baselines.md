@@ -224,3 +224,112 @@ Code push: GitHub returned HTTP 403 for the original UCMP13753 repository;
 the authenticated account has `push: false`. The implementation is saved on
 [the writable fork branch](https://github.com/W4ng77/Omega-QVLA/tree/experiment/holoq-quant-baselines-4080).
 The original remote and all prior workspaces remain intact.
+
+## Rebuilding artifacts from the pinned checkpoint
+
+Use the existing `groot_test` Python environment plus LIBERO/robosuite with EGL;
+the evaluated `pip freeze` is retained in each queue's `environment.txt`. Set
+`PYTHONPATH` to the repository and LIBERO roots, CUDA_HOME to CUDA 12.4,
+TORCH_CUDA_ARCH_LIST=8.9, MAX_JOBS=2, and all CPU math thread counts to 1.
+The public checkpoint is `youliangtan/gr00t-n1.5-libero-object-posttrain`,
+revision `f422266b016fd917127d3a0348062a5cd750df43`. Resolve it using
+`huggingface_hub.snapshot_download(repo_id=..., revision=...)`; the original
+source/checkpoint shard hashes are in the published provenance JSON.
+
+The construction commands below use `python` for the GR00T environment and
+`CHECKPOINT` for that resolved snapshot. Run sequentially, preserving all logs.
+Directories are deliberately created once; do not overwrite an existing
+incomplete artifact silently.
+
+```bash
+python -m research.holoq_bench.bootstrap
+python -m research.holoq_bench.collect_calibration --checkpoint "$CHECKPOINT" \
+  --output results/holoq_object/calibration_fp16_init0_v2
+python -m research.holoq_bench.capture_inputs --checkpoint "$CHECKPOINT" \
+  --calibration results/holoq_object/calibration_fp16_init0_v2 \
+  --output results/holoq_object/teacher_capture
+python -m research.holoq_bench.collect_heldout \
+  --output results/holoq_object/heldout_init10_19
+python -m research.holoq_bench.export_nonquant --checkpoint "$CHECKPOINT" \
+  --capture results/holoq_object/teacher_capture
+python -m research.holoq_bench.build_packs \
+  --capture results/holoq_object/teacher_capture --output results/holoq_object/packs_v2
+python -m research.holoq_bench.calibrate_atm --checkpoint "$CHECKPOINT" \
+  --observations results/holoq_object/calibration_fp16_init0_v2/observations.pt \
+  --packs results/holoq_object/packs_v2/quantvla_selective_a8.pt \
+          results/holoq_object/packs_v2/quantvla_selective_a4.pt \
+  --output results/holoq_object/atm_v2
+python -m research.holoq_bench.build_awq_qwen --checkpoint "$CHECKPOINT" \
+  --observations results/holoq_object/calibration_fp16_init0_v2/observations.pt \
+  --capture results/holoq_object/teacher_capture \
+  --packs results/holoq_object/packs_v2 --output results/holoq_object/packs_v3
+```
+
+The checked-in `build_packs.py` already uses the corrected five-point grid;
+`fix_mse_grid.py` is only needed to migrate the earlier exploratory exports.
+Export each selected case with `deployment.py --packs ... --state
+results/holoq_object/teacher_capture/fp16_model_state.pt --output
+results/holoq_object/deployments`. Select the 13 cases in `submit.py.CASES`,
+including the two ATM-corrected QuantVLA packs and two folded Qwen AWQ packs.
+Then run `GPU=0 CUDA_HOME=/usr/local/cuda-12.4
+RUN_OUTPUT=results/holoq_object/evaluation_v2 bash
+scripts/run_holoq_object_baselines.sh`. The script checks pinned dependencies,
+requires complete deployment artifacts and never selects another backend.
+
+If a run is interrupted, the queue skips only jobs with a successful completed
+marker, and rollout resumes from completed task/state pairs. Failed attempts
+stay in the original directory; use a new output directory for protocol/code
+changes. `provenance.py` exports compact shared protocol/deployment manifests;
+`summarize.py` generates the main CSV, JSON, Markdown and all-baseline speedups.
+
+### Numerical preflight fixes and backend-only reencoding
+
+The first complete-policy AWQ/SmoothQuant runs exposed a missing FP32 conversion
+of FP16 smoothing denominators in the Triton preparation kernel. This is fixed
+and covered by three independent arithmetic tests for affine AWQ A16 and QServe
+A8/A4; initial failures are retained. A fourth test stresses large activations
+with identical repeated row scales in Marlin G128.
+
+QuantVLA's unpermuted SVD basis produces much larger activation peaks than the
+mixed HoloQ basis. One held-out input had finite down-projection input peak
+8704 and rotated peak 7332; a numerical FP32 oracle had finite projected peak
+2286, but Marlin's **per-output-scale** implementation produced NaN/Inf during
+its internal unscaled FP16 reduction. Reencoding the **same codes and same row
+scale** into the supported G128 layout eliminates that intermediate overflow.
+This is not a quantizer change: every 128-weight group repeats the identical
+existing output scale, with zero weight requantization. `reencode_row_scales.py`
+asserts this and the official packer independently checks code reconstruction.
+Extra repeated-scale metadata is included in actual deployment storage.
+
+Primary DuQuant/QuantVLA exports explicitly use suffix `_g128`, with repeated
+row scales, so backend reencoding is visible. Earlier per-output exports and
+failure logs remain intact. Initial preflight queues were stopped before formal
+measurements to fix these issues; they are not the primary performance rows.
+The final queue is `evaluation_v3`, using immutable source commits plus individual
+runtime-source SHA256 hashes in every run. Per-layer observed input shapes,
+replacement classes/counts/calls and actual CUDA kernel names are audited.
+
+The Graph smoke tolerance is a coarse bug guard: max action NMSE must be below
+max(.02, ten times the observed eager self-repeat NMSE). This deliberately does
+not certify mathematical/bitwise equivalence. Marlin G128 can itself vary with
+FP16 reduction order; all actual execution modes need their own evaluated task
+scores. A Graph score is never copied from eager or inferred from this guard.
+
+For the primary robust Marlin backend, additionally run:
+
+```bash
+python -m research.holoq_bench.reencode_row_scales \
+  --packs results/holoq_object/packs_v2/duquant_a8.pt \
+          results/holoq_object/packs_v2/duquant_a4.pt \
+          results/holoq_object/packs_v2/quantvla_selective_a8_atm.pt \
+          results/holoq_object/packs_v2/quantvla_selective_a4_atm.pt \
+  --cache results/holoq_object/packs_v2/layer_cache \
+  --output results/holoq_object/packs_v3
+```
+
+Use those four `_g128` exports in `deployment.py`, as listed in the final
+`submit.py.CASES`. The final run output is `evaluation_v3`. All **50** GPU tests
+(29 packed/preparation/stream/graph/numerical-range checks plus 21 native INT4
+regressions) passed in the frozen environment before this final queue. Their
+complete pytest output is archived, including the newly exposed smoothing and
+large-input reduction cases.
