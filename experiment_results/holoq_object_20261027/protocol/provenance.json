@@ -1,0 +1,58 @@
+{
+  "code_commit": "09a2fdd634efdeb773300070e6dd9abc0b29d42b",
+  "checkpoint": "/home/xinyu/.cache/huggingface/hub/models--youliangtan--gr00t-n1.5-libero-object-posttrain/snapshots/f422266b016fd917127d3a0348062a5cd750df43",
+  "checkpoint_files": {
+    "model-00001-of-00002.safetensors": {
+      "bytes": 4999367032,
+      "sha256": "9dd1960ed5406af41cd7db1f1912657ddc645105e9d7e83da86292014ee6a97d"
+    },
+    "trainer_state.json": {
+      "bytes": 348550,
+      "sha256": "5ab2db43d505d6039bb5200802f595a3d1baea8f5ecff3740d0ab019f555fc60"
+    },
+    "model.safetensors.index.json": {
+      "bytes": 104606,
+      "sha256": "bec674fcd06f1c6c29e5ab0f057d148a5c76e7ef92d1688d6b4b8f838afc9746"
+    },
+    "model-00002-of-00002.safetensors": {
+      "bytes": 2586705312,
+      "sha256": "05306d4ec5259c7b0fed30a7789ab400fc3c4fc895fc845ddb2dd5d8763a2e18"
+    },
+    "config.json": {
+      "bytes": 1706,
+      "sha256": "accc7d8b394ea591a7e08d36bb693382c28fe6ff8f452ccf54349f0e5138df3e"
+    },
+    ".gitattributes": {
+      "bytes": 1519,
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+    },
+    "experiment_cfg/metadata.json": {
+      "bytes": 13031,
+      "sha256": "87372b38cc6e8d7f49649b04c43d5db8c5b7ca9387a4920889e837329b4e06ad"
+    }
+  },
+  "historical_pack": {
+    "path": "/home/xinyu/models/omega-qvla-gr00t-w4a4/gr00t_object/quantized.pt",
+    "bytes": 6886223590,
+    "sha256": "0fa5f367e7ed6e7be25efce25fce967078cb5dc86b39ae5dd53b9dac4ec107ba",
+    "used_for_primary_runs": false
+  },
+  "paper": {
+    "version": "arXiv:2605.28803v3",
+    "url": "https://arxiv.org/pdf/2605.28803v3",
+    "main_table": "Table 2 p5",
+    "efficiency_table": "Table 3 p6 (Pi-0.5 static footprint, not latency)",
+    "config_table": "Table 5 p11",
+    "calibration": "Baseline appendix p10"
+  },
+  "unavailable_GR00T_baselines": {
+    "QVLA": {
+      "source": "https://github.com/AutoLab-SAI-SJTU/QVLA",
+      "reason": "Official architectures OpenVLA/OpenVLA-OFT/UniVLA; no GR00T diffusion adapter/checkpoint. Not relabeled GPTQ."
+    },
+    "ActQuant": {
+      "source": "https://github.com/arashakb/ActQuant",
+      "reason": "Official GGUF/GGML artifacts/backends support OpenVLA-OFT/Pi-0.5, not GR00T. Not a fake-quant speed row."
+    }
+  }
+}

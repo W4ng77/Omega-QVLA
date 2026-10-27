@@ -198,6 +198,12 @@ def enable(model, path):
     if pack.get("format") != "holoq_bench_packed_v1":
         raise ValueError("Not an explicit benchmark packed export")
     names = dict(model.named_modules())
+    parameters = dict(model.named_parameters())
+    with torch.no_grad():
+        for key, value in pack.get("nonquantized_overrides", {}).items():
+            if key not in parameters or parameters[key].shape != value.shape:
+                raise ValueError(f"Folded parameter mismatch: {key}")
+            parameters[key].copy_(value)
     for name, record in pack["layers"].items():
         old = names.get(name)
         if not isinstance(old, nn.Linear) or old.in_features != record["K"] or old.out_features != record["N"]:

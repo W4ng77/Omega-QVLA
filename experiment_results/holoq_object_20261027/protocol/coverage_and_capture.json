@@ -1,0 +1,5220 @@
+{
+  "calibration": "/home/xinyu/holoq-vla-baselines/results/holoq_object/calibration_fp16_init0_v2",
+  "checkpoint": "/home/xinyu/.cache/huggingface/hub/models--youliangtan--gr00t-n1.5-libero-object-posttrain/snapshots/f422266b016fd917127d3a0348062a5cd750df43",
+  "observations": 100,
+  "max_rows_per_observation_per_layer_step": 52,
+  "selected_layers": 180,
+  "all_linear_layers": [
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.0.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.0.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.0.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.0.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.0.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.0.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.1.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.1.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.1.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.1.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.1.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.1.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.2.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.2.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.2.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.2.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.2.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.2.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.3.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.3.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.3.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.3.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.3.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.3.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.4.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.4.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.4.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.4.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.4.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.4.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.5.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.5.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.5.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.5.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.5.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.5.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.6.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.6.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.6.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.6.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.6.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.6.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.7.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.7.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.7.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.7.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.7.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.7.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.8.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.8.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.8.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.8.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.8.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.8.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.9.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.9.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.9.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.9.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.9.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.9.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.10.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.10.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.10.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.10.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.10.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.10.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.11.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.11.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.11.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.11.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.11.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.11.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.12.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.12.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.12.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.12.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.12.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.12.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.13.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.13.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.13.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.13.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.13.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.13.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.14.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.14.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.14.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.14.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.14.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.14.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.15.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.15.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.15.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.15.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.15.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.15.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.16.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.16.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.16.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.16.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.16.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.16.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.17.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.17.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.17.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.17.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.17.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.17.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.18.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.18.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.18.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.18.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.18.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.18.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.19.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.19.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.19.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.19.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.19.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.19.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.20.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.20.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.20.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.20.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.20.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.20.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.21.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.21.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.21.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.21.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.21.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.21.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.22.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.22.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.22.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.22.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.22.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.22.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.23.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.23.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.23.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.23.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.23.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.23.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.24.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.24.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.24.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.24.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.24.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.24.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.25.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.25.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.25.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.25.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.25.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.25.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.26.self_attn.k_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.26.self_attn.v_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.26.self_attn.q_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.26.self_attn.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.26.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.encoder.layers.26.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.head.attention.out_proj",
+      "K": 1152,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.head.mlp.fc1",
+      "K": 1152,
+      "N": 4304,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.vision_model.vision_model.head.mlp.fc2",
+      "K": 4304,
+      "N": 1152,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "part": "language",
+      "selected": true
+    },
+    {
+      "name": "backbone.eagle_model.language_model.lm_head",
+      "K": 2048,
+      "N": 151680,
+      "part": "language",
+      "selected": false
+    },
+    {
+      "name": "backbone.eagle_model.mlp1.0",
+      "K": 1152,
+      "N": 2048,
+      "part": "vision_or_other",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.timestep_encoder.timestep_embedder.linear_1",
+      "K": 256,
+      "N": 1536,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.timestep_encoder.timestep_embedder.linear_2",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.norm1.linear",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "part": "action_head",
+      "selected": true
+    },
+    {
+      "name": "action_head.model.proj_out_1",
+      "K": 1536,
+      "N": 3072,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.model.proj_out_2",
+      "K": 1536,
+      "N": 1024,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.0.attn1.to_q",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.0.attn1.to_k",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.0.attn1.to_v",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.0.attn1.to_out.0",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.0.ff.net.0.proj",
+      "K": 2048,
+      "N": 8192,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.0.ff.net.2",
+      "K": 8192,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.1.attn1.to_q",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.1.attn1.to_k",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.1.attn1.to_v",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.1.attn1.to_out.0",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.1.ff.net.0.proj",
+      "K": 2048,
+      "N": 8192,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.1.ff.net.2",
+      "K": 8192,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.2.attn1.to_q",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.2.attn1.to_k",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.2.attn1.to_v",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.2.attn1.to_out.0",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.2.ff.net.0.proj",
+      "K": 2048,
+      "N": 8192,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.2.ff.net.2",
+      "K": 8192,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.3.attn1.to_q",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.3.attn1.to_k",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.3.attn1.to_v",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.3.attn1.to_out.0",
+      "K": 2048,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.3.ff.net.0.proj",
+      "K": 2048,
+      "N": 8192,
+      "part": "action_head",
+      "selected": false
+    },
+    {
+      "name": "action_head.vl_self_attention.transformer_blocks.3.ff.net.2",
+      "K": 8192,
+      "N": 2048,
+      "part": "action_head",
+      "selected": false
+    }
+  ],
+  "layers": [
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.q_proj",
+      "file": "layers/000.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.k_proj",
+      "file": "layers/001.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.v_proj",
+      "file": "layers/002.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.o_proj",
+      "file": "layers/003.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.gate_proj",
+      "file": "layers/004.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.up_proj",
+      "file": "layers/005.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.down_proj",
+      "file": "layers/006.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.q_proj",
+      "file": "layers/007.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.k_proj",
+      "file": "layers/008.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.v_proj",
+      "file": "layers/009.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.o_proj",
+      "file": "layers/010.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.gate_proj",
+      "file": "layers/011.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.up_proj",
+      "file": "layers/012.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.down_proj",
+      "file": "layers/013.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.q_proj",
+      "file": "layers/014.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.k_proj",
+      "file": "layers/015.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.v_proj",
+      "file": "layers/016.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.o_proj",
+      "file": "layers/017.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.gate_proj",
+      "file": "layers/018.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.up_proj",
+      "file": "layers/019.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.down_proj",
+      "file": "layers/020.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.q_proj",
+      "file": "layers/021.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.k_proj",
+      "file": "layers/022.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.v_proj",
+      "file": "layers/023.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.o_proj",
+      "file": "layers/024.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.gate_proj",
+      "file": "layers/025.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.up_proj",
+      "file": "layers/026.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.down_proj",
+      "file": "layers/027.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.q_proj",
+      "file": "layers/028.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.k_proj",
+      "file": "layers/029.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.v_proj",
+      "file": "layers/030.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.o_proj",
+      "file": "layers/031.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.gate_proj",
+      "file": "layers/032.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.up_proj",
+      "file": "layers/033.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.down_proj",
+      "file": "layers/034.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.q_proj",
+      "file": "layers/035.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.k_proj",
+      "file": "layers/036.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.v_proj",
+      "file": "layers/037.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.o_proj",
+      "file": "layers/038.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.gate_proj",
+      "file": "layers/039.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.up_proj",
+      "file": "layers/040.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.down_proj",
+      "file": "layers/041.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.q_proj",
+      "file": "layers/042.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.k_proj",
+      "file": "layers/043.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.v_proj",
+      "file": "layers/044.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.o_proj",
+      "file": "layers/045.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.gate_proj",
+      "file": "layers/046.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.up_proj",
+      "file": "layers/047.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.down_proj",
+      "file": "layers/048.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.q_proj",
+      "file": "layers/049.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.k_proj",
+      "file": "layers/050.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.v_proj",
+      "file": "layers/051.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.o_proj",
+      "file": "layers/052.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.gate_proj",
+      "file": "layers/053.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.up_proj",
+      "file": "layers/054.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.down_proj",
+      "file": "layers/055.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.q_proj",
+      "file": "layers/056.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.k_proj",
+      "file": "layers/057.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.v_proj",
+      "file": "layers/058.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.o_proj",
+      "file": "layers/059.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.gate_proj",
+      "file": "layers/060.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.up_proj",
+      "file": "layers/061.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.down_proj",
+      "file": "layers/062.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.q_proj",
+      "file": "layers/063.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.k_proj",
+      "file": "layers/064.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.v_proj",
+      "file": "layers/065.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.o_proj",
+      "file": "layers/066.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.gate_proj",
+      "file": "layers/067.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.up_proj",
+      "file": "layers/068.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.down_proj",
+      "file": "layers/069.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.q_proj",
+      "file": "layers/070.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.k_proj",
+      "file": "layers/071.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.v_proj",
+      "file": "layers/072.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.o_proj",
+      "file": "layers/073.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.gate_proj",
+      "file": "layers/074.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.up_proj",
+      "file": "layers/075.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.down_proj",
+      "file": "layers/076.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.q_proj",
+      "file": "layers/077.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.k_proj",
+      "file": "layers/078.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.v_proj",
+      "file": "layers/079.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.o_proj",
+      "file": "layers/080.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.gate_proj",
+      "file": "layers/081.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.up_proj",
+      "file": "layers/082.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.down_proj",
+      "file": "layers/083.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "-1": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_q",
+      "file": "layers/084.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "file": "layers/085.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_v",
+      "file": "layers/086.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_out.0",
+      "file": "layers/087.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "file": "layers/088.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "file": "layers/089.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_q",
+      "file": "layers/090.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_k",
+      "file": "layers/091.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_v",
+      "file": "layers/092.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_out.0",
+      "file": "layers/093.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.ff.net.0.proj",
+      "file": "layers/094.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.ff.net.2",
+      "file": "layers/095.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_q",
+      "file": "layers/096.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_k",
+      "file": "layers/097.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_v",
+      "file": "layers/098.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_out.0",
+      "file": "layers/099.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.ff.net.0.proj",
+      "file": "layers/100.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.ff.net.2",
+      "file": "layers/101.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_q",
+      "file": "layers/102.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_k",
+      "file": "layers/103.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_v",
+      "file": "layers/104.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_out.0",
+      "file": "layers/105.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.ff.net.0.proj",
+      "file": "layers/106.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.ff.net.2",
+      "file": "layers/107.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_q",
+      "file": "layers/108.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_k",
+      "file": "layers/109.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_v",
+      "file": "layers/110.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_out.0",
+      "file": "layers/111.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.ff.net.0.proj",
+      "file": "layers/112.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.ff.net.2",
+      "file": "layers/113.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_q",
+      "file": "layers/114.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_k",
+      "file": "layers/115.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_v",
+      "file": "layers/116.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_out.0",
+      "file": "layers/117.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.ff.net.0.proj",
+      "file": "layers/118.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.ff.net.2",
+      "file": "layers/119.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_q",
+      "file": "layers/120.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_k",
+      "file": "layers/121.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_v",
+      "file": "layers/122.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_out.0",
+      "file": "layers/123.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.ff.net.0.proj",
+      "file": "layers/124.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.ff.net.2",
+      "file": "layers/125.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_q",
+      "file": "layers/126.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_k",
+      "file": "layers/127.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_v",
+      "file": "layers/128.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_out.0",
+      "file": "layers/129.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.ff.net.0.proj",
+      "file": "layers/130.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.ff.net.2",
+      "file": "layers/131.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_q",
+      "file": "layers/132.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_k",
+      "file": "layers/133.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_v",
+      "file": "layers/134.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_out.0",
+      "file": "layers/135.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.ff.net.0.proj",
+      "file": "layers/136.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.ff.net.2",
+      "file": "layers/137.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_q",
+      "file": "layers/138.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_k",
+      "file": "layers/139.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_v",
+      "file": "layers/140.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_out.0",
+      "file": "layers/141.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.ff.net.0.proj",
+      "file": "layers/142.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.ff.net.2",
+      "file": "layers/143.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_q",
+      "file": "layers/144.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_k",
+      "file": "layers/145.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_v",
+      "file": "layers/146.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_out.0",
+      "file": "layers/147.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.ff.net.0.proj",
+      "file": "layers/148.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.ff.net.2",
+      "file": "layers/149.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_q",
+      "file": "layers/150.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_k",
+      "file": "layers/151.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_v",
+      "file": "layers/152.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_out.0",
+      "file": "layers/153.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.ff.net.0.proj",
+      "file": "layers/154.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.ff.net.2",
+      "file": "layers/155.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_q",
+      "file": "layers/156.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_k",
+      "file": "layers/157.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_v",
+      "file": "layers/158.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_out.0",
+      "file": "layers/159.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.ff.net.0.proj",
+      "file": "layers/160.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.ff.net.2",
+      "file": "layers/161.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_q",
+      "file": "layers/162.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_k",
+      "file": "layers/163.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_v",
+      "file": "layers/164.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_out.0",
+      "file": "layers/165.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.ff.net.0.proj",
+      "file": "layers/166.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.ff.net.2",
+      "file": "layers/167.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_q",
+      "file": "layers/168.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_k",
+      "file": "layers/169.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_v",
+      "file": "layers/170.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 5200,
+        "1": 5200,
+        "2": 5200,
+        "3": 5200,
+        "4": 5200,
+        "5": 5200,
+        "6": 5200,
+        "7": 5200
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_out.0",
+      "file": "layers/171.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.ff.net.0.proj",
+      "file": "layers/172.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.ff.net.2",
+      "file": "layers/173.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_q",
+      "file": "layers/174.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_k",
+      "file": "layers/175.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_v",
+      "file": "layers/176.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_out.0",
+      "file": "layers/177.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.ff.net.0.proj",
+      "file": "layers/178.pt",
+      "input_dtypes": [
+        "torch.float32"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.ff.net.2",
+      "file": "layers/179.pt",
+      "input_dtypes": [
+        "torch.float16"
+      ],
+      "rows": {
+        "0": 4900,
+        "1": 4900,
+        "2": 4900,
+        "3": 4900,
+        "4": 4900,
+        "5": 4900,
+        "6": 4900,
+        "7": 4900
+      }
+    }
+  ]
+}

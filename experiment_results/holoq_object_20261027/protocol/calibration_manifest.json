@@ -1,0 +1,208 @@
+{
+  "checkpoint": "/home/xinyu/.cache/huggingface/hub/models--youliangtan--gr00t-n1.5-libero-object-posttrain/snapshots/f422266b016fd917127d3a0348062a5cd750df43",
+  "compute_dtype": "torch.float16",
+  "seed": 42,
+  "suite": "libero_object",
+  "init_index": 0,
+  "denoising_steps": 8,
+  "action_horizon": 16,
+  "replan": "first action each simulator step",
+  "raw_resolution": 256,
+  "trajectory_count": 10,
+  "frame_sampling": "ten evenly spaced observed frames per trajectory",
+  "started": 1793126996.0588036,
+  "trajectories": [
+    {
+      "task_id": 0,
+      "task": "pick up the alphabet soup and place it in the basket",
+      "steps": 137,
+      "success": true,
+      "selected_steps": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        136
+      ],
+      "initial_state_sha256": "6cd4976519943bdc84677396a6e2942e9816ae87e56fc72943914e147f9b6e1e"
+    },
+    {
+      "task_id": 1,
+      "task": "pick up the cream cheese and place it in the basket",
+      "steps": 126,
+      "success": true,
+      "selected_steps": [
+        0,
+        13,
+        27,
+        41,
+        55,
+        69,
+        83,
+        97,
+        111,
+        125
+      ],
+      "initial_state_sha256": "4404ff0ecec75d07dbe02cdb0a6284fb3b24c79f2c164987433f00d3b885948c"
+    },
+    {
+      "task_id": 2,
+      "task": "pick up the salad dressing and place it in the basket",
+      "steps": 128,
+      "success": true,
+      "selected_steps": [
+        0,
+        14,
+        28,
+        42,
+        56,
+        70,
+        84,
+        98,
+        112,
+        127
+      ],
+      "initial_state_sha256": "02feb7104ff3af12f1247c461997f1113686f704fb702cd3280d6bfba56e6f71"
+    },
+    {
+      "task_id": 3,
+      "task": "pick up the bbq sauce and place it in the basket",
+      "steps": 146,
+      "success": true,
+      "selected_steps": [
+        0,
+        16,
+        32,
+        48,
+        64,
+        80,
+        96,
+        112,
+        128,
+        145
+      ],
+      "initial_state_sha256": "65b4e812d49c1bc043dd16e4226442779ebaaf106dca39030d9a8576460bc091"
+    },
+    {
+      "task_id": 4,
+      "task": "pick up the ketchup and place it in the basket",
+      "steps": 280,
+      "success": false,
+      "selected_steps": [
+        0,
+        31,
+        62,
+        93,
+        124,
+        155,
+        186,
+        217,
+        248,
+        279
+      ],
+      "initial_state_sha256": "18c4d582007cfa2a76303af28f67aeab015a8f95fac59ea882ec786c120b8919"
+    },
+    {
+      "task_id": 5,
+      "task": "pick up the tomato sauce and place it in the basket",
+      "steps": 122,
+      "success": true,
+      "selected_steps": [
+        0,
+        13,
+        26,
+        40,
+        53,
+        67,
+        80,
+        94,
+        107,
+        121
+      ],
+      "initial_state_sha256": "000a33b33f0beeee61ad6bc3f11f362fd5d9c6d8ecf7a7627575d9ebc775e121"
+    },
+    {
+      "task_id": 6,
+      "task": "pick up the butter and place it in the basket",
+      "steps": 269,
+      "success": true,
+      "selected_steps": [
+        0,
+        29,
+        59,
+        89,
+        119,
+        148,
+        178,
+        208,
+        238,
+        268
+      ],
+      "initial_state_sha256": "bad9bba0fbdf574e67aa4f37c8ec45b157b0f587a4f1c255fef5f0c2c146998d"
+    },
+    {
+      "task_id": 7,
+      "task": "pick up the milk and place it in the basket",
+      "steps": 127,
+      "success": true,
+      "selected_steps": [
+        0,
+        14,
+        28,
+        42,
+        56,
+        70,
+        84,
+        98,
+        112,
+        126
+      ],
+      "initial_state_sha256": "f0161129a0b12199cbd541c0b406015976bbf13af728ecb767c63c5ca8c8b34b"
+    },
+    {
+      "task_id": 8,
+      "task": "pick up the chocolate pudding and place it in the basket",
+      "steps": 134,
+      "success": true,
+      "selected_steps": [
+        0,
+        14,
+        29,
+        44,
+        59,
+        73,
+        88,
+        103,
+        118,
+        133
+      ],
+      "initial_state_sha256": "b50e9e8d6831fdd4481179c1ce2f962065ef508c5d358045cfe9d26cc3547dad"
+    },
+    {
+      "task_id": 9,
+      "task": "pick up the orange juice and place it in the basket",
+      "steps": 118,
+      "success": true,
+      "selected_steps": [
+        0,
+        13,
+        26,
+        39,
+        52,
+        65,
+        78,
+        91,
+        104,
+        117
+      ],
+      "initial_state_sha256": "c838e04306b82002976ee1b73da8a9d0f2d09cd7e51442e899862c51e19b0da9"
+    }
+  ],
+  "finished": 1793127129.3378842,
+  "observation_count": 100
+}

@@ -200,3 +200,27 @@ are retained. Primary commands and run-specific source commits are stored in
 queue/metadata JSON. A final report must distinguish paper-prescribed recipes,
 the explicit port/storage dtype choices above, and these common deployment
 settings; none imply a same-W/A comparison between W4A16 and W4A4.
+
+### Stronger AWQ architecture adapter
+
+Further constructor inspection identifies the actual language model as **Qwen3**,
+not Qwen2. The pinned official AWQ release has a Qwen2 grouping recipe but no
+native Qwen3/GR00T entrypoint. `build_awq_qwen.py` ports that recipe to actual
+Qwen3 attention calls: shared Q/K/V scale search using attention-output loss
+with intact causal contexts; shared gate/up MLP-output loss; down-projection
+loss; and the same GQA exclusion of v-to-o scaling when dimensions differ.
+Each search uses 512 statistic/loss tokens from the shared 100 frames, with 20
+candidates. Attention losses retain causal context while selecting 512 output
+rows over all 100 frames; they do not treat shuffled tokens as a new sequence.
+Scales are folded into RMSNorm or the preceding up projection as in the official
+recipe. Modified unquantized norm weights are included in the deployment state
+and pack manifest. DiT still has the explicit linear adapter. Primary AWQ cases
+are `awq_qwen_selective` and `awq_qwen_full`; earlier all-linear AWQ packs are
+preserved exploratory controls, not the main AWQ comparison. This improves
+method fidelity and removes unnecessary LLM input-division kernels, but it is
+still explicitly a Qwen3/GR00T port, not a native upstream-supported model.
+
+Code push: GitHub returned HTTP 403 for the original UCMP13753 repository;
+the authenticated account has `push: false`. The implementation is saved on
+[the writable fork branch](https://github.com/W4ng77/Omega-QVLA/tree/experiment/holoq-quant-baselines-4080).
+The original remote and all prior workspaces remain intact.

@@ -16,7 +16,7 @@ import time
 CASES = [
     "holoq",
     "holoq_step_weight",
-    "awq_selective",
+    "awq_qwen_selective",
     "smoothquant_a8",
     "quantvla_selective_a8_atm",
     "gptq_selective",
@@ -25,7 +25,7 @@ CASES = [
     "smoothquant_a4",
     "quantvla_selective_a4_atm",
     "duquant_a4",
-    "awq_full",
+    "awq_qwen_full",
     "gptq_full",
 ]
 

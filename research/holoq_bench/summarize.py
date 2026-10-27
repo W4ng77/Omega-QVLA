@@ -20,8 +20,18 @@ CONFIGS = {
     ),
     "gptq_selective": ("GPTQ", "Marlin / exclude DiT attention", "4/16", "116 (84 LLM + 32 DiT MLP)"),
     "gptq_full": ("GPTQ", "Marlin / full targets", "4/16", "180 (84 LLM + 96 DiT)"),
-    "awq_selective": ("AWQ", "upstream linear search port / packed AWQ", "4/16", "116 (84 LLM + 32 DiT MLP)"),
-    "awq_full": ("AWQ", "upstream linear search port / packed AWQ", "4/16", "180 (84 LLM + 96 DiT)"),
+    "awq_qwen_selective": (
+        "AWQ",
+        "Qwen grouped search/folding + DiT linear port / packed AWQ",
+        "4/16",
+        "116 (84 LLM + 32 DiT MLP)",
+    ),
+    "awq_qwen_full": (
+        "AWQ",
+        "Qwen grouped search/folding + DiT linear port / packed AWQ",
+        "4/16",
+        "180 (84 LLM + 96 DiT)",
+    ),
     "omniquant_selective": (
         "OmniQuant",
         "linear LWC/scale port / packed AWQ",

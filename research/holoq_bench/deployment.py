@@ -34,6 +34,10 @@ def export(pack_path, state_path, output):
     }
     assert excluded <= state.keys(), excluded - state.keys()
     keep = {k: v for k, v in state.items() if k not in excluded}
+    for key, value in pack.get("nonquantized_overrides", {}).items():
+        assert key in keep, key
+        assert keep[key].shape == value.shape, key
+        keep[key] = value
     torch.save(keep, output / "nonquantized.pt")
     # The tokenizer/processor + model architecture assets ship with the source
     # package. Account their actual files separately; never a model shard.
