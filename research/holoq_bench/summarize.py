@@ -203,6 +203,10 @@ def main():
                 "deployment_bytes": storage,
                 "per_task_successes": json.dumps(rollout.get("per_task_successes", []) if rollout_complete else []),
                 "code_commit": replay.get("code_commit", rollout.get("code_commit", "")),
+                "replay_code_commit": replay.get("code_commit", ""),
+                "rollout_code_commit": rollout.get("code_commit", ""),
+                "source_pack_sha256": deployment["source_pack_sha256"],
+                "actual_backend_layers": json.dumps(replay.get("backend_layers", rollout.get("backend_layers", {}))),
             }
             rows.append(row)
     quantized_common = [
