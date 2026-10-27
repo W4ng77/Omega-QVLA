@@ -6,6 +6,42 @@ import json
 from pathlib import Path
 
 CONFIGS = {
+    "holoq_llm_s4_fusedrot": (
+        "HoloQ-VLA",
+        "original grid / LLM CUTLASS S4, fused block rotation",
+        "4/4",
+        "180 (84 LLM + 96 DiT)",
+    ),
+    "holoq_step_weight_llm_s4_fusedrot": (
+        "HoloQ-VLA conversion",
+        "step_weight / all-target S4, fused block rotation",
+        "4/4",
+        "180 (84 LLM + 96 DiT)",
+    ),
+    "duquant_a8_g128_fusedrot": (
+        "DuQuant",
+        "paper GR00T port / Marlin G128 + fused rotation",
+        "4/8",
+        "180 (84 LLM + 96 DiT)",
+    ),
+    "duquant_a4_g128_fusedrot": (
+        "DuQuant",
+        "paper GR00T port / Marlin G128 + fused rotation",
+        "4/4",
+        "180 (84 LLM + 96 DiT)",
+    ),
+    "quantvla_selective_a8_atm_g128_fusedrot": (
+        "QuantVLA",
+        "GR00T port + ATM/OHB / Marlin + fused rotation",
+        "4/8",
+        "116 (84 LLM + 32 DiT MLP)",
+    ),
+    "quantvla_selective_a4_atm_g128_fusedrot": (
+        "QuantVLA",
+        "GR00T port + ATM/OHB / Marlin + fused rotation",
+        "4/4",
+        "116 (84 LLM + 32 DiT MLP)",
+    ),
     "holoq_llm_s4": ("HoloQ-VLA", "original grid / LLM CUTLASS S4 + DiT Marlin", "4/4", "180 (84 LLM + 96 DiT)"),
     "holoq_step_weight_llm_s4": (
         "HoloQ-VLA conversion",
@@ -81,6 +117,8 @@ def main():
     common = queue.get("common_mode", "pending")
     rows = []
     for case, (method, variant, bits, scope) in CONFIGS.items():
+        if queue.get("valid_cases") and case not in queue["valid_cases"]:
+            continue
         for mode in ("eager", "head_graph"):
             base = a.runs / case / mode
             replay_path = base / "replay/summary.json"

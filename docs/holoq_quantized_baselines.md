@@ -369,3 +369,49 @@ Individual runtime-source hashes distinguish the additive dispatcher patch.
 A host-wide shared/exclusive file lock prevents any correctness job, even on
 GPU1, from overlapping a measured policy process on GPU0. Monitoring remains
 active throughout and is audited separately.
+
+### Fused rotation deployment search
+
+`fused_rotation.py` adds an explicitly tagged `triton_block64` plugin. It fuses
+permutation/gather, the fixed FP16 block product, and contiguous output layout.
+All exported rotation coefficients, weight codes/scales, activation tables,
+ATM/OHB and step banks stay unchanged. A wrapper empties only the base module's
+rotation/bias hooks, retains the original tensors as registered buffers, runs
+the unchanged packed GEMM, then restores output rotation and bias in their
+original order. Nine GPU tests cover M=1/49/558/559, K through 8192, permutations,
+stream/Graph behavior, and unchanged packed weight buffers. FP16 reduction order
+can still change downstream rounding, so selected variants get independent
+100-episode scores.
+
+The plugin is offered equally to HoloQ original/conversion, DuQuant A8/A4 and
+QuantVLA A8/A4. Existing packs and their BMM execution are unchanged. The best
+backend search also includes the original BMM + CUTLASS S4 cases; fusion is not
+assumed faster. `pilot_queue.py` evaluates nine explicit candidates with the
+same full-policy replay and eligibility checks, then freezes a named selection
+per quantization configuration using **replay mean only**. It never reads task
+scores to select a backend. The selection manifest retains every candidate,
+mode, pack SHA and measured mean. A parent/child shared lock identity reserves
+this pilot batch without overlapping the main queue's timed policy calls.
+
+The common thirteen-case cohort continues on its original execution settings.
+After it completes, `finish_queue.py` evaluates each newly selected best backend
+on all 100 held-out episodes. Backends already evaluated in the common cohort
+reuse those verified records; nonselected timing candidates receive no invented
+accuracy result. Final reports keep the common and selected-best comparisons
+separate and retain timing-only candidate records.
+
+`reuse_smoke.py` may resume from the **new** ten-task smoke episodes at state 10,
+after verifying pack SHA, operator-source hashes, T=8, horizon=16, seed schedule,
+mode and independent state hashes. The remaining 90 episodes use states 11–19.
+Thus each reported 100-episode row contains 100 actually evaluated unique
+(task,state) pairs. Both phases are exclusively timed; no concurrent accuracy
+shortcut is used. Their raw calls, source episode SHA and timing windows remain
+available, and peak memory is the maximum over both phases. Historical 88/100
+and 90/100 records are not used.
+
+The local LIBERO checkout is `8f1084e3132a39270c3a13ebe37270a43ece2a01`, with
+an existing `torch.load(weights_only=False)` compatibility change. That patch,
+checkpoint/calibration/replay/teacher-input hashes, CPU/GPU/driver details and
+package versions are archived. Untargeted custom category-specific matrix
+projections remain FP16 together with embeddings and other retained parameters;
+the 391/180/116 counts refer specifically to `nn.Linear` modules.

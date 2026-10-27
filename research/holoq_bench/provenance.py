@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -63,6 +64,35 @@ def main():
                 "reason": "Official GGUF/GGML artifacts/backends support OpenVLA-OFT/Pi-0.5, not GR00T. Not a fake-quant speed row.",
             },
         },
+    }
+    libero = Path(os.environ.get("LIBERO_ROOT", "/home/xinyu/LIBERO"))
+    patch = subprocess.check_output(["git", "-C", str(libero), "diff"])
+    (a.output / "libero_local.patch").write_bytes(patch)
+    info["libero"] = {
+        "commit": subprocess.check_output(["git", "-C", str(libero), "rev-parse", "HEAD"], text=True).strip(),
+        "local_patch_sha256": hashlib.sha256(patch).hexdigest(),
+        "patch_note": "existing torch.load(weights_only=False) compatibility patch; preserved, not introduced by this experiment",
+    }
+    data_files = [
+        a.root / name
+        for name in (
+            "calibration_fp16_init0_v2/observations.pt",
+            "heldout_init10_19/observations.pt",
+            "teacher_capture/weights.pt",
+            "teacher_capture/fp16_model_state.pt",
+        )
+    ]
+    data_files += list((a.root / "teacher_capture/layers").glob("*.pt"))
+    info["calibration_and_replay_artifacts"] = {
+        str(f.relative_to(a.root)): {"bytes": f.stat().st_size, "sha256": digest(f)} for f in data_files
+    }
+    info["hardware"] = {
+        "gpu": subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=index,name,uuid,driver_version,memory.total,power.limit", "--format=csv"],
+            text=True,
+        ),
+        "cpu": subprocess.check_output(["lscpu"], text=True),
+        "kernel": subprocess.check_output(["uname", "-a"], text=True),
     }
     (a.output / "provenance.json").write_text(json.dumps(info, indent=2) + "\n")
     manifests = {}

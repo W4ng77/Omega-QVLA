@@ -1,12 +1,12 @@
-"""Run native-S4 deployment additions after the primary queue, then merge audits."""
+"""Finish explicitly selected best backends after the common accuracy cohort."""
 
 import argparse
 import json
-import os
 from pathlib import Path
 import shutil
 import subprocess
 import sys
+import threading
 import time
 
 
@@ -17,45 +17,131 @@ def main():
     primary = a.root / "evaluation_v3"
     extra = a.root / "evaluation_best_s4"
     while True:
-        status = json.loads((primary / "queue.json").read_text())
-        if status.get("finished"):
+        q = json.loads((primary / "queue.json").read_text())
+        pilot_path = extra / "queue.json"
+        pilot = json.loads(pilot_path.read_text()) if pilot_path.exists() else {}
+        if q.get("finished") and pilot.get("pilot_finished"):
             break
         time.sleep(15)
-    print("PRIMARY_FINISHED; submitting explicit S4 additions", flush=True)
-    env = os.environ.copy()
-    env.update(GPU="0", CUDA_HOME="/usr/local/cuda-12.4", RUN_OUTPUT=str(extra))
-    command = [
-        "bash",
-        "scripts/run_holoq_object_baselines.sh",
-        "--cases",
-        "smoothquant_a4_cutlass",
-        "holoq_llm_s4",
-        "holoq_step_weight_llm_s4",
-    ]
-    subprocess.run(command, env=env, check=True)
+    selection = json.loads((extra / "backend_selection.json").read_text())
+    winners = [v["selected"] for v in selection["families"].values()]
+    new = [d for d in winners if Path(d["root"]).resolve() == extra.resolve()]
+    unique = {d["case"]: d for d in new}
+    pilot.update(
+        valid_cases=list(unique),
+        selected_modes={c: d["mode"] for c, d in unique.items()},
+        phase="selected_accuracy",
+    )
+
+    def save():
+        tmp = extra / "queue.tmp"
+        tmp.write_text(json.dumps(pilot, indent=2) + "\n")
+        tmp.replace(extra / "queue.json")
+
+    save()
+    # The primary sampler covered all interleaved timing pilots. Append a sampler
+    # for the subsequent accuracy cohort, still using exclusive policy locks.
+    (extra / "gpu_monitor.jsonl").write_text((primary / "gpu_monitor.jsonl").read_text())
+    stop = threading.Event()
+
+    def monitor():
+        with (extra / "gpu_monitor.jsonl").open("a", buffering=1) as file:
+            while not stop.is_set():
+                query = subprocess.run(
+                    [
+                        "nvidia-smi",
+                        "--query-gpu=index,uuid,utilization.gpu,memory.used,temperature.gpu,power.draw,clocks.sm",
+                        "--format=csv,noheader,nounits",
+                    ],
+                    capture_output=True,
+                    text=True,
+                )
+                file.write(json.dumps({"time": time.time(), "gpus": query.stdout.strip().splitlines()}) + "\n")
+                stop.wait(5)
+
+    thread = threading.Thread(target=monitor, daemon=True)
+    thread.start()
+
+    def job(case, mode, stage, trials):
+        out = extra / case / mode / stage
+        out.mkdir(parents=True, exist_ok=True)
+        marker = out / "completed.json"
+        if marker.exists():
+            return json.loads(marker.read_text())["returncode"] == 0
+        cmd = [
+            sys.executable,
+            "-u",
+            "-m",
+            "research.holoq_bench.run_policy",
+            "--deployment",
+            str(a.root / "deployments" / case),
+            "--observations",
+            str(a.root / "heldout_init10_19/observations.pt"),
+            "--output",
+            str(out),
+            "--mode",
+            mode,
+            "--stage",
+            "rollout",
+            "--trials",
+            str(trials),
+        ]
+        pilot["commands"].append({"cmd": cmd, "started": time.time(), "cwd": str(Path.cwd())})
+        save()
+        print("SELECTED_ACCURACY_START", case, mode, stage, flush=True)
+        with (out / "run.log").open("a") as file:
+            ret = subprocess.run(cmd, stdout=file, stderr=subprocess.STDOUT)
+        record = {"returncode": ret.returncode, "finished": time.time()}
+        marker.write_text(json.dumps(record, indent=2) + "\n")
+        pilot["cases"].setdefault(case, {})[mode + "_" + stage] = record
+        save()
+        print("SELECTED_ACCURACY_FINISH", case, mode, stage, ret.returncode, flush=True)
+        return ret.returncode == 0
+
+    try:
+        good = []
+        for case, data in unique.items():
+            if job(case, data["mode"], "rollout_smoke", 1):
+                good.append(case)
+        for case in good:
+            job(case, unique[case]["mode"], "rollout", 10)
+        pilot.update(finished=time.time(), phase="complete")
+        save()
+    finally:
+        stop.set()
+        thread.join(timeout=10)
+    # Allow the audit/reuse process to finish merging the peaks from its two
+    # explicitly documented measurement phases before snapshotting the results.
+    time.sleep(6)
     merged = a.root / "evaluation_all"
     merged.mkdir(parents=True, exist_ok=True)
-    records = []
-    for root in (primary, extra):
-        data = json.loads((root / "queue.json").read_text())
-        records.append(data)
+    records = [json.loads((root / "queue.json").read_text()) for root in (primary, extra)]
+    for root, data in zip((primary, extra), records):
         for case in data["valid_cases"]:
             shutil.copytree(root / case, merged / case, dirs_exist_ok=True)
-    common = records[0]["common_mode"]
     combined = {
-        "common_mode": common,
+        "common_mode": records[0]["common_mode"],
         "input_queues": [str(primary), str(extra)],
         "queue_modes": [d["common_mode"] for d in records],
         "cases": {case: values for data in records for case, values in data["cases"].items()},
         "valid_cases": [case for data in records for case in data["valid_cases"]],
         "commands": [cmd for data in records for cmd in data["commands"]],
+        "backend_selection": selection,
         "finished": time.time(),
     }
     (merged / "queue.json").write_text(json.dumps(combined, indent=2) + "\n")
-    with (merged / "gpu_monitor.jsonl").open("w") as file:
-        for root in (primary, extra):
-            file.write((root / "gpu_monitor.jsonl").read_text())
+    samples = {}
+    for root in (primary, extra):
+        for line in (root / "gpu_monitor.jsonl").read_text().splitlines():
+            row = json.loads(line)
+            samples[row["time"]] = row
+    (merged / "gpu_monitor.jsonl").write_text("".join(json.dumps(samples[k]) + "\n" for k in sorted(samples)))
     shutil.copy2(primary / "environment.txt", merged / "environment.txt")
+    shutil.copy2(extra / "backend_selection.json", merged / "backend_selection.json")
+    # Keep nonselected timing candidates separately; no task score is invented.
+    candidates = merged / "timing_candidates"
+    for case in pilot.get("candidate_cases", []):
+        shutil.copytree(extra / case, candidates / case, dirs_exist_ok=True)
     subprocess.run(
         [
             sys.executable,
@@ -67,6 +153,18 @@ def main():
             str(a.root / "deployments"),
             "--output",
             str(merged / "report"),
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "research.holoq_bench.audit_results",
+            "--runs",
+            str(merged),
+            "--output",
+            str(merged / "report/audit.json"),
         ],
         check=True,
     )

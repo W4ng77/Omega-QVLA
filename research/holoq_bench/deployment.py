@@ -93,6 +93,12 @@ def load(directory, device, horizon):
     del state
     ensure_dit_attention_patch(model)
     metadata = enable(model, str(directory / "packed.pt"))
+    if metadata.get("rotation_plugin") == "triton_block64":
+        from research.holoq_bench.fused_rotation import install
+
+        install(model)
+    elif metadata.get("rotation_plugin") is not None:
+        raise ValueError("Unsupported explicit rotation plugin")
     model.to(device=device)
     return model, metadata
 
