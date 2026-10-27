@@ -1,0 +1,25 @@
+{
+  "source": "results/holoq_object/evaluation_v3/holoq/head_graph/rollout_smoke",
+  "reason": "same immutable operators, pack, seeds, held-out initial states and execution mode",
+  "episodes": 10,
+  "remaining_initial_indices": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "source_started": 1793132347.7732704,
+  "source_finished": 1793132578.360938,
+  "source_code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281",
+  "source_pack_sha256": "11e781eb3fabf1ba0a35deca6c862c5319b750bad83599d9ec5d562f9422b320",
+  "source_inference_memory": {
+    "peak_allocated_bytes": 4248743424,
+    "peak_reserved_bytes": 4571791360
+  },
+  "episodes_sha256": "ec9b465f0d91030fbdf2ff108a18672fcf97549448188f095da243629b1edda0"
+}
