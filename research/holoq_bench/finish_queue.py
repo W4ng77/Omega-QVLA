@@ -20,11 +20,12 @@ def main():
         q = json.loads((primary / "queue.json").read_text())
         pilot_path = extra / "queue.json"
         pilot = json.loads(pilot_path.read_text()) if pilot_path.exists() else {}
-        if q.get("finished") and pilot.get("pilot_finished") and pilot.get("pilot_extension_complete"):
+        if pilot.get("pilot_finished") and pilot.get("pilot_extension_complete"):
             break
         time.sleep(15)
     selection = json.loads((extra / "backend_selection.json").read_text())
-    winners = [v["selected"] for v in selection["families"].values()]
+    order = ["holoq", "holoq_step_weight", "quantvla_a8", "quantvla_a4", "duquant_a8", "duquant_a4", "smoothquant_a4"]
+    winners = [selection["families"][family]["selected"] for family in order]
     new = [d for d in winners if Path(d["root"]).resolve() == extra.resolve()]
     unique = {d["case"]: d for d in new}
     pilot.update(
@@ -39,8 +40,8 @@ def main():
         tmp.replace(extra / "queue.json")
 
     save()
-    # The primary sampler covered all interleaved timing pilots. Append a sampler
-    # for the subsequent accuracy cohort, still using exclusive policy locks.
+    # The primary sampler covered all timing pilots. This cohort may interleave
+    # whole stages with primary accuracy, still owning exclusive policy locks.
     (extra / "gpu_monitor.jsonl").write_text((primary / "gpu_monitor.jsonl").read_text())
     stop = threading.Event()
 
@@ -99,17 +100,17 @@ def main():
         return ret.returncode == 0
 
     try:
-        good = []
         for case, data in unique.items():
             if job(case, data["mode"], "rollout_smoke", 1):
-                good.append(case)
-        for case in good:
-            job(case, unique[case]["mode"], "rollout", 10)
+                job(case, data["mode"], "rollout", 10)
         pilot.update(finished=time.time(), phase="complete")
         save()
     finally:
         stop.set()
         thread.join(timeout=10)
+    print("SELECTED_ACCURACY_COMPLETE_WAIT_PRIMARY_FOR_MERGE", flush=True)
+    while not json.loads((primary / "queue.json").read_text()).get("finished"):
+        time.sleep(15)
     # Allow the audit/reuse process to finish merging the peaks from its two
     # explicitly documented measurement phases before snapshotting the results.
     time.sleep(6)
