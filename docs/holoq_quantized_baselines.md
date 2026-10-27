@@ -292,6 +292,28 @@ baseline cohort; it never selects a backend from a task score. Validation and
 the frozen selection revision, rather than availability of adapter source,
 determine whether a Nunchaku variant is actually run and reported.
 
+The subsequent checks completed: four native-core arithmetic probes and seven
+additional GPU tests passed; actual packed CUDA launch traces were verified in
+both execution modes for all three candidates. Complete-policy Graph replay
+means were84.23ms (original LLM Nunchaku),79.55ms (converted all-Nunchaku), and
+70.11ms (SmoothQuant-A4 Nunchaku). Each lost to its already tested selected
+backend (80.13,74.19,61.09ms respectively). No candidate was selected and no
+100-episode success score is assigned to these timing-only rows. The converted
+Nunchaku candidate peaked at6.27GB allocated, versus8.40GB for the faster native
+research backend; this is a measured memory/latency tradeoff, not an accuracy
+claim. Its maximum bank-scale cast error is0.0488% relative. All records,
+including the initial padding-metadata test failure and the successful fix,
+are published under `experiment_results/holoq_object_20261027/validation/extra`.
+
+A separate **accuracy-only** diagnostic checks the frozen canonical grid on ten
+held-out first observations, all180 target layers and all eight denoising steps:
+8,520 real layer comparisons have maximum NMSE6.01e-7. The full-action NMSE is
+0.0012–0.0074 relative to the dense higher-accumulation-precision oracle. This
+rules out a gross packing/scale dispatch error in those tested inputs but is
+not bitwise policy equivalence, a task-accuracy guarantee, or an attribution of
+the complete success gap. Dense weights exist only in that diagnostic process;
+its timing/storage is never a floating baseline in the deployment comparison.
+
 ## Rebuilding artifacts from the pinned checkpoint
 
 Use the existing `groot_test` Python environment plus LIBERO/robosuite with EGL;
