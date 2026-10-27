@@ -20,7 +20,7 @@ def main():
         q = json.loads((primary / "queue.json").read_text())
         pilot_path = extra / "queue.json"
         pilot = json.loads(pilot_path.read_text()) if pilot_path.exists() else {}
-        if q.get("finished") and pilot.get("pilot_finished"):
+        if q.get("finished") and pilot.get("pilot_finished") and pilot.get("pilot_extension_complete"):
             break
         time.sleep(15)
     selection = json.loads((extra / "backend_selection.json").read_text())

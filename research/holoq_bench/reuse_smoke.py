@@ -76,7 +76,15 @@ def main():
             assert {(e["task_id"], e["init_index"]) for e in episodes} == {(i, 10) for i in range(10)}
             assert all(e["initial_state_sha256"] == hashes[e["task_id"], 10] for e in episodes)
             dest.mkdir(parents=True, exist_ok=True)
-            assert not (dest / "episodes.jsonl").exists()
+            if (dest / "episodes.jsonl").exists():
+                # Recover a completed preseed after a controller/server restart.
+                # Never overwrite an episode or invent a second execution.
+                assert (dest / "reused_smoke.json").exists()
+                assert (dest / "episodes.jsonl").read_bytes() == (source / "episodes.jsonl").read_bytes()
+                assert (dest / "rollout_calls.jsonl").read_bytes() == (source / "rollout_calls.jsonl").read_bytes()
+                completed.add(case)
+                print("VERIFIED_EXISTING_REUSE", case, flush=True)
+                continue
             shutil.copy2(source / "episodes.jsonl", dest / "episodes.jsonl")
             shutil.copy2(source / "rollout_calls.jsonl", dest / "rollout_calls.jsonl")
             note = {

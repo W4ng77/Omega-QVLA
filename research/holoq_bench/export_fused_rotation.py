@@ -11,6 +11,8 @@ def main():
     a = p.parse_args()
     torch.set_num_threads(1)
     variants = [
+        ("packs_v2/holoq.pt", "holoq_fusedrot"),
+        ("packs_v2/holoq_step_weight.pt", "holoq_step_weight_fusedrot"),
         ("packs_v4/holoq_llm_s4.pt", "holoq_llm_s4_fusedrot"),
         ("packs_v4/holoq_step_weight_llm_s4.pt", "holoq_step_weight_llm_s4_fusedrot"),
         ("packs_v3/duquant_a8_g128.pt", "duquant_a8_g128_fusedrot"),

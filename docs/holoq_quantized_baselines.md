@@ -415,3 +415,11 @@ checkpoint/calibration/replay/teacher-input hashes, CPU/GPU/driver details and
 package versions are archived. Untargeted custom category-specific matrix
 projections remain FP16 together with embeddings and other retained parameters;
 the 391/180/116 counts refer specifically to `nn.Linear` modules.
+
+The first true-S4 language-layer pilot did not improve policy mean (87.69 ms
+versus the existing Marlin route's 85.36 ms). The search therefore also includes
+`holoq_fusedrot` and `holoq_step_weight_fusedrot`, retaining Marlin on the language
+layers while using the fused rotation. `extend_pilot.py` preserves the initial
+nine-candidate selection, evaluates these two missing combinations, and updates
+the latency-only manifest before any selected-backend accuracy run. No native
+INT4 arithmetic is assumed faster merely because of its nominal bit width.

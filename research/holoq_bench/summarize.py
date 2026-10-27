@@ -6,6 +6,18 @@ import json
 from pathlib import Path
 
 CONFIGS = {
+    "holoq_fusedrot": (
+        "HoloQ-VLA",
+        "original grid / Marlin + fused block rotation",
+        "4/4",
+        "180 (84 LLM + 96 DiT)",
+    ),
+    "holoq_step_weight_fusedrot": (
+        "HoloQ-VLA conversion",
+        "step_weight / native S4 DiT, Marlin LLM + fused rotation",
+        "4/4",
+        "180 (84 LLM + 96 DiT)",
+    ),
     "holoq_llm_s4_fusedrot": (
         "HoloQ-VLA",
         "original grid / LLM CUTLASS S4, fused block rotation",
