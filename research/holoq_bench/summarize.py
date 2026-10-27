@@ -127,6 +127,12 @@ def main():
     a.output.mkdir(parents=True, exist_ok=True)
     queue = json.loads((a.runs / "queue.json").read_text()) if (a.runs / "queue.json").exists() else {}
     common = queue.get("common_mode", "pending")
+    selection = queue.get("backend_selection", {})
+    selected = {
+        (v["selected"]["case"], v["selected"]["mode"])
+        for v in selection.get("families", {}).values()
+    }
+    selected_families = set(selection.get("families", {}))
     rows = []
     for case, (method, variant, bits, scope) in CONFIGS.items():
         if queue.get("valid_cases") and case not in queue["valid_cases"]:
@@ -153,6 +159,13 @@ def main():
                 "variant": variant,
                 "execution": mode,
                 "common": mode == common,
+                "selected_best": (case, mode) in selected
+                or (
+                    case not in selected_families
+                    and not any(case == d[0] for d in selected)
+                    and not case.startswith(("holoq", "duquant", "quantvla", "smoothquant_a4"))
+                    and mode == common
+                ),
                 "W/A": bits,
                 "scope": scope,
                 "successes": rollout.get("successes", ""),
@@ -165,11 +178,29 @@ def main():
                 "rollout_p95_ms": rol.get("p95_ms", ""),
                 "peak_allocated_bytes": mem.get("peak_allocated_bytes", ""),
                 "peak_reserved_bytes": mem.get("peak_reserved_bytes", ""),
+                "rollout_peak_allocated_bytes": rollout.get("inference_memory", {}).get(
+                    "peak_allocated_bytes", ""
+                ),
+                "rollout_peak_reserved_bytes": rollout.get("inference_memory", {}).get(
+                    "peak_reserved_bytes", ""
+                ),
+                "rollout_cold_capture_calls": rollout.get("cold_capture_calls", ""),
                 "deployment_bytes": storage,
                 "per_task_successes": json.dumps(rollout.get("per_task_successes", [])),
                 "code_commit": replay.get("code_commit", rollout.get("code_commit", "")),
             }
             rows.append(row)
+    quantized_common = [
+        r for r in rows if r["common"] and not r["case"].startswith("holoq") and r["policy_mean_ms"]
+    ]
+    fastest = min(quantized_common, key=lambda r: r["policy_mean_ms"]) if quantized_common else None
+    for row in rows:
+        row["fastest_quantized_baseline"] = fastest["case"] if fastest else ""
+        row["speedup_vs_fastest_quantized_baseline"] = (
+            fastest["policy_mean_ms"] / row["policy_mean_ms"]
+            if fastest and row["common"] and row["policy_mean_ms"] and row["case"].startswith("holoq")
+            else ""
+        )
     if rows:
         with (a.output / "main.csv").open("w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=list(rows[0]))
@@ -182,8 +213,8 @@ def main():
         f"Common execution: **{common}**. Missing scores are pending, not zero.",
         "All latency rows measure complete get_action; replay and rollout are distinct. Storage is decimal GB.",
         "",
-        "| Method | Variant/backend | W/A | Scope | Success | Replay mean / p50 / p95 ms | Rollout mean / p50 / p95 ms | Peak alloc / reserve GB | Deployment GB |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "| Method | Variant/backend | W/A | Scope | Success | Replay mean / p50 / p95 ms | Rollout mean / p50 / p95 ms | Peak alloc / reserve GB | Deployment GB | Speedup vs fastest quant baseline |",
+        "|---|---|---|---|---|---|---|---|---|---|",
     ]
 
     def fmt(x):
@@ -209,6 +240,9 @@ def main():
                         for k in ["peak_allocated_bytes", "peak_reserved_bytes"]
                     ),
                     fmt(r["deployment_bytes"] / 1e9),
+                    fmt(r["speedup_vs_fastest_quantized_baseline"])
+                    if r["speedup_vs_fastest_quantized_baseline"]
+                    else "—",
                 ]
             )
             + " |"
@@ -217,16 +251,74 @@ def main():
         r["case"]: r for r in rows if r["common"] and not r["case"].startswith("holoq") and r["policy_mean_ms"]
     }
     speeds = {}
+    speed_rows = []
     for r in rows:
         if r["common"] and r["case"].startswith("holoq") and r["policy_mean_ms"]:
             speeds[r["case"]] = {n: b["policy_mean_ms"] / r["policy_mean_ms"] for n, b in quant.items()}
+            for name, value in speeds[r["case"]].items():
+                baseline = quant[name]
+                speed_rows.append(
+                    {
+                        "ours": r["case"],
+                        "ours_execution": r["execution"],
+                        "baseline": name,
+                        "baseline_execution": baseline["execution"],
+                        "replay_speedup": value,
+                        "rollout_speedup": baseline["rollout_mean_ms"] / r["rollout_mean_ms"]
+                        if baseline["rollout_mean_ms"] and r["rollout_mean_ms"]
+                        else "",
+                    }
+                )
     (a.output / "speedups.json").write_text(json.dumps(speeds, indent=2) + "\n")
+    if speed_rows:
+        with (a.output / "speedups.csv").open("w", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=list(speed_rows[0]))
+            writer.writeheader()
+            writer.writerows(speed_rows)
+        ours = list(speeds)
+        text += [
+            "",
+            "## Complete-policy speedups against every measured quantized baseline",
+            "",
+            "| Quantized baseline | " + " | ".join(ours) + " |",
+            "|---|" + "---|" * len(ours),
+        ]
+        for name in quant:
+            text.append("| " + name + " | " + " | ".join(f"{speeds[c][name]:.3f}x" for c in ours) + " |")
+    task_rows = []
+    for r in rows:
+        values = json.loads(r["per_task_successes"])
+        if not values:
+            continue
+        for task, successes in (values.items() if isinstance(values, dict) else enumerate(values)):
+            task_rows.append(
+                {
+                    "case": r["case"],
+                    "execution": r["execution"],
+                    "task": task,
+                    "successes": successes,
+                }
+            )
+    if task_rows:
+        with (a.output / "per_task.csv").open("w", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=list(task_rows[0]))
+            writer.writeheader()
+            writer.writerows(task_rows)
+    best_rows = [r for r in rows if r["selected_best"]]
+    if best_rows:
+        with (a.output / "best.csv").open("w", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=list(best_rows[0]))
+            writer.writeheader()
+            writer.writerows(best_rows)
+        (a.output / "best.json").write_text(
+            json.dumps({"selection": selection, "rows": best_rows}, indent=2) + "\n"
+        )
     text += [
         "",
         "Speedup = baseline full-policy replay mean / our full-policy replay mean; below 1 means slower.",
         "See speedups.json for every baseline, main.csv for all execution modes and exact bytes.",
         "",
-        "**Fidelity limits:** AWQ and OmniQuant use explicit GR00T linear adapters, not unmodified whole-block official adapters. DuQuant uses the paper GR00T SVD recipe. Numerical A4/A8 feeding Marlin uses FP16 MMA. These distinctions constrain any claim about an optimized original method.",
+        "**Fidelity limits:** AWQ uses a Qwen3 grouped adapter and a DiT linear adapter; OmniQuant is a linear LWC/scaling port, not the full upstream block/LET implementation. DuQuant uses the paper GR00T SVD recipe. Numerical A4/A8 feeding Marlin uses FP16 MMA. These distinctions constrain any claim about an optimized original method.",
         "",
         "100-episode score differences are descriptive; do not infer statistical improvement.",
     ]

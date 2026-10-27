@@ -172,6 +172,18 @@ def main():
         [
             sys.executable,
             "-m",
+            "research.holoq_bench.final_report",
+            "--runs",
+            str(merged),
+            "--output",
+            "experiment_results/holoq_object_20261027/RESULTS.md",
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
             "research.holoq_bench.provenance",
             "--root",
             str(a.root),
