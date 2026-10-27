@@ -6,6 +6,15 @@ import json
 from pathlib import Path
 
 CONFIGS = {
+    "holoq_llm_nunchaku_fusedrot": (
+        "HoloQ-VLA", "original grid / Nunchaku S4 LLM + Marlin DiT, fused rotation", "4/4", "180 (84 LLM + 96 DiT)"
+    ),
+    "holoq_step_weight_nunchaku_f16sw_fusedrot": (
+        "HoloQ-VLA conversion", "step_weight / Nunchaku S4 all targets, FP16 bank-scale cast + fused rotation", "4/4", "180 (84 LLM + 96 DiT)"
+    ),
+    "smoothquant_a4_nunchaku": (
+        "SmoothQuant", "original grid / Nunchaku S4 all targets", "4/4", "180 (84 LLM + 96 DiT)"
+    ),
     "holoq_fusedrot": (
         "HoloQ-VLA",
         "original grid / Marlin + fused block rotation",

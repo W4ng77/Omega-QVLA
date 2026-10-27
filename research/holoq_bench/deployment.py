@@ -46,6 +46,7 @@ def export(pack_path, state_path, output):
     manifest = {
         "format": "holoq_bench_deployment_v1",
         "method": pack["meta"]["method"],
+        "runtime_plugin": pack["meta"].get("runtime_plugin"),
         "source_checkpoint": str(checkpoint),
         "source_pack": str(pack_path.resolve()),
         "source_pack_sha256": sha256(pack_path),
@@ -92,11 +93,16 @@ def load(directory, device, horizon):
     assert not unexpected, unexpected
     del state
     ensure_dit_attention_patch(model)
+    if manifest.get("runtime_plugin") == "nunchaku_s4":
+        from research.holoq_bench.nunchaku_runtime import enable
+
     metadata = enable(model, str(directory / "packed.pt"))
     if metadata.get("rotation_plugin") == "triton_block64":
         from research.holoq_bench.fused_rotation import install
 
         install(model)
+    elif metadata.get("rotation_plugin") == "nunchaku_and_triton_block64":
+        assert manifest.get("runtime_plugin") == "nunchaku_s4", "Explicit Nunchaku loader required"
     elif metadata.get("rotation_plugin") is not None:
         raise ValueError("Unsupported explicit rotation plugin")
     model.to(device=device)

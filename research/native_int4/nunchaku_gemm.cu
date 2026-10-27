@@ -21,11 +21,13 @@ void holoq_nunchaku_gemm(at::Tensor a, at::Tensor b, at::Tensor as,
       const G::packed_act_t*, const G::packed_wgt_t*, const G::packed_ascale_t*,
       const G::packed_wscale_t*, int, int, int, E::Arguments, bool, bool>;
   dim3 grid(M / G::BLOCK_M, N / G::BLOCK_N);
+  bool swap = M > N * 2;  // same block-order heuristic as the official launcher
+  if (swap) std::swap(grid.x, grid.y);
   fn<<<grid, G::WARP_SIZE * G::NUM_WARPS, 0, at::cuda::getCurrentCUDAStream()>>>(
       reinterpret_cast<const G::packed_act_t*>(a.data_ptr<int>()),
       reinterpret_cast<const G::packed_wgt_t*>(b.data_ptr<int>()),
       reinterpret_cast<const G::packed_ascale_t*>(as.data_ptr<at::Half>()),
       reinterpret_cast<const G::packed_wscale_t*>(ws.data_ptr<at::Half>()),
-      M, N, K, E::Arguments{reinterpret_cast<half*>(out.data_ptr<at::Half>()), int(out.size(0)), N}, false, false);
+      M, N, K, E::Arguments{reinterpret_cast<half*>(out.data_ptr<at::Half>()), int(out.size(0)), N}, swap, false);
   checkCUDA(cudaGetLastError());
 }

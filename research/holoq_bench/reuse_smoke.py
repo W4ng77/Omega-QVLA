@@ -70,6 +70,13 @@ def main():
             manifest = json.loads((a.root / "deployments" / case / "deployment.json").read_text())
             assert d["source_pack_sha256"] == manifest["source_pack_sha256"]
             checked = CORE + (["research/holoq_bench/fused_rotation.py"] if "fusedrot" in case else [])
+            if "nunchaku" in case:
+                checked += [
+                    "research/holoq_bench/nunchaku_runtime.py",
+                    "research/holoq_bench/nunchaku_probe.py",
+                    "research/native_int4/nunchaku_bindings.cpp",
+                    "research/native_int4/nunchaku_gemm.cu",
+                ]
             for file in checked:
                 assert d["source_files_sha256"][file] == hashlib.sha256(Path(file).read_bytes()).hexdigest(), file
             episodes = [json.loads(line) for line in (source / "episodes.jsonl").read_text().splitlines()]

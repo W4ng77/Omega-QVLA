@@ -23,6 +23,7 @@ def packed_trace(base):
         "qserve": lambda name: name.startswith("void dense_kernel"),
         "native_s4": lambda name: name.startswith("void native_group_kernel<"),
         "cutlass_s4": lambda name: "integer_subbyteILi4ELb1EE" in name,
+        "nunchaku_s4": lambda name: "gemm_w4a4_kernel" in name and "nunchaku" in name,
     }
     for backend, layers in meta["backend_layers"].items():
         assert backend in patterns, ("Unrecognized backend", backend)

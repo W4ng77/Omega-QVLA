@@ -251,6 +251,34 @@ the authenticated account has `push: false`. The implementation is saved on
 [the writable fork branch](https://github.com/W4ng77/Omega-QVLA/tree/experiment/holoq-quant-baselines-4080).
 The original remote and all prior workspaces remain intact.
 
+### Appendix Table 8 backend check
+
+The official Nunchaku revision is pinned in `sources.json`. The isolated probe
+uses its unchanged INT4 GEMM template/default epilogue and official block-order
+heuristic, with checked Torch pointers/current stream. Integer codes are
+reordered without requantizing. Its native contract uses G64 FP16 scales,
+M-padding256 and N-padding128. Original DiT per-column scales cannot be replaced
+by this group-scale interface. Compatible candidates are therefore: original
+HoloQ's per-token LLM only (DiT retains Marlin); the explicitly separate
+step-weight conversion; and SmoothQuant-A4's token/output scale contract.
+The same option is offered to the compatible baseline, not just HoloQ.
+
+The step-weight candidate additionally casts FP32 bank scales to FP16 and
+repeats G128 scales into G64 layout; codes and all nine banks are retained.
+It is named `holoq_step_weight_nunchaku_f16sw_fusedrot` and records the maximum
+relative scale cast error. Original LLM/SmoothQuant scales are already FP16.
+Native groupwise accumulation also changes floating arithmetic order; any
+selected variant requires its own100 episodes. The source adapter is explicit
+in each deployment manifest. It leaves every previous packed-runtime operator
+and the previous fused-rotation implementation untouched.
+
+At the time this section was added, the Nunchaku compile/oracle/graph and
+full-policy pilots were **pending**, queued after the current exclusive timing
+stage. `nunchaku_pilot.py` records concrete failures and continues the existing
+baseline cohort; it never selects a backend from a task score. Validation and
+the frozen selection revision, rather than availability of adapter source,
+determine whether a Nunchaku variant is actually run and reported.
+
 ## Rebuilding artifacts from the pinned checkpoint
 
 Use the existing `groot_test` Python environment plus LIBERO/robosuite with EGL;
