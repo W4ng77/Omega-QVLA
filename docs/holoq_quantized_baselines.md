@@ -120,6 +120,15 @@ Official algorithm/kernel commits, source hashes, commands, packs, numerical
 checks, run logs and final JSON/CSV will be recorded alongside this document.
 No speed/accuracy victory is claimed until the full primary matrix completes.
 
+`audit_results.py` also reads each execution's actual CUDA profiler trace. It
+requires at least the expected packed launches for the declared backend/scope:
+84 language calls and eight calls per DiT layer (852 projections for full,
+340 for attention-excluded). Marlin can use multiple passes per projection.
+AWQ, QServe, Marlin, native S4 and CUTLASS S4 have separate trace signatures.
+Unquantized vision/auxiliary FP16 kernels remain legitimate; a floating kernel
+elsewhere in the policy is not treated as a quantized projection fallback.
+The current 26 completed primary replay rows pass this trace/protocol audit.
+
 ## Implementation and reproduction status (2026-10-27)
 
 The independent branch is `experiment/holoq-quant-baselines-4080`. Pinned source
