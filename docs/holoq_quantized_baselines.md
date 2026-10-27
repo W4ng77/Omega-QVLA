@@ -120,6 +120,16 @@ Official algorithm/kernel commits, source hashes, commands, packs, numerical
 checks, run logs and final JSON/CSV will be recorded alongside this document.
 No speed/accuracy victory is claimed until the full primary matrix completes.
 
+After latency-only backend selection was frozen, the accuracy queue was focused
+on every selected deployment, both GPTQ/AWQ coverage variants and precision
+controls. Losing backend duplicates retain all their eager/Graph replay and
+smoke records, but do not require another 100 episodes. The already-running
+original HoloQ 100-episode control finishes normally. `focus_accuracy.py` waits
+for that natural exclusive-lock boundary before resuming the controller, with
+the old queue/commands preserved. This changes which redundant execution
+variants receive accuracy trials, never a method's selected backend, bit width,
+calibration, evaluation states or measured episode contents.
+
 `audit_results.py` also reads each execution's actual CUDA profiler trace. It
 requires at least the expected packed launches for the declared backend/scope:
 84 language calls and eight calls per DiT layer (852 projections for full,

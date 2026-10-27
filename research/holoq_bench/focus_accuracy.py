@@ -90,7 +90,9 @@ def main():
         "controller_pid": args.parent_pid,
         "interrupted_waiting_workers": children,
     }
-    (runs / "queue.json").write_text(json.dumps(old, indent=2) + "\n")
+    temp = runs / "queue.focus.tmp"
+    temp.write_text(json.dumps(old, indent=2) + "\n")
+    temp.replace(runs / "queue.json")
     cmd = [sys.executable, "-u", "-m", "research.holoq_bench.submit", "--root", str(args.root), "--output", str(runs), "--cases", *KEEP]
     print("FOCUSED_QUEUE", cmd, flush=True)
     fcntl.flock(guard, fcntl.LOCK_UN)
