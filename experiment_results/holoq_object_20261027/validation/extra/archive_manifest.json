@@ -1,0 +1,50 @@
+{
+  "nunchaku_probe.log.gz": {
+    "bytes": 1196,
+    "sha256": "0415361754a85487d45697b521aa000d4e39bdf401916664832be9bf94311629"
+  },
+  "nunchaku_policy_timings.csv": {
+    "bytes": 1864,
+    "sha256": "0f3d9a172ee162ebbc53a3f973e4bd68ec5dca969522d9b1b83ea95e0a943574"
+  },
+  "canonical_math_check.json": {
+    "bytes": 1566761,
+    "sha256": "2aae05a7b8cd7312e04dce77595f3203a0045e822442e57b1a9006ac775d2bdc"
+  },
+  "backend_selection.json": {
+    "bytes": 24784,
+    "sha256": "39187c843a62c8a4ac8c4864f1d93ee69f98f51d196784c41f99e50cf8bc3d1e"
+  },
+  "nunchaku_pilot.log.gz": {
+    "bytes": 804,
+    "sha256": "d46c5d34c5580683956523b8759f06a7ecb2d50878de58c644039904d601dc93"
+  },
+  "nunchaku_deployments.log.gz": {
+    "bytes": 154,
+    "sha256": "cdba5c88c16a59e55b179d66c5a7de10bc44945e9f61d0505d0e133054363d85"
+  },
+  "nunchaku_trace_audit.json": {
+    "bytes": 1882,
+    "sha256": "0870945b28705afbe991d65e0bd11b25db27c373c156bd19efa18582a3df9082"
+  },
+  "canonical_math_check.log.gz": {
+    "bytes": 1388,
+    "sha256": "4fa6e62cd9f50e2a37be46b0d505d307d4176658b4b126cd6e9f87d6bc2df049"
+  },
+  "nunchaku_export.log.gz": {
+    "bytes": 180,
+    "sha256": "67a0aac9e51b4c59d7d0ea873369836aeeaf5fc8b5cd0e065903c27da6b5f9a2"
+  },
+  "backend_selection_before_nunchaku.json": {
+    "bytes": 21567,
+    "sha256": "59be57d98d7114be6c78616f2e507517bcdbbe83cab8fd927311516a0d5ca35c"
+  },
+  "nunchaku_tests.log.gz": {
+    "bytes": 1084,
+    "sha256": "79ee37625479e2f19206a12ef0b905136d3f98663a54fbb797df0f4093abf040"
+  },
+  "nunchaku_tests_padding_v1.log.gz": {
+    "bytes": 1082,
+    "sha256": "c83c78e4c8fd0972a303b8d1ad73978d7911cbe9a6c7476f2c7c32bfabaf9450"
+  }
+}

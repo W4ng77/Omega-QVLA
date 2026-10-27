@@ -24,7 +24,7 @@ def main():
             with source.open("rb") as raw, gzip.open(str(target) + ".gz", "wb") as compressed:
                 shutil.copyfileobj(raw, compressed)
         elif source.name == "environment.txt":
-            clean = re.sub(r"(https?://)[^/@\s]+:[^/@\s]+@", r"\1<redacted>@", source.read_text())
+            clean = re.sub(r"(https?://)[^/@\s]+@", r"\1<redacted>@", source.read_text())
             target.write_text(clean)
         else:
             shutil.copy2(source, target)

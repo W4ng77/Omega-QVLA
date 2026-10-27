@@ -1,0 +1,72 @@
+{
+  "holoq_llm_nunchaku_fusedrot/eager": {
+    "backends": {
+      "nunchaku_s4": {
+        "layers": 84,
+        "packed_cuda_launches": 84,
+        "minimum": 84
+      },
+      "marlin": {
+        "layers": 96,
+        "packed_cuda_launches": 896,
+        "minimum": 768
+      }
+    },
+    "trace_sha256": "09374c2bb8dc3ec35bfef77dc6d4cdccd5d96b7871518bd287345a95f8b60dbc"
+  },
+  "holoq_llm_nunchaku_fusedrot/head_graph": {
+    "backends": {
+      "nunchaku_s4": {
+        "layers": 84,
+        "packed_cuda_launches": 84,
+        "minimum": 84
+      },
+      "marlin": {
+        "layers": 96,
+        "packed_cuda_launches": 896,
+        "minimum": 768
+      }
+    },
+    "trace_sha256": "5d25f2f9000f07825d28b621864c264cd0ac7d655ef50238ebe6b05401555d5f"
+  },
+  "holoq_step_weight_nunchaku_f16sw_fusedrot/eager": {
+    "backends": {
+      "nunchaku_s4": {
+        "layers": 180,
+        "packed_cuda_launches": 852,
+        "minimum": 852
+      }
+    },
+    "trace_sha256": "9cbd9b6bfdebc36cefe1473a8369973bd54e58d9ed37c527240ee00c77f37de6"
+  },
+  "holoq_step_weight_nunchaku_f16sw_fusedrot/head_graph": {
+    "backends": {
+      "nunchaku_s4": {
+        "layers": 180,
+        "packed_cuda_launches": 852,
+        "minimum": 852
+      }
+    },
+    "trace_sha256": "e8084d39415303dc2f48fedb7b2235a300e04d5b69a61abb95c9f2f842b622c8"
+  },
+  "smoothquant_a4_nunchaku/eager": {
+    "backends": {
+      "nunchaku_s4": {
+        "layers": 180,
+        "packed_cuda_launches": 852,
+        "minimum": 852
+      }
+    },
+    "trace_sha256": "75511481656582d53988d95db4959a4845535f9502aee21f14248d40a62e1daa"
+  },
+  "smoothquant_a4_nunchaku/head_graph": {
+    "backends": {
+      "nunchaku_s4": {
+        "layers": 180,
+        "packed_cuda_launches": 852,
+        "minimum": 852
+      }
+    },
+    "trace_sha256": "efcf6f74e1ffacf88c222bd5e9fcd18b75d7626d94295f62d34c63e66c5dc8dc"
+  }
+}

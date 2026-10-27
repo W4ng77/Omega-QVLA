@@ -1,0 +1,477 @@
+{
+  "rule": "minimum full-policy fixed-input replay mean among verified execution variants; no task score is read",
+  "frozen_at": 1793140538.090991,
+  "families": {
+    "holoq": {
+      "selected": {
+        "case": "holoq_fusedrot",
+        "mode": "head_graph",
+        "root": "results/holoq_object/evaluation_best_s4",
+        "mean_ms": 80.13343379677583,
+        "source_pack_sha256": "9b9a8322c6a7f96ca8495f01969c3a8853b094cb8daf052879c48cd7e1c8e7a6",
+        "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_fusedrot/head_graph/replay/summary.json",
+        "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+      },
+      "candidates": [
+        {
+          "case": "holoq",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 208.09253970122276,
+          "source_pack_sha256": "11e781eb3fabf1ba0a35deca6c862c5319b750bad83599d9ec5d562f9422b320",
+          "replay_summary": "results/holoq_object/evaluation_v3/holoq/eager/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "holoq",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 85.3633094637189,
+          "source_pack_sha256": "11e781eb3fabf1ba0a35deca6c862c5319b750bad83599d9ec5d562f9422b320",
+          "replay_summary": "results/holoq_object/evaluation_v3/holoq/head_graph/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "holoq_llm_s4",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 155.34920081379823,
+          "source_pack_sha256": "fa4cc35602b044620d420be55e9c6a7b7c811ba17b0b5266afbe438358844120",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_llm_s4/eager/replay/summary.json",
+          "code_commit": "ed86797cfeb450e6af1c3fecee334defdee10d2a"
+        },
+        {
+          "case": "holoq_llm_s4",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 87.69368496801083,
+          "source_pack_sha256": "fa4cc35602b044620d420be55e9c6a7b7c811ba17b0b5266afbe438358844120",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_llm_s4/head_graph/replay/summary.json",
+          "code_commit": "ed86797cfeb450e6af1c3fecee334defdee10d2a"
+        },
+        {
+          "case": "holoq_llm_s4_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 165.01389723581573,
+          "source_pack_sha256": "a4af63f6b86beb65fc61b24f2c33c3c44bf585668a05c2a13e5aecd2500f3abe",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_llm_s4_fusedrot/eager/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "holoq_llm_s4_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 84.45980383626495,
+          "source_pack_sha256": "a4af63f6b86beb65fc61b24f2c33c3c44bf585668a05c2a13e5aecd2500f3abe",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_llm_s4_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "holoq_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 160.95187570123622,
+          "source_pack_sha256": "9b9a8322c6a7f96ca8495f01969c3a8853b094cb8daf052879c48cd7e1c8e7a6",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_fusedrot/eager/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "holoq_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 80.13343379677583,
+          "source_pack_sha256": "9b9a8322c6a7f96ca8495f01969c3a8853b094cb8daf052879c48cd7e1c8e7a6",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "holoq_llm_nunchaku_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 216.59893597398573,
+          "source_pack_sha256": "355928ee2032cd6238f5e6b28e8918ba466bb2cdecf801d16076c875de9d2d7d",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_llm_nunchaku_fusedrot/eager/replay/summary.json",
+          "code_commit": "eddb953093ece33a3ff0cf9c72f9cc568d9ea307"
+        },
+        {
+          "case": "holoq_llm_nunchaku_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 84.23365862108767,
+          "source_pack_sha256": "355928ee2032cd6238f5e6b28e8918ba466bb2cdecf801d16076c875de9d2d7d",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_llm_nunchaku_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "eddb953093ece33a3ff0cf9c72f9cc568d9ea307"
+        }
+      ]
+    },
+    "holoq_step_weight": {
+      "selected": {
+        "case": "holoq_step_weight_llm_s4_fusedrot",
+        "mode": "head_graph",
+        "root": "results/holoq_object/evaluation_best_s4",
+        "mean_ms": 74.18638827473235,
+        "source_pack_sha256": "13ad241814b7d91da7b91140961ddd373cfbe325020192fbc2c3e8c214c155c0",
+        "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_llm_s4_fusedrot/head_graph/replay/summary.json",
+        "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+      },
+      "candidates": [
+        {
+          "case": "holoq_step_weight",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 220.99784605981162,
+          "source_pack_sha256": "535d559bbe74bc914a627f4c0b73de400e4ba795ca4f6808877c2833dc83d289",
+          "replay_summary": "results/holoq_object/evaluation_v3/holoq_step_weight/eager/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "holoq_step_weight",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 81.86178201227449,
+          "source_pack_sha256": "535d559bbe74bc914a627f4c0b73de400e4ba795ca4f6808877c2833dc83d289",
+          "replay_summary": "results/holoq_object/evaluation_v3/holoq_step_weight/head_graph/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "holoq_step_weight_llm_s4",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 181.7839632241521,
+          "source_pack_sha256": "5675b024275c5c9501d8c02915a7b062bfe4dfb46bae12012455e70018fb6ef9",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_llm_s4/eager/replay/summary.json",
+          "code_commit": "ed86797cfeb450e6af1c3fecee334defdee10d2a"
+        },
+        {
+          "case": "holoq_step_weight_llm_s4",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 77.84592021101464,
+          "source_pack_sha256": "5675b024275c5c9501d8c02915a7b062bfe4dfb46bae12012455e70018fb6ef9",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_llm_s4/head_graph/replay/summary.json",
+          "code_commit": "ed86797cfeb450e6af1c3fecee334defdee10d2a"
+        },
+        {
+          "case": "holoq_step_weight_llm_s4_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 186.22462556154156,
+          "source_pack_sha256": "13ad241814b7d91da7b91140961ddd373cfbe325020192fbc2c3e8c214c155c0",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_llm_s4_fusedrot/eager/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "holoq_step_weight_llm_s4_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 74.18638827473235,
+          "source_pack_sha256": "13ad241814b7d91da7b91140961ddd373cfbe325020192fbc2c3e8c214c155c0",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_llm_s4_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "holoq_step_weight_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 218.38357322926944,
+          "source_pack_sha256": "4f49c27622262e7d17ab8588e8be58bfb6d80379781580d6c2941c6b384dfee3",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_fusedrot/eager/replay/summary.json",
+          "code_commit": "f9166d1462f0180683b0ad27b8a90a9c2975509d"
+        },
+        {
+          "case": "holoq_step_weight_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 75.30382037861273,
+          "source_pack_sha256": "4f49c27622262e7d17ab8588e8be58bfb6d80379781580d6c2941c6b384dfee3",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "52ad966d50bbf771e703ce91fb6dc6c09b8f14ef"
+        },
+        {
+          "case": "holoq_step_weight_nunchaku_f16sw_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 175.111493828396,
+          "source_pack_sha256": "54a2d4df96c207232f3c5a36a14f3765b2e28f90e38c8846a08168a61a190d19",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_nunchaku_f16sw_fusedrot/eager/replay/summary.json",
+          "code_commit": "eddb953093ece33a3ff0cf9c72f9cc568d9ea307"
+        },
+        {
+          "case": "holoq_step_weight_nunchaku_f16sw_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 79.54928901046515,
+          "source_pack_sha256": "54a2d4df96c207232f3c5a36a14f3765b2e28f90e38c8846a08168a61a190d19",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_step_weight_nunchaku_f16sw_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "eddb953093ece33a3ff0cf9c72f9cc568d9ea307"
+        }
+      ]
+    },
+    "smoothquant_a4": {
+      "selected": {
+        "case": "smoothquant_a4",
+        "mode": "head_graph",
+        "root": "results/holoq_object/evaluation_v3",
+        "mean_ms": 61.09033883161222,
+        "source_pack_sha256": "fc287d60f0fb05a759b8dab78b014ca12521a5145f2cf03e5a0b70a0ac00014e",
+        "replay_summary": "results/holoq_object/evaluation_v3/smoothquant_a4/head_graph/replay/summary.json",
+        "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+      },
+      "candidates": [
+        {
+          "case": "smoothquant_a4",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 123.35470451158471,
+          "source_pack_sha256": "fc287d60f0fb05a759b8dab78b014ca12521a5145f2cf03e5a0b70a0ac00014e",
+          "replay_summary": "results/holoq_object/evaluation_v3/smoothquant_a4/eager/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "smoothquant_a4",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 61.09033883161222,
+          "source_pack_sha256": "fc287d60f0fb05a759b8dab78b014ca12521a5145f2cf03e5a0b70a0ac00014e",
+          "replay_summary": "results/holoq_object/evaluation_v3/smoothquant_a4/head_graph/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "smoothquant_a4_cutlass",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 102.22140946697134,
+          "source_pack_sha256": "987ef85d2a2a885c7ea499074721162f361546d0bcb4179f0ad87432522984d9",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/smoothquant_a4_cutlass/eager/replay/summary.json",
+          "code_commit": "02a4766211e65447ccf9e459ac3f70b7bbb0c673"
+        },
+        {
+          "case": "smoothquant_a4_cutlass",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 63.28971427322055,
+          "source_pack_sha256": "987ef85d2a2a885c7ea499074721162f361546d0bcb4179f0ad87432522984d9",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/smoothquant_a4_cutlass/head_graph/replay/summary.json",
+          "code_commit": "02a4766211e65447ccf9e459ac3f70b7bbb0c673"
+        },
+        {
+          "case": "smoothquant_a4_nunchaku",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 103.90568132589881,
+          "source_pack_sha256": "273ba7f0430073c2a86832b3a866bfd4f094feb760b3269f9b51c11052c439b7",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/smoothquant_a4_nunchaku/eager/replay/summary.json",
+          "code_commit": "eddb953093ece33a3ff0cf9c72f9cc568d9ea307"
+        },
+        {
+          "case": "smoothquant_a4_nunchaku",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 70.11399901472032,
+          "source_pack_sha256": "273ba7f0430073c2a86832b3a866bfd4f094feb760b3269f9b51c11052c439b7",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/smoothquant_a4_nunchaku/head_graph/replay/summary.json",
+          "code_commit": "eddb953093ece33a3ff0cf9c72f9cc568d9ea307"
+        }
+      ]
+    },
+    "duquant_a8": {
+      "selected": {
+        "case": "duquant_a8_g128_fusedrot",
+        "mode": "head_graph",
+        "root": "results/holoq_object/evaluation_best_s4",
+        "mean_ms": 84.09518241571884,
+        "source_pack_sha256": "da4a72ae2578aa2c7ddb54be71d2c7315d58bed3632cba9b30ef5dddf9ff3380",
+        "replay_summary": "results/holoq_object/evaluation_best_s4/duquant_a8_g128_fusedrot/head_graph/replay/summary.json",
+        "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+      },
+      "candidates": [
+        {
+          "case": "duquant_a8_g128",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 165.8913066323536,
+          "source_pack_sha256": "adf8b01872713b28f0abac4a70f76cdec4797b51a81d9b7b3d03dcc62603a464",
+          "replay_summary": "results/holoq_object/evaluation_v3/duquant_a8_g128/eager/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "duquant_a8_g128",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 85.40690250423116,
+          "source_pack_sha256": "adf8b01872713b28f0abac4a70f76cdec4797b51a81d9b7b3d03dcc62603a464",
+          "replay_summary": "results/holoq_object/evaluation_v3/duquant_a8_g128/head_graph/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "duquant_a8_g128_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 166.8776114102608,
+          "source_pack_sha256": "da4a72ae2578aa2c7ddb54be71d2c7315d58bed3632cba9b30ef5dddf9ff3380",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/duquant_a8_g128_fusedrot/eager/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "duquant_a8_g128_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 84.09518241571884,
+          "source_pack_sha256": "da4a72ae2578aa2c7ddb54be71d2c7315d58bed3632cba9b30ef5dddf9ff3380",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/duquant_a8_g128_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        }
+      ]
+    },
+    "duquant_a4": {
+      "selected": {
+        "case": "duquant_a4_g128_fusedrot",
+        "mode": "head_graph",
+        "root": "results/holoq_object/evaluation_best_s4",
+        "mean_ms": 83.28251239145175,
+        "source_pack_sha256": "02788f67e75e0bed9c577e0ecfc5d9335bda885e03f5f743d4d15895f5b05a51",
+        "replay_summary": "results/holoq_object/evaluation_best_s4/duquant_a4_g128_fusedrot/head_graph/replay/summary.json",
+        "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+      },
+      "candidates": [
+        {
+          "case": "duquant_a4_g128",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 190.98671265683757,
+          "source_pack_sha256": "2b494ddc4d2e42220d7b0fad61de7e5dcb1049698f89e0f988febb214932a700",
+          "replay_summary": "results/holoq_object/evaluation_v3/duquant_a4_g128/eager/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "duquant_a4_g128",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 89.98169190560778,
+          "source_pack_sha256": "2b494ddc4d2e42220d7b0fad61de7e5dcb1049698f89e0f988febb214932a700",
+          "replay_summary": "results/holoq_object/evaluation_v3/duquant_a4_g128/head_graph/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "duquant_a4_g128_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 155.17154334656274,
+          "source_pack_sha256": "02788f67e75e0bed9c577e0ecfc5d9335bda885e03f5f743d4d15895f5b05a51",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/duquant_a4_g128_fusedrot/eager/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "duquant_a4_g128_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 83.28251239145175,
+          "source_pack_sha256": "02788f67e75e0bed9c577e0ecfc5d9335bda885e03f5f743d4d15895f5b05a51",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/duquant_a4_g128_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        }
+      ]
+    },
+    "quantvla_a8": {
+      "selected": {
+        "case": "quantvla_selective_a8_atm_g128_fusedrot",
+        "mode": "head_graph",
+        "root": "results/holoq_object/evaluation_best_s4",
+        "mean_ms": 68.90462372917682,
+        "source_pack_sha256": "223f7146a73c5bae6c3051ebffc4bfee9a0ed85a236da4c23254b74120418484",
+        "replay_summary": "results/holoq_object/evaluation_best_s4/quantvla_selective_a8_atm_g128_fusedrot/head_graph/replay/summary.json",
+        "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+      },
+      "candidates": [
+        {
+          "case": "quantvla_selective_a8_atm_g128",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 119.12484638858587,
+          "source_pack_sha256": "feb93e957709d141cc1d1fca094176719273d3a6596f5b1f7d46ad5f111f3660",
+          "replay_summary": "results/holoq_object/evaluation_v3/quantvla_selective_a8_atm_g128/eager/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "quantvla_selective_a8_atm_g128",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 71.96626712218858,
+          "source_pack_sha256": "feb93e957709d141cc1d1fca094176719273d3a6596f5b1f7d46ad5f111f3660",
+          "replay_summary": "results/holoq_object/evaluation_v3/quantvla_selective_a8_atm_g128/head_graph/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "quantvla_selective_a8_atm_g128_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 97.05606593129535,
+          "source_pack_sha256": "223f7146a73c5bae6c3051ebffc4bfee9a0ed85a236da4c23254b74120418484",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/quantvla_selective_a8_atm_g128_fusedrot/eager/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "quantvla_selective_a8_atm_g128_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 68.90462372917682,
+          "source_pack_sha256": "223f7146a73c5bae6c3051ebffc4bfee9a0ed85a236da4c23254b74120418484",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/quantvla_selective_a8_atm_g128_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        }
+      ]
+    },
+    "quantvla_a4": {
+      "selected": {
+        "case": "quantvla_selective_a4_atm_g128_fusedrot",
+        "mode": "head_graph",
+        "root": "results/holoq_object/evaluation_best_s4",
+        "mean_ms": 69.07579414391269,
+        "source_pack_sha256": "a3d3527f454d92ed4ddaee45394286719fe409dc914154f48e3474bf21bff6d3",
+        "replay_summary": "results/holoq_object/evaluation_best_s4/quantvla_selective_a4_atm_g128_fusedrot/head_graph/replay/summary.json",
+        "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+      },
+      "candidates": [
+        {
+          "case": "quantvla_selective_a4_atm_g128",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 142.5937604166878,
+          "source_pack_sha256": "0eb6445a656cc62e467d2974f4c717f1c9aea76b773e0566c155686b34e60899",
+          "replay_summary": "results/holoq_object/evaluation_v3/quantvla_selective_a4_atm_g128/eager/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "quantvla_selective_a4_atm_g128",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 74.06578652521905,
+          "source_pack_sha256": "0eb6445a656cc62e467d2974f4c717f1c9aea76b773e0566c155686b34e60899",
+          "replay_summary": "results/holoq_object/evaluation_v3/quantvla_selective_a4_atm_g128/head_graph/replay/summary.json",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "quantvla_selective_a4_atm_g128_fusedrot",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 114.88370604502659,
+          "source_pack_sha256": "a3d3527f454d92ed4ddaee45394286719fe409dc914154f48e3474bf21bff6d3",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/quantvla_selective_a4_atm_g128_fusedrot/eager/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        },
+        {
+          "case": "quantvla_selective_a4_atm_g128_fusedrot",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 69.07579414391269,
+          "source_pack_sha256": "a3d3527f454d92ed4ddaee45394286719fe409dc914154f48e3474bf21bff6d3",
+          "replay_summary": "results/holoq_object/evaluation_best_s4/quantvla_selective_a4_atm_g128_fusedrot/head_graph/replay/summary.json",
+          "code_commit": "01f9139e7dc1c523607f47d3c16a2063e0c30d7f"
+        }
+      ]
+    }
+  },
+  "extension_reason": "Native-S4 LLM did not beat Marlin in first full-policy replay; test fused rotation with both backends before accuracy.",
+  "nunchaku_revision_reason": "Appendix Table8 uses Nunchaku. Explicitly check compatible token/G128-scale paths; original DiT column scales cannot be replaced. Selection still reads no task scores."
+}
