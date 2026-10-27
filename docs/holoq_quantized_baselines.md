@@ -167,6 +167,19 @@ LLM per-token and DiT per-step/per-column scales are never interchanged for a
 faster kernel. Eight DiT scale rows cover the eight denoising steps; the native
 conversion stores eight step banks plus one fallback mean-scale bank.
 
+In particular, paper Eqs6–8 prescribe per-token LLM activation scales and
+activation clamp[-7,7], whereas the historical `GptqLinear` implementation uses
+static channel scales and the helper's signed clamp[-8,7]. This controlled
+rebuild follows the paper activation contract. Its LLM weight solver retains
+the official GPTQ16-level signed grid[-8,7]; DiT uses per-output RTN. The
+SVD-Hadamard implementation follows the released deterministic Sylvester
+`svd_hadamard` helper, with Gram-eigensystem sign canonicalization, rather than
+adding a new randomized-D draw from the paper's generic Hadamard description.
+These exact construction choices are disclosed so that the label is not read
+as a claim of bitwise paper/HF-pack reproduction. Backend-only optimizations
+preserve this frozen canonical grid and activation contract; changed FP16
+arithmetic order still receives independent task evaluation.
+
 The GPTQ block size is 128; deployment weight group size is separately 128 for
 the GPTQ baseline, whereas original-definition HoloQ uses per-output weight
 scales. Damping is .01. Marlin scale metadata is FP16, frozen before GPTQ selects

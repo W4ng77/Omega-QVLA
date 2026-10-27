@@ -154,13 +154,17 @@ def main():
                 continue
             replay = json.loads(replay_path.read_text()) if replay_path.exists() else {}
             rollout = json.loads(rollout_path.read_text()) if rollout_path.exists() else {}
+            rollout_complete = bool(rollout.get("finished") and rollout.get("episodes") == 100)
+            completion_path = base / "rollout/completed.json"
+            completion = json.loads(completion_path.read_text()) if completion_path.exists() else {}
+            rollout_status = "complete" if rollout_complete else "failed" if completion.get("returncode", 0) else "pending"
             deployment = json.loads((a.deployments / case / "deployment.json").read_text())
             storage = (
                 deployment["deployment_bytes_excluding_manifest"]
                 + (a.deployments / case / "deployment.json").stat().st_size
             )
             lat = replay.get("latency", {})
-            rol = rollout.get("latency", {})
+            rol = rollout.get("latency", {}) if rollout_complete else {}
             mem = replay.get("inference_memory", {})
             row = {
                 "case": case,
@@ -177,8 +181,10 @@ def main():
                 ),
                 "W/A": bits,
                 "scope": scope,
-                "successes": rollout.get("successes", ""),
-                "episodes": rollout.get("episodes", ""),
+                "successes": rollout.get("successes", "") if rollout_complete else "",
+                "episodes": 100 if rollout_complete else "",
+                "rollout_status": rollout_status,
+                "completed_episode_count": rollout.get("episodes", 0),
                 "policy_mean_ms": lat.get("mean_ms", ""),
                 "policy_p50_ms": lat.get("p50_ms", ""),
                 "policy_p95_ms": lat.get("p95_ms", ""),
@@ -195,7 +201,7 @@ def main():
                 ),
                 "rollout_cold_capture_calls": rollout.get("cold_capture_calls", ""),
                 "deployment_bytes": storage,
-                "per_task_successes": json.dumps(rollout.get("per_task_successes", [])),
+                "per_task_successes": json.dumps(rollout.get("per_task_successes", []) if rollout_complete else []),
                 "code_commit": replay.get("code_commit", rollout.get("code_commit", "")),
             }
             rows.append(row)
