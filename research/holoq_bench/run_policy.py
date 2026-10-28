@@ -141,6 +141,12 @@ def main():
         "init_indices": list(range(10, 10 + args.trials)),
         "started": time.time(),
     }
+    from research.holoq_bench.deployment import sha256
+    from research.holoq_bench.rollout_resume import validate_resume_metadata
+
+    report["observation_file_sha256"] = sha256(args.observations)
+    previous_memory, previous_windows = validate_resume_metadata(args.output, report)
+    report["resume_measurement_windows"] = previous_windows
     samples = torch.load(args.observations, map_location="cpu", weights_only=False)
     selected = [samples[i * 10] for i in range(10)]
     refs = []
@@ -263,8 +269,16 @@ def main():
         [json.loads(line) for line in episodes_path.read_text().splitlines()] if episodes_path.exists() else []
     )
     complete = {(e["task_id"], e["init_index"]) for e in previous}
+    from research.holoq_bench.rollout_resume import reconcile_calls
+
+    reconcile_calls(args.output, previous)
     episodes = list(previous)
-    peak_allocated = peak_reserved = 0
+    peak_allocated = previous_memory.get("peak_allocated_bytes", 0)
+    peak_reserved = previous_memory.get("peak_reserved_bytes", 0)
+    report["inference_memory"] = {
+        "peak_allocated_bytes": peak_allocated,
+        "peak_reserved_bytes": peak_reserved,
+    }
     for task_id in range(10):
         task = suite.get_task(task_id)
         env, description = get_libero_env(task, resolution=256)

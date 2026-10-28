@@ -105,7 +105,7 @@ def main():
                         "task_id": task_id,
                         "init_index": args.init_index,
                         "trajectory_step": int(step),
-                        "seed": args.seed + task_id * 10000 + int(step),
+                        "seed": args.seed + task_id * 10000 + args.init_index * 1000 + int(step),
                         "obs": observations[int(step)],
                     }
                 )

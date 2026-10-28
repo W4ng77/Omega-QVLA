@@ -138,6 +138,8 @@ def main():
                     actual = [d["latency"][k] for k in ["mean_ms", "p50_ms", "p95_ms"]]
                     assert np.allclose(expected, actual, rtol=0, atol=1e-9)
                     windows = [(d["started"], d["finished"])]
+                    windows.extend((window["started"], window["finished"])
+                                   for window in d.get("resume_measurement_windows", []))
                     reused_path = path.with_name("reused_smoke.json")
                     if stage == "rollout" and reused_path.exists():
                         reused = json.loads(reused_path.read_text())

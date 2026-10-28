@@ -1,0 +1,94 @@
+"""Behavioral regression tests for silent graph constants and interrupted runs."""
+
+import json
+from types import SimpleNamespace
+
+import pytest
+import torch
+
+from research.holoq_bench.graphs import HeadGraphs
+from research.holoq_bench.rollout_resume import reconcile_calls, validate_resume_metadata
+
+
+def test_interrupted_episode_is_rerun_without_duplicate_timing_rows(tmp_path):
+    complete = {"task_id": 0, "init_index": 10, "control_steps": 2}
+    rows = [{"task_id": 0, "init_index": 10, "control_step": i, "ms": 4.0} for i in range(2)]
+    orphan = {"task_id": 0, "init_index": 11, "control_step": 0, "ms": 8.0}
+    original = "".join(json.dumps(x) + "\n" for x in rows + [orphan]).encode() + b'{"task_id":'
+    path = tmp_path / "rollout_calls.jsonl"
+    path.write_bytes(original)
+    reconcile_calls(tmp_path, [complete])
+    assert [json.loads(x) for x in path.read_text().splitlines()] == rows
+    backups = list(tmp_path.glob("interrupted_calls_*.jsonl"))
+    assert len(backups) == 1 and backups[0].read_bytes() == original
+    # A second restart preserves a valid journal byte-for-byte.
+    saved = path.read_bytes()
+    reconcile_calls(tmp_path, [complete])
+    assert path.read_bytes() == saved
+
+
+def test_completed_episode_with_missing_or_duplicate_calls_is_rejected(tmp_path):
+    path = tmp_path / "rollout_calls.jsonl"
+    row = {"task_id": 0, "init_index": 10, "control_step": 0, "ms": 4.0}
+    path.write_text(json.dumps(row) + "\n")
+    with pytest.raises(RuntimeError, match="missing"):
+        reconcile_calls(tmp_path, [{"task_id": 0, "init_index": 10, "control_steps": 2}])
+    path.write_text((json.dumps(row) + "\n") * 2)
+    with pytest.raises(RuntimeError, match="Duplicate"):
+        reconcile_calls(tmp_path, [{"task_id": 0, "init_index": 10, "control_steps": 1}])
+
+
+def test_resume_rejects_mixed_pack_and_preserves_prior_peak_and_window(tmp_path):
+    from research.holoq_bench.reuse_smoke import CORE
+
+    current = dict(method="holoq", source_pack_sha256="pack-a", observation_file_sha256="observations-a",
+                   mode="head_graph", stage="rollout", denoising_steps=8, action_horizon=16,
+                   batch=1, warmup=32, noise_seed="fixed", started=10,
+                   source_files_sha256={path: "same" for path in CORE + ["research/holoq_bench/deployment.py"]})
+    (tmp_path / "metadata.json").write_text(json.dumps(current))
+    (tmp_path / "summary.json").write_text(json.dumps(dict(episodes=1, updated=20,
+         inference_memory=dict(peak_allocated_bytes=123, peak_reserved_bytes=456))))
+    memory, windows = validate_resume_metadata(tmp_path, current)
+    assert memory == dict(peak_allocated_bytes=123, peak_reserved_bytes=456)
+    assert windows == [dict(started=10, finished=20)]
+    with pytest.raises(RuntimeError, match="source_pack_sha256"):
+        validate_resume_metadata(tmp_path, dict(current, source_pack_sha256="pack-b"))
+    with pytest.raises(RuntimeError, match="observation_file_sha256"):
+        validate_resume_metadata(tmp_path, dict(current, observation_file_sha256="observations-b"))
+    changed = dict(current, source_files_sha256=dict(current["source_files_sha256"]))
+    changed["source_files_sha256"][CORE[0]] = "changed"
+    with pytest.raises(RuntimeError, match="math source changed"):
+        validate_resume_metadata(tmp_path, changed)
+
+
+class ToyHead:
+    config = SimpleNamespace(action_horizon=2, action_dim=4)
+
+    def get_action(self, backbone, action):
+        return {"action_pred": backbone["backbone_features"] * action["gain"]}
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="Actual CUDA Graph required")
+def test_graph_changes_python_constants_without_reusing_stale_values():
+    graphs = HeadGraphs(ToyHead())
+    x = torch.ones((1, 2, 4), device="cuda", dtype=torch.float16)
+    with torch.inference_mode():
+        a = graphs({"backbone_features": x}, {"gain": 1.0})["action_pred"].clone()
+        b = graphs({"backbone_features": x}, {"gain": 2.0})["action_pred"].clone()
+    torch.testing.assert_close(a, x)
+    torch.testing.assert_close(b, x * 2)
+    assert len(graphs.cache) == 2
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="Actual CUDA Graph required")
+def test_graph_copies_changed_tensor_inputs_with_same_shape():
+    graphs = HeadGraphs(ToyHead())
+    x = torch.ones((1, 2, 4), device="cuda", dtype=torch.float16)
+    gain = torch.ones((), device="cuda", dtype=torch.float16)
+    with torch.inference_mode():
+        a = graphs({"backbone_features": x}, {"gain": gain})["action_pred"].clone()
+        gain.fill_(3)
+        b = graphs({"backbone_features": x * 2}, {"gain": gain})["action_pred"].clone()
+    torch.testing.assert_close(a, x)
+    torch.testing.assert_close(b, x * 6)
+    assert len(graphs.cache) == 1

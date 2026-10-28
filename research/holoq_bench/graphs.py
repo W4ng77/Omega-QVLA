@@ -26,6 +26,17 @@ class HeadGraphs:
                     raise RuntimeError("DiT graph requires GPU-resident staged inputs")
                 if not isinstance(value, (torch.Tensor, int, float, bool, type(None))):
                     raise RuntimeError(f"Unsupported graph input {type(value)}")
+        # Non-tensor inputs are captured constants. Reusing a graph after one
+        # changes would silently use the first value. Tensor-only signatures
+        # remain exactly the same as the frozen experiment implementation.
+        constants = tuple(
+            (i, key, type(value).__name__, value.hex() if isinstance(value, float) else value)
+            for i, tree in enumerate(trees)
+            for key, value in sorted(tree.items())
+            if not isinstance(value, torch.Tensor)
+        )
+        if constants:
+            signature += (("constants", constants),)
         if signature not in self.cache:
             static = tuple(
                 {key: value.clone() if isinstance(value, torch.Tensor) else value for key, value in tree.items()}
