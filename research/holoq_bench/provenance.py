@@ -28,6 +28,7 @@ def main():
         "calibration_fp16_init0_v2/manifest.json": "calibration_manifest.json",
         "heldout_init10_19/manifest.json": "heldout_manifest.json",
         "teacher_capture/fp16_model_state.json": "original_model_tensor_manifest.json",
+        "paper_cfg_build/configuration.json": "paper_holoq_configuration.json",
     }
     for source, target in paths.items():
         shutil.copy2(a.root / source, a.output / target)

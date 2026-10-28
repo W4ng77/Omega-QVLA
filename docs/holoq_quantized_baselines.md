@@ -160,27 +160,36 @@ Five additional GPU checks cover the actual per-output Marlin scale contract
 and native S4 activation clamp [-7,7].
 
 All packs are newly calibrated from the same true-FP16 teacher trajectories.
-The original-definition HoloQ row preserves the rebuilt canonical weight codes,
-FP16 weight scales, FP32 activation tables and per-step behavior in its optimized
-execution path. It is **not** a bitwise reproduction of the older HF pack, whose
-calibration/protocol cannot be fully verified. Activation scale absorption and
-weight requantization occur only in the explicitly separate step-weight row.
-LLM per-token and DiT per-step/per-column scales are never interchanged for a
-faster kernel. Eight DiT scale rows cover the eight denoising steps; the native
-conversion stores eight step banks plus one fallback mean-scale bank.
+**Method-definition audit correction:** earlier HoloQ rebuilds added an output-side
+SVD rotation, including in the language backbone. Paper Eqs4–5 describe only the
+input transformation. They also used a legacy globally alternating high/low
+permutation, deterministic H, and the official GPTQ16-level weight grid. Their
+72/100 raw, 70/100 optimized and 66/100 converted results are preserved as
+**two-sided reconstruction controls**, not paper HoloQ reproduction results.
+This is separate from the fixed legacy output-rotation stride bug.
 
-In particular, paper Eqs6–8 prescribe per-token LLM activation scales and
-activation clamp[-7,7], whereas the historical `GptqLinear` implementation uses
-static channel scales and the helper's signed clamp[-8,7]. This controlled
-rebuild follows the paper activation contract. Its LLM weight solver retains
-the official GPTQ16-level signed grid[-8,7]; DiT uses per-output RTN. The
-SVD-Hadamard implementation follows the released deterministic Sylvester
-`svd_hadamard` helper, with Gram-eigensystem sign canonicalization, rather than
-adding a new randomized-D draw from the paper's generic Hadamard description.
-These exact construction choices are disclosed so that the label is not read
-as a claim of bitwise paper/HF-pack reproduction. Backend-only optimizations
-preserve this frozen canonical grid and activation contract; changed FP16
-arithmetic order still receives independent task evaluation.
+`build_paper_holoq.py` constructs a separate paper-input-only cohort in
+`packs_paper_v1` and `evaluation_paper_holoq`. It distributes descending channel
+energy in a snake ACROSS block groups, uses input-only U D H with random sign
+seed42+layer index, block64, literal signed15-level[-7,7] W/A, official GPTQ
+reconstruction block128/damp.01 for LLM, and per-output RTN for DiT. LLM A4 is
+per-token; DiT A4 is per-step/channel q999 with eight rows. No output restore is
+installed for HoloQ. DuQuant/QuantVLA DO retain output restore as prescribed by
+Table5/released GR00T defaults. These methods must not be conflated.
+
+All four paper backend candidates receive independent 8,520-real-call functional
+checks, ten full-action comparisons, packed-launch audits and eager/Graph pilots.
+The two latency-selected original/conversion configurations then get their own
+100 episodes. No score is borrowed from the two-sided controls. The canonical
+paper-grid dense diagnostic is accuracy-only, never a speed baseline.
+
+Original-grid optimization preserves frozen canonical codes, FP16 W scales,
+FP32 A tables and all per-step behavior. It is not bitwise the historical HF
+pack, whose calibration/protocol cannot be fully verified. FP16 weight scale
+metadata and finite-precision Gram-eigen versus direct SVD are stated deployment
+choices. The separately named step_weight conversion absorbs each activation
+scale row into weights, requantizes group128 W, and stores eight step banks plus
+one fallback bank. It is not strictly equivalent to the original method.
 
 The GPTQ block size is 128; deployment weight group size is separately 128 for
 the GPTQ baseline, whereas original-definition HoloQ uses per-output weight
