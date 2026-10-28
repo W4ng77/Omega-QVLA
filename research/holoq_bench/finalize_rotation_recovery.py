@@ -23,6 +23,10 @@ def main():
         time.sleep(15)
     # Let the smoke reuse worker merge the inference peaks before snapshotting.
     time.sleep(6)
+    subprocess.run([sys.executable, "-u", "-m", "research.holoq_bench.confirm_replay",
+                    "--root", str(args.root)], check=True)
+    confirmation_root = args.root / "evaluation_final_replay_v2"
+    confirmation = json.loads((confirmation_root / "confirmation.json").read_text())
     selection = json.loads((extra / "backend_selection.json").read_text())
     merged = args.root / "evaluation_verified_v2"
     merged.mkdir(parents=True, exist_ok=True)
@@ -35,18 +39,25 @@ def main():
     for case in valid:
         source = extra if (extra / case).exists() else primary
         shutil.copytree(source / case, merged / case, dirs_exist_ok=True)
+        for mode in confirmation["modes"][case]:
+            destination = merged / case / mode / "replay"
+            if destination.exists():
+                shutil.copytree(destination, destination.with_name("replay_prior"), dirs_exist_ok=True)
+                shutil.rmtree(destination)
+            shutil.copytree(confirmation_root / case / mode / "replay", destination)
     combined = {
         "common_mode": "head_graph", "valid_cases": valid,
         "cases": {c: values for r in records for c, values in r["cases"].items() if c in valid},
         "commands": [cmd for r in records for cmd in r["commands"]],
         "input_queues": [str(primary), str(extra)], "backend_selection": selection,
         "functional_regression_excluded": json.loads((args.root / "fused_rotation_regression.json").read_text()),
+        "final_replay_confirmation": confirmation,
         "finished": time.time(),
     }
     (merged / "queue.json").write_text(json.dumps(combined, indent=2) + "\n")
     (merged / "backend_selection.json").write_text(json.dumps(selection, indent=2) + "\n")
     samples = {}
-    for source in (primary, args.root / "evaluation_best_s4", extra):
+    for source in (primary, args.root / "evaluation_best_s4", extra, confirmation_root):
         for line in (source / "gpu_monitor.jsonl").read_text().splitlines():
             row = json.loads(line)
             samples[row["time"]] = row

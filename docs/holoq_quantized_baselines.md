@@ -551,3 +551,14 @@ candidate without task scores and runs smoke then 100 episodes. Unfused
 candidates remain eligible. Legacy fused timings and episodes are excluded
 from selection and never reused. Heavy export and GPU checks acquire the
 same experiment lock; measured policies stay exclusive on GPU0 with GPU1 idle.
+
+
+After all task-evaluation queues complete, `confirm_replay.py` repeats the
+common Graph replay for **every primary and selected deployment** in one
+contiguous exclusive timing block. It also repeats any selected different
+execution mode. This controls for timing drift across the long task queue.
+Prior replay data remains immutable and is archived as `replay_prior`; the
+main final table uses the contiguous confirmation block. Frozen backend choices
+remain unchanged, and every confirmation uses the same 100 observations x3,
+32 warmups, full policy timer and packed kernels. Confirmation commands and
+GPU monitoring are archived separately and merged into the final audit.
