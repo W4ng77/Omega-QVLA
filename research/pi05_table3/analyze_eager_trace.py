@@ -68,11 +68,28 @@ def main():
             values.sort(key=lambda x: x["ts"])
     scope_starts = {t: [x["ts"] for x in v] for t, v in scopes.items()}
     op_starts = {t: [x["ts"] for x in v] for t, v in ops.items()}
+    # Prefix maximum end provides a quick proof that no earlier interval can
+    # contain a launch. Native extension launches often have no aten owner;
+    # scanning all previous closed ops for each such launch is quadratic.
+    def prefix_ends(store):
+        result={}
+        for tid,values in store.items():
+            bound=float('-inf')
+            ends=[]
+            for event in values:
+                bound=max(bound,event['ts']+event.get('dur',0))
+                ends.append(bound)
+            result[tid]=ends
+        return result
+    scope_ends=prefix_ends(scopes)
+    op_ends=prefix_ends(ops)
 
-    def containing(store, starts, tid, ts):
+    def containing(store, starts, ends, tid, ts):
         values = store.get(tid, [])
         index = bisect_right(starts.get(tid, []), ts) - 1
         while index >= 0:
+            if ends[tid][index]<ts:
+                break
             e = values[index]
             if e["ts"] <= ts <= e["ts"] + e.get("dur", 0):
                 return e["name"]
@@ -86,8 +103,8 @@ def main():
         label = owner = ""
         if launch:
             tid, ts = launch.get("tid"), launch["ts"]
-            label = containing(scopes, scope_starts, tid, ts)
-            owner = containing(ops, op_starts, tid, ts)
+            label = containing(scopes, scope_starts, scope_ends, tid, ts)
+            owner = containing(ops, op_starts, op_ends, tid, ts)
         else:
             missing[e.get("cat")] += 1
         phase = label.split("/")[1] if label.startswith(("layer/", "stage/")) else "other"

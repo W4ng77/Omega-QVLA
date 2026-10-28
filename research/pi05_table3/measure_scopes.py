@@ -137,7 +137,7 @@ def main():
     a = p.parse_args()
     root = Path(__file__).resolve().parents[2]
     data = root / "results/pi05_table3_414_20261028"
-    out = data / ("scope_controls" if a.method == "historical" else "definition8_scope_controls") / a.scope
+    out = data / ("scope_controls" if a.method == "historical" else "definition8_scope_controls_ieee") / a.scope
     deployment = (
         data / ("holoq_deployments" if a.method == "historical" else "definition8_scope_deployments") / a.scope
     )
@@ -177,6 +177,8 @@ def main():
     policy = load_policy(deployment, cfg)
     model = policy._model
     model.eval().requires_grad_(False)
+    if a.method=="definition8":
+        torch.backends.cuda.matmul.allow_tf32=False
     install_pi05_step_context(model, fixed_loop=True)
     policy._sample_actions = model.sample_actions
     path = Path("/home/xinyu/omegaqvla/deploy_extras/pi05_calib_obs.pt")
@@ -198,6 +200,8 @@ def main():
         "sample_indices": list(range(10, 20)),
         "steps": steps,
         "method": a.method,
+        "matmul_allow_tf32":torch.backends.cuda.matmul.allow_tf32,
+        "cudnn_allow_tf32":torch.backends.cudnn.allow_tf32,
         "action_horizon": cfg.model.action_horizon,
         "batch": 1,
         "warmup": 32,

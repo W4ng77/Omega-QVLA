@@ -22,6 +22,7 @@ def main():
     p.add_argument("--repeats", type=int, default=10)
     p.add_argument("--steps", type=int, default=10, choices=[8, 10])
     p.add_argument("--output-group", default="controls")
+    p.add_argument("--ieee-matmul",action="store_true")
     a = p.parse_args()
     root = Path(__file__).resolve().parents[2]
     data = root / "results/pi05_table3_414_20261028"
@@ -64,6 +65,10 @@ def main():
         policy = load_policy(data / "baseline_deployments" / a.kind, cfg, a.steps)
         role = "Real packed quantized deployment; disclosed reconstructed calibration, no success-rate claim"
     policy._model.eval().requires_grad_(False)
+    if a.ieee_matmul:
+        # The model constructor calls set_float32_matmul_precision('high').
+        # Set this AFTER loading, matching the definition8 oracle/deployment.
+        torch.backends.cuda.matmul.allow_tf32=False
     install_pi05_step_context(policy._model, fixed_loop=True)
     policy._sample_actions = policy._model.sample_actions
     path = Path("/home/xinyu/omegaqvla/deploy_extras/pi05_calib_obs.pt")
@@ -85,6 +90,8 @@ def main():
         "observations_sha256": sha(path),
         "sample_indices": list(range(10, 20)),
         "steps": a.steps,
+        "matmul_allow_tf32":torch.backends.cuda.matmul.allow_tf32,
+        "cudnn_allow_tf32":torch.backends.cudnn.allow_tf32,
         "calibration_steps": 10 if modules else None,
         "action_horizon": cfg.model.action_horizon,
         "batch": 1,

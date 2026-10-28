@@ -1,6 +1,7 @@
 """Five warmed complete policy calls in the actual sampler-Graph mode."""
 
 import dataclasses
+import argparse
 import fcntl
 import os
 from pathlib import Path
@@ -22,6 +23,9 @@ def wrap(obj, attr, label):
 
 
 def main():
+    parser=argparse.ArgumentParser(__doc__)
+    parser.add_argument('--definition8',action='store_true')
+    args=parser.parse_args()
     guard = open("/tmp/holoq-vla-policy-timing.lock", "a")
     fcntl.flock(guard, fcntl.LOCK_EX)
     for key in list(os.environ):
@@ -33,12 +37,19 @@ def main():
     from openpi.training import config
     from gr00t.quantization.pi05_step_context import install_pi05_step_context
     from gr00t.quantization.pi05_cuda_graph import Pi05CudaGraphSampler
-    from research.pi05_table3.historical_loader import load_policy
+    if args.definition8:
+        from research.pi05_table3.definition_runtime import load_policy as load_definition
+        def load_policy(directory,cfg):
+            return load_definition(directory,cfg,'packed')
+    else:
+        from research.pi05_table3.historical_loader import load_policy
 
     root = Path(__file__).resolve().parents[2]
     cfg = config.get_config("pi05_libero")
     cfg = dataclasses.replace(cfg, model=dataclasses.replace(cfg.model, pytorch_compile_mode=None))
-    policy = load_policy(root / "results/pi05_table3_414_20261028/holoq_deployments/both", cfg)
+    directory='definition8_deployment_fp64' if args.definition8 else 'holoq_deployments/both'
+    policy = load_policy(root / "results/pi05_table3_414_20261028" / directory, cfg)
+    torch.backends.cuda.matmul.allow_tf32=False
     policy._model.eval().requires_grad_(False)
     install_pi05_step_context(policy._model, fixed_loop=True)
     policy._sample_actions = Pi05CudaGraphSampler(policy._model.sample_actions)

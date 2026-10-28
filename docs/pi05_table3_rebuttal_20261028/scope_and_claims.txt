@@ -62,3 +62,21 @@ Claims to correct/withdraw regardless of timing outcome:
   qualified historical evidence, not a matching414/8-step reproduction.
 - H100 paper experiments and new RTX4080SUPER deployment are separate.
 - Correct submitted Table2 FP16GR00T arithmetic average to86.5 (not narrative87.0).
+
+POST-CONSTRUCTION PRECISION AUDIT
+OpenPI resets matmul precision in PI0Pytorch.__init__. The definition8 main
+driver already disables TF32 after loading; the first8-step controls and
+subset diagnostics did not. They remain archived but are excluded from the
+strict table. controls8_ieee and definition8_scope_controls_ieee set/record
+matmul_allow_tf32=False after loading, with cudnn_allow_tf32=True shared
+across all matched cases (image patch convolution is outside4-bit targets).
+
+ACTION-HEAD STORAGE SCOPE
+The source retains an unused expert vocabulary projection of526,647,296
+bytes in every method; sample_actions never invokes its logits. Language
+vocabulary weights are tied to required token embeddings and are distinct
+from this unused expert matrix. Report active action-head parameters and
+as-stored parameters separately, without crediting unused-weight removal
+only to HoloQ. The126 quantized expert projections are attention/MLP;
+AdaRMS conditioning, action/time auxiliary projections remain floating.
+The414 Table3 target count must not be described as every operation INT4.

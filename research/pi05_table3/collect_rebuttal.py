@@ -27,9 +27,9 @@ def main():
            ('HoloQ definition8 core + released vision RTN','definition8_measurement/report.json','definition8_deployment_fp64/deployment.json','4/4','162visionRTN+126language+126expert; signed15core'),
            ('Historical backbone-only','scope_controls/backbone/report.json','holoq_deployments/backbone/deployment.json','4/4','162vision+126language'),
            ('Historical head-only','scope_controls/head/report.json','holoq_deployments/head/deployment.json','4/4','126expert'),
-           ('Definition8 backbone-only','definition8_scope_controls/backbone/report.json','definition8_scope_deployments/backbone/deployment.json','4/4','162visionRTN+126language'),
-           ('Definition8 head-only','definition8_scope_controls/head/report.json','definition8_scope_deployments/head/deployment.json','4/4','126expert')]
-    for steps,group in [(10,'controls'),(8,'controls8')]:
+           ('Definition8 backbone-only','definition8_scope_controls_ieee/backbone/report.json','definition8_scope_deployments/backbone/deployment.json','4/4','162visionRTN+126language'),
+           ('Definition8 head-only','definition8_scope_controls_ieee/head/report.json','definition8_scope_deployments/head/deployment.json','4/4','126expert')]
+    for steps,group in [(10,'controls'),(8,'controls8_ieee')]:
         for name,kind,bits,scope in [
             ('FP16 control','fp16','16/16','No quantized targets; sensitiveFP32 params retained'),
             ('BF16 source control','bf16','16/16','No quantized targets; sensitiveFP32 params retained'),

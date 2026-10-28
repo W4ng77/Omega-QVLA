@@ -1,6 +1,7 @@
 """Actual Graph work/overlap and host wait; never add host wait to GPU time."""
 
 from collections import Counter, defaultdict
+import argparse
 import json
 from pathlib import Path
 import sqlite3
@@ -20,10 +21,14 @@ def union(intervals):
 
 
 def main():
+    parser=argparse.ArgumentParser(__doc__)
+    parser.add_argument('--definition8',action='store_true')
+    args=parser.parse_args()
     data = Path(__file__).resolve().parents[2] / "results/pi05_table3_414_20261028"
-    db = sqlite3.connect(data / "nsight_full414.sqlite")
+    base='nsight_definition8' if args.definition8 else 'nsight_full414'
+    db = sqlite3.connect(data / (base+'.sqlite'))
     names = dict(db.execute("select id,value from StringIds"))
-    kernels = list(db.execute("select start,end,shortName,streamId,graphNodeId from CUPTI_ACTIVITY_KIND_KERNEL"))
+    kernels = list(db.execute("select start,end,demangledName,streamId,graphNodeId from CUPTI_ACTIVITY_KIND_KERNEL"))
     copies = list(db.execute("select start,end,bytes,copyKind from CUPTI_ACTIVITY_KIND_MEMCPY"))
     ranges = list(db.execute("select start,end,text,textId from NVTX_EVENTS where end is not null"))
     named = defaultdict(list)
@@ -38,7 +43,12 @@ def main():
         times[names[n]] += b - a
         counts[names[n]] += 1
     target = {k: counts[k] for k in ["_vision_gemm", "_gemm_a4w4_arithmetic", "_quant_pack_a4"]}
-    assert target == {"_vision_gemm": 2430, "_gemm_a4w4_arithmetic": 6930, "_quant_pack_a4": 6930}, target
+    if args.definition8:
+        target={'_vision_gemm':counts['_vision_gemm'],'_channel_a4w4':counts['_channel_a4w4'],
+                'nativeS4':sum(v for n,v in counts.items() if 'integer_subbyte' in n)}
+        assert target=={'_vision_gemm':2430,'_channel_a4w4':5040,'nativeS4':630},target
+    else:
+        assert target == {"_vision_gemm": 2430, "_gemm_a4w4_arithmetic": 6930, "_quant_pack_a4": 6930}, target
     api = defaultdict(lambda: Counter())
     for a, b, n in db.execute("select start,end,nameId from CUPTI_ACTIVITY_KIND_RUNTIME"):
         api[names[n]]["calls"] += 1
@@ -60,7 +70,25 @@ def main():
         },
         "note": "Host cudaMemcpyAsync duration includes blocking D2H completion while GPU runs; it is not device copy work. Do not sum that duration with GPU kernel work. NVTX/profiling latency is diagnostic, formal latency is in report.json.",
     }
-    (data / "nsight_verified_summary.json").write_text(json.dumps(result, indent=2) + "\n")
+    windows=[]
+    for start,end in complete:
+        current=[(a,b) for a,b,*_ in kernels if a>=start and b<=end]
+        graph=[(a,b) for a,b,n,s,node in kernels if node and a>=start and b<=end]
+        span=max(b for a,b in current)-min(a for a,b in current)
+        row={'CPU_policy_ms':(end-start)/1e6,'kernel_work_ms':sum(b-a for a,b in current)/1e6,
+             'kernel_span_ms':span/1e6,'gaps_between_kernels_ms':(span-union(current))/1e6,
+             'before_first_kernel_ms':(min(a for a,b in current)-start)/1e6,
+             'after_last_kernel_ms':(end-max(b for a,b in current))/1e6}
+        if graph:
+            gspan=max(b for a,b in graph)-min(a for a,b in graph)
+            row.update(Graph_node_kernel_work_ms=sum(b-a for a,b in graph)/1e6,
+                       Graph_node_span_ms=gspan/1e6,
+                       gaps_between_Graph_node_kernels_ms=(gspan-union(graph))/1e6,
+                       before_first_Graph_node_ms=(min(a for a,b in graph)-start)/1e6)
+        windows.append(row)
+    result['per_call_windows']=windows
+    filename='nsight_definition8_verified_summary.json' if args.definition8 else 'nsight_verified_summary.json'
+    (data / filename).write_text(json.dumps(result, indent=2) + "\n")
     print(
         json.dumps(
             {k: v for k, v in result.items() if k not in ["kernel_ms_per_policy", "host_api", "NVTX_ranges"]},

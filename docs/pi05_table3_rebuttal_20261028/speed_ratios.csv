@@ -1,0 +1,5 @@
+holoq,baseline,steps,mode,baseline_ms_div_holoq_ms,holoq_ms_div_baseline_ms,precision_scope_caveat
+HoloQ historical414,GPTQ / Marlin,10,eager,0.27879962100793865,3.5868054496800252,"Deployment comparison; differing A precision, GPTQ scope, quantizer grids and calibration teacher steps are disclosed; no success equivalence claim"
+HoloQ historical414,SmoothQuant-W4 extension / QServe,10,eager,0.14999135485862392,6.667050917318279,"Deployment comparison; differing A precision, GPTQ scope, quantizer grids and calibration teacher steps are disclosed; no success equivalence claim"
+HoloQ historical414,GPTQ / Marlin,10,sample_graph,0.13996237535452555,7.144777283659226,"Deployment comparison; differing A precision, GPTQ scope, quantizer grids and calibration teacher steps are disclosed; no success equivalence claim"
+HoloQ historical414,SmoothQuant-W4 extension / QServe,10,sample_graph,0.10648971585086396,9.390578160622324,"Deployment comparison; differing A precision, GPTQ scope, quantizer grids and calibration teacher steps are disclosed; no success equivalence claim"
