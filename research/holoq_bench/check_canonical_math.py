@@ -46,7 +46,9 @@ class DenseCanonicalOracle(nn.Module):
                 y = apply_blocks(y, rout)
             return y + bias if bias.numel() else y
         if getattr(src, "legacy_activation_arithmetic", False):
-            if src.act_mode == "step":
+            if src.act_mode == "token":
+                scale = (x.float().abs().amax(-1, keepdim=True).clamp_min(1e-5) / 7).half()
+            elif src.act_mode == "step":
                 step = get_current_dit_step()
                 assert step is not None and 0 <= step < 8
                 scale = src.a_scale[step].half()

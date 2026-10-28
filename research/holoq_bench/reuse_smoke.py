@@ -75,6 +75,8 @@ def main():
                 checked += ["research/holoq_bench/fused_rotation_strided.py"]
             if case.startswith("holoq_release"):
                 checked += ["research/holoq_bench/released_grid.py"]
+            if case.endswith("_token_ablation"):
+                checked += ["research/holoq_bench/released_token_ablation.py"]
             if d.get("common_optimizations"):
                 checked += ["research/holoq_bench/common_logits.py"]
             if "nunchaku" in case:

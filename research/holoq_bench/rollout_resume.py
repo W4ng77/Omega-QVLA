@@ -28,6 +28,8 @@ def validate_resume_metadata(directory: Path, current):
         checked.append("research/holoq_bench/fused_rotation_strided.py")
     if current["method"].startswith("holoq_release"):
         checked.append("research/holoq_bench/released_grid.py")
+    if current["method"].endswith("_token_ablation"):
+        checked.append("research/holoq_bench/released_token_ablation.py")
     if current.get("common_optimizations"):
         checked.append("research/holoq_bench/common_logits.py")
     if current["method"].startswith("accuracy_"):
