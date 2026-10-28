@@ -90,6 +90,21 @@ def main():
             "| " + base["case"] + " | "
             + " | ".join(f"{base['policy_mean_ms'] / row['policy_mean_ms']:.3f}x" for row in ours) + " |"
         )
+    common_path = args.runs / "common_logits/summary.json"
+    if common_path.exists():
+        common_rows = json.loads(common_path.read_text())["rows"]
+        lines += [
+            "", "### Same additional optimization offered to every method", "",
+            "The public Qwen3 logits_to_keep=1 option avoids full-sequence vocabulary projection while retaining full hidden states and all8 denoising steps. This is an explicitly separate common optimization. Each method receives its own matched before/after300-call full-policy replay,100-input feature/action checks, and a baseline self-repeat control. No task-success score is assigned to these timing/semantic probes. Non-bitwise paths require independent rollout before an accuracy claim; existing backend variance is recorded rather than attributed automatically to the optimization.",
+            "",
+            "| Case | Full-policy mean before / after ms | After p50 / p95 ms | Local speedup | Features bitwise equal | Full actions bitwise equal /100 |",
+            "|---|---|---|---|---|---|",
+        ]
+        for row in common_rows:
+            lines.append(f"| {row['case']} | {row['before_mean_ms']:.2f} / {row['after_mean_ms']:.2f} | "
+                         f"{row['after_p50_ms']:.2f} / {row['after_p95_ms']:.2f} | {row['speedup']:.3f}x | "
+                         f"{row['features_exact']} | {row['actions_exact_count']} |")
+        lines += ["", "These common-optimization timings are measured for baselines too; they are never used to compare only an optimized HoloQ with an unoptimized baseline. Main100-episode tables above retain their explicit scored execution setting. Raw paired calls, memory, drift/self-repeat checks and failures are in evaluation/common_logits."]
     lines += [
         "",
         "Speedup = baseline full-policy mean / HoloQ full-policy mean; below 1 means HoloQ is slower. `evaluation/report/speedups.csv` also gives rollout ratios for every measured HoloQ/backend against every quantized baseline.",
