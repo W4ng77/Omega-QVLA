@@ -126,6 +126,16 @@ CONFIGS = {
     ),
 }
 
+# Versioned stride-corrected backends have separately scored deployments. The
+# old names remain in the registry only for historical raw artifact inspection.
+for _base in (
+    "holoq", "holoq_llm_s4", "holoq_step_weight", "holoq_step_weight_llm_s4",
+    "duquant_a8_g128", "duquant_a4_g128", "quantvla_selective_a8_atm_g128",
+    "quantvla_selective_a4_atm_g128",
+):
+    _method, _variant, _bits, _scope = CONFIGS[_base]
+    CONFIGS[_base + "_rotv2"] = (_method, _variant + " + stride-correct block64 rotation v2", _bits, _scope)
+
 
 def main():
     p = argparse.ArgumentParser(__doc__)

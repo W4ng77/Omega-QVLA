@@ -55,6 +55,19 @@ def main():
     queue = json.loads((a.runs / "queue.json").read_text())
     gpu = [json.loads(line) for line in (a.runs / "gpu_monitor.jsonl").read_text().splitlines()]
     for case in queue["valid_cases"]:
+        if "fusedrot" in case:
+            output["errors"].append({"case": case, "error": "Withdrawn legacy rotation backend: transposed R strides read incorrectly"})
+        if case.endswith("_rotv2"):
+            try:
+                validation = json.loads((a.root / "deployments" / case / "functional_validation.json").read_text())
+                assert validation["passed"] and validation["finite"]
+                assert validation["comparisons"] == (8520 if case.startswith(("holoq", "duquant")) else 3400)
+                assert validation["plugin_source_sha256"] == hashlib.sha256(
+                    Path("research/holoq_bench/fused_rotation_strided.py").read_bytes()).hexdigest()
+                source = a.root / "deployments" / case.removesuffix("_rotv2") / "deployment.json"
+                assert validation["source_pack_sha256"] == json.loads(source.read_text())["source_pack_sha256"]
+            except Exception as exc:
+                output["errors"].append({"case": case, "error": "functional validation: " + repr(exc)})
         for mode in ["eager", "head_graph"]:
             base = a.runs / case / mode
             if (base / "smoke/cuda_kernels.json").exists():
