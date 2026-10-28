@@ -1,0 +1,6 @@
+{
+  "identical_rollout_AST": true,
+  "old_source_sha256": "1b50e444bedb3cc496b5696e9bc8f871782c0497285cfe44150f59e7f6a26c92",
+  "shared_body_AST_sha256": "a950edd941796282fe3bd4b4cf6d08f1df09e141960d40681ca3fc623b43209f",
+  "purpose": "One identical protocol for historical/rebuild/packed/canonical accuracy diagnostics; no numerical/backend changes"
+}

@@ -1,0 +1,133 @@
+{
+  "completed_cohorts": [
+    {
+      "case": "evaluation_v3",
+      "cohort": "evaluation_v3",
+      "successes": 92,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "e11ffbec9b761fb0239088a526ebc37466536c746cfc7c21484e339f5bab4bf4",
+      "summary": "results/holoq_object/evaluation_v3/awq_qwen_full/head_graph/rollout/summary.json",
+      "code_commit": "98ab54e5fb8216ed5014087aef737b1a53fee96a"
+    },
+    {
+      "case": "evaluation_v3",
+      "cohort": "evaluation_v3",
+      "successes": 93,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "1cff44d43cfdcc08a7c34edb85986f5fa3c7c1ec5452ff118c1e8425ca6b8d31",
+      "summary": "results/holoq_object/evaluation_v3/awq_qwen_selective/head_graph/rollout/summary.json",
+      "code_commit": "4d0f49d4155cb8bed20b00c56117069b76281530"
+    },
+    {
+      "case": "evaluation_v3",
+      "cohort": "evaluation_v3",
+      "successes": 98,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "dfaef2a8d1a4921f5de6584e1f8b8d1d0870c26206560baf6e67fc7957ccdabe",
+      "summary": "results/holoq_object/evaluation_v3/gptq_full/head_graph/rollout/summary.json",
+      "code_commit": "98ab54e5fb8216ed5014087aef737b1a53fee96a"
+    },
+    {
+      "case": "evaluation_v3",
+      "cohort": "evaluation_v3",
+      "successes": 93,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "a41c8b214f2c0dafb331d595f4ce42b04b93b1ce357046d9dd2c894cfc1bc4e1",
+      "summary": "results/holoq_object/evaluation_v3/gptq_selective/head_graph/rollout/summary.json",
+      "code_commit": "b27a2343e67de65bf33f0c736811e034ef7906dd"
+    },
+    {
+      "case": "evaluation_v3",
+      "cohort": "evaluation_v3",
+      "successes": 72,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "11e781eb3fabf1ba0a35deca6c862c5319b750bad83599d9ec5d562f9422b320",
+      "summary": "results/holoq_object/evaluation_v3/holoq/head_graph/rollout/summary.json",
+      "code_commit": "52ad966d50bbf771e703ce91fb6dc6c09b8f14ef"
+    },
+    {
+      "case": "evaluation_v3",
+      "cohort": "evaluation_v3",
+      "successes": 88,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "d41fe753f54e25f531fc43eb4bd37946965d65fc6d2691665d4c2481c0022e30",
+      "summary": "results/holoq_object/evaluation_v3/omniquant_selective/head_graph/rollout/summary.json",
+      "code_commit": "8f2e8b0eefc815cf872a57cee7101c073df0189a"
+    },
+    {
+      "case": "evaluation_v3",
+      "cohort": "evaluation_v3",
+      "successes": 53,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "fc287d60f0fb05a759b8dab78b014ca12521a5145f2cf03e5a0b70a0ac00014e",
+      "summary": "results/holoq_object/evaluation_v3/smoothquant_a4/head_graph/rollout/summary.json",
+      "code_commit": "bc4efb06a4be2f2e628b00698d88b5b31797c9e6"
+    },
+    {
+      "case": "evaluation_v3",
+      "cohort": "evaluation_v3",
+      "successes": 88,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "14e8ee8ae19aff4df23bb4b9efffa292867a0903fd5692eab786d936822079c9",
+      "summary": "results/holoq_object/evaluation_v3/smoothquant_a8/head_graph/rollout/summary.json",
+      "code_commit": "71f558a6140818d4c47bad6df527d45970ef15ba"
+    },
+    {
+      "case": "evaluation_rotation_v2",
+      "cohort": "evaluation_rotation_v2",
+      "successes": 70,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "489777f5f2c91df17c6b5a45c5290c7251350090df5ff445432ba97a3b1fe9b5",
+      "summary": "results/holoq_object/evaluation_rotation_v2/holoq_llm_s4_rotv2/head_graph/rollout/summary.json",
+      "code_commit": "98ab54e5fb8216ed5014087aef737b1a53fee96a"
+    },
+    {
+      "case": "evaluation_rotation_v2",
+      "cohort": "evaluation_rotation_v2",
+      "successes": 66,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "04adc34a17eb4512db820a8cf1ca870f494f9b6efa34518747a462447582e777",
+      "summary": "results/holoq_object/evaluation_rotation_v2/holoq_step_weight_llm_s4_rotv2/head_graph/rollout/summary.json",
+      "code_commit": "3599f60cacb207594a88bfbe643f7dfed84f20fb"
+    },
+    {
+      "case": "evaluation_rotation_v2",
+      "cohort": "evaluation_rotation_v2",
+      "successes": 74,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "8545e8d1d412667be65dd2db03acfb240b8e6146f15ffae65ab02aff277fbb95",
+      "summary": "results/holoq_object/evaluation_rotation_v2/quantvla_selective_a4_atm_g128_rotv2/head_graph/rollout/summary.json",
+      "code_commit": "8671966f0a39db02eb65d21753387eadc34ae538"
+    },
+    {
+      "case": "evaluation_rotation_v2",
+      "cohort": "evaluation_rotation_v2",
+      "successes": 76,
+      "episodes": 100,
+      "status": "valid_quantized_baseline",
+      "source_pack_sha256": "dc9ccde8920a63208fa06f333109f766c468134333dc2ac95270e066f358f5a2",
+      "summary": "results/holoq_object/evaluation_rotation_v2/quantvla_selective_a8_atm_g128_rotv2/head_graph/rollout/summary.json",
+      "code_commit": "22adf7a450ddf3d8f6655329b239f8091d7b8d1e"
+    }
+  ],
+  "withdrawn": [
+    "legacy fusedrot stride-bug0/100 and its timing claims",
+    "original/conversion Nunchaku hybrids using that invalid stride plugin",
+    "unmonitored eager replay, replaced by independently monitored repeat",
+    "paper initial per-output Marlin overflow gate before any accepted score"
+  ],
+  "historical_88_90": "Preserved as earlier protocol records; not reused as current matched evaluation",
+  "published_grid_status": "180 exported weights/rotations/scales verified, real packed-layer max NMSE8.90167974e-8, new matched100 in progress",
+  "GPU_monitor": "Independent actual sampler remains running; no retroactive fabricated samples"
+}

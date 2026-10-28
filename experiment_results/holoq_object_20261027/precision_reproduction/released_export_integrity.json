@@ -1,0 +1,1809 @@
+{
+  "passed": true,
+  "layers": [
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.0.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.0.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.0.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.0.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.0.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.0.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.0.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.1.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.1.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.1.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.1.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.1.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.1.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.1.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.2.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.2.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.2.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.2.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.2.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.2.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.2.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.3.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.3.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.3.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.3.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.3.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.3.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.3.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.4.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.4.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.4.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.4.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.4.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.4.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.4.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.5.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.5.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.5.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.5.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.5.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.5.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.5.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.6.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.6.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.6.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.6.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.6.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.6.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.6.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.7.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.7.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.7.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.7.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.7.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.7.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.7.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.8.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.8.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.8.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.8.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.8.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.8.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.8.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.9.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.9.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.9.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.9.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.9.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.9.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.9.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.10.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.10.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.10.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.10.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.10.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.10.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.10.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.11.self_attn.q_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.11.self_attn.k_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.11.self_attn.v_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1024,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.11.self_attn.o_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.11.mlp.gate_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.11.mlp.up_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        2048
+      ]
+    },
+    {
+      "layer": "backbone.eagle_model.language_model.model.layers.11.mlp.down_proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        2048,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.0.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.0.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.0.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.0.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.1.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.1.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.1.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.1.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.1.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.1.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.2.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.2.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.2.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.2.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.2.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.2.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.3.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.3.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.3.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.3.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.3.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.3.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.4.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.4.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.4.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.4.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.4.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.4.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.5.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.5.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.5.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.5.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.5.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.5.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.6.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.6.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.6.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.6.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.6.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.6.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.7.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.7.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.7.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.7.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.7.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.7.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.8.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.8.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.8.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.8.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.8.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.8.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.9.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.9.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.9.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.9.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.9.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.9.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.10.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.10.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.10.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.10.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.10.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.10.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.11.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.11.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.11.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.11.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.11.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.11.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.12.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.12.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.12.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.12.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.12.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.12.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.13.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.13.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.13.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.13.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.13.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.13.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.14.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.14.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.14.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        2048
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.14.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.14.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.14.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.15.attn1.to_q",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.15.attn1.to_k",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.15.attn1.to_v",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.15.attn1.to_out.0",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.15.ff.net.0.proj",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        6144,
+        1536
+      ]
+    },
+    {
+      "layer": "action_head.model.transformer_blocks.15.ff.net.2",
+      "weight_values_exact": true,
+      "rotation_coefficients_exact": true,
+      "activation_scale_exact": true,
+      "input_shape": [
+        1536,
+        6144
+      ]
+    }
+  ],
+  "count": 180,
+  "weight_requantization": false,
+  "LLM_scale_source": "Missing from release; immutable original first-warmup scales, recorded separately",
+  "compute": "Packed W4 dequantization inside FP16-MMA tile; no dense inference weight cache"
+}
