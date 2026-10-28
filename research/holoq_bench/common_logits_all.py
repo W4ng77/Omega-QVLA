@@ -7,23 +7,18 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+from research.holoq_bench.main_selection import COHORTS, read_selection
 
 
 def main():
     root = Path("results/holoq_object")
     while True:
         ready = [json.loads((root / cohort / "queue.json").read_text()).get("finished")
-                 for cohort in ("evaluation_v3", "evaluation_rotation_v2")]
+                 if (root / cohort / "queue.json").exists() else False for cohort in COHORTS]
         if all(ready):
             break
         time.sleep(15)
-    primary = json.loads((root / "evaluation_v3/queue.json").read_text())
-    selection = json.loads((root / "evaluation_rotation_v2/backend_selection.json").read_text())
-    cases = list(primary["valid_cases"])
-    for row in selection["families"].values():
-        case = row["selected"]["case"]
-        if case not in cases:
-            cases.append(case)
+    cases, _, _ = read_selection(root)
     out = root / "common_logits_confirmed"
     out.mkdir(parents=True, exist_ok=True)
     guard = open("/tmp/holoq-vla-policy-timing.lock", "a")

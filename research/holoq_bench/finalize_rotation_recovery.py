@@ -7,6 +7,7 @@ import shutil
 import subprocess
 import sys
 import time
+from research.holoq_bench.main_selection import COHORTS, read_selection
 
 
 def main():
@@ -15,9 +16,11 @@ def main():
     args = parser.parse_args()
     primary = args.root / "evaluation_v3"
     extra = args.root / "evaluation_rotation_v2"
+    paper = args.root / "evaluation_paper_holoq"
+    cohorts = [args.root / name for name in COHORTS]
     while True:
         records = [json.loads((r / "queue.json").read_text()) if (r / "queue.json").exists() else {}
-                   for r in (primary, extra)]
+                   for r in cohorts]
         common_path = args.root / "common_logits_confirmed/queue.json"
         common = json.loads(common_path.read_text()) if common_path.exists() else {}
         if all(r.get("finished") for r in records) and common.get("finished"):
@@ -29,17 +32,12 @@ def main():
                     "--root", str(args.root)], check=True)
     confirmation_root = args.root / "evaluation_final_replay_v2"
     confirmation = json.loads((confirmation_root / "confirmation.json").read_text())
-    selection = json.loads((extra / "backend_selection.json").read_text())
+    valid, _, selection = read_selection(args.root)
     merged = args.root / "evaluation_verified_v2"
     merged.mkdir(parents=True, exist_ok=True)
-    valid = list(records[0]["valid_cases"])
-    for family in selection["families"].values():
-        case = family["selected"]["case"]
-        assert "fusedrot" not in case, "Invalid legacy plugin cannot be selected"
-        if case not in valid:
-            valid.append(case)
     for case in valid:
-        source = extra if (extra / case).exists() else primary
+        assert "fusedrot" not in case, "Invalid legacy plugin cannot be selected"
+        source = next(source for source in (paper, extra, primary) if (source / case).exists())
         shutil.copytree(source / case, merged / case, dirs_exist_ok=True)
         for mode in confirmation["modes"][case]:
             destination = merged / case / mode / "replay"
@@ -51,7 +49,8 @@ def main():
         "common_mode": "head_graph", "valid_cases": valid,
         "cases": {c: values for r in records for c, values in r["cases"].items() if c in valid},
         "commands": [cmd for r in records for cmd in r["commands"]],
-        "input_queues": [str(primary), str(extra)], "backend_selection": selection,
+        "input_queues": [str(source) for source in cohorts], "backend_selection": selection,
+        "two_sided_holoq_controls_excluded": "Extra output rotation, legacy permutation and grid differ from paper Eqs1–8; raw evaluations retained separately",
         "functional_regression_excluded": json.loads((args.root / "fused_rotation_regression.json").read_text()),
         "final_replay_confirmation": confirmation,
         "finished": time.time(),
@@ -59,15 +58,18 @@ def main():
     (merged / "queue.json").write_text(json.dumps(combined, indent=2) + "\n")
     (merged / "backend_selection.json").write_text(json.dumps(selection, indent=2) + "\n")
     samples = {}
-    for source in (primary, args.root / "evaluation_best_s4", extra, confirmation_root):
+    for source in (primary, args.root / "evaluation_best_s4", extra, paper, confirmation_root):
         for line in (source / "gpu_monitor.jsonl").read_text().splitlines():
             row = json.loads(line)
             samples[row["time"]] = row
     (merged / "gpu_monitor.jsonl").write_text("".join(json.dumps(samples[k]) + "\n" for k in sorted(samples)))
     shutil.copy2(primary / "environment.txt", merged / "environment.txt")
-    for case in records[1]["candidate_cases"]:
-        if case not in valid:
-            shutil.copytree(extra / case, merged / "timing_candidates" / case, dirs_exist_ok=True)
+    for source, record in zip(cohorts[1:], records[1:]):
+        for case in record["candidate_cases"]:
+            if case not in valid:
+                folder = "two_sided_controls" if case.startswith("holoq") and not case.startswith("holoq_paper") else "timing_candidates"
+                shutil.copytree(source / case, merged / folder / case, dirs_exist_ok=True)
+    shutil.copytree(primary / "holoq", merged / "two_sided_controls/holoq", dirs_exist_ok=True)
     # Nonfused losing controls are useful for bottleneck interpretation. Their
     # timing-only status and lack of 100 scores stay explicit.
     for source in (primary, args.root / "evaluation_best_s4"):
@@ -77,6 +79,9 @@ def main():
             if case not in valid and (source / case).exists():
                 shutil.copytree(source / case, merged / "timing_candidates" / case, dirs_exist_ok=True)
     shutil.copytree(extra / "functional_checks", merged / "functional_checks", dirs_exist_ok=True)
+    shutil.copytree(paper / "functional_checks", merged / "paper_functional_checks", dirs_exist_ok=True)
+    shutil.copytree(paper / "canonical_math", merged / "paper_canonical_math", dirs_exist_ok=True)
+    shutil.copy2(args.root / "paper_cfg_build/configuration.json", merged / "paper_configuration.json")
     shutil.copytree(extra / "strided_tests", merged / "strided_tests", dirs_exist_ok=True)
     shutil.copytree(args.root / "common_logits_confirmed", merged / "common_logits", dirs_exist_ok=True)
     publish = Path("experiment_results/holoq_object_20261027")

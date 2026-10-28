@@ -14,21 +14,14 @@ import subprocess
 import sys
 import threading
 import time
+from research.holoq_bench.main_selection import read_selection
 
 
 def main():
     parser = argparse.ArgumentParser(__doc__)
     parser.add_argument("--root", type=Path, default=Path("results/holoq_object"))
     args = parser.parse_args()
-    primary = json.loads((args.root / "evaluation_v3/queue.json").read_text())
-    selection = json.loads((args.root / "evaluation_rotation_v2/backend_selection.json").read_text())
-    cases = list(primary["valid_cases"])
-    modes = {c: ["head_graph"] for c in cases}
-    for family in selection["families"].values():
-        choice = family["selected"]
-        if choice["case"] not in cases:
-            cases.append(choice["case"])
-        modes[choice["case"]] = list(dict.fromkeys(["head_graph", choice["mode"]]))
+    cases, modes, _ = read_selection(args.root)
     out = args.root / "evaluation_final_replay_v2"
     out.mkdir(parents=True, exist_ok=True)
     guard = open("/tmp/holoq-vla-policy-timing.lock", "a")
