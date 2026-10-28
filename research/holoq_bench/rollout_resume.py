@@ -21,9 +21,15 @@ def validate_resume_metadata(directory: Path, current):
     for key in identity:
         if old.get(key) != current.get(key):
             raise RuntimeError(f"Resume identity mismatch for {key}; use a new output directory")
+    if current["method"].startswith("holoq_submission_contract_v2") or current.get("evaluation_manifest_sha256"):
+        for key in ("method", "runtime_implementation", "suite", "episode_env_seed", "init_indices", "evaluation_manifest_sha256", "validation_sha256", "historical_execution_inputs_sha256"):
+            if old.get(key) != current.get(key):
+                raise RuntimeError(f"Resume protocol/implementation changed: {key}; use a new output directory")
     from research.holoq_bench.reuse_smoke import CORE
 
     checked = list(CORE) + ["research/holoq_bench/deployment.py"]
+    if current.get("evaluation_manifest_sha256"):
+        checked.append("gr00t/quantization/dit_step_context.py")
     if current["method"].endswith("_rotv2") or current["method"].startswith("holoq_paper"):
         checked.append("research/holoq_bench/fused_rotation_strided.py")
     if current["method"].startswith("holoq_release"):
@@ -32,6 +38,8 @@ def validate_resume_metadata(directory: Path, current):
         checked.append("research/holoq_bench/released_token_ablation.py")
     if current.get("common_optimizations"):
         checked.append("research/holoq_bench/common_logits.py")
+    if current["method"].startswith("holoq_submission_contract_v2"):
+        checked += ["research/rebuttal/runtime.py", "research/rebuttal/method.py", "gr00t/quantization/dit_step_context.py"]
     if current["method"].startswith("accuracy_"):
         checked += ["research/holoq_bench/accuracy_policy.py", "research/holoq_bench/check_canonical_math.py",
                     "research/holoq_bench/released_grid.py", "gr00t/quantization/gptq_layers.py",

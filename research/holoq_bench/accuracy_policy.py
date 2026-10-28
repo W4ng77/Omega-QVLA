@@ -26,6 +26,11 @@ def main():
     p.add_argument("--observations", type=Path, default=Path("results/holoq_object/heldout_init10_19/observations.pt"))
     p.add_argument("--trials", type=int, default=10)
     p.add_argument("--warmup", type=int, default=32)
+    p.add_argument("--source-root", type=Path, default=Path("results/holoq_object"))
+    p.add_argument("--init-start", type=int, default=10)
+    p.add_argument("--suite", choices=("libero_object", "libero_10"), default="libero_object")
+    p.add_argument("--episode-env-seed", type=int)
+    p.add_argument("--evaluation-manifest", type=Path)
     a = p.parse_args()
     a.mode, a.stage = "head_graph", "rollout"
     lock = open("/tmp/holoq-vla-policy-timing.lock", "a")
@@ -35,7 +40,7 @@ def main():
     torch.set_num_interop_threads(1)
     torch.backends.cuda.matmul.allow_tf32 = False
     seed(42)
-    root = Path("results/holoq_object")
+    root = a.source_root
     manifest = json.loads((root / "teacher_capture/manifest.json").read_text())
     for key in list(os.environ):
         if key.startswith(("GR00T_GPTQ", "GR00T_DUQUANT", "GR00T_RTN", "GR00T_ATM", "GR00T_OHB", "GR00T_DIT_CORRECTION", "HOLOQ_PACK", "HOLOQ_DEPLOY")):
@@ -93,18 +98,29 @@ def main():
     install_logits(policy)
     graphs = install_graphs(policy)
     source_root = Path(__file__).resolve().parents[2]
-    paths = [*source_root.glob("research/holoq_bench/*.py"), *source_root.glob("research/native_int4/*"), source_root / "gr00t/model/policy.py", source_root / "gr00t/model/action_head/flow_matching_action_head.py", source_root / "gr00t/quantization/perstep_backends.py", source_root / "gr00t/quantization/gptq_layers.py", source_root / "gr00t/quantization/duquant_preprocess.py"]
+    paths = [*source_root.glob("research/holoq_bench/*.py"), *source_root.glob("research/native_int4/*"), source_root / "gr00t/model/policy.py", source_root / "gr00t/model/action_head/flow_matching_action_head.py", source_root / "gr00t/quantization/perstep_backends.py", source_root / "gr00t/quantization/dit_step_context.py", source_root / "gr00t/quantization/gptq_layers.py", source_root / "gr00t/quantization/duquant_preprocess.py"]
     report = {"method": "accuracy_" + a.kind, "mode": a.mode, "stage": a.stage, "command": subprocess.list2cmdline(__import__("sys").argv),
               "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(), "source_pack_sha256": source_sha,
               "observation_file_sha256": hashlib.sha256(a.observations.read_bytes()).hexdigest(),
               "source_files_sha256": {str(path.relative_to(source_root)): hashlib.sha256(path.read_bytes()).hexdigest() for path in paths if path.is_file() and path.suffix in (".py", ".cpp", ".cu")},
               "denoising_steps": 8, "action_horizon": 16, "batch": 1, "warmup": a.warmup,
-              "noise_seed": "42 + task_id*10000 + initial_state_index*1000 + control_step", "init_indices": list(range(10, 10 + a.trials)),
+              "noise_seed": "42 + task_id*10000 + initial_state_index*1000 + control_step", "init_indices": list(range(a.init_start, a.init_start + a.trials)),
               "common_optimizations": ["qwen3_last_token_logits"], "checkpoint": manifest["checkpoint"], "started": time.time(),
               "scope": "ACCURACY CONTROL ONLY: not a quantized deployment speed/storage/memory baseline. Uses the EXACT shared Object rollout driver.",
               "runtime": a.kind, "wrapped_target_layers": len(modules), "quantized_layers": 0 if a.kind == "fp16_reference" else 180,
               "calibration_overlap_note": "Historical calibration state provenance unknown" if released else "New shared teacher0 and heldout10..19 disjoint",
               "raw_image_shape_each_camera": [256, 256, 3], "transform_image_shape_each_camera": [224, 224, 3]}
+    if a.evaluation_manifest:
+        from research.holoq_bench.deployment import sha256
+
+        evaluation = json.loads(a.evaluation_manifest.read_text())
+        assert evaluation["observations_sha256"] == report["observation_file_sha256"]
+        assert evaluation["suite"] == a.suite and evaluation["env_seed_per_episode"] == a.episode_env_seed
+        assert set(report["init_indices"]) <= set(evaluation["init_indices"])
+        a.expected_state_hashes = {(r["task_id"], r["init_index"]): r["initial_state_sha256"] for r in evaluation["episodes"]}
+        report.update(suite=a.suite, episode_env_seed=a.episode_env_seed, evaluation_manifest_sha256=sha256(a.evaluation_manifest))
+        if a.kind == "published_legacy":
+            report["historical_execution_inputs_sha256"] = {"factored_pack": sha256(Path(provenance["factored_pack"])), "frozen_first_call_llm_scales": sha256(root / "released_grid_build/frozen_llm_scales.pt")}
     previous_memory, windows = validate_resume_metadata(a.output, report)
     report["resume_measurement_windows"] = windows
     samples = torch.load(a.observations, map_location="cpu", weights_only=False)

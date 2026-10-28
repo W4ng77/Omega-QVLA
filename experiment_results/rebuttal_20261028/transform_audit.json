@@ -1,0 +1,1445 @@
+{
+  "identity": "028df962f9dbb5e7619050ad9f5eaf4c3bf24cb82349f41bc12c47a72a4cf5b1",
+  "layers": [
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 42,
+      "unquantized_nmse": 9.001410034015223e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 43,
+      "unquantized_nmse": 9.422426727745403e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 44,
+      "unquantized_nmse": 8.994114480964654e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 45,
+      "unquantized_nmse": 7.393271411748614e-11,
+      "orthogonality_max_abs": 9.775161743164062e-06
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 46,
+      "unquantized_nmse": 9.833035774509113e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 47,
+      "unquantized_nmse": 9.32002253151154e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 48,
+      "unquantized_nmse": 9.339849726952565e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 49,
+      "unquantized_nmse": 9.738753553589774e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 50,
+      "unquantized_nmse": 9.414029972232285e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 51,
+      "unquantized_nmse": 9.45380093653192e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 52,
+      "unquantized_nmse": 8.763447606474628e-11,
+      "orthogonality_max_abs": 1.0371208190917969e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 53,
+      "unquantized_nmse": 1.0049760329478019e-10,
+      "orthogonality_max_abs": 1.1324882507324219e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 54,
+      "unquantized_nmse": 9.719842986033456e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 55,
+      "unquantized_nmse": 7.10751943411303e-11,
+      "orthogonality_max_abs": 9.5367431640625e-06
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 56,
+      "unquantized_nmse": 9.627873498452288e-11,
+      "orthogonality_max_abs": 1.1324882507324219e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 57,
+      "unquantized_nmse": 9.492424901669239e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 58,
+      "unquantized_nmse": 9.151601698675904e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 59,
+      "unquantized_nmse": 8.259423006640176e-11,
+      "orthogonality_max_abs": 1.0371208190917969e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 60,
+      "unquantized_nmse": 1.0127573779605825e-10,
+      "orthogonality_max_abs": 1.1682510375976562e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 61,
+      "unquantized_nmse": 1.00545925751927e-10,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 62,
+      "unquantized_nmse": 8.596547085293338e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 63,
+      "unquantized_nmse": 9.446309012783871e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 64,
+      "unquantized_nmse": 9.479808604773154e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 65,
+      "unquantized_nmse": 9.378693655026638e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 66,
+      "unquantized_nmse": 8.03328584209062e-11,
+      "orthogonality_max_abs": 1.0132789611816406e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 67,
+      "unquantized_nmse": 9.774751841273854e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 68,
+      "unquantized_nmse": 9.616019785996244e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 69,
+      "unquantized_nmse": 8.610131357889017e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 70,
+      "unquantized_nmse": 9.530757433262593e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 71,
+      "unquantized_nmse": 9.176166076985126e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 72,
+      "unquantized_nmse": 9.680523743726965e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 73,
+      "unquantized_nmse": 7.955811703874716e-11,
+      "orthogonality_max_abs": 9.894371032714844e-06
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 74,
+      "unquantized_nmse": 9.567432956991695e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 75,
+      "unquantized_nmse": 9.739072048819963e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 76,
+      "unquantized_nmse": 8.156536557279992e-11,
+      "orthogonality_max_abs": 1.0371208190917969e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 77,
+      "unquantized_nmse": 9.739366257921489e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 78,
+      "unquantized_nmse": 9.520917387817462e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 79,
+      "unquantized_nmse": 9.547602292103718e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 80,
+      "unquantized_nmse": 7.87439419225322e-11,
+      "orthogonality_max_abs": 1.0013580322265625e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 81,
+      "unquantized_nmse": 9.768284792155413e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 82,
+      "unquantized_nmse": 9.593181804490314e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 83,
+      "unquantized_nmse": 9.0244034467446e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 84,
+      "unquantized_nmse": 9.426675412482766e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 85,
+      "unquantized_nmse": 9.474760559458062e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 86,
+      "unquantized_nmse": 9.453884203258767e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 87,
+      "unquantized_nmse": 7.086655567922762e-11,
+      "orthogonality_max_abs": 9.655952453613281e-06
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 88,
+      "unquantized_nmse": 9.754574925580073e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 89,
+      "unquantized_nmse": 9.672454504006112e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 90,
+      "unquantized_nmse": 8.641870552494879e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 91,
+      "unquantized_nmse": 9.791002036907415e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 92,
+      "unquantized_nmse": 9.401352613069847e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 93,
+      "unquantized_nmse": 9.632108999291233e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 94,
+      "unquantized_nmse": 8.681956542577751e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 95,
+      "unquantized_nmse": 9.619236657210095e-11,
+      "orthogonality_max_abs": 1.1324882507324219e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 96,
+      "unquantized_nmse": 9.316946519843938e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 97,
+      "unquantized_nmse": 7.653632588811021e-11,
+      "orthogonality_max_abs": 1.0013580322265625e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 98,
+      "unquantized_nmse": 9.484499297052196e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 99,
+      "unquantized_nmse": 9.271367007457343e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 100,
+      "unquantized_nmse": 9.379755999683326e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 101,
+      "unquantized_nmse": 7.884080888143075e-11,
+      "orthogonality_max_abs": 1.0371208190917969e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 102,
+      "unquantized_nmse": 9.55916526490519e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 103,
+      "unquantized_nmse": 9.277090207149286e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 104,
+      "unquantized_nmse": 8.12339431832676e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 105,
+      "unquantized_nmse": 9.554840946224274e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 106,
+      "unquantized_nmse": 9.167135106569191e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 107,
+      "unquantized_nmse": 9.649011450951761e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 108,
+      "unquantized_nmse": 8.164086767736833e-11,
+      "orthogonality_max_abs": 1.0371208190917969e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 109,
+      "unquantized_nmse": 9.557648422697795e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 110,
+      "unquantized_nmse": 9.482648000158633e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 111,
+      "unquantized_nmse": 7.915502281408138e-11,
+      "orthogonality_max_abs": 9.894371032714844e-06
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 112,
+      "unquantized_nmse": 9.704891057449316e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 113,
+      "unquantized_nmse": 9.634620184995057e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 114,
+      "unquantized_nmse": 9.226436975540153e-11,
+      "orthogonality_max_abs": 1.1324882507324219e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 115,
+      "unquantized_nmse": 8.383159444402821e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 116,
+      "unquantized_nmse": 9.53687823157523e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 117,
+      "unquantized_nmse": 9.356412866701191e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 118,
+      "unquantized_nmse": 7.04260955108893e-11,
+      "orthogonality_max_abs": 9.894371032714844e-06
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.q_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 119,
+      "unquantized_nmse": 9.87904411053897e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.k_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 120,
+      "unquantized_nmse": 8.935435030776873e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.v_proj",
+      "K": 2048,
+      "N": 1024,
+      "d_seed": 121,
+      "unquantized_nmse": 9.589222471628744e-11,
+      "orthogonality_max_abs": 1.1324882507324219e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.o_proj",
+      "K": 2048,
+      "N": 2048,
+      "d_seed": 122,
+      "unquantized_nmse": 5.946195619221939e-11,
+      "orthogonality_max_abs": 8.940696716308594e-06
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.gate_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 123,
+      "unquantized_nmse": 9.575597259559032e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.up_proj",
+      "K": 2048,
+      "N": 6144,
+      "d_seed": 124,
+      "unquantized_nmse": 9.441347703642577e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.down_proj",
+      "K": 6144,
+      "N": 2048,
+      "d_seed": 125,
+      "unquantized_nmse": 7.153202336018794e-11,
+      "orthogonality_max_abs": 9.655952453613281e-06
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 126,
+      "unquantized_nmse": 8.918567967475255e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 127,
+      "unquantized_nmse": 9.681006690742677e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 128,
+      "unquantized_nmse": 9.515130350301604e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 129,
+      "unquantized_nmse": 9.579327608921773e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 130,
+      "unquantized_nmse": 9.865063627101378e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 131,
+      "unquantized_nmse": 8.547346858067684e-11,
+      "orthogonality_max_abs": 1.0371208190917969e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 132,
+      "unquantized_nmse": 9.892696384294908e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 133,
+      "unquantized_nmse": 9.560868763358599e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 134,
+      "unquantized_nmse": 9.600629319317378e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 135,
+      "unquantized_nmse": 9.032776610018445e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 136,
+      "unquantized_nmse": 9.896400365860814e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 137,
+      "unquantized_nmse": 8.226449382808809e-11,
+      "orthogonality_max_abs": 1.0251998901367188e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 138,
+      "unquantized_nmse": 9.80399234018492e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 139,
+      "unquantized_nmse": 9.341614981561719e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 140,
+      "unquantized_nmse": 9.654416849302905e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 141,
+      "unquantized_nmse": 9.490080249419108e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 142,
+      "unquantized_nmse": 9.9436341105541e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 143,
+      "unquantized_nmse": 8.390235034516635e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 144,
+      "unquantized_nmse": 9.679525236894193e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 145,
+      "unquantized_nmse": 9.286804658614756e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 146,
+      "unquantized_nmse": 9.312625670609975e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 147,
+      "unquantized_nmse": 8.900694764557571e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 148,
+      "unquantized_nmse": 9.63977508927627e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 149,
+      "unquantized_nmse": 8.329106154780774e-11,
+      "orthogonality_max_abs": 1.0371208190917969e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 150,
+      "unquantized_nmse": 9.646471815782931e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 151,
+      "unquantized_nmse": 9.498104386329587e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 152,
+      "unquantized_nmse": 9.462016586914146e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 153,
+      "unquantized_nmse": 9.653772919948622e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 154,
+      "unquantized_nmse": 9.555033153585413e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 155,
+      "unquantized_nmse": 8.645439225629659e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 156,
+      "unquantized_nmse": 9.253629112970785e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 157,
+      "unquantized_nmse": 9.663449207497621e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 158,
+      "unquantized_nmse": 9.320787891509141e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 159,
+      "unquantized_nmse": 9.480431717445725e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 160,
+      "unquantized_nmse": 9.694644392821417e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 161,
+      "unquantized_nmse": 8.699939380019117e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 162,
+      "unquantized_nmse": 9.289657237898652e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 163,
+      "unquantized_nmse": 9.604446404853917e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 164,
+      "unquantized_nmse": 9.880540136064653e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 165,
+      "unquantized_nmse": 9.612226292698978e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 166,
+      "unquantized_nmse": 9.449475230072224e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 167,
+      "unquantized_nmse": 8.712738863714264e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 168,
+      "unquantized_nmse": 9.668916362004509e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 169,
+      "unquantized_nmse": 9.631440783808287e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 170,
+      "unquantized_nmse": 9.515838117479802e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 171,
+      "unquantized_nmse": 9.76778241623677e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 172,
+      "unquantized_nmse": 9.429894365364788e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 173,
+      "unquantized_nmse": 8.860388117648554e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 174,
+      "unquantized_nmse": 9.416201846024208e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 175,
+      "unquantized_nmse": 9.786138566170166e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 176,
+      "unquantized_nmse": 9.432425673860934e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 177,
+      "unquantized_nmse": 9.552877933138859e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 178,
+      "unquantized_nmse": 9.451026766749138e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 179,
+      "unquantized_nmse": 9.097186892681464e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 180,
+      "unquantized_nmse": 9.39857081050377e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 181,
+      "unquantized_nmse": 9.571533843288904e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 182,
+      "unquantized_nmse": 9.010779622453668e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 183,
+      "unquantized_nmse": 9.295209740800559e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 184,
+      "unquantized_nmse": 9.658338712137393e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 185,
+      "unquantized_nmse": 9.411265516900968e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 186,
+      "unquantized_nmse": 9.776078557788281e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 187,
+      "unquantized_nmse": 9.533920181103994e-11,
+      "orthogonality_max_abs": 1.1444091796875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 188,
+      "unquantized_nmse": 9.755258406629608e-11,
+      "orthogonality_max_abs": 1.1444091796875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 189,
+      "unquantized_nmse": 9.409130419246736e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 190,
+      "unquantized_nmse": 9.644317289225768e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 191,
+      "unquantized_nmse": 9.38352867629888e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 192,
+      "unquantized_nmse": 9.109045462363241e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 193,
+      "unquantized_nmse": 9.707552123261465e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 194,
+      "unquantized_nmse": 9.084299978923127e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 195,
+      "unquantized_nmse": 8.906071713443708e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 196,
+      "unquantized_nmse": 9.701461162192615e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 197,
+      "unquantized_nmse": 9.356846547570186e-11,
+      "orthogonality_max_abs": 1.1444091796875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 198,
+      "unquantized_nmse": 9.28915763753757e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 199,
+      "unquantized_nmse": 9.98561511256213e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 200,
+      "unquantized_nmse": 9.649863547123161e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 201,
+      "unquantized_nmse": 9.699435699062064e-11,
+      "orthogonality_max_abs": 1.1324882507324219e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 202,
+      "unquantized_nmse": 8.955488434159165e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 203,
+      "unquantized_nmse": 9.494802860610108e-11,
+      "orthogonality_max_abs": 1.1444091796875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 204,
+      "unquantized_nmse": 9.362449704397591e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 205,
+      "unquantized_nmse": 9.278166429593782e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 206,
+      "unquantized_nmse": 9.653956106747685e-11,
+      "orthogonality_max_abs": 1.1324882507324219e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 207,
+      "unquantized_nmse": 8.983193355849295e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 208,
+      "unquantized_nmse": 9.364009567747189e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 209,
+      "unquantized_nmse": 9.147335666703782e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 210,
+      "unquantized_nmse": 9.500103481663302e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_k",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 211,
+      "unquantized_nmse": 9.582464682855729e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_v",
+      "K": 2048,
+      "N": 1536,
+      "d_seed": 212,
+      "unquantized_nmse": 9.696546343640478e-11,
+      "orthogonality_max_abs": 1.0967254638671875e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 213,
+      "unquantized_nmse": 9.456146976560831e-11,
+      "orthogonality_max_abs": 1.0728836059570312e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 214,
+      "unquantized_nmse": 9.409322626607874e-11,
+      "orthogonality_max_abs": 1.1324882507324219e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 215,
+      "unquantized_nmse": 9.980865439684905e-11,
+      "orthogonality_max_abs": 1.1205673217773438e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_q",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 216,
+      "unquantized_nmse": 9.57539880719338e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_k",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 217,
+      "unquantized_nmse": 9.321704519393847e-11,
+      "orthogonality_max_abs": 1.1086463928222656e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_v",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 218,
+      "unquantized_nmse": 9.895254754477278e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_out.0",
+      "K": 1536,
+      "N": 1536,
+      "d_seed": 219,
+      "unquantized_nmse": 9.235199410762007e-11,
+      "orthogonality_max_abs": 1.0848045349121094e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.ff.net.0.proj",
+      "K": 1536,
+      "N": 6144,
+      "d_seed": 220,
+      "unquantized_nmse": 9.496450847912286e-11,
+      "orthogonality_max_abs": 1.0609626770019531e-05
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.ff.net.2",
+      "K": 6144,
+      "N": 1536,
+      "d_seed": 221,
+      "unquantized_nmse": 9.89770904125109e-11,
+      "orthogonality_max_abs": 1.049041748046875e-05
+    }
+  ]
+}

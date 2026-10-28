@@ -61,6 +61,29 @@ def test_resume_rejects_mixed_pack_and_preserves_prior_peak_and_window(tmp_path)
         validate_resume_metadata(tmp_path, changed)
 
 
+def test_submission_resume_cannot_mix_reference_packed_or_episode_protocol(tmp_path):
+    from research.holoq_bench.reuse_smoke import CORE
+
+    extra = ["research/holoq_bench/deployment.py", "research/rebuttal/runtime.py",
+             "research/rebuttal/method.py", "gr00t/quantization/dit_step_context.py"]
+    current = dict(method="holoq_submission_contract_v2_packed", runtime_implementation="packed",
+                   source_pack_sha256="same-frozen-grid", observation_file_sha256="same-observations",
+                   mode="head_graph", stage="rollout", denoising_steps=8, action_horizon=16,
+                   batch=1, warmup=32, noise_seed="fixed", started=10, suite="libero_object",
+                   episode_env_seed=0, init_indices=list(range(20, 30)),
+                   evaluation_manifest_sha256="states-frozen", validation_sha256="gate-passed",
+                   source_files_sha256={path: "same" for path in CORE + extra})
+    (tmp_path / "metadata.json").write_text(json.dumps(current))
+    validate_resume_metadata(tmp_path, current)
+    for key, value in (("runtime_implementation", "reference"), ("init_indices", list(range(10, 20))),
+                       ("episode_env_seed", 1), ("validation_sha256", "different-gate")):
+        with pytest.raises(RuntimeError, match="protocol/implementation changed"):
+            validate_resume_metadata(tmp_path, dict(current, **{key: value}))
+    altered = dict(current, source_files_sha256={**current["source_files_sha256"], "research/rebuttal/runtime.py": "changed"})
+    with pytest.raises(RuntimeError, match="math source changed"):
+        validate_resume_metadata(tmp_path, altered)
+
+
 class ToyHead:
     config = SimpleNamespace(action_horizon=2, action_dim=4)
 

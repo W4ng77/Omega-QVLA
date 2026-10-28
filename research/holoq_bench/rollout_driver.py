@@ -19,7 +19,8 @@ def run(args, report, graphs, timed, previous_memory, stats, memory, write):
     from examples.Libero.eval.utils import get_libero_env, get_libero_dummy_action
     from examples.Libero.eval.run_libero_eval import ExternalPolicy, get_max_steps
 
-    suite = benchmark.get_benchmark_dict()["libero_object"]()
+    suite_name = getattr(args, "suite", "libero_object")
+    suite = benchmark.get_benchmark_dict()[suite_name]()
     converter = ExternalPolicy.__new__(ExternalPolicy)
     converter.policy_output_format = "gr00t_dict"
     converter.action_keys = ["x", "y", "z", "roll", "pitch", "yaw", "gripper"]
@@ -43,10 +44,16 @@ def run(args, report, graphs, timed, previous_memory, stats, memory, write):
         env, description = get_libero_env(task, resolution=256)
         try:
             states = suite.get_task_init_states(task_id)
-            for init in range(10, 10 + args.trials):
+            initial_start = getattr(args, "init_start", 10)
+            for init in range(initial_start, initial_start + args.trials):
                 if (task_id, init) in complete:
                     continue
                 seed(42 + task_id * 10000 + init * 1000)
+                if getattr(args, "episode_env_seed", None) is not None:
+                    env.seed(args.episode_env_seed)
+                expected_hashes = getattr(args, "expected_state_hashes", None)
+                if expected_hashes is not None:
+                    assert hashlib.sha256(np.asarray(states[init]).tobytes()).hexdigest() == expected_hashes[(task_id, init)]
                 env.reset()
                 obs = env.set_init_state(states[init])
                 for _ in range(10):
@@ -55,7 +62,7 @@ def run(args, report, graphs, timed, previous_memory, stats, memory, write):
                 latencies = []
                 done = False
                 with (args.output / "rollout_calls.jsonl").open("a", buffering=1) as call_file:
-                    for step in range(get_max_steps("libero_object", "groot")):
+                    for step in range(get_max_steps(suite_name, "groot")):
                         converted = _convert_libero_observation(obs, task.language)
                         before = len(graphs.cache) if graphs else 0
                         result, latency = timed(converted, 42 + task_id * 10000 + init * 1000 + step)
