@@ -1,0 +1,51 @@
+case,execution,task,task_name,successes,trials
+holoq,head_graph,0,pick up the alphabet soup and place it in the basket,8,10
+holoq,head_graph,1,pick up the cream cheese and place it in the basket,8,10
+holoq,head_graph,2,pick up the salad dressing and place it in the basket,8,10
+holoq,head_graph,3,pick up the bbq sauce and place it in the basket,5,10
+holoq,head_graph,4,pick up the ketchup and place it in the basket,5,10
+holoq,head_graph,5,pick up the tomato sauce and place it in the basket,8,10
+holoq,head_graph,6,pick up the butter and place it in the basket,7,10
+holoq,head_graph,7,pick up the milk and place it in the basket,9,10
+holoq,head_graph,8,pick up the chocolate pudding and place it in the basket,8,10
+holoq,head_graph,9,pick up the orange juice and place it in the basket,6,10
+gptq_selective,head_graph,0,pick up the alphabet soup and place it in the basket,9,10
+gptq_selective,head_graph,1,pick up the cream cheese and place it in the basket,9,10
+gptq_selective,head_graph,2,pick up the salad dressing and place it in the basket,10,10
+gptq_selective,head_graph,3,pick up the bbq sauce and place it in the basket,10,10
+gptq_selective,head_graph,4,pick up the ketchup and place it in the basket,9,10
+gptq_selective,head_graph,5,pick up the tomato sauce and place it in the basket,10,10
+gptq_selective,head_graph,6,pick up the butter and place it in the basket,9,10
+gptq_selective,head_graph,7,pick up the milk and place it in the basket,10,10
+gptq_selective,head_graph,8,pick up the chocolate pudding and place it in the basket,8,10
+gptq_selective,head_graph,9,pick up the orange juice and place it in the basket,9,10
+awq_qwen_selective,head_graph,0,pick up the alphabet soup and place it in the basket,10,10
+awq_qwen_selective,head_graph,1,pick up the cream cheese and place it in the basket,8,10
+awq_qwen_selective,head_graph,2,pick up the salad dressing and place it in the basket,9,10
+awq_qwen_selective,head_graph,3,pick up the bbq sauce and place it in the basket,10,10
+awq_qwen_selective,head_graph,4,pick up the ketchup and place it in the basket,9,10
+awq_qwen_selective,head_graph,5,pick up the tomato sauce and place it in the basket,10,10
+awq_qwen_selective,head_graph,6,pick up the butter and place it in the basket,7,10
+awq_qwen_selective,head_graph,7,pick up the milk and place it in the basket,10,10
+awq_qwen_selective,head_graph,8,pick up the chocolate pudding and place it in the basket,10,10
+awq_qwen_selective,head_graph,9,pick up the orange juice and place it in the basket,10,10
+omniquant_selective,head_graph,0,pick up the alphabet soup and place it in the basket,10,10
+omniquant_selective,head_graph,1,pick up the cream cheese and place it in the basket,8,10
+omniquant_selective,head_graph,2,pick up the salad dressing and place it in the basket,9,10
+omniquant_selective,head_graph,3,pick up the bbq sauce and place it in the basket,10,10
+omniquant_selective,head_graph,4,pick up the ketchup and place it in the basket,8,10
+omniquant_selective,head_graph,5,pick up the tomato sauce and place it in the basket,10,10
+omniquant_selective,head_graph,6,pick up the butter and place it in the basket,8,10
+omniquant_selective,head_graph,7,pick up the milk and place it in the basket,9,10
+omniquant_selective,head_graph,8,pick up the chocolate pudding and place it in the basket,8,10
+omniquant_selective,head_graph,9,pick up the orange juice and place it in the basket,8,10
+smoothquant_a8,head_graph,0,pick up the alphabet soup and place it in the basket,9,10
+smoothquant_a8,head_graph,1,pick up the cream cheese and place it in the basket,8,10
+smoothquant_a8,head_graph,2,pick up the salad dressing and place it in the basket,9,10
+smoothquant_a8,head_graph,3,pick up the bbq sauce and place it in the basket,9,10
+smoothquant_a8,head_graph,4,pick up the ketchup and place it in the basket,8,10
+smoothquant_a8,head_graph,5,pick up the tomato sauce and place it in the basket,10,10
+smoothquant_a8,head_graph,6,pick up the butter and place it in the basket,7,10
+smoothquant_a8,head_graph,7,pick up the milk and place it in the basket,10,10
+smoothquant_a8,head_graph,8,pick up the chocolate pudding and place it in the basket,10,10
+smoothquant_a8,head_graph,9,pick up the orange juice and place it in the basket,8,10

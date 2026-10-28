@@ -1,0 +1,11 @@
+{
+  "holoq": {
+    "gptq_selective": 0.7645540505441745,
+    "gptq_full": 0.7940295133299334,
+    "awq_qwen_selective": 0.7091676228107268,
+    "awq_qwen_full": 0.7042063467437775,
+    "omniquant_selective": 0.709798895136693,
+    "smoothquant_a8": 0.6900628510858205,
+    "smoothquant_a4": 0.7156510123073054
+  }
+}

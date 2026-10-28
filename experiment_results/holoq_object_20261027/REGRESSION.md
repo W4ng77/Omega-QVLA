@@ -16,3 +16,7 @@
 }
 
 The 80.13 ms and 74.19 ms figures are withdrawn as valid HoloQ performance comparisons. The old source and immutable packs remain reproducible. Version 2 is separately named and must pass real-input layer and full-policy comparisons before timing or task evaluation.
+
+## Repair validation
+
+Explicit strided v2: 17 GPU layout/stream/Graph tests passed. The original-grid real-policy check compared 8520 projection calls, all eight denoising steps, plus ten complete policy outputs: zero measured difference from the nonfused packed path. The old kernel gives NMSE 1.958473 on a real transposed output rotation. These correctness observations are restricted to the tested inputs; new replay and independent100 episode results are still pending.

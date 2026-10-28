@@ -1,0 +1,8 @@
+ours,ours_execution,baseline,baseline_execution,replay_speedup,rollout_speedup
+holoq,head_graph,gptq_selective,head_graph,0.7645540505441745,0.7352770333955444
+holoq,head_graph,gptq_full,head_graph,0.7940295133299334,
+holoq,head_graph,awq_qwen_selective,head_graph,0.7091676228107268,0.7249145804328191
+holoq,head_graph,awq_qwen_full,head_graph,0.7042063467437775,
+holoq,head_graph,omniquant_selective,head_graph,0.709798895136693,0.6258994781679244
+holoq,head_graph,smoothquant_a8,head_graph,0.6900628510858205,0.6545066970338409
+holoq,head_graph,smoothquant_a4,head_graph,0.7156510123073054,
