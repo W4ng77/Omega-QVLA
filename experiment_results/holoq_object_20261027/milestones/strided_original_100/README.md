@@ -1,0 +1,3 @@
+# Correctness-gated original-grid HoloQ milestone
+
+New source triton_block64_strided_v2; 84 LLM CUTLASS S4 and96 DiT Marlin projections, unchanged grids and8 per-step scales. Full Object result70/100. Independent unrevised nonfused control72/100. Full policy replay300 calls mean68.877691ms; real rollout19615 calls mean69.598243ms/p50 69.460702/p95 70.723711ms. Final all-method contemporaneous replay confirmation is still pending. Two successes out of100 do not establish a significant difference. This path has not beaten the strong quantized baselines. Raw commands, source hashes, pack hashes, episodes and calls are preserved here.

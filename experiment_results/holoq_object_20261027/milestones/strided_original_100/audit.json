@@ -1,0 +1,93 @@
+{
+  "calibration_evaluation_state_disjoint": true,
+  "cases": {
+    "holoq_rotv2/eager/replay": {
+      "verified": true,
+      "calls": 300,
+      "gpu1_max_util": 0.0,
+      "gpu1_max_memory_MB": 12.0,
+      "source_hash_manifest_sha256": "847925c99d6169fba4b1d91bab79a71ae1695917cc7db5a2a8ffe421d2c7e949"
+    },
+    "holoq_rotv2/head_graph/replay": {
+      "verified": true,
+      "calls": 300,
+      "gpu1_max_util": 0.0,
+      "gpu1_max_memory_MB": 12.0,
+      "source_hash_manifest_sha256": "847925c99d6169fba4b1d91bab79a71ae1695917cc7db5a2a8ffe421d2c7e949"
+    },
+    "holoq_llm_s4_rotv2/eager/replay": {
+      "verified": true,
+      "calls": 300,
+      "gpu1_max_util": 0.0,
+      "gpu1_max_memory_MB": 12.0,
+      "source_hash_manifest_sha256": "847925c99d6169fba4b1d91bab79a71ae1695917cc7db5a2a8ffe421d2c7e949"
+    },
+    "holoq_llm_s4_rotv2/head_graph/replay": {
+      "verified": true,
+      "calls": 300,
+      "gpu1_max_util": 0.0,
+      "gpu1_max_memory_MB": 12.0,
+      "source_hash_manifest_sha256": "bd0e5f35e659bd596b078807a62225164bb3b578c2904e08a579cb4d6f959588"
+    },
+    "holoq_llm_s4_rotv2/head_graph/rollout": {
+      "verified": true,
+      "calls": 19615,
+      "gpu1_max_util": 0.0,
+      "gpu1_max_memory_MB": 12.0,
+      "source_hash_manifest_sha256": "bd0e5f35e659bd596b078807a62225164bb3b578c2904e08a579cb4d6f959588"
+    }
+  },
+  "packed_kernel_traces": {
+    "holoq_rotv2/eager": {
+      "backends": {
+        "marlin": {
+          "layers": 180,
+          "packed_cuda_launches": 1064,
+          "minimum": 852
+        }
+      },
+      "trace_sha256": "67ca283bfbc580b05586f4f9385b908e869b509e66508db4b2e27e01fee5a58a"
+    },
+    "holoq_rotv2/head_graph": {
+      "backends": {
+        "marlin": {
+          "layers": 180,
+          "packed_cuda_launches": 1064,
+          "minimum": 852
+        }
+      },
+      "trace_sha256": "7665055c2d65ab61a10750e164f0ae198e7b64eeb4ecc58ecc8f6c683ddf054a"
+    },
+    "holoq_llm_s4_rotv2/eager": {
+      "backends": {
+        "cutlass_s4": {
+          "layers": 84,
+          "packed_cuda_launches": 84,
+          "minimum": 84
+        },
+        "marlin": {
+          "layers": 96,
+          "packed_cuda_launches": 896,
+          "minimum": 768
+        }
+      },
+      "trace_sha256": "46cd1b271c29c4a04c37ce343be17e51340b648f111e84b3c3da21b802dcb822"
+    },
+    "holoq_llm_s4_rotv2/head_graph": {
+      "backends": {
+        "cutlass_s4": {
+          "layers": 84,
+          "packed_cuda_launches": 84,
+          "minimum": 84
+        },
+        "marlin": {
+          "layers": 96,
+          "packed_cuda_launches": 896,
+          "minimum": 768
+        }
+      },
+      "trace_sha256": "1e2b1248119a7d9f545beafe47223dc0cac3a99abce7bd60891d2dff88f753c6"
+    }
+  },
+  "errors": []
+}

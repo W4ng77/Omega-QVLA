@@ -38,6 +38,9 @@ def main():
     best = selected["rows"]
     baseline_best = [row for row in best if not row["case"].startswith("holoq")]
     fastest = min(baseline_best, key=lambda row: row["policy_mean_ms"])
+    highest_score = max(row["successes"] for row in baseline_best)
+    strongest = min((row for row in baseline_best if row["successes"] == highest_score),
+                    key=lambda row: row["policy_mean_ms"])
     ours = [row for row in best if row["case"].startswith("holoq")]
     assert len(ours) == 2, [row["case"] for row in ours]
     lines = [
@@ -47,6 +50,9 @@ def main():
         "",
         f"The fastest measured quantized deployment is **{fastest['case']}**, with full-policy replay mean "
         f"**{fastest['policy_mean_ms']:.2f} ms** and **{fastest['successes']}/100** Object successes.",
+        f"The highest observed baseline success count is **{highest_score}/100**. Among tied deployments, "
+        f"**{strongest['case']}** has the lowest replay mean, **{strongest['policy_mean_ms']:.2f} ms**. "
+        "This descriptive ranking does not establish a statistically superior method.",
     ]
     for row in ours:
         ratio = fastest["policy_mean_ms"] / row["policy_mean_ms"]
@@ -55,6 +61,9 @@ def main():
             f"`{row['case']}`: **{row['policy_mean_ms']:.2f} ms**, **{row['successes']}/100**, "
             f"**{ratio:.3f}x** relative to that baseline ({result})."
         ]
+        lines += [f"Against the highest-observed-success baseline `{strongest['case']}`, this deployment has "
+                  f"**{strongest['policy_mean_ms'] / row['policy_mean_ms']:.3f}x** replay speed and "
+                  f"**{row['successes']}/100 versus {highest_score}/100** successes."]
     lines += [
         "",
         "These 100-episode success differences are descriptive. They do not establish statistical improvement, and kernel speed alone does not establish retained task success.",

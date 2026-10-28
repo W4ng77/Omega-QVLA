@@ -1,0 +1,92 @@
+{
+  "frozen_by": "latency only, after real-input functional checks; legacy fused rows excluded",
+  "families": {
+    "holoq": {
+      "selected": {
+        "case": "holoq_llm_s4_rotv2",
+        "mode": "head_graph",
+        "root": "results/holoq_object/evaluation_rotation_v2",
+        "mean_ms": 68.87769122763227,
+        "replay_summary": "results/holoq_object/evaluation_rotation_v2/holoq_llm_s4_rotv2/head_graph/replay/summary.json",
+        "source_pack_sha256": "489777f5f2c91df17c6b5a45c5290c7251350090df5ff445432ba97a3b1fe9b5",
+        "code_commit": "98ab54e5fb8216ed5014087aef737b1a53fee96a"
+      },
+      "candidates": [
+        {
+          "case": "holoq_rotv2",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_rotation_v2",
+          "mean_ms": 104.25372971144195,
+          "replay_summary": "results/holoq_object/evaluation_rotation_v2/holoq_rotv2/eager/replay/summary.json",
+          "source_pack_sha256": "470e0da4348aa327d946173c1ead3d98410f01af19d9c408ef13f8352ecb4e24",
+          "code_commit": "3a4cf10c8534fa0b3b833ba197a3b27c75e23a1a"
+        },
+        {
+          "case": "holoq_rotv2",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_rotation_v2",
+          "mean_ms": 73.31667396162327,
+          "replay_summary": "results/holoq_object/evaluation_rotation_v2/holoq_rotv2/head_graph/replay/summary.json",
+          "source_pack_sha256": "470e0da4348aa327d946173c1ead3d98410f01af19d9c408ef13f8352ecb4e24",
+          "code_commit": "3a4cf10c8534fa0b3b833ba197a3b27c75e23a1a"
+        },
+        {
+          "case": "holoq",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 208.09253970122276,
+          "replay_summary": "results/holoq_object/evaluation_v3/holoq/eager/replay/summary.json",
+          "source_pack_sha256": "11e781eb3fabf1ba0a35deca6c862c5319b750bad83599d9ec5d562f9422b320",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "holoq",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_v3",
+          "mean_ms": 85.3633094637189,
+          "replay_summary": "results/holoq_object/evaluation_v3/holoq/head_graph/replay/summary.json",
+          "source_pack_sha256": "11e781eb3fabf1ba0a35deca6c862c5319b750bad83599d9ec5d562f9422b320",
+          "code_commit": "fe4582a8d2671b9291ffeffea289a1260ce0c281"
+        },
+        {
+          "case": "holoq_llm_s4_rotv2",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_rotation_v2",
+          "mean_ms": 104.85622893242787,
+          "replay_summary": "results/holoq_object/evaluation_rotation_v2/holoq_llm_s4_rotv2/eager/replay/summary.json",
+          "source_pack_sha256": "489777f5f2c91df17c6b5a45c5290c7251350090df5ff445432ba97a3b1fe9b5",
+          "code_commit": "3a4cf10c8534fa0b3b833ba197a3b27c75e23a1a"
+        },
+        {
+          "case": "holoq_llm_s4_rotv2",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_rotation_v2",
+          "mean_ms": 68.87769122763227,
+          "replay_summary": "results/holoq_object/evaluation_rotation_v2/holoq_llm_s4_rotv2/head_graph/replay/summary.json",
+          "source_pack_sha256": "489777f5f2c91df17c6b5a45c5290c7251350090df5ff445432ba97a3b1fe9b5",
+          "code_commit": "98ab54e5fb8216ed5014087aef737b1a53fee96a"
+        },
+        {
+          "case": "holoq_llm_s4",
+          "mode": "eager",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 155.34920081379823,
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_llm_s4/eager/replay/summary.json",
+          "source_pack_sha256": "fa4cc35602b044620d420be55e9c6a7b7c811ba17b0b5266afbe438358844120",
+          "code_commit": "ed86797cfeb450e6af1c3fecee334defdee10d2a"
+        },
+        {
+          "case": "holoq_llm_s4",
+          "mode": "head_graph",
+          "root": "results/holoq_object/evaluation_best_s4",
+          "mean_ms": 87.69368496801083,
+          "replay_summary": "results/holoq_object/evaluation_best_s4/holoq_llm_s4/head_graph/replay/summary.json",
+          "source_pack_sha256": "fa4cc35602b044620d420be55e9c6a7b7c811ba17b0b5266afbe438358844120",
+          "code_commit": "ed86797cfeb450e6af1c3fecee334defdee10d2a"
+        }
+      ],
+      "frozen_at": 1793147977.2029436
+    }
+  },
+  "regression": "results/holoq_object/fused_rotation_regression.json"
+}
