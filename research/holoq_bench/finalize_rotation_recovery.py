@@ -18,7 +18,9 @@ def main():
     while True:
         records = [json.loads((r / "queue.json").read_text()) if (r / "queue.json").exists() else {}
                    for r in (primary, extra)]
-        if all(r.get("finished") for r in records):
+        common_path = args.root / "common_logits_confirmed/queue.json"
+        common = json.loads(common_path.read_text()) if common_path.exists() else {}
+        if all(r.get("finished") for r in records) and common.get("finished"):
             break
         time.sleep(15)
     # Let the smoke reuse worker merge the inference peaks before snapshotting.
@@ -76,6 +78,7 @@ def main():
                 shutil.copytree(source / case, merged / "timing_candidates" / case, dirs_exist_ok=True)
     shutil.copytree(extra / "functional_checks", merged / "functional_checks", dirs_exist_ok=True)
     shutil.copytree(extra / "strided_tests", merged / "strided_tests", dirs_exist_ok=True)
+    shutil.copytree(args.root / "common_logits_confirmed", merged / "common_logits", dirs_exist_ok=True)
     publish = Path("experiment_results/holoq_object_20261027")
     commands = [
         ["summarize", "--runs", str(merged), "--deployments", str(args.root / "deployments"), "--output", str(merged / "report")],
