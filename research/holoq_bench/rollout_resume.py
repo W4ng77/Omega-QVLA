@@ -24,8 +24,16 @@ def validate_resume_metadata(directory: Path, current):
     from research.holoq_bench.reuse_smoke import CORE
 
     checked = list(CORE) + ["research/holoq_bench/deployment.py"]
-    if current["method"].endswith("_rotv2"):
+    if current["method"].endswith("_rotv2") or current["method"].startswith("holoq_paper"):
         checked.append("research/holoq_bench/fused_rotation_strided.py")
+    if current["method"].startswith("holoq_release"):
+        checked.append("research/holoq_bench/released_grid.py")
+    if current.get("common_optimizations"):
+        checked.append("research/holoq_bench/common_logits.py")
+    if current["method"].startswith("accuracy_"):
+        checked += ["research/holoq_bench/accuracy_policy.py", "research/holoq_bench/check_canonical_math.py",
+                    "research/holoq_bench/released_grid.py", "gr00t/quantization/gptq_layers.py",
+                    "gr00t/quantization/duquant_preprocess.py"]
     for key in checked:
         if old["source_files_sha256"].get(key) != current["source_files_sha256"].get(key):
             raise RuntimeError(f"Resume math source changed: {key}; use a new output directory")

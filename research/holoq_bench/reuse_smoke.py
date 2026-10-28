@@ -73,6 +73,10 @@ def main():
             checked = CORE + (["research/holoq_bench/fused_rotation.py"] if "fusedrot" in case else [])
             if case.endswith("_rotv2") or case.startswith("holoq_paper"):
                 checked += ["research/holoq_bench/fused_rotation_strided.py"]
+            if case.startswith("holoq_release"):
+                checked += ["research/holoq_bench/released_grid.py"]
+            if d.get("common_optimizations"):
+                checked += ["research/holoq_bench/common_logits.py"]
             if "nunchaku" in case:
                 checked += [
                     "research/holoq_bench/nunchaku_runtime.py",
