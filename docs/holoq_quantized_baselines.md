@@ -514,3 +514,40 @@ layers while using the fused rotation. `extend_pilot.py` preserves the initial
 nine-candidate selection, evaluates these two missing combinations, and updates
 the latency-only manifest before any selected-backend accuracy run. No native
 INT4 arithmetic is assumed faster merely because of its nominal bit width.
+
+
+### Stride-correct rotation recovery (supersedes legacy fused selection)
+
+The legacy `triton_block64` backend is invalid: the real serialized output
+matrices have stride `(4096,1,64)`, while that kernel hardcoded `(4096,64,1)`.
+It reads the transpose of the intended output rotation. Its complete HoloQ
+Object evaluation failed 0/100. Earlier nine synthetic tests covered contiguous
+matrices only; eager-versus-Graph checks compared the same wrong operation.
+The published 80.13/74.19ms and the associated backend selection are withdrawn.
+Failed packs, source, command hashes and all 100 episode records are preserved.
+Nonfused packed baselines are unaffected.
+
+`fused_rotation_strided.py` is a separate implementation with an explicit
+`triton_block64_strided_v2` metadata tag; new packs are in `packs_v7`, labels
+end in `_rotv2`, and measurements go into `evaluation_rotation_v2`. It passes
+all three actual matrix strides as compile-time parameters to address R.
+It does not change R coefficients, weight codes, scales or per-step tables.
+
+`check_rotation_policy.py` starts from each immutable nonfused packed bundle.
+It compares ten full-policy outputs before/after installation and every real
+projection call against the original packed implementation on the same input,
+including all denoising steps. It also measures the old error on an actual
+transposed matrix. This is an accuracy-only check; no diagnostic latency is a
+speed baseline and no dense weight reconstruction is used. Unit tests now
+cover both contiguous and transposed matrices with permutations and Graphs.
+A correctness gate is required before a candidate can be timed or selected.
+The subsequent independent task evaluations remain necessary: small numerical
+error alone cannot guarantee rollout equivalence.
+
+Run `bash scripts/run_holoq_rotation_v2_recovery.sh`. The resumable controller
+performs stride tests, real-policy checks, immutable exports, eager/Graph
+preflights and full-policy replay; it freezes each family's fastest valid
+candidate without task scores and runs smoke then 100 episodes. Unfused
+candidates remain eligible. Legacy fused timings and episodes are excluded
+from selection and never reused. Heavy export and GPU checks acquire the
+same experiment lock; measured policies stay exclusive on GPU0 with GPU1 idle.
