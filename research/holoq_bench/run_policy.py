@@ -55,11 +55,11 @@ def main():
     p.add_argument("--warmup", type=int, default=32)
     p.add_argument("--repeats", type=int, default=3)
     args = p.parse_args()
-    # Correctness-only processes may overlap across cards. A measured full
-    # policy owns this host-wide experiment lock exclusively, so another
-    # preflight/rollout cannot interfere even on the second GPU.
+    # This experiment has multiple independent controllers but one GPU0.
+    # Serialize smoke/compilation as well: two large packed models must not
+    # race for memory when controllers reach their smoke stage together.
     timing_guard = open("/tmp/holoq-vla-policy-timing.lock", "a")
-    fcntl.flock(timing_guard, fcntl.LOCK_SH if args.stage == "smoke" else fcntl.LOCK_EX)
+    fcntl.flock(timing_guard, fcntl.LOCK_EX)
     args.output.mkdir(parents=True, exist_ok=True)
     args.deployment = args.deployment.resolve()
     os.environ.update(HOLOQ_DEPLOY=str(args.deployment), HOLOQ_COMPUTE_DTYPE="float16")

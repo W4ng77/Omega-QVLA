@@ -31,6 +31,7 @@ def main():
     args = p.parse_args()
     lock = open("/tmp/holoq-vla-policy-timing.lock", "a")
     fcntl.flock(lock, fcntl.LOCK_EX)
+    measurement_started = time.time()
     args.output.mkdir(parents=True, exist_ok=True)
     assert not (args.output / "result.json").exists(), "Retain existing result; use a new directory"
     os.environ.update(HOLOQ_DEPLOY=str(args.deployment.resolve()), HOLOQ_COMPUTE_DTYPE="float16")
@@ -74,6 +75,7 @@ def main():
 
     def timed():
         values = []
+        phase_started = time.time()
         torch.cuda.reset_peak_memory_stats()
         for repeat in range(3):
             for sample in observations:
@@ -85,7 +87,7 @@ def main():
                 values.append({"repeat": repeat, "task_id": sample["task_id"], "init_index": sample["init_index"],
                                "ms": (time.perf_counter() - start) * 1000})
                 assert all(np.isfinite(v).all() for v in action.values())
-        return stats([row["ms"] for row in values]), memory(), values
+        return stats([row["ms"] for row in values]), memory(), values, {"started": phase_started, "finished": time.time()}
 
     before_features, before_actions = features_and_actions()
     # Some packed floating-MMA backends have pre-existing numerical variance.
@@ -96,13 +98,13 @@ def main():
         num = sum(np.square(a[k].astype(float) - b[k].astype(float)).sum() for k in a)
         den = sum(np.square(a[k].astype(float)).sum() for k in a)
         self_errors.append(float(num / max(den, 1e-30)))
-    before, before_memory, before_calls = timed()
+    before, before_memory, before_calls, before_window = timed()
     state = install(policy)
     for i in range(32):
         seed(2000 + i)
         policy.get_action(observations[(i % 10) * 10]["obs"])
     after_features, after_actions = features_and_actions()
-    after, after_memory, after_calls = timed()
+    after, after_memory, after_calls, after_window = timed()
     differences = []
     exact = 0
     for sample, a, b in zip(observations, before_actions, after_actions):
@@ -113,6 +115,8 @@ def main():
         differences.append({"task_id": sample["task_id"], "init_index": sample["init_index"],
                             "exact": equal, "nmse": float(num / max(den, 1e-30))})
     output = {"command": sys.argv, "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+              "measurement_started": measurement_started, "measurement_finished": time.time(),
+              "timing_windows": {"before": before_window, "after": after_window},
               "benchmark_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               "source_pack_sha256": json.loads((args.deployment / "deployment.json").read_text())["source_pack_sha256"],
               "optimization": state["name"], "source_sha256": hashlib.sha256(Path(__file__).with_name("common_logits.py").read_bytes()).hexdigest(),
