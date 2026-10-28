@@ -1,7 +1,7 @@
 {
   "completed_cohorts": [
     {
-      "case": "evaluation_v3",
+      "case": "awq_qwen_full",
       "cohort": "evaluation_v3",
       "successes": 92,
       "episodes": 100,
@@ -11,7 +11,7 @@
       "code_commit": "98ab54e5fb8216ed5014087aef737b1a53fee96a"
     },
     {
-      "case": "evaluation_v3",
+      "case": "awq_qwen_selective",
       "cohort": "evaluation_v3",
       "successes": 93,
       "episodes": 100,
@@ -21,7 +21,7 @@
       "code_commit": "4d0f49d4155cb8bed20b00c56117069b76281530"
     },
     {
-      "case": "evaluation_v3",
+      "case": "gptq_full",
       "cohort": "evaluation_v3",
       "successes": 98,
       "episodes": 100,
@@ -31,7 +31,7 @@
       "code_commit": "98ab54e5fb8216ed5014087aef737b1a53fee96a"
     },
     {
-      "case": "evaluation_v3",
+      "case": "gptq_selective",
       "cohort": "evaluation_v3",
       "successes": 93,
       "episodes": 100,
@@ -41,17 +41,17 @@
       "code_commit": "b27a2343e67de65bf33f0c736811e034ef7906dd"
     },
     {
-      "case": "evaluation_v3",
+      "case": "holoq",
       "cohort": "evaluation_v3",
       "successes": 72,
       "episodes": 100,
-      "status": "valid_quantized_baseline",
+      "status": "valid_two_sided_reconstruction_control_NOT_release_or_paper_proof",
       "source_pack_sha256": "11e781eb3fabf1ba0a35deca6c862c5319b750bad83599d9ec5d562f9422b320",
       "summary": "results/holoq_object/evaluation_v3/holoq/head_graph/rollout/summary.json",
       "code_commit": "52ad966d50bbf771e703ce91fb6dc6c09b8f14ef"
     },
     {
-      "case": "evaluation_v3",
+      "case": "omniquant_selective",
       "cohort": "evaluation_v3",
       "successes": 88,
       "episodes": 100,
@@ -61,7 +61,7 @@
       "code_commit": "8f2e8b0eefc815cf872a57cee7101c073df0189a"
     },
     {
-      "case": "evaluation_v3",
+      "case": "smoothquant_a4",
       "cohort": "evaluation_v3",
       "successes": 53,
       "episodes": 100,
@@ -71,7 +71,7 @@
       "code_commit": "bc4efb06a4be2f2e628b00698d88b5b31797c9e6"
     },
     {
-      "case": "evaluation_v3",
+      "case": "smoothquant_a8",
       "cohort": "evaluation_v3",
       "successes": 88,
       "episodes": 100,
@@ -81,27 +81,27 @@
       "code_commit": "71f558a6140818d4c47bad6df527d45970ef15ba"
     },
     {
-      "case": "evaluation_rotation_v2",
+      "case": "holoq_llm_s4_rotv2",
       "cohort": "evaluation_rotation_v2",
       "successes": 70,
       "episodes": 100,
-      "status": "valid_quantized_baseline",
+      "status": "valid_two_sided_reconstruction_control_NOT_release_or_paper_proof",
       "source_pack_sha256": "489777f5f2c91df17c6b5a45c5290c7251350090df5ff445432ba97a3b1fe9b5",
       "summary": "results/holoq_object/evaluation_rotation_v2/holoq_llm_s4_rotv2/head_graph/rollout/summary.json",
       "code_commit": "98ab54e5fb8216ed5014087aef737b1a53fee96a"
     },
     {
-      "case": "evaluation_rotation_v2",
+      "case": "holoq_step_weight_llm_s4_rotv2",
       "cohort": "evaluation_rotation_v2",
       "successes": 66,
       "episodes": 100,
-      "status": "valid_quantized_baseline",
+      "status": "valid_two_sided_reconstruction_control_NOT_release_or_paper_proof",
       "source_pack_sha256": "04adc34a17eb4512db820a8cf1ca870f494f9b6efa34518747a462447582e777",
       "summary": "results/holoq_object/evaluation_rotation_v2/holoq_step_weight_llm_s4_rotv2/head_graph/rollout/summary.json",
       "code_commit": "3599f60cacb207594a88bfbe643f7dfed84f20fb"
     },
     {
-      "case": "evaluation_rotation_v2",
+      "case": "quantvla_selective_a4_atm_g128_rotv2",
       "cohort": "evaluation_rotation_v2",
       "successes": 74,
       "episodes": 100,
@@ -111,7 +111,7 @@
       "code_commit": "8671966f0a39db02eb65d21753387eadc34ae538"
     },
     {
-      "case": "evaluation_rotation_v2",
+      "case": "quantvla_selective_a8_atm_g128_rotv2",
       "cohort": "evaluation_rotation_v2",
       "successes": 76,
       "episodes": 100,
