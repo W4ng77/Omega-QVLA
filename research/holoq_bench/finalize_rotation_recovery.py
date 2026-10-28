@@ -81,6 +81,7 @@ def main():
     shutil.copytree(extra / "functional_checks", merged / "functional_checks", dirs_exist_ok=True)
     shutil.copytree(paper / "functional_checks", merged / "paper_functional_checks", dirs_exist_ok=True)
     shutil.copytree(paper / "canonical_math", merged / "paper_canonical_math", dirs_exist_ok=True)
+    shutil.copytree(paper / "canonical_math_candidates", merged / "paper_canonical_math_candidates", dirs_exist_ok=True)
     shutil.copy2(args.root / "paper_cfg_build/configuration.json", merged / "paper_configuration.json")
     shutil.copytree(extra / "strided_tests", merged / "strided_tests", dirs_exist_ok=True)
     shutil.copytree(args.root / "common_logits_confirmed", merged / "common_logits", dirs_exist_ok=True)

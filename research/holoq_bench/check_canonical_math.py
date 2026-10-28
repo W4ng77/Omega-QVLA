@@ -35,7 +35,17 @@ class DenseCanonicalOracle(nn.Module):
         bias = getattr(src, "_fused_bias", src.bias)
         if rin.numel():
             x = apply_blocks(x, rin, src.perm)
-        if src.act_mode == "token":
+        if src.backend == "native_s4":
+            step = get_current_dit_step()
+            assert step is not None and 0 <= step < 8
+            # Independently unpack the actual converted bank and compute its
+            # integer-grid formula. Never compare conversion to original W.
+            p, s, a = src.integer.selected(step)
+            y = src.integer.reference(x, p, s, a).half()
+            if rout.numel():
+                y = apply_blocks(y, rout)
+            return y + bias if bias.numel() else y
+        if getattr(src, "act_mode", "token") == "token":
             scale = (x.float().abs().amax(-1, keepdim=True).clamp_min(1e-5) / 7).half().float()
         else:
             step = get_current_dit_step()

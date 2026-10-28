@@ -90,6 +90,10 @@ def main():
                 validation = json.loads(oracle.read_text())
                 assert validation["passed"] and validation["comparisons"] == 8520
                 shutil.copy2(oracle, root / "deployments" / case / "functional_validation.json")
+                if case != "holoq_paper":
+                    math = out / "canonical_math_candidates" / case
+                    command([sys.executable, "-u", "-m", "research.holoq_bench.check_canonical_math", "--deployment", str(root / "deployments" / case), "--cache", str(root / "paper_cfg_build/layer_cache"), "--output", str(math / "result.json")], math, owns_lock=True)
+                    assert not json.loads((math / "result.json").read_text())["review_required"]
                 if case not in status["candidate_cases"]:
                     status["candidate_cases"].append(case)
                 if case not in status["valid_cases"]:
