@@ -1,0 +1,356 @@
+{
+  "scope": "Public code and scalar evidence summaries only. Raw traces, observations, activation/action tensors, model binaries and raw archive are NOT included.",
+  "raw_archive_local_path": "/home/xinyu/holoq-vla-pi05-table3/experiment_results/pi05_table3_414_20261028",
+  "measurement_code_snapshot": "78cbcdf",
+  "prepared_code_snapshot": "266e35ee551d9e10b9dcdb25865afc21e74bb5aa",
+  "protocol": {
+    "steps": 8,
+    "quantized_layers": 414,
+    "scope": {
+      "vision": 162,
+      "language": 126,
+      "expert": 126
+    },
+    "batch": 1,
+    "action_horizon": 10,
+    "warmup": 32,
+    "sample_indices": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "noise_seed": 42,
+    "calibration_caveat": "10 initial observations, not10 trajectories; no success-rate claim"
+  },
+  "hardware": {
+    "GPU": "NVIDIA RTX4080SUPER16GB",
+    "architecture": "SM89",
+    "GPU1": "No competing load in recorded measurements",
+    "timing_boundary": "Complete synchronized policy.infer including preprocessing,H2D,all414 selected linears,8denoise steps,online transforms,packing,GEMM,D2H,output transforms; excludes RPC/simulator/cold capture"
+  },
+  "main_deployment_rows": [
+    {
+      "Method": "FP16 control",
+      "W/A": "16/16",
+      "Actual quantized scope": "No quantized targets; sensitiveFP32 params retained",
+      "Success rate": "not measured",
+      "Policy mean/p50/p95 ms": "106.83 / 106.38 / 110.94",
+      "Policy calls/s": "9.361",
+      "Peak allocated/reserved GB": "7.514 / 8.338",
+      "Complete model files GB": "7.234",
+      "GPTQ ms / this ms": "1.021",
+      "QServe ms / this ms": "0.814"
+    },
+    {
+      "Method": "GPTQ / official AWQ BF16-FP32 backend",
+      "W/A": "4/16",
+      "Actual quantized scope": "126language+126expert; visionBF16; Wgroup128; BF16 scales fixed before GPTQ",
+      "Success rate": "not measured",
+      "Policy mean/p50/p95 ms": "109.09 / 108.84 / 111.00",
+      "Policy calls/s": "9.167",
+      "Peak allocated/reserved GB": "4.147 / 4.446",
+      "Complete model files GB": "3.866",
+      "GPTQ ms / this ms": "1.000",
+      "QServe ms / this ms": "0.797"
+    },
+    {
+      "Method": "SmoothQuant-W4 extension / QServe",
+      "W/A": "4/8",
+      "Actual quantized scope": "162vision+126language+126expert; per-outputW4",
+      "Success rate": "not measured",
+      "Policy mean/p50/p95 ms": "86.99 / 88.27 / 89.99",
+      "Policy calls/s": "11.495",
+      "Peak allocated/reserved GB": "3.502 / 3.790",
+      "Complete model files GB": "3.229",
+      "GPTQ ms / this ms": "1.254",
+      "QServe ms / this ms": "1.000"
+    },
+    {
+      "Method": "HoloQ definition8 core + released vision RTN",
+      "W/A": "4/4",
+      "Actual quantized scope": "162visionRTN+126language+126expert; signed15core",
+      "Success rate": "not measured",
+      "Policy mean/p50/p95 ms": "309.58 / 308.99 / 312.87",
+      "Policy calls/s": "3.230",
+      "Peak allocated/reserved GB": "3.712 / 4.245",
+      "Complete model files GB": "3.441",
+      "GPTQ ms / this ms": "0.352",
+      "QServe ms / this ms": "0.281"
+    }
+  ],
+  "oracle_checks": {
+    "HoloQ": {
+      "count": 1134,
+      "max_local_nmse": 9.93927201746081e-07,
+      "max_final_action_nmse": 0.00491390433426396,
+      "max_final_action_absolute_error": 0.10379798618823288,
+      "guard_action_nmse": 0.01
+    },
+    "GPTQ_BF16_AWQ": {
+      "count": 1134,
+      "max_local_nmse": 3.882877717842348e-05,
+      "limit_nmse": 0.0001,
+      "passed": true
+    },
+    "QServe": {
+      "count": 1620,
+      "max_local_nmse": 1.9153845176589357e-10,
+      "limit_nmse": 0.0001,
+      "passed": true
+    }
+  },
+  "profile_summary": {
+    "source": "raw Chrome GPU activities + launch correlation IDs + enclosing CPU scopes",
+    "profiled_calls": 5,
+    "validated_target_counts": {
+      "_vision_gemm": 2430,
+      "_channel_a4w4": 5040,
+      "integer_subbyteILi4ELb1E": 630
+    },
+    "missing_launch_correlations": {},
+    "groups": {
+      "vision/GEMM_with_W_decode_scales": {
+        "calls_per_policy": 486.0,
+        "gpu_ms_per_policy": 75.6688287999997
+      },
+      "expert/GEMM_with_W_decode_scales": {
+        "calls_per_policy": 1008.0,
+        "gpu_ms_per_policy": 72.83863959999992
+      },
+      "language/A4_quantize_pack_scale_epilogue_or_bias": {
+        "calls_per_policy": 1890.0,
+        "gpu_ms_per_policy": 36.16977940000029
+      },
+      "language/data_copy_dtype_contiguous": {
+        "calls_per_policy": 1248.0,
+        "gpu_ms_per_policy": 27.699272399999963
+      },
+      "expert/other_compute": {
+        "calls_per_policy": 6032.0,
+        "gpu_ms_per_policy": 17.082508600000768
+      },
+      "expert/data_copy_dtype_contiguous": {
+        "calls_per_policy": 8272.0,
+        "gpu_ms_per_policy": 13.671017600000157
+      },
+      "vision/vision_A4_quantize_prepare": {
+        "calls_per_policy": 7290.0,
+        "gpu_ms_per_policy": 13.465235399999601
+      },
+      "language/other_compute": {
+        "calls_per_policy": 608.0,
+        "gpu_ms_per_policy": 8.866346200000006
+      },
+      "language/GEMM_with_W_decode_scales": {
+        "calls_per_policy": 126.0,
+        "gpu_ms_per_policy": 8.085423000000016
+      },
+      "expert/A4_quantize_pack_scale_epilogue_or_bias": {
+        "calls_per_policy": 7056.0,
+        "gpu_ms_per_policy": 7.3784523999980784
+      },
+      "language/input_permutation": {
+        "calls_per_policy": 126.0,
+        "gpu_ms_per_policy": 6.740129400000001
+      },
+      "language/rotation_input_or_output": {
+        "calls_per_policy": 126.0,
+        "gpu_ms_per_policy": 6.692089799999999
+      },
+      "vision/data_copy_dtype_contiguous": {
+        "calls_per_policy": 1302.0,
+        "gpu_ms_per_policy": 3.2771847999999655
+      },
+      "expert/rotation_input_or_output": {
+        "calls_per_policy": 1008.0,
+        "gpu_ms_per_policy": 2.549713000000043
+      },
+      "vision/other_compute": {
+        "calls_per_policy": 588.0,
+        "gpu_ms_per_policy": 2.3176417999999943
+      },
+      "expert/input_permutation": {
+        "calls_per_policy": 1008.0,
+        "gpu_ms_per_policy": 1.8400765999999982
+      },
+      "other/other_compute": {
+        "calls_per_policy": 374.0,
+        "gpu_ms_per_policy": 0.8272924000000045
+      },
+      "other/data_copy_dtype_contiguous": {
+        "calls_per_policy": 57.0,
+        "gpu_ms_per_policy": 0.10383500000000005
+      }
+    },
+    "GPU_work_ms_per_policy": 305.27346619995274,
+    "GPU_busy_union_ms_per_policy": 305.2746228515625,
+    "profiled_CPU_policy_ms_mean": 526.3594740000001,
+    "host_sync_call_ms_per_policy": 0.0579802,
+    "note": "Profiler wall includes instrumentation overhead. Work sums may overlap. Host sync includes waiting for GPU work and must not be added to GPU time. CPU/GPU totals from the rejected FunctionEvent association are not used."
+  },
+  "nsight_summary": {
+    "profiled_calls": 5,
+    "target_counts": {
+      "_vision_gemm": 2430,
+      "_channel_a4w4": 5040,
+      "nativeS4": 630
+    },
+    "complete_policy_NVTX_mean_ms": 325.780779,
+    "GPU_kernel_work_ms_per_policy": 298.0787294,
+    "GPU_busy_union_ms_per_policy": 298.1208792,
+    "GPU_copy_work_ms_per_policy": 0.0421498,
+    "per_call_windows": [
+      {
+        "CPU_policy_ms": 330.308092,
+        "kernel_work_ms": 297.957624,
+        "kernel_span_ms": 329.212913,
+        "gaps_between_kernels_ms": 31.255289,
+        "before_first_kernel_ms": 0.745192,
+        "after_last_kernel_ms": 0.349987,
+        "Graph_node_kernel_work_ms": 297.941145,
+        "Graph_node_span_ms": 299.404523,
+        "gaps_between_Graph_node_kernels_ms": 1.463378,
+        "before_first_Graph_node_ms": 30.553582
+      },
+      {
+        "CPU_policy_ms": 328.890184,
+        "kernel_work_ms": 298.073494,
+        "kernel_span_ms": 327.334555,
+        "gaps_between_kernels_ms": 29.261061,
+        "before_first_kernel_ms": 0.529136,
+        "after_last_kernel_ms": 1.026493,
+        "Graph_node_kernel_work_ms": 298.056981,
+        "Graph_node_span_ms": 299.522797,
+        "gaps_between_Graph_node_kernels_ms": 1.465816,
+        "before_first_Graph_node_ms": 28.340894
+      },
+      {
+        "CPU_policy_ms": 327.724722,
+        "kernel_work_ms": 298.065327,
+        "kernel_span_ms": 326.212174,
+        "gaps_between_kernels_ms": 28.146847,
+        "before_first_kernel_ms": 0.550662,
+        "after_last_kernel_ms": 0.961886,
+        "Graph_node_kernel_work_ms": 298.048781,
+        "Graph_node_span_ms": 299.510669,
+        "gaps_between_Graph_node_kernels_ms": 1.461888,
+        "before_first_Graph_node_ms": 27.252167
+      },
+      {
+        "CPU_policy_ms": 317.163942,
+        "kernel_work_ms": 298.080349,
+        "kernel_span_ms": 315.503853,
+        "gaps_between_kernels_ms": 17.423504,
+        "before_first_kernel_ms": 0.529618,
+        "after_last_kernel_ms": 1.130471,
+        "Graph_node_kernel_work_ms": 298.063775,
+        "Graph_node_span_ms": 299.530862,
+        "gaps_between_Graph_node_kernels_ms": 1.467087,
+        "before_first_Graph_node_ms": 16.502609
+      },
+      {
+        "CPU_policy_ms": 324.816955,
+        "kernel_work_ms": 298.216853,
+        "kernel_span_ms": 323.907058,
+        "gaps_between_kernels_ms": 25.690205,
+        "before_first_kernel_ms": 0.547691,
+        "after_last_kernel_ms": 0.362206,
+        "Graph_node_kernel_work_ms": 298.200277,
+        "Graph_node_span_ms": 299.668783,
+        "gaps_between_Graph_node_kernels_ms": 1.468506,
+        "before_first_Graph_node_ms": 24.785966
+      }
+    ],
+    "note": "Host cudaMemcpyAsync duration includes blocking D2H completion while GPU runs; it is not device copy work. Do not sum that duration with GPU kernel work. NVTX/profiling latency is diagnostic, formal latency is in report.json."
+  },
+  "storage_summary": {
+    "original414_target_bytes": 5408612352,
+    "packed414_target_including_metadata_bytes": 1615668192,
+    "target_saving_fraction": 0.7012786114348615,
+    "original_complete_tensor_bytes": 7233515040,
+    "complete_deployed_tensor_bytes": 3440570880,
+    "complete_tensor_saving_fraction": 0.5243569881344989,
+    "source_model_files_bytes": 7233652471
+  },
+  "complete_deployment_file_bytes": 3441209843,
+  "head_memory_summary": {
+    "quantized126_with_metadata_bytes": 216649728,
+    "active_static_original_bytes": 860196928,
+    "active_static_deployed_bytes": 453992512,
+    "active_resident_registered_tensor_bytes": 691335552,
+    "unused_expert_vocab_weight_bytes_retained_in_all_methods": 526647296,
+    "incremental_head_peak_bytes": 1979904
+  },
+  "source_revisions": {
+    "gptq": {
+      "commit": "2d65066eeb06a5c9ff5184d8cebdf33662c67faf",
+      "url": "https://github.com/IST-DASLab/gptq.git",
+      "dirty": ""
+    },
+    "marlin": {
+      "commit": "1f25790bdd49fba53106164a24666dade68d7c90",
+      "url": "https://github.com/IST-DASLab/marlin.git",
+      "dirty": ""
+    },
+    "omniserve": {
+      "commit": "02b2925aa6fa3b92b06316a1524b7f38922cd9c8",
+      "url": "https://github.com/mit-han-lab/omniserve.git",
+      "dirty": ""
+    },
+    "QuaRot": {
+      "commit": "5008669b08c1f11f9b64d52d16fddd47ca754c5a",
+      "url": "https://github.com/spcl/QuaRot.git",
+      "dirty": ""
+    },
+    "llm-awq": {
+      "commit": "d6e797a42b9ef7778de8ee2352116e0f48a78d61",
+      "url": "https://github.com/mit-han-lab/llm-awq.git",
+      "dirty": ""
+    },
+    "QuantVLA": {
+      "commit": "9e435e56aac4e743526557e5d9ba6e4fddd6ccca",
+      "url": "https://github.com/AIoT-MLSys-Lab/QuantVLA.git",
+      "dirty": ""
+    },
+    "QVLA": {
+      "commit": "26cc4821a3be4c003d09d3c7997b38db2a347982",
+      "url": "https://github.com/AutoLab-SAI-SJTU/QVLA.git",
+      "dirty": ""
+    },
+    "ActQuant": {
+      "commit": "b64791125070652fe6b554e244fe809c79ef5246",
+      "url": "https://github.com/arashakb/ActQuant.git",
+      "dirty": ""
+    },
+    "openpi": {
+      "commit": "15a9616a00943ada6c20a0f158e3adb39df2ccac"
+    }
+  },
+  "packages": {
+    "torch": "2.7.1",
+    "triton": "3.3.1",
+    "transformers": "4.53.2",
+    "safetensors": "0.5.3",
+    "numpy": "1.26.4",
+    "jax": "0.5.3",
+    "flax": "0.10.2",
+    "sentencepiece": "0.2.0"
+  },
+  "torch_runtime_version": "2.7.1+cu126",
+  "torch_build_cuda": "12.6",
+  "raw_record_sha256": {
+    "definition8_measurement/report.json": "af2f1c577f88d39b7dd86c3300b0f243f21d9f0aca92321ed97ebd583a81b89b",
+    "gptq_awq_bf16_full_policy_oracle.json": "ad068423573c2d230c069e51f482e8d7c1cfa1e1a5635c7eacb2273c91b91f3f",
+    "qserve_full_policy_oracle.json": "d0f8b53ed6815dc845f4dcd0514ac6d0df4ad4117dfdbe095565f68602fd043a",
+    "definition8_profile/verified_eager_attribution.json": "fa29eed4bbaeffadd3eae612084aed3ff6f76bb71f3ba85fdadf8c8475a99d2a",
+    "nsight_definition8_verified_summary.json": "128f083189660d0df0fdf371b52c8df30fffb536a081c85ce09bccc573b4cae5"
+  },
+  "task_success": "Not evaluated in this packet; paper success rates are not paired with these new runtimes."
+}

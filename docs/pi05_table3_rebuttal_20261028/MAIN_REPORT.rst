@@ -1,6 +1,8 @@
 HoloQ-VLA: Pi0.5 Table 3 deployment evidence
 =========================================
 
+Public release scope: code, scripts and scalar result summaries. The full raw archive is retained locally at /home/xinyu/holoq-vla-pi05-table3/experiment_results/pi05_table3_414_20261028 and is not published in this branch. Evidence paths naming raw traces/observations or binary outputs identify local retained records. Public numerical verification summaries are in EVIDENCE_SUMMARY.json.
+
 The measured 414-layer deployment reduces storage and warmed inference memory relative to the high-precision control, but is slower than both validated packed quantized controls. HoloQ-VLA and Omega-QVLA are the same method.
 
 This packet answers the supplied kernel, scale, timing, storage, memory and coverage questions. It does not establish a new LIBERO success rate, real-rollout latency or historical H100 execution path. Those claims are explicitly left unsupported rather than filled with paper scores.
@@ -100,6 +102,6 @@ Deliverables and limits
 * ``main_results.csv``: all28 Eager/Graph rows, including separately named historical ten-step cases. The primary four-row table uses only eight-step validated deployments.
 * ``AUDIT_DECISIONS.txt``: failures, superseded results and reuse decisions. No failed record is removed.
 * ``REPRODUCE.txt`` and the independent branch scripts: commands, environment and required inputs.
-* ``experiment_results/pi05_table3_414_20261028``: raw reports, per-call JSONL, provenance, pack/checkpoint identifiers, compressed logs/traces, original observation source and Nsight reports. Large checkpoint/pack files stay local with exact SHA256 identifiers and rebuild commands.
+* Local-only ``/home/xinyu/holoq-vla-pi05-table3/experiment_results/pi05_table3_414_20261028``: raw reports, per-call JSONL, provenance, pack/checkpoint identifiers, compressed logs/traces, original observation source and Nsight reports. Large checkpoint/pack files stay local with exact SHA256 identifiers and rebuild commands.
 
 No new task-success scores, real-rollout timings or original H100 kernel traces are claimed. This packet is sufficient to answer the supplied execution/resource questions by providing measurements and correcting unsupported claims; it is not evidence that the newly compiled deployment reproduces the paper's success rates.

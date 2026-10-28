@@ -1,3 +1,5 @@
+Public release scope: code, scripts and scalar result summaries. The full raw archive is retained locally at /home/xinyu/holoq-vla-pi05-table3/experiment_results/pi05_table3_414_20261028 and is not published in this branch. Evidence paths naming raw traces/observations or binary outputs identify local retained records. Public numerical verification summaries are in EVIDENCE_SUMMARY.json.
+
 Audit decisions and excluded evidence — originals retained
 
 1. GR00T180 timing is a separate model/scope and does not support Pi0.5Table3. Prior70/72 reconstructions are not paper reproduction.

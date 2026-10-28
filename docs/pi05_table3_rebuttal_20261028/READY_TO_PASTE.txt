@@ -10,4 +10,4 @@ The 414 target tensors require 1.616 GB including scales, rotations and permutat
 
 These are fixed-input deployment measurements using ten initial observations, not the paper's ten-trajectory calibration or scored rollouts. We do not attach submitted success rates to these kernels or claim exact historical H100/accuracy reproduction.
 
-Evidence: DEPLOYMENT_MAIN_TABLE.csv; kernel_execution.csv; method_alignment.csv; profile_breakdown.csv; main_results.csv; the raw oracle/trace/timing records in experiment_results/pi05_table3_414_20261028.
+Evidence: DEPLOYMENT_MAIN_TABLE.csv; kernel_execution.csv; method_alignment.csv; profile_breakdown.csv; main_results.csv; EVIDENCE_SUMMARY.json. Detailed raw records are retained locally and are not part of this public release.

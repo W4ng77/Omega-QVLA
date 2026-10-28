@@ -1,3 +1,5 @@
+Public release scope: code, scripts and scalar result summaries. The full raw archive is retained locally at /home/xinyu/holoq-vla-pi05-table3/experiment_results/pi05_table3_414_20261028 and is not published in this branch. Evidence paths naming raw traces/observations or binary outputs identify local retained records. Public numerical verification summaries are in EVIDENCE_SUMMARY.json.
+
 Reproduction and evidence navigation
 
 Use an independent fresh checkout/results tree. Measurement scripts deliberately
@@ -26,7 +28,7 @@ Required large inputs, exact SHA256 and all final pack IDs:
   MODEL_IDENTIFIERS.json
 The original checkpoint and released vision pack remain local; model binaries
 and per-layer teacher activation caches are not put into Git. The immutable
-original observation source is archived as source_observations.pt.gz with its
+original observation source is archived locally (not publicly) as source_observations.pt.gz with its
 original SHA256. Ten Object inputs are indices10..19; these are initial
 observations, not ten trajectories or held-out scored episodes. Restore only
 into a missing input path and verify SHA256; do not overwrite an existing pack.

@@ -1,3 +1,5 @@
+Public release scope: code, scripts and scalar result summaries. The full raw archive is retained locally at /home/xinyu/holoq-vla-pi05-table3/experiment_results/pi05_table3_414_20261028 and is not published in this branch. Evidence paths naming raw traces/observations or binary outputs identify local retained records. Public numerical verification summaries are in EVIDENCE_SUMMARY.json.
+
 Main table protocol and limits
 
 All four primary rows are8-step full policy replay with common sampler CUDA Graph, not nakedGEMM. No new scored episodes: success is deliberately blank. Ratios above1 mean faster than the corresponding baseline; HoloQ ratios below1 mean slower. GPTQ uses252 targets,visionBF16,group128,BF16scales fixed before reconstruction and officialAWQ BF16/FP32MMA. SmoothQuant-W4/QServe uses414targets,A8 and FP16scales; it is not QuantVLA. HoloQ uses414targets with signed15core plus released visionRTN. None are claimed to be identical quantization-accuracy settings.
