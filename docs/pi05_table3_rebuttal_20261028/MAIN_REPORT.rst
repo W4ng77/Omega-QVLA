@@ -1,6 +1,8 @@
 HoloQ-VLA: Pi0.5 Table 3 deployment evidence
 =========================================
 
+Table 3 clarification: the reported W4A8 QuantVLA row has108 quantized layers; our414-target QServe execution control is not that method/configuration. QVLA and ActQuant288-target latency results are not measured. The current table is an engineering deployment comparison,not a reproduction of all Table3 baselines. See TABLE3_SCOPE_CLARIFICATION.txt and TABLE3_BUDGET_CHECK.csv for the common storage universe and explicitly hypothetical budget matches.
+
 Public release scope: code, scripts and scalar result summaries. The full raw archive is retained locally at /home/xinyu/holoq-vla-pi05-table3/experiment_results/pi05_table3_414_20261028 and is not published in this branch. Evidence paths naming raw traces/observations or binary outputs identify local retained records. Public numerical verification summaries are in EVIDENCE_SUMMARY.json.
 
 The measured 414-layer deployment reduces storage and warmed inference memory relative to the high-precision control, but is slower than both validated packed quantized controls. HoloQ-VLA and Omega-QVLA are the same method.

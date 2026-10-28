@@ -352,5 +352,44 @@
     "definition8_profile/verified_eager_attribution.json": "fa29eed4bbaeffadd3eae612084aed3ff6f76bb71f3ba85fdadf8c8475a99d2a",
     "nsight_definition8_verified_summary.json": "128f083189660d0df0fdf371b52c8df30fffb536a081c85ce09bccc573b4cae5"
   },
-  "task_success": "Not evaluated in this packet; paper success rates are not paired with these new runtimes."
+  "task_success": "Not evaluated in this packet; paper success rates are not paired with these new runtimes.",
+  "author_supplied_table3": [
+    {
+      "method": "FP16 baseline",
+      "Q_layers": 0,
+      "footprint_GB": 5.41,
+      "saving_percent": null
+    },
+    {
+      "method": "GPTQ W4A16",
+      "Q_layers": 252,
+      "footprint_GB": 2.0,
+      "saving_percent": 62.9
+    },
+    {
+      "method": "QuantVLA W4A8",
+      "Q_layers": 108,
+      "footprint_GB": 2.38,
+      "saving_percent": 55.9
+    },
+    {
+      "method": "QVLA",
+      "Q_layers": 288,
+      "footprint_GB": 1.82,
+      "saving_percent": 66.3
+    },
+    {
+      "method": "ActQuant 4bpw",
+      "Q_layers": 288,
+      "footprint_GB": 1.81,
+      "saving_percent": 66.5
+    },
+    {
+      "method": "HoloQ-VLA",
+      "Q_layers": 414,
+      "footprint_GB": 1.39,
+      "saving_percent": 74.2
+    }
+  ],
+  "table3_comparison_limit": "QServe414 is not QuantVLA108. Current GPTQ is a disclosed reconstruction. QVLA/ActQuant not timed. See arithmetic audit for candidate scope/storage budgets, not confirmed provenance."
 }

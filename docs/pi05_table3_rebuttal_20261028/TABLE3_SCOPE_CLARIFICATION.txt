@@ -1,0 +1,67 @@
+Table 3: reported static storage versus measured deployment
+
+Source: exact table supplied by the author. No kernels, quantizers or packs
+were changed by this audit.
+
+1. Comparison identities
+The table contains GPTQ252, QuantVLA108, QVLA288, ActQuant288 and HoloQ414.
+It does not contain a method named QServe. The measured414-target
+SmoothQuant-W4/QServe control is not the table's108-target QuantVLA.
+The measured GPTQ control matches252 targets but remains a disclosed
+calibration/backend reconstruction. QVLA/ActQuant are not measured here.
+Thus309.58ms versus86.99ms is HoloQ versus that explicit engineering control,
+not a measured3.56x deficit relative to Table3 QuantVLA. There is no measured
+latency result for all Table3 methods or for its strongest baseline.
+
+2. Common storage universe
+The source model has5,408,612,352bytes in the414 target weight matrices.
+A Table3-style comparison keeps this same universe for every row: quantized
+selected weights plus remaining FP16 weights in that universe. It is not
+only the selected quantized weights, and not the whole7.23GB checkpoint.
+Our3.441GB complete model files therefore cannot be compared directly with
+the reported1.39GB target-universe figure. The corresponding measured HoloQ
+414-target tensor payload including required metadata is1.615668GB.
+
+3. An arithmetic fingerprint, not recovered provenance
+Let N be the number of weights selected for W4 and keep the other weights
+at16bits. A hypothetical uniform scale allowance gives:
+  bytes = remaining_FP16_bytes + N * (0.5 + 2/128).
+This counts4-bit codes and one16-bit scale per128 weights. It excludes
+rotations, activation-scale tables, permutations, zero points and other
+runtime data; it is an allowance, not an exact tail/padding layout.
+
+Using the actual checkpoint shapes:
+  All414:              1.394407872GB,74.21875% saving ->1.39GB,74.2%.
+  Language+expert252:  2.004590592GB,62.93706% saving ->2.00GB,62.9%.
+  Both MLP-only108:    2.382815232GB,55.94406% saving ->2.38GB,55.9%.
+A vision+language288 candidate with per-outputFP16 scales gives1.821256416GB
+and66.32673% saving, which rounds to the QVLA row. The ActQuant1.81GB figure
+is not recovered by that same accounting. Counts alone do not identify
+unique target lists or exact formats.
+
+These numerical matches are useful leads. The original Table3 generation
+script has not been recovered; this is NOT proof that HoloQ historically
+used G128 weight quantization, that QuantVLA actually selected those108 MLPs,
+or that the reported table included/excluded any specific metadata.
+HoloQ's submitted definition remains full-K per-outputSw; GPTQprocessing
+block128 must not be silently converted into HoloQweightgroup128.
+
+4. Why storage and latency ordering can differ
+All table weight-quantized methods use W4. W4A4 versus W4A8 does not by itself
+change the number of stored4-bit weight codes. Broader weight coverage can
+explain a smaller static footprint while online rotations,activation
+packing,scale handling and kernel throughput still make execution slower.
+A414-target QServe control also compresses all414 weights, so its storage
+cannot be identified with the108-target QuantVLA footprint.
+
+5. Reply claim boundary
+Keep the reported Table3 values labeled as reported static storage. Add
+actual deployment storage with all necessary metadata and warmed memory
+as separate measurements. Do not attach current engineering-control
+latencies to unmeasured Table3 method identities. The original74.2% figure
+must not be used as measured peak-VRAM reduction or a metadata-inclusive
+runtime deployment result without recovering its accounting source.
+
+Reproducible arithmetic: audit_table3_budget.py; TABLE3_BUDGET_CHECK.csv/json.
+Candidate mappings are explicitly hypothetical. No new performance result
+or paper-method reproduction is established by this arithmetic audit.

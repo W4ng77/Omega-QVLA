@@ -1,0 +1,47 @@
+{
+  "source": "Table3 supplied by the author in this conversation",
+  "manifest_sha256": "ce9c4ee8c0e3065207b21eba18a96c5cff5af99623daa73c6b489c0e275b822d",
+  "source_script_sha256": "002c5f02628653822c02b24bbfce14fb81e9ab1e5364ed6cccaddc2f27232446",
+  "actual_original414_weight_bytes": 5408612352,
+  "submitted_table": [
+    {
+      "method": "FP16 baseline",
+      "Q_layers": 0,
+      "footprint_GB": 5.41,
+      "saving_percent": null
+    },
+    {
+      "method": "GPTQ W4A16",
+      "Q_layers": 252,
+      "footprint_GB": 2.0,
+      "saving_percent": 62.9
+    },
+    {
+      "method": "QuantVLA W4A8",
+      "Q_layers": 108,
+      "footprint_GB": 2.38,
+      "saving_percent": 55.9
+    },
+    {
+      "method": "QVLA",
+      "Q_layers": 288,
+      "footprint_GB": 1.82,
+      "saving_percent": 66.3
+    },
+    {
+      "method": "ActQuant 4bpw",
+      "Q_layers": 288,
+      "footprint_GB": 1.81,
+      "saving_percent": 66.5
+    },
+    {
+      "method": "HoloQ-VLA",
+      "Q_layers": 414,
+      "footprint_GB": 1.39,
+      "saving_percent": 74.2
+    }
+  ],
+  "inference": "HoloQ414,core252,andMLP-only108 budgets with uniformFP16/G128 scale allowance round to the corresponding three reported footprint/saving rows. This is an arithmetic fingerprint, NOT recovered experiment provenance.",
+  "unresolved": "OriginalTable3 generator, actual method-specific target lists, metadata inclusion and ActQuant1.81 are not recovered. Layer counts alone do not establish these mappings.",
+  "quantizer_unchanged": "HoloQ core remains per-outputSw,processing128,damping.01; no G128 weight-quantization change was made to fit this table."
+}
