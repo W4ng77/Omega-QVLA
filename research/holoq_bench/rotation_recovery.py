@@ -145,7 +145,13 @@ def main():
                     status["valid_cases"].append(case)
                 save()
                 for mode in ("eager", "head_graph"):
-                    if policy(case, mode, "smoke") and policy(case, mode, "replay"):
+                    smoke_ok = policy(case, mode, "smoke")
+                    if smoke_ok:
+                        smoke_dir = out / case / mode / "smoke"
+                        assert "EXPLICIT_STRIDED_BLOCK64_V2" in (smoke_dir / "run.log").read_text()
+                        smoke_meta = json.loads((smoke_dir / "metadata.json").read_text())
+                        assert smoke_meta["source_files_sha256"]["research/holoq_bench/fused_rotation_strided.py"] == json.loads(oracle.read_text())["plugin_source_sha256"]
+                    if smoke_ok and policy(case, mode, "replay"):
                         path = out / case / mode / "replay/summary.json"
                         data = json.loads(path.read_text())
                         choices.append({"case": case, "mode": mode, "root": str(out),

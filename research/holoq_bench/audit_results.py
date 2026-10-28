@@ -84,6 +84,9 @@ def main():
                     continue
                 key = case + "/" + mode + "/" + stage
                 try:
+                    if case.endswith("_rotv2"):
+                        assert "EXPLICIT_STRIDED_BLOCK64_V2" in (base / "smoke/run.log").read_text()
+                        assert d["source_files_sha256"]["research/holoq_bench/fused_rotation_strided.py"] == validation["plugin_source_sha256"]
                     assert (
                         d["denoising_steps"] == 8
                         and d["action_horizon"] == 16
