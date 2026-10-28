@@ -110,7 +110,9 @@ def main():
     samples = torch.load(a.observations, map_location="cpu", weights_only=False)
     for i in range(a.warmup):
         seed(2000 + i)
-        policy.get_action(samples[(i % 10) * 10]["obs"])
+        action = policy.get_action(samples[(i % 10) * 10]["obs"])
+        assert all(np.isfinite(value).all() for value in action.values()), "Nonfinite accuracy-control warmup"
+    report["warmup_actions_finite"] = True
     torch.cuda.synchronize()
     write(a.output / "metadata.json", report)
 
