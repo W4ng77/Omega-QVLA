@@ -1,0 +1,64 @@
+FROZEN SCOPE AND CLAIM LIMITS — 2026-10-28
+
+HoloQ-VLA and Omega-QVLA name the same method. This packet is Pi0.5,
+not the separate GR00T180-projection experiment. Table3 deployment scope
+is162 vision+126 language+126 expert=414 selected weight projections.
+Auxiliary projections, embeddings, normalization, attention softmax and
+other non-linear operations are not thereby claimed to be INT4.
+
+Two immutable configurations are kept separate:
+1. Released-grid historical414: original frozen codes/scales/transforms,
+   static channel-wise languageA4, ten expert scale rows, output restore.
+   All414 selected weights/activations are nibble-packed. The existing
+   arithmetic tile kernel performs BF16 MMA/FP32 accumulation after on-chip
+   decode. This is compressed W4A4 deployment, not nativeS4 throughout.
+2. Definition8-core+released-vision-RTN: input-only U D H64/8 rotation,
+   disclosed cross-block zigzag, signed[-7,7]core, full-K per-outputSw,
+   dynamic per-token languageA4, per-layer/step/channel expertA4 at8steps.
+   Language uses existing QuaRot/CUTLASS S4xS4/INT32; expert applies Sa[k]
+   insideK in an on-chip packed decode FP16-MMA/FP32-accumulation kernel.
+   Vision retains released unsignedRTN W4A4 grids, disclosed separately:
+   submitted body does not uniquely specify its full vision recipe.
+   No step_weight,group_int,output restore,low-rank bank or silent backend
+   selection is part of this core. Exactly one quantized weight per layer.
+
+Both are measured as complete policy.infer with input/output transforms,
+H2D/D2H, vision/language/all denoising steps, online transformations,
+quantization/packing and GEMM. Batch1,horizon10,two224x224 supplied cameras
+plus one masked camera processed by the actual model. The historical
+10-step and rebuilt8-step tables are never cross-compared for speedup.
+Warmup32,100calls/mode,oneGPU,commonEager and full-sampler CUDA Graph;
+no compile. Loading, cold compilation/capture,RPC and simulator are excluded.
+
+All new method builds use10 available initial Object observations/all
+actual tokens, not10 full trajectories. Therefore they are disclosed
+implementation/performance reconstructions, not paper accuracy replication.
+Baseline static quantizers were built from the same observations with a
+10-step teacher; their8-step deployment timings are separately labeled.
+This budget difference bars equal-calibration accuracy claims. The source
+historical pack's complete calibration provenance is unresolved.
+
+FP32GPTQ first Cholesky failed. A separately named retry uses FP64 Gram
+and inverse-Cholesky, retaining damping.01,processing128,FP32 reconstruction
+updates and the same grid/rotation/seed. Failure and retry are both retained.
+No parameter is selected from LIBERO success scores.
+
+A numerical action-NMSE engineering guard is not a task-success result.
+No new scored LIBERO episodes are run in this narrowed rebuttal packet.
+Submitted paper scores are not attached to these new runtime rows. GR00T
+70/72 reconstructions remain separate controls, never paper reproduction.
+We cannot retroactively identify an H100 kernel without original traces.
+
+Claims to correct/withdraw regardless of timing outcome:
+- Eq9's scalar epilogue shorthand is insufficient for Sa[t,k]. Use
+  Y[m,n]=Sw[n]*sum_k(QX[m,k]*Sa[t,k]*QW[n,k])+bias[n].
+- W4A4 does not imply nativeINT4 MMA in every layer or faster inference
+  than optimized W4A8/W4A16; report the observed backend-specific result.
+- Table3 static target-weight saving is not full-model or peak-VRAM saving.
+  Do not reproduce1.39GB/74.2% by excluding required transformation metadata.
+-414 stored targets and252 executed targets are different scopes. These new
+  measurements explicitly execute all414 targets and report exact module
+  lists and actual kernel counts; prior252/10-step measurements remain
+  qualified historical evidence, not a matching414/8-step reproduction.
+- H100 paper experiments and new RTX4080SUPER deployment are separate.
+- Correct submitted Table2 FP16GR00T arithmetic average to86.5 (not narrative87.0).

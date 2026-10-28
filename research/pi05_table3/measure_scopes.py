@@ -31,16 +31,17 @@ def annotate(obj, attr, label):
     setattr(obj, attr, forward)
 
 
-def profile_policy(policy, sample, noise, output):
+def profile_policy(policy, sample, noise, output, raw_only=False):
     from gr00t.quantization.gptq_layers import GptqLinear
     from research.pi05_table3.vision_packed import PackedVision
+    from research.pi05_table3.definition_runtime import DefinitionLinear
 
     model = policy._model
     policy._sample_actions = model.sample_actions
     annotate(policy, "_input_transform", "stage/preprocess")
     annotate(policy, "_output_transform", "stage/postprocess")
     for name, module in model.named_modules():
-        if isinstance(module, (GptqLinear, PackedVision)):
+        if isinstance(module, (GptqLinear, PackedVision, DefinitionLinear)):
             annotate(module, "forward", "layer/" + part(name) + "/" + name)
     annotate(model.paligemma_with_expert.paligemma.model.vision_tower, "forward", "stage/vision")
 
@@ -57,6 +58,10 @@ def profile_policy(policy, sample, noise, output):
                 policy.infer(sample, noise=noise)
         torch.cuda.synchronize()
     prof.export_chrome_trace(str(output / "eager_policy_trace.json"))
+    if raw_only:
+        # Derive device totals from raw activities/correlation IDs. The
+        # propagated FunctionEvent associations can multiply-count kernels.
+        return
     (output / "top_self_cuda.txt").write_text(
         prof.key_averages().table(sort_by="self_cuda_time_total", row_limit=40) + "\n"
     )

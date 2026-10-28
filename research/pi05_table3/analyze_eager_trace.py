@@ -5,6 +5,7 @@ kernel counts and keeps overlap-aware interval union separate from work sums.
 """
 
 from bisect import bisect_right
+import argparse
 from collections import Counter, defaultdict
 import json
 from pathlib import Path
@@ -24,7 +25,10 @@ def union(intervals):
 
 
 def main():
-    root = Path(__file__).resolve().parents[2] / "results/pi05_table3_414_20261028/scope_controls/both"
+    parser=argparse.ArgumentParser(__doc__)
+    parser.add_argument('--definition8', action='store_true')
+    args=parser.parse_args()
+    root = Path(__file__).resolve().parents[2] / "results/pi05_table3_414_20261028" / ("definition8_profile" if args.definition8 else "scope_controls/both")
     events = json.loads((root / "eager_policy_trace.json").read_text())["traceEvents"]
     kernels = [x for x in events if x.get("cat") == "kernel"]
     activities = [x for x in events if x.get("cat") in ["kernel", "gpu_memcpy", "gpu_memset"]]
@@ -33,6 +37,9 @@ def main():
         for name in ["_vision_gemm", "_gemm_a4w4_arithmetic", "_quant_pack_a4"]
     }
     expected = {"_vision_gemm": 2430, "_gemm_a4w4_arithmetic": 6930, "_quant_pack_a4": 6930}
+    if args.definition8:
+        counts={name:sum(name in x['name'] for x in kernels) for name in ['_vision_gemm','_channel_a4w4','integer_subbyteILi4ELb1E']}
+        expected={'_vision_gemm':2430,'_channel_a4w4':5040,'integer_subbyteILi4ELb1E':630}
     assert counts == expected, {
         "observed": counts,
         "expected": expected,
@@ -85,7 +92,7 @@ def main():
             missing[e.get("cat")] += 1
         phase = label.split("/")[1] if label.startswith(("layer/", "stage/")) else "other"
         name = e["name"]
-        if "_vision_gemm" in name or "_gemm_a4w4_arithmetic" in name:
+        if any(t in name for t in ['_vision_gemm','_gemm_a4w4_arithmetic','_channel_a4w4','integer_subbyteILi4ELb1E']):
             category = "GEMM_with_W_decode_scales"
         elif "_quant_pack_a4" in name:
             category = "A4_quantize_pack"
@@ -99,6 +106,8 @@ def main():
             category = "data_copy_dtype_contiguous"
         elif label.startswith("layer/vision/"):
             category = "vision_A4_quantize_prepare"
+        elif args.definition8 and label.startswith(('layer/language/','layer/expert/')):
+            category = "A4_quantize_pack_scale_epilogue_or_bias"
         else:
             category = "other_compute"
         record = groups[phase + "/" + category]
