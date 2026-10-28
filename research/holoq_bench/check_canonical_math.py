@@ -45,13 +45,22 @@ class DenseCanonicalOracle(nn.Module):
             if rout.numel():
                 y = apply_blocks(y, rout)
             return y + bias if bias.numel() else y
-        if getattr(src, "act_mode", "token") == "token":
+        if getattr(src, "legacy_activation_arithmetic", False):
+            if src.act_mode == "step":
+                step = get_current_dit_step()
+                assert step is not None and 0 <= step < 8
+                scale = src.a_scale[step].half()
+            else:
+                scale = src.a_scale.half()
+            xq = ((x / scale).round().clamp(-8, 7) * scale).half()
+        elif getattr(src, "act_mode", "token") == "token":
             scale = (x.float().abs().amax(-1, keepdim=True).clamp_min(1e-5) / 7).half().float()
         else:
             step = get_current_dit_step()
             assert step is not None and 0 <= step < 8
             scale = src.a_scale[step]
-        xq = ((x.float() / scale).round().clamp(src.act_qmin, 7) * scale).half()
+        if not getattr(src, "legacy_activation_arithmetic", False):
+            xq = ((x.float() / scale).round().clamp(src.act_qmin, 7) * scale).half()
         with torch.autocast("cuda", enabled=False):
             y = torch.nn.functional.linear(xq.float(), self.oracle_weight.float()).half()
         if rout.numel():

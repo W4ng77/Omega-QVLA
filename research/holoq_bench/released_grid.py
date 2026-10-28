@@ -63,6 +63,8 @@ def recover_exact_grid(weight, group=128):
 
 
 class ReleasedGridLinear(PackedLinear):
+    legacy_activation_arithmetic = True
+
     def forward(self, x):
         self.calls += 1
         self.input_shapes.add(tuple(x.shape))
