@@ -70,7 +70,7 @@ def main():
             manifest = json.loads((a.root / "deployments" / case / "deployment.json").read_text())
             assert d["source_pack_sha256"] == manifest["source_pack_sha256"]
             checked = CORE + (["research/holoq_bench/fused_rotation.py"] if "fusedrot" in case else [])
-            if case.endswith("_rotv2"):
+            if case.endswith("_rotv2") or case.startswith("holoq_paper"):
                 checked += ["research/holoq_bench/fused_rotation_strided.py"]
             if "nunchaku" in case:
                 checked += [

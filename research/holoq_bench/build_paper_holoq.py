@@ -16,16 +16,29 @@ import torch
 from torch import nn
 
 from gr00t.quantization.perstep_backends import make_backend_record, pack_int4
-from gr00t.quantization.duquant_preprocess import zigzag_permutation
 from research.holoq_bench import kernels, quantizers
 from research.holoq_bench.packed_runtime import apply_blocks
 from research.holoq_bench.deployment import export as export_deployment
 
 
 @torch.no_grad()
+def paper_zigzag(energy, block=64):
+    """Snake sorted channels ACROSS blocks, as specified before paper Eq4.
+
+    The legacy helper alternates global extremes before contiguous chunking;
+    that leaves the largest channels clustered in the first blocks instead.
+    """
+    assert energy.numel() % block == 0
+    groups = energy.numel() // block
+    order = energy.argsort(descending=True, stable=True).reshape(block, groups)
+    order[1::2] = order[1::2].flip(1)
+    return order.t().contiguous().reshape(-1)
+
+
+@torch.no_grad()
 def paper_rotation(w, seed):
     n, k = w.shape
-    perm = torch.from_numpy(zigzag_permutation(w.float().square().mean(0).cpu().numpy())).to(w.device)
+    perm = paper_zigzag(w.float().square().mean(0))
     wp = w.float()[:, perm]
     blocks = wp.reshape(n, k // 64, 64).permute(1, 2, 0).contiguous()
     _, u = torch.linalg.eigh(blocks @ blocks.transpose(1, 2))
@@ -87,6 +100,7 @@ def main():
     manifest = json.loads(manifest_path.read_text())
     weights = torch.load(root / "teacher_capture/weights.pt", map_location="cpu", mmap=True, weights_only=False)
     config = {"paper": "arXiv2605.28803v3 Eqs1–8/Table5", "input_only": True, "output_rotation": False,
+              "permutation": "weight-norm descending, snake distribution across blocks, not global high/low contiguous chunking",
               "block": 64, "randomized_hadamard": "U @ D @ H; signs seed42+layer_index",
               "weight_codes": "[-7,7]", "activation_codes": "[-7,7]", "weight_scales": "FP16 backend contract",
               "LLM": "official GPTQ reconstruction, block128,damp.01,per-output signed15 quantizer; per-tokenA4",

@@ -57,14 +57,15 @@ def main():
     for case in queue["valid_cases"]:
         if "fusedrot" in case:
             output["errors"].append({"case": case, "error": "Withdrawn legacy rotation backend: transposed R strides read incorrectly"})
-        if case.endswith("_rotv2"):
+        if case.endswith("_rotv2") or case.startswith("holoq_paper"):
             try:
                 validation = json.loads((a.root / "deployments" / case / "functional_validation.json").read_text())
                 assert validation["passed"] and validation["finite"]
                 assert validation["comparisons"] == (8520 if case.startswith(("holoq", "duquant")) else 3400)
                 assert validation["plugin_source_sha256"] == hashlib.sha256(
                     Path("research/holoq_bench/fused_rotation_strided.py").read_bytes()).hexdigest()
-                source = a.root / "deployments" / case.removesuffix("_rotv2") / "deployment.json"
+                source_case = case if case.startswith("holoq_paper") else case.removesuffix("_rotv2")
+                source = a.root / "deployments" / source_case / "deployment.json"
                 assert validation["source_pack_sha256"] == json.loads(source.read_text())["source_pack_sha256"]
             except Exception as exc:
                 output["errors"].append({"case": case, "error": "functional validation: " + repr(exc)})
@@ -84,7 +85,7 @@ def main():
                     continue
                 key = case + "/" + mode + "/" + stage
                 try:
-                    if case.endswith("_rotv2"):
+                    if case.endswith("_rotv2") or case.startswith("holoq_paper"):
                         assert "EXPLICIT_STRIDED_BLOCK64_V2" in (base / "smoke/run.log").read_text()
                         assert d["source_files_sha256"]["research/holoq_bench/fused_rotation_strided.py"] == validation["plugin_source_sha256"]
                     assert (

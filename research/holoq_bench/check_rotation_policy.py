@@ -50,6 +50,15 @@ def main():
                          modality_transform=config.transform(), embodiment_tag="new_embodiment", denoising_steps=8)
     modules = {n: m for n, m in policy.model.named_modules() if isinstance(m, PackedLinear)}
     assert len(modules) in (116, 180)
+    # Paper packs already request the explicit optimized rotation plugin. For
+    # this accuracy-only reference pass, restore the same packed module's base
+    # hooks; no coefficient/code/scale is changed or weight dequantized.
+    for module in modules.values():
+        if hasattr(module, "_fused_in"):
+            module.__class__ = CutlassLinear if isinstance(module, CutlassLinear) else PackedLinear
+            for src, dest in [("_fused_in", "rot_in"), ("_fused_out", "rot_out"), ("_fused_bias", "bias")]:
+                setattr(module, dest, getattr(module, src))
+                delattr(module, src)
     assert all(m.rot_in.numel() for m in modules.values())
     observations = torch.load(args.observations, map_location="cpu", weights_only=False)
     selected = [observations[i * 10] for i in range(10)]

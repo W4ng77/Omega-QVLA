@@ -136,6 +136,21 @@ for _base in (
     _method, _variant, _bits, _scope = CONFIGS[_base]
     CONFIGS[_base + "_rotv2"] = (_method, _variant + " + stride-correct block64 rotation v2", _bits, _scope)
 
+for _case in list(CONFIGS):
+    if _case.startswith("holoq"):
+        _method, _variant, _bits, _scope = CONFIGS[_case]
+        CONFIGS[_case] = ("HoloQ two-sided rebuild control", _variant + "; extra output rotation, not paper Eqs4–5", _bits, _scope)
+for _converted in (False, True):
+    for _native in (False, True):
+        _case = "holoq_paper" + ("_step_weight" if _converted else "") + ("_llm_s4" if _native else "")
+        CONFIGS[_case] = (
+            "HoloQ-VLA conversion" if _converted else "HoloQ-VLA paper math",
+            ("step_weight native S4 DiT" if _converted else "original grid / Marlin DiT")
+            + (" + CUTLASS S4 LLM" if _native else " + Marlin LLM")
+            + "; input-only UDH, signed[-7,7], fixed block64; same teacher budget",
+            "4/4", "180 (84 LLM + 96 DiT)",
+        )
+
 
 def main():
     p = argparse.ArgumentParser(__doc__)

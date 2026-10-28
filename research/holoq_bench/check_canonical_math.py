@@ -30,8 +30,11 @@ class DenseCanonicalOracle(nn.Module):
     def forward(self, x):
         src = self.source
         x = x.half()
-        if src.rot_in.numel():
-            x = apply_blocks(x, src.rot_in, src.perm)
+        rin = getattr(src, "_fused_in", src.rot_in)
+        rout = getattr(src, "_fused_out", src.rot_out)
+        bias = getattr(src, "_fused_bias", src.bias)
+        if rin.numel():
+            x = apply_blocks(x, rin, src.perm)
         if src.act_mode == "token":
             scale = (x.float().abs().amax(-1, keepdim=True).clamp_min(1e-5) / 7).half().float()
         else:
@@ -41,10 +44,10 @@ class DenseCanonicalOracle(nn.Module):
         xq = ((x.float() / scale).round().clamp(src.act_qmin, 7) * scale).half()
         with torch.autocast("cuda", enabled=False):
             y = torch.nn.functional.linear(xq.float(), self.oracle_weight.float()).half()
-        if src.rot_out.numel():
-            y = apply_blocks(y, src.rot_out)
-        if src.bias.numel():
-            y = y + src.bias
+        if rout.numel():
+            y = apply_blocks(y, rout)
+        if bias.numel():
+            y = y + bias
         return y
 
 
@@ -52,11 +55,13 @@ def main():
     parser = argparse.ArgumentParser(__doc__)
     parser.add_argument("--root", type=Path, default=Path("results/holoq_object"))
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--deployment", type=Path)
+    parser.add_argument("--cache", type=Path)
     args = parser.parse_args()
     torch.set_num_threads(1)
     torch.set_num_interop_threads(1)
     torch.backends.cuda.matmul.allow_tf32 = False
-    deployment = args.root / "deployments/holoq"
+    deployment = args.deployment or args.root / "deployments/holoq"
     os.environ.update(HOLOQ_DEPLOY=str(deployment.resolve()), HOLOQ_COMPUTE_DTYPE="float16")
     from gr00t.model.policy import Gr00tPolicy
     from gr00t.experiment.data_config import load_data_config
@@ -66,7 +71,8 @@ def main():
                          modality_transform=config.transform(), embodiment_tag="new_embodiment", denoising_steps=8)
     modules = {name: m for name, m in policy.model.named_modules() if isinstance(m, PackedLinear)}
     oracles = {}
-    for file in sorted((args.root / "packs/layer_cache/holoq").glob("*.pt")):
+    cache = args.cache or args.root / "packs/layer_cache/holoq"
+    for file in sorted(cache.glob("*.pt")):
         entry = torch.load(file, map_location="cpu", weights_only=False)
         canonical = entry["canonical"]
         weight = (canonical["q"].float() * canonical["scales"].float().repeat_interleave(canonical["group"], 1)).half().cuda()
