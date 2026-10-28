@@ -28,9 +28,9 @@ def main():
         temp.replace(status_path)
 
     save()
-    while not (root / "paper_cfg_build/finished.json").exists():
+    while not (root / "paper_cfg_reencoding/finished.json").exists():
         time.sleep(10)
-    assert json.loads((root / "paper_cfg_build/finished.json").read_text())["built"]
+    assert json.loads((root / "paper_cfg_reencoding/finished.json").read_text())["built"]
     shutil.copy2(root / "evaluation_v3/environment.txt", out / "environment.txt")
     stop = threading.Event()
 
@@ -75,12 +75,12 @@ def main():
 
     try:
         diagnostic = out / "canonical_math"
-        command([sys.executable, "-u", "-m", "research.holoq_bench.check_canonical_math", "--deployment", str(root / "deployments/holoq_paper"), "--cache", str(root / "paper_cfg_build/layer_cache"), "--output", str(diagnostic / "result.json")], diagnostic, owns_lock=True)
+        command([sys.executable, "-u", "-m", "research.holoq_bench.check_canonical_math", "--deployment", str(root / "deployments/holoq_paper_g128"), "--cache", str(root / "paper_cfg_build/layer_cache"), "--output", str(diagnostic / "result.json")], diagnostic, owns_lock=True)
         assert not json.loads((diagnostic / "result.json").read_text())["review_required"]
         selection = {"families": {}, "frozen_by": "minimum full-policy replay latency after same-grid correctness; never task outcomes", "paper_configuration": str(root / "paper_cfg_build/configuration.json")}
         for family, bases in {
-            "holoq": ["holoq_paper", "holoq_paper_llm_s4"],
-            "holoq_step_weight": ["holoq_paper_step_weight", "holoq_paper_step_weight_llm_s4"],
+            "holoq": ["holoq_paper_g128", "holoq_paper_g128_llm_s4"],
+            "holoq_step_weight": ["holoq_paper_g128_step_weight", "holoq_paper_g128_step_weight_llm_s4"],
         }.items():
             choices = []
             for case in bases:
@@ -90,7 +90,7 @@ def main():
                 validation = json.loads(oracle.read_text())
                 assert validation["passed"] and validation["comparisons"] == 8520
                 shutil.copy2(oracle, root / "deployments" / case / "functional_validation.json")
-                if case != "holoq_paper":
+                if case != "holoq_paper_g128":
                     math = out / "canonical_math_candidates" / case
                     command([sys.executable, "-u", "-m", "research.holoq_bench.check_canonical_math", "--deployment", str(root / "deployments" / case), "--cache", str(root / "paper_cfg_build/layer_cache"), "--output", str(math / "result.json")], math, owns_lock=True)
                     assert not json.loads((math / "result.json").read_text())["review_required"]

@@ -150,6 +150,9 @@ for _converted in (False, True):
             + "; input-only UDH, signed[-7,7], fixed block64; same teacher budget",
             "4/4", "180 (84 LLM + 96 DiT)",
         )
+        _g128 = _case.replace("holoq_paper", "holoq_paper_g128", 1)
+        _method, _variant, _bits, _scope = CONFIGS[_case]
+        CONFIGS[_g128] = (_method, _variant + "; Marlin G128 repeats the same output scale without requantization", _bits, _scope)
 
 
 def main():
