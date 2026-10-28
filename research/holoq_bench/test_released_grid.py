@@ -1,6 +1,13 @@
 """No source weight may change during the historical pack deployment export."""
 import torch
-from research.holoq_bench.released_grid import recover_exact_grid
+from research.holoq_bench.released_grid import recover_exact_grid, half_neighbors
+
+
+def test_half_neighbors_match_cpu_nextafter_including_zero_and_subnormals():
+    w = torch.tensor([-65504, -3, -.001, -2**-24, -0., 0., 2**-24, .001, 3, 65504]).half()
+    lower, upper = half_neighbors(w)
+    assert torch.equal(lower, torch.nextafter(w, torch.full_like(w, -float("inf"))))
+    assert torch.equal(upper, torch.nextafter(w, torch.full_like(w, float("inf"))))
 
 
 def test_fp32_scale_fp16_weight_values_are_recovered_exactly_without_requantization():

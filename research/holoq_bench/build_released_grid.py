@@ -43,9 +43,16 @@ def main():
     policy.warmup(num_steps=32)
     modules = {name: module for name, module in policy.model.named_modules() if isinstance(module, GptqLinear)}
     assert len(modules) == 180
-    frozen = {name: module._act_scale.detach().cpu() for name, module in modules.items() if "language_model" in name}
+    observed = {name: module._act_scale.detach().cpu() for name, module in modules.items() if "language_model" in name}
+    frozen_path = out / "frozen_llm_scales.pt"
+    frozen = torch.load(frozen_path, map_location="cpu", weights_only=False) if frozen_path.exists() else observed
     assert len(frozen) == 84
-    torch.save(frozen, out / "frozen_llm_scales.pt")
+    if not frozen_path.exists():
+        torch.save(frozen, frozen_path)
+    freeze_audit = {"frozen_scales_sha256": sha256(frozen_path), "warmup": 32,
+                    "observed_calibration_batches": {name: module.calibrator._seen for name, module in modules.items() if name in frozen},
+                    "replay_scale_nmse": {name: float((observed[name].float() - scale.float()).square().sum() / scale.float().square().sum().clamp_min(1e-30)) for name, scale in frozen.items()}}
+    (out / "scale_freeze_audit.json").write_text(json.dumps(freeze_audit, indent=2) + "\n")
     source = torch.load(original, map_location="cpu", mmap=True, weights_only=False)
     factored_pack = torch.load(factored, map_location="cpu", mmap=True, weights_only=False)
     layers, converted, report = {}, {}, []

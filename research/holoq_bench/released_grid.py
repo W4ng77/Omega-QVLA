@@ -11,6 +11,18 @@ from research.holoq_bench.packed_runtime import PackedLinear, apply_blocks, _til
 from gr00t.quantization.dit_step_context import get_current_dit_step
 
 
+def half_neighbors(w):
+    """Exact FP16 adjacent values; Torch2.5 lacks CUDA half nextafter."""
+    assert w.dtype == torch.float16
+    bits = w.contiguous().view(torch.int16).int()
+    negative = w < 0
+    previous = torch.where(negative, bits + 1, bits - 1)
+    following = torch.where(negative, bits - 1, bits + 1)
+    previous = torch.where(w == 0, -32767, previous)  #negative min subnormal
+    following = torch.where(w == 0, 1, following)
+    return previous.short().view(torch.float16), following.short().view(torch.float16)
+
+
 @torch.no_grad()
 def recover_exact_grid(weight, group=128):
     assert weight.ndim == 2 and weight.dtype == torch.float16 and weight.shape[1] % group == 0
@@ -22,8 +34,9 @@ def recover_exact_grid(weight, group=128):
     smallest = torch.where(nonzero, wf.abs(), float("inf")).amin(-1)
     empty = ~nonzero.any(-1)
     smallest = torch.where(empty, 1, smallest)
-    lower = (wf + torch.nextafter(w, torch.full_like(w, -float("inf"))).float()) * .5
-    upper = (wf + torch.nextafter(w, torch.full_like(w, float("inf"))).float()) * .5
+    previous, following = half_neighbors(w)
+    lower = (wf + previous.float()) * .5
+    upper = (wf + following.float()) * .5
     qout = torch.zeros_like(w, dtype=torch.int8)
     sout = torch.ones_like(smallest)
     resolved = empty.clone()
