@@ -34,7 +34,9 @@ def main():
     rows = []
 
     def save():
-        (out / "queue.json").write_text(json.dumps(status, indent=2) + "\n")
+        temp = out / "queue.tmp"
+        temp.write_text(json.dumps(status, indent=2) + "\n")
+        temp.replace(out / "queue.json")
 
     save()
     for case in cases:
@@ -53,11 +55,15 @@ def main():
             status["results"][case] = {"returncode": ret.returncode, "finished": time.time()}
         if result.exists():
             data = json.loads(result.read_text())
+            max_error = max(row["nmse"] for row in data["full_action_comparisons"])
+            validation = "failed" if max_error >= data.get("difference_guard_nmse", .02) else (
+                "bitwise" if not data.get("needs_independent_accuracy_evaluation", True) else "within_guard_requires_rollout")
             rows.append({"case": case, "before_mean_ms": data["before"]["mean_ms"],
                          "after_mean_ms": data["after"]["mean_ms"], "after_p50_ms": data["after"]["p50_ms"],
                          "after_p95_ms": data["after"]["p95_ms"], "speedup": data["speedup"],
                          "features_exact": data["all_100_backbone_features_exact"],
                          "actions_exact_count": data["full_actions_exact_count"],
+                         "validation_status": validation,
                          "needs_independent_accuracy_evaluation": data.get("needs_independent_accuracy_evaluation", True),
                          "allocated_before": data["before_memory"]["peak_allocated_bytes"],
                          "allocated_after": data["after_memory"]["peak_allocated_bytes"],
