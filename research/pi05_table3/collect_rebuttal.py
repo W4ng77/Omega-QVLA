@@ -95,7 +95,13 @@ def main():
             incomplete.append(report_path)
             continue
         d = read(path)
-        artifact_bytes = read(DATA / artifact)["model_artifact_bytes"] if artifact else 7233515040
+        # Export manifests inventory their payloads before writing themselves.
+        # Include the loader manifest too, rather than silently omitting it.
+        artifact_bytes = (
+            sum(f.stat().st_size for f in (DATA / artifact).parent.rglob("*") if f.is_file())
+            if artifact
+            else read(DATA / "definition_storage_audit.json")["source_model_files_bytes"]
+        )
         for mode, v in d["modes"].items():
             mem = v["inference_memory"]
             row = {
@@ -116,7 +122,7 @@ def main():
                 "peak_allocated_bytes": mem["peak_allocated_bytes"],
                 "peak_reserved_bytes": mem["peak_reserved_bytes"],
                 "model_artifact_bytes": artifact_bytes,
-                "storage_scope": "Tensor payload only for FP16/BF16; serialized self-contained model files+metadata+assets for packed rows; shared tokenizer separate",
+                "storage_scope": "Complete model files+metadata+assets including loader manifest; FP16runtime reuses source16-bit checkpoint; common4.264MBtokenizer separate",
                 "report": str(path.relative_to(ROOT)),
             }
             assert row["calls"] == 100, row

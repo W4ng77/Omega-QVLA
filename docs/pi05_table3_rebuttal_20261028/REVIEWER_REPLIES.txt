@@ -1,0 +1,43 @@
+Evidence-backed reviewer drafts. These respond to the supplied kernel/time/memory topics; unseen review text is not reconstructed.
+
+JvpR — execution, channel scales, and quantized baselines
+
+Thank you for identifying the insufficient scale factorization in Eq. 9. For the expert, sX[layer, t, k] belongs inside sum_k; it cannot generally be a scalar epilogue. The corrected expression is Y[m, n]=sW[n]sum_k(QX[m, k]sX[layer, t, k]QW[k, n])+bias[n]. Our packed deployment preserves one weight grid per layer and all 8 channel-scale rows. It uses native S4/INT32 for per-token-scaled language layers and tile decoding followed by FP16 MMA/FP32 accumulation for per-channel-scaled expert layers. It is not an all-native INT4 policy, and step_weight is not used as original-method proof.
+
+We measured real packed controls rather than a dense dequantize-then-F.linear timing proxy. The validated GPTQ control uses the existing official AWQ BF16/FP32 kernel, with BF16 scales fixed before GPTQ reconstruction; the quantization method remains GPTQ. We rejected the tested Marlin configurations after their model-wide oracle failures. The QServe control is a disclosed SmoothQuant-W 4 extension, not QuantVLA. Under common 8-step Graph execution GPTQ and QServe take 109.09 and 86.99 ms, while HoloQ takes 309.58 ms. We will withdraw the general argument that mixed bitwidth negates acceleration. We do not establish superiority to unmeasured optimized QuantVLA/QVLA/ActQuant deployments.
+
+Evidence: kernel_execution.csv; DEPLOYMENT_MAIN_TABLE.csv; method_alignment.csv; experiment_results/pi05_table3_414_20261028/definition8_measurement/report.json; experiment_results/pi05_table3_414_20261028/gptq_awq_bf16_full_policy_oracle.json; experiment_results/pi05_table3_414_20261028/qserve_full_policy_oracle.json; experiment_results/pi05_table3_414_20261028/marlin_maxpar1_full_policy_oracle.json.
+
+BY 2 H — full graph, transformation overhead, head isolation
+
+The original-method core graph is input permutation -> block 64 UDH rotation -> A 4 quantize/pack -> packed GEMM -> output scale/bias, with no added output-side SVD restore or low-rank branch. The expert's per-input-channel scale is decoded inside K; weights are not re-quantized per step. Offline coefficient construction, online floating transforms, physical packing, and MMA precision are listed separately. Embeddings, normalization, attention softmax and auxiliary conditioning projections remain floating outside the 414 selected projections.
+
+Five complete-call PyTorch traces attribute 305.3 ms of cumulative GPU work: vision GEMM 75.7 ms, all 8 expert-step GEMM 72.8 ms, language S4 GEMM 8.1 ms. Across phases, quantize/pack/scale processing is 57.0 ms, permutation+rotation 17.8 ms, copy/dtype/contiguous 44.8 ms, and remaining work 29.1 ms. These are diagnostic GPU-work totals, not a substitute for the unprofiled 309.58 ms complete-call mean. Nsight verifies all 414 targets in actual Graph execution and exposes Graph-launch delay; host D2H wait overlaps GPU work and is not added to device totals.
+
+With identical frozen definition 8 tensors, backbone-only, head-only and both Graph policy means are 232.10, 192.33 and 309.58 ms respectively. These are performance/memory isolation measurements, not success-rate ablations. The 126 expert target weights occupy 622.9 MB before quantization and 216.6 MB including required packed data/metadata. Active-head static tensors including floating auxiliaries are 860.2 MB before and 454.0 MB after; registered resident tensors differ because the loader promotes sensitive auxiliaries to FP32. The full-deployment tensor ledger separately shows the unchanged unused 526.6 MB expert vocabulary projection. The measured extra allocation from first denoise entry through completion is 1.98 MB above the already-resident model/prefix, not total head memory.
+
+Evidence: operator_graph.csv; profile_breakdown.csv; experiment_results/pi05_table3_414_20261028/definition8_profile/verified_eager_attribution.json; experiment_results/pi05_table3_414_20261028/nsight_definition8_verified_summary.json; experiment_results/pi05_table3_414_20261028/definition8_memory_inspection.json; experiment_results/pi05_table3_414_20261028/action_head_memory_breakdown.json; scope rows in main_results.csv.
+
+gXcZ — representative hardware, time, throughput, peak memory
+
+We provide complete synchronized policy.infer measurements on RTX 4080 SUPER 16 GB: batch 1, horizon 10, 8 Euler steps, identical observations/noise, 32 warmup and 100 calls per mode. All methods receive both common Eager and full-sampler CUDA Graph execution; compile is disabled. Complete timing includes CPU preprocessing, H2D, vision/language, all denoising, online transforms, quantization/packing, GEMM, D2H and output transforms. RPC, simulator, loading and cold capture are excluded. GPU 1 remained idle; GPU/process logs accompany each run. Raw Eager samples show substantial host variability, so p 50/p 95 and per-call logs are retained rather than attributing all wall time to kernels.
+
+HoloQ Graph mean/p 50/p 95 is 309.58/308.99/312.87 ms, throughput 3.230 policy calls/s. Warmed inference peak allocated/reserved memory is 3.712/4.245 GB. Reserved reflects allocator history, not minimum required VRAM. Relative to the FP16 control, peak allocated is about 50.6% lower; relative to QServe it is higher, not lower. There is no latency advantage over the measured packed quantized controls. No new H100 result, scored success rate or real-rollout latency is inferred from these fixed-input measurements.
+
+Evidence: DEPLOYMENT_MAIN_TABLE.csv; main_results.csv; raw *_calls.jsonl and gpu_samples.jsonl; source/version/archive manifests.
+
+aAUc — static scope and 8-versus 10 steps
+
+We agree that 414-target storage cannot support a 252-target timing claim without explicit qualification. The additional HoloQ run matches all 162 vision+126 language+126 expert projections and executes 486 vision, 126 language and 1008 expert GEMMs per 8-step policy (vision is processed for 3 image slots, including the masked slot). Full module-name/shape and CUDA-launch ledgers are provided. Auxiliary projections/embeddings are listed separately, rather than describing every policy operation as INT4.
+
+The definition 8 core is calibrated and executed at 8 steps. The available historical pack stores 10 expert scale rows and differs in language scales, weight grids and output rotation; it is retained as a separately named 10-step configuration. We do not silently interpolate its scales or compare its latency against 8-step baselines. Baseline static quantizers were calibrated from 10-step teacher inputs using the same 10 initial observations; this budget difference is disclosed and prevents equal-calibration accuracy claims. Calibration provenance remains incomplete for the original paper pack.
+
+The 5.41 GB denominator matches 414 selected original weight tensors, not the 7.23 GB complete checkpoint. Necessary metadata gives 1.616 GB for the reconstructed target tensors and about 3.44 GB for full model files, with shared tokenizer bytes separate. We cannot reproduce 1.39 GB/74.2% from the available metadata-inclusive artifact and will qualify/correct that storage claim; it is not runtime-VRAM reduction.
+
+Evidence: method_alignment.csv; kernel_execution.csv; experiment_results/pi05_table3_414_20261028/definition_storage_audit.json; experiment_results/pi05_table3_414_20261028/complete_storage_audit.json; manifests for8-step and historical10-step artifacts.
+
+cd6x — execution coverage and original experiment qualification
+
+The new physical packed deployment and the historical Python quantization reference are explicitly distinct. Available historical-loader metadata describes unpacking weights and floating computation; it does not identify the exact original H100 run. The new timed path keeps all 414 selected weights packed and packs A 4 GEMM inputs, while documenting floating transforms and decoded floating MMA in vision/expert layers. Only the language path is native S4. Thus we will not equate the 4-bit numerical method, compressed files, and universal INT4 hardware execution, or attach historical success rates to a newly compiled runtime.
+
+Evidence: source manifest, kernel_execution.csv, actual CUDA kernel names, resident tensor ledger, and independent frozen-grid oracle checks.

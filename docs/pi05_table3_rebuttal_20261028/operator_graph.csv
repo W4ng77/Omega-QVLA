@@ -1,0 +1,13 @@
+stage,function,operation,precision_and_limit,evidence
+Offline core transform,paper_math.direct_input_rotation,Input-column energy permutation; left thinSVD U; frozenD; R=UDH64/8; apply sameR to x/W input blocks,FP32 R; no outputR; oneW grid/layer,definition8_build_fp64/audit.json
+Offline language quantizer,build_definition8_fp64.gptq15,"Signed[-7,7];oneFP32Sw/output acrossfullK;GPTQ processing128,damp.01","FP64 Gram/factorization retry,FP32updates;separatefrom failedFP32attempt",configuration.json;frozen_packSHA
+Offline expert quantizer,paper_math.rtn_per_output,"RTN signed15,peroutputSw;8perstep/channel robust scales","q999 is disclosed code choice,not uniquely stated percentile",definition8_capture/manifest.json;coreaudit
+Per-call input transform,DefinitionLinear.prepare / paper_math.block_transform,"x[:,perm] -> FP32block64R -> tokenA4 or channelA4",Correct strided reshape/contiguous;bias unchanged,local_oracle_checks.json;test_definition_runtime.py
+Step dispatch,pi05_step_context.install_pi05_step_context / set_dit_quant_step,"Wrap all8Eulerdenoise steps;selectSa[layer,t,:]","Missingstep,total!=8 fail;no average fallback;no weight bank copies",coverage.steps_seen;Graph/eagerchecks
+Language GEMM,DefinitionLinear.forward / native_llm.extension,Pack signedA4 -> existingCUTLASS nativeS4 GEMM -> FP32Sa[m]Sw[n],INT32 accumulation;BF16interface output,graph_trace.json.gz;actual CUDA names
+Expert GEMM,definition_runtime._channel_a4w4,"Decode qA4*Sa[t,k] andqW4 insideKtile -> FP16MMA -> FP32Sw[n]/bias",FP32accumulation;metadataSa staysFP32;BF16output,localoracle1134checks;Graphcounts1008/policy
+Vision,PackedVision.forward / _vision_gemm,RetainedU4RTN tokenminmax -> nibblepack -> tiledecodeG64/G16 weights,BF16MMA/FP32acc;3camera slots;no fullfloatWcache,visiontests;486actualcalls/policy
+Graph replay,Pi05CudaGraphSampler.__call__,Capture fullsampler with8steps;copy EVERY new obs/noise tensor before replay,OneGraph per signature;changedshape/steps raises;CPUpre/post remain timed,nsight_definition8_verified_summary.json
+Complete caller,openpi.policies.policy.Policy.infer,CPUtransforms -> H2D -> vision/language/allsteps -> D2H -> outputtransforms,External synchronized perf_counter timing;not internal asynchronousinfer_ms,100rawcalls/mode
+GPTQ W4A16 control,build_gptq_bf16_awq.gptq / BaselineLinear,OfficialGPTQG128 withBF16scales frozenBEFOREreconstruction;officialAWQ packedkernel,BF16MMA/FP32acc;lowprecisionpartials asdocumented;noAWQquantsearch,gptq_awq_bf16_full_policy_oracle.json
+W4A8 control,build_baselines / BaselineLinear / _prepare8,DisclosedSQ-W4smooth -> pertokenA8 -> officialQServepackedGEMM,INT8MMA/INT32acc;notQuantVLAidentity;zero-pad irregularvisionaxes,qserve_full_policy_oracle.json

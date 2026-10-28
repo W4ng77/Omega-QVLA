@@ -45,11 +45,3 @@ Reviewer replies and reproducibility
 
 READY_TO_PASTE.txt gives the short combined response. REVIEWER_REPLIES.txt gives topic-specific replies with evidence references. reviewer_evidence.csv lists answer status and remaining unsupported claims. Reproduction commands, package/source versions, pack hashes and raw records accompany this packet.
 
-Incomplete cases at collection time
------------------------------------
-
-definition8_scope_controls_ieee/backbone/report.json
-definition8_scope_controls_ieee/head/report.json
-controls8_ieee/gptq_marlin252/report.json
-controls8_ieee/smoothquant_qserve414/report.json
-

@@ -1,0 +1,106 @@
+{
+  "checkpoint": {
+    "path": "/home/xinyu/models/pi05_libero_pytorch/model.safetensors",
+    "sha256": "f274ea229d7e5cab268ae9867a691d2dd99e170b68e336a8a7220d3be68a0910"
+  },
+  "observations": {
+    "path": "/home/xinyu/omegaqvla/deploy_extras/pi05_calib_obs.pt",
+    "sha256": "0162c554c61a266f21b8f6d777eeeefb593d4eabcf44876e8bd01686c7ef2bbb",
+    "indices": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "historical_object_core": {
+    "path": "/home/xinyu/models/omega-qvla-pi05-414-w4a4-int4/pi05_object/quantized.pt",
+    "sha256": "77391d01f0424a24ffe3ff09dae484136cceb48972eacc95cff89fce3598341f"
+  },
+  "historical_vision": {
+    "path": "/home/xinyu/models/omega-qvla-pi05-414-w4a4-int4/vision_int4.pt",
+    "sha256": "5128cb7bc50145382ac047c8a08b48a7e4ddf90aa04abba3816ba9f1b71ce52a"
+  },
+  "deployments": {
+    "definition8_deployment_fp64": {
+      "local_path": "/home/xinyu/holoq-vla-pi05-table3/results/pi05_table3_414_20261028/definition8_deployment_fp64",
+      "manifest_sha256": "fc76e12063ca15ca4914f8d09062a229eab4995d813e8c83b027c94834ddd9ec",
+      "files": {
+        "vision_int4.pt": {
+          "bytes": 269185891,
+          "sha256": "5128cb7bc50145382ac047c8a08b48a7e4ddf90aa04abba3816ba9f1b71ce52a"
+        },
+        "config.json": {
+          "bytes": 149,
+          "sha256": "5c2728c53f4b33ee16380140f303713fdb5df78a8d26ee1489ace374fc54327a"
+        },
+        "packed_core.pt": {
+          "bytes": 1347010163,
+          "sha256": "5e879024ba21a09accfe9c9e06b65054cb69456f7678ab434f295c2992d40eb9"
+        },
+        "model_nonquant.safetensors": {
+          "bytes": 1824969304,
+          "sha256": "4983bd5e5074b5785dcdbc893114c3173bf77eee124f7a023ab52f98e070af50"
+        },
+        "assets/physical-intelligence/libero/norm_stats.json": {
+          "bytes": 1914,
+          "sha256": "b3a44bb2810436fb62917decaea58bd4d9110255df527dea21e8fd40c960bd84"
+        }
+      },
+      "all_files_bytes": 3441209843
+    },
+    "baseline_deployments/gptq_awq_bf16252": {
+      "local_path": "/home/xinyu/holoq-vla-pi05-table3/results/pi05_table3_414_20261028/baseline_deployments/gptq_awq_bf16252",
+      "manifest_sha256": "0132dba99e760acd41c592514cc0caab02554975b75a62fb22d8b1074a0679e1",
+      "files": {
+        "packed.pt": {
+          "bytes": 1218519197,
+          "sha256": "db1e1453a8392ebd2546091b8a3e3170d5808b08070269bde732a3b9e544a779"
+        },
+        "config.json": {
+          "bytes": 149,
+          "sha256": "5c2728c53f4b33ee16380140f303713fdb5df78a8d26ee1489ace374fc54327a"
+        },
+        "model_nonquant.safetensors": {
+          "bytes": 2647139544,
+          "sha256": "a3ac47fb3712e7b86080d9a6bad7739a925e9ca1b99150234234b404d360b65d"
+        },
+        "assets/physical-intelligence/libero/norm_stats.json": {
+          "bytes": 1914,
+          "sha256": "b3a44bb2810436fb62917decaea58bd4d9110255df527dea21e8fd40c960bd84"
+        }
+      },
+      "all_files_bytes": 3865684120
+    },
+    "baseline_deployments/smoothquant_qserve414": {
+      "local_path": "/home/xinyu/holoq-vla-pi05-table3/results/pi05_table3_414_20261028/baseline_deployments/smoothquant_qserve414",
+      "manifest_sha256": "16bca7060d25764adf1f39e0ad090b913b8d6c11a1d95ff0779de4a3800f0b42",
+      "files": {
+        "packed.pt": {
+          "bytes": 1403599457,
+          "sha256": "99e4ebf3fea285e51397f85310c922f7a779a8124a515aa1b0c13eb22259423a"
+        },
+        "config.json": {
+          "bytes": 149,
+          "sha256": "5c2728c53f4b33ee16380140f303713fdb5df78a8d26ee1489ace374fc54327a"
+        },
+        "model_nonquant.safetensors": {
+          "bytes": 1824969304,
+          "sha256": "4983bd5e5074b5785dcdbc893114c3173bf77eee124f7a023ab52f98e070af50"
+        },
+        "assets/physical-intelligence/libero/norm_stats.json": {
+          "bytes": 1914,
+          "sha256": "b3a44bb2810436fb62917decaea58bd4d9110255df527dea21e8fd40c960bd84"
+        }
+      },
+      "all_files_bytes": 3228612064
+    }
+  },
+  "original_paper_revision_and_full_calibration_provenance": "Not fully recovered; exact local tensors identified instead of inventing an HF revision"
+}

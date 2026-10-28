@@ -1,5 +1,9 @@
 # Pi0.5 Table3 scope: 414 quantized projections
 
+The completed reviewer packet is [MAIN_REPORT.rst](../../docs/pi05_table3_rebuttal_20261028/MAIN_REPORT.rst), with the [English reply](../../docs/pi05_table3_rebuttal_20261028/READY_TO_PASTE.txt) and [primary eight-step table](../../docs/pi05_table3_rebuttal_20261028/DEPLOYMENT_MAIN_TABLE.csv). That table uses a definition-aligned language/expert core plus released vision RTN, validated GPTQ with the existing BF16/FP32 AWQ execution backend, and a disclosed W4A8 QServe control. HoloQ does not have a latency advantage. No new success rate is claimed.
+
+The notes below describe the **separate historical ten-step artifact**, not the primary eight-step reconstruction. Its frozen grids and floating MMA behavior remain documented rather than silently being relabeled as the new configuration. Rejected Marlin and FP16-accumulation AWQ results are retained in the audit archive and excluded from the primary comparison.
+
 This work package replaces the mismatched GR00T180-projection timing as evidence for the Pi0.5 Table3 scope. That GR00T timing remains a valid separate measurement but must not be attached to Pi0.5 storage or success results.
 
 The source artifact is `/home/xinyu/models/omega-qvla-pi05-414-w4a4-int4`, Object pack SHA256 `77391d01f0424a24ffe3ff09dae484136cceb48972eacc95cff89fce3598341f`. It comprises 162 vision RTN linears,126 language linears and126 expert linears. Every target must match a module and execute in the audited complete inference. Vision executions can occur more than once per camera; expert projections must select every stored denoising-step row. A shape or dispatch mismatch aborts.

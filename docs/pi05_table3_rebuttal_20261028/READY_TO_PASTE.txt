@@ -1,0 +1,13 @@
+We distinguish 4-bit quantization and storage from hardware arithmetic. Our additional Pi0.5 run covers all 414 Table 3 target projections: 162 vision, 126 language and 126 expert layers. The language/expert core follows the submitted input-only rotation and signed[-7,7] definition; vision retains the released RTN recipe. We store packed W4 and pack A4 GEMM inputs. Language uses native INT4xINT4/INT32; the expert decodes tiles for FP16 MMA/FP32 accumulation, and vision uses BF16 MMA/FP32 accumulation. There is no full floating-weight cache or F.linear fallback for these timed targets. We do not claim an entirely native-INT4 policy.
+
+The expert scale must remain inside the reduction. In the paper's row-vector convention, Eq.9 should read:
+Y[m,n] = sW[n] * sum_k(QX[m,k] * sX[layer,t,k] * QW[k,n]) + bias[n].
+There is one weight matrix per layer and eight activation-scale rows, without per-step weight requantization.
+
+On one RTX 4080 SUPER, batch 1, horizon 10 and eight Euler steps, with 32 warmup calls and 100 unprofiled calls per configuration, common CUDA Graph execution gives HoloQ mean/p50/p95 309.58/308.99/312.87 ms and 3.23 policy calls/s. Complete FP16, packed GPTQ W4A16 and SmoothQuant-W4/QServe W4A8 controls take 106.83, 109.09 and 86.99 ms. Timing includes preprocessing, transfers, vision/language, all steps, transformations, quantization/packing, GEMM and postprocessing. Precision and layer coverage differ and are disclosed. HoloQ is slower; we will remove the claim that uniform W4A4 necessarily outperforms optimized mixed-bitwidth execution. QServe is an execution control here, not a QuantVLA reproduction.
+
+The 414 target tensors require 1.616 GB including scales, rotations and permutations, versus 5.409 GB originally. Complete model files require 3.441 GB. Warmed inference peak allocated/reserved memory is 3.712/4.245 GB, versus 7.514/8.338 GB for FP16. The 74.2% static-table claim is not runtime-VRAM saving; available metadata-inclusive artifacts do not reproduce 1.39 GB. We provide separate storage, overhead and backbone/head isolation tables.
+
+These are fixed-input deployment measurements using ten initial observations, not the paper's ten-trajectory calibration or scored rollouts. We do not attach submitted success rates to these kernels or claim exact historical H100/accuracy reproduction.
+
+Evidence: DEPLOYMENT_MAIN_TABLE.csv; kernel_execution.csv; method_alignment.csv; profile_breakdown.csv; main_results.csv; the raw oracle/trace/timing records in experiment_results/pi05_table3_414_20261028.

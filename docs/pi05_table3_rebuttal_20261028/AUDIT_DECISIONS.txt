@@ -1,0 +1,14 @@
+Audit decisions and excluded evidence — originals retained
+
+1. GR00T180 timing is a separate model/scope and does not support Pi0.5Table3. Prior70/72 reconstructions are not paper reproduction.
+2. Historical414 pack has static channel-wise languageA,output rotations,10expert rows and group-like weights. Keep its code/scales andT10data separate from definition8core.
+3. Initial PackedVision lacked the zero-element weight.dtype interface required bySigLIP. Failed loader outputs retained. No dense-weight workaround was used.
+4. FP32Hessian Cholesky in the submitted-definition core build failed (leadingminor14259). SeparateFP64Gram/factorization retry preserves damping.01,grid andseed. Logs and allpartialrecords retained.
+5. PI0Pytorch construction resets TF32. Main definition8 driver already setFalse afterload; first8step controls/subsets didnot. controls8_ieee and definition8_scope_controls_ieee supersede them with bothmatmul/cudnnflags recorded.
+6. Naive FunctionEvent CUDA ancestry duplicates GPUwork attribution. profile_summary.json with assigned_matches_direct=False and propagated rows are rejected. Rawactivity/correlation analysis,exact launchcounts and intervalunion are authoritative.
+7. Original Marlin Graph/eager discrepancies were initially hypothesized to be floating reduction variance. Independent frozen-weight checks invalidated that acceptance:defaultparallelM random-shapeNMSE up.0063;max_par1 passesq-proj randomtests butfails54actualMLPcalls,max.003466. None of these timings enter the final main table. The1e-2Graphguard alone was insufficient,so fullsame-input localoracles are required. This is a failure of the tested implementation/configuration,not a universal Marlin claim.
+8. Same-grid officialAWQFP16path uses actualFP16 MMAaccumulation. It failsoneof1134strictlocalchecks at.000182;that failure is retained andthe1e-4threshold is not loosened. Final GPTQ baseline separately freezesBF16scalesBEFORE reconstruction and uses the existingBF16/FP32MMA path;all1134checks pass,max3.883e-5. These are separately named artifacts,not a silentdtypeconversion.
+9. QServe control uses an explicitSmoothQuant-W4 extension,notQuantVLA. Full414/8step integeroracle checks1620calls,maxNMSE1.915e-10.
+10. No scoredLIBEROepisodes were run; no realrolloutlatency orhistoricalH100kernel result was recovered. No pairingpaperSR withnewtiming. No newPTX tuning/backendsearch was conducted; existing executors were configured to establish correct packed controls.
+11. Static export payload inventories are writtenbeforetheir deployment.json. Finalmainfiletotals include that requiredmanifest aswell as allpayloads/assets;originalmanifests remain immutable. Sharedtokenizer4,264,023bytes is listedseparately.
+12. Source retains unusedexpertvocabularyprojection526,647,296bytes inallmethods. It is notexecuted orcreditedasHoloQ-specificremoval. Activehead,storedhead,residentFP32promotions andheadstageincrement are separate ledgers.

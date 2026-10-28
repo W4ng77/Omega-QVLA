@@ -1,0 +1,102 @@
+Reproduction and evidence navigation
+
+Use an independent fresh checkout/results tree. Measurement scripts deliberately
+refuse existing output folders, so they do not overwrite frozen measurements.
+Original workspaces, packs and failed runs are preserved.
+
+Repository branch:
+  https://github.com/W4ng77/Omega-QVLA/tree/experiment/pi05-table3-414-deployment
+Current workstation:
+  /home/xinyu/holoq-vla-pi05-table3
+Python:
+  /home/xinyu/openpi/.venv/bin/python (Python3.11)
+OpenPi revision:
+  15a9616a00943ada6c20a0f158e3adb39df2ccac
+Runtime:
+  Torch2.7.1+cu126,CUDA Toolkit12.4,SM89; exact installed packages in
+  environment_freeze.txt and archive_manifest.json.
+
+The existing OpenPi environment includes its pinned transformers_replace files.
+A clean installation must use the pinned OpenPi revision's replacement files,
+not an unpatched nominally identical Transformers version. Replacement-source
+hashes and all third-party revisions/URLs are in archive_manifest.json.
+No fresh-machine installation is claimed to have been tested in this packet.
+
+Required large inputs, exact SHA256 and all final pack IDs:
+  MODEL_IDENTIFIERS.json
+The original checkpoint and released vision pack remain local; model binaries
+and per-layer teacher activation caches are not put into Git. The immutable
+original observation source is archived as source_observations.pt.gz with its
+original SHA256. Ten Object inputs are indices10..19; these are initial
+observations, not ten trajectories or held-out scored episodes. Restore only
+into a missing input path and verify SHA256; do not overwrite an existing pack.
+
+Environment used by the commands (replace the repository root for a fresh tree):
+  cd /home/xinyu/holoq-vla-pi05-table3
+  export PYTHONPATH=$PWD:/home/xinyu/openpi/src:/home/xinyu/openpi/packages/openpi-client/src
+  export CUDA_VISIBLE_DEVICES=0 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+  export JAX_PLATFORMS=cpu XLA_PYTHON_CLIENT_PREALLOCATE=false
+  export HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false
+  export CUDA_HOME=/usr/local/cuda-12.4 TORCH_CUDA_ARCH_LIST=8.9 MAX_JOBS=2
+  export PATH=/home/xinyu/.venv-vllm/bin:$CUDA_HOME/bin:$PATH
+  task_python=/home/xinyu/openpi/.venv/bin/python
+
+Commands from a fresh results tree, in dependency order:
+  bash scripts/fetch_pi05_kernel_sources.sh
+  "$task_python" -m research.pi05_table3.capture_definition8
+  "$task_python" -m research.pi05_table3.build_definition8_fp64
+  flock /tmp/holoq-vla-policy-timing.lock "$task_python" -m pytest -q research/pi05_table3/test_definition_runtime.py
+  "$task_python" -m research.pi05_table3.measure_definition8
+  "$task_python" -m research.pi05_table3.capture_baselines
+  "$task_python" -m research.pi05_table3.build_baselines --kind smoothquant_qserve414
+  "$task_python" -m research.pi05_table3.build_gptq_bf16_awq
+  "$task_python" -m research.pi05_table3.validate_gptq_bf16_awq
+  "$task_python" -m research.pi05_table3.validate_qserve
+  "$task_python" -m research.pi05_table3.measure_controls --kind fp16 --steps 8 --ieee-matmul --output-group controls8_ieee
+  "$task_python" -m research.pi05_table3.measure_controls --kind bf16 --steps 8 --ieee-matmul --output-group controls8_ieee
+  "$task_python" -m research.pi05_table3.measure_controls --kind gptq_awq_bf16252 --steps 8 --ieee-matmul --output-group controls8_ieee
+  "$task_python" -m research.pi05_table3.measure_controls --kind smoothquant_qserve414 --steps 8 --ieee-matmul --output-group controls8_ieee
+  "$task_python" -m research.pi05_table3.measure_scopes --method definition8 --scope backbone
+  "$task_python" -m research.pi05_table3.measure_scopes --method definition8 --scope head
+  "$task_python" -m research.pi05_table3.inspect_definition_memory
+  "$task_python" -m research.pi05_table3.profile_definition8
+  "$task_python" -m research.pi05_table3.analyze_eager_trace --definition8
+  bash scripts/run_table3_definition8_nsight.sh
+  /usr/local/cuda-12.4/bin/nsys export --type sqlite --output results/pi05_table3_414_20261028/nsight_definition8.sqlite results/pi05_table3_414_20261028/nsight_definition8.nsys-rep
+  "$task_python" -m research.pi05_table3.analyze_nsight --definition8
+  "$task_python" -m research.pi05_table3.audit_definition_storage
+
+Historical10-step controls are separate. Their original artifacts/commands and
+raw reports remain archived; they are not required to reproduce the primary
+four-row8-step comparison. No step_weight/group_int conversion is used in
+that table. The named Marlin/default/max_par1 and FP16AWQ diagnostics reproduce
+rejected paths; do not treat their completed timing files as validated rows.
+
+Common scripts use /tmp/holoq-vla-policy-timing.lock for all GPU work. Run one
+job at a time and keep the second GPU idle. Use a matching no-profiler run for
+latency, not the profiled wall time or a sum of individual kernel durations.
+The profiler and Nsight scripts operate on the exact deployment manifest.
+
+Evidence:
+  experiment_results/pi05_table3_414_20261028/archive_manifest.json
+  definition8_measurement/report.json and *_calls.jsonl
+  controls8_ieee/*/report.json and *_calls.jsonl
+  definition8_scope_controls_ieee/*/report.json
+  definition8_profile/eager_policy_trace.json.gz and verified_eager_attribution.json
+  nsight_definition8.nsys-rep and nsight_definition8_verified_summary.json
+  definition8_memory_inspection.json and action_head_memory_breakdown.json
+  deployment_storage_with_manifests.json and all deployment.json files
+  compressed build/check/capture logs and raw numerical outputs.npz
+
+All evidence-relative paths above are under the archive directory or their
+local original results directory. gzip -d a COPY of a trace to open it in a
+Chrome trace viewer; keep archived originals. nsys-rep can regenerate SQLite.
+The archive manifest contains compressed/uncompressed SHA256 and byte sizes.
+The package/source ledger records only an allowlist of environment variables,
+never tokens or credentials.
+
+Exact prior running source is identified by per-report file SHA256, with
+source snapshots preserved in branch commits. Runtime HoloQ files stayed
+frozen across the accepted main measurements; later changes collect evidence
+or configure independent baseline variants. Public comparisons are not made
+against unrelated ports or invalid early measurements.

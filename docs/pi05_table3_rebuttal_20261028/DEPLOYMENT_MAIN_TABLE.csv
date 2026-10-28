@@ -1,0 +1,5 @@
+Method,W/A,Actual quantized scope,Success rate,Policy mean/p50/p95 ms,Policy calls/s,Peak allocated/reserved GB,Complete model files GB,GPTQ ms / this ms,QServe ms / this ms
+FP16 control,16/16,No quantized targets; sensitiveFP32 params retained,not measured,106.83 / 106.38 / 110.94,9.361,7.514 / 8.338,7.234,1.021,0.814
+GPTQ / official AWQ BF16-FP32 backend,4/16,126language+126expert; visionBF16; Wgroup128; BF16 scales fixed before GPTQ,not measured,109.09 / 108.84 / 111.00,9.167,4.147 / 4.446,3.866,1.000,0.797
+SmoothQuant-W4 extension / QServe,4/8,162vision+126language+126expert; per-outputW4,not measured,86.99 / 88.27 / 89.99,11.495,3.502 / 3.790,3.229,1.254,1.000
+HoloQ definition8 core + released vision RTN,4/4,162visionRTN+126language+126expert; signed15core,not measured,309.58 / 308.99 / 312.87,3.230,3.712 / 4.245,3.441,0.352,0.281
