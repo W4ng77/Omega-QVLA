@@ -17,7 +17,7 @@ def validate_resume_metadata(directory: Path, current):
         return {}, []
     old = json.loads(path.read_text())
     identity = ("source_pack_sha256", "observation_file_sha256", "mode", "stage", "denoising_steps",
-                "action_horizon", "batch", "warmup", "noise_seed")
+                "action_horizon", "batch", "warmup", "noise_seed", "common_optimizations")
     for key in identity:
         if old.get(key) != current.get(key):
             raise RuntimeError(f"Resume identity mismatch for {key}; use a new output directory")

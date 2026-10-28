@@ -14,6 +14,7 @@ import time
 
 CORE = [
     "research/holoq_bench/run_policy.py",
+    "research/holoq_bench/rollout_driver.py",
     "research/holoq_bench/packed_runtime.py",
     "research/holoq_bench/graphs.py",
     "research/holoq_bench/kernels.py",
