@@ -1,0 +1,65 @@
+[
+  {
+    "case": "awq_qwen_full",
+    "episodes": 100,
+    "successes": 92,
+    "journal_sha256": "c80a55f78ad7175f5f2ad78dd55521f77009f682c13f58cdc0e8e5d28904413d",
+    "unchanged": true
+  },
+  {
+    "case": "gptq_full",
+    "episodes": 100,
+    "successes": 98,
+    "journal_sha256": "02f52d1e112293d0d7f9cba1700cbb9214082c2075cacc5572eccc77d1de3e79",
+    "unchanged": true
+  },
+  {
+    "case": "smoothquant_a8",
+    "episodes": 100,
+    "successes": 88,
+    "journal_sha256": "428f231f4f996d9a0ab09a2b4b79e09dc8f0b3c42dfc71d9e2341717847e79af",
+    "unchanged": true
+  },
+  {
+    "case": "gptq_selective",
+    "episodes": 100,
+    "successes": 93,
+    "journal_sha256": "40b7b9a981bc687a12582f79537c374daccb5686878b644eb78501b3c0f5499b",
+    "unchanged": true
+  },
+  {
+    "case": "omniquant_selective",
+    "episodes": 100,
+    "successes": 88,
+    "journal_sha256": "4cad738a2817b45b42f9378d69b304222efe10a3b423574ee9f8e4aa7b2ac55a",
+    "unchanged": true
+  },
+  {
+    "case": "smoothquant_a4",
+    "episodes": 100,
+    "successes": 53,
+    "journal_sha256": "4562a1316daca127bc9c52ef2657698493af53d04489d69c56b489bb0e496ecc",
+    "unchanged": true
+  },
+  {
+    "case": "awq_qwen_selective",
+    "episodes": 100,
+    "successes": 93,
+    "journal_sha256": "16c6ae51bf423a9f8d8ecf93ddc9f030881cd668a7ceda55bb9b6aef87cf5701",
+    "unchanged": true
+  },
+  {
+    "case": "holoq",
+    "episodes": 100,
+    "successes": 72,
+    "journal_sha256": "e62fd409b41fc682c69f95515e09a6cec292c487401b79e21704cd7e27d86f13",
+    "unchanged": true
+  },
+  {
+    "case": "holoq_llm_s4_rotv2",
+    "episodes": 100,
+    "successes": 70,
+    "journal_sha256": "478e1ef21605a1677026078aeeb629db4a68ff527db3bbd3dbd21cb1a561e47f",
+    "unchanged": true
+  }
+]

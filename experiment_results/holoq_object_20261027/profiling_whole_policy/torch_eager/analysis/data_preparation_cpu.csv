@@ -1,0 +1,8 @@
+operator,cpu_inclusive_ms_per_call,count_per_call,note
+aten::to,10.805282200000002,1968.0,nested inclusive CPU times; not additive; may include GPU wait
+aten::_to_copy,10.163977400000014,1330.0,nested inclusive CPU times; not additive; may include GPU wait
+aten::copy_,6.926340199999991,1548.0,nested inclusive CPU times; not additive; may include GPU wait
+aten::item,0.019331000000000004,20.0,nested inclusive CPU times; not additive; may include GPU wait
+aten::_local_scalar_dense,0.0113426,20.0,nested inclusive CPU times; not additive; may include GPU wait
+aten::contiguous,1.2465336,188.0,nested inclusive CPU times; not additive; may include GPU wait
+aten::clone,1.3796595999999992,213.0,nested inclusive CPU times; not additive; may include GPU wait

@@ -1,0 +1,292 @@
+{
+  "profiled_calls": 5,
+  "phase_operation": [
+    {
+      "phase": "language",
+      "operation": "gemm",
+      "gpu_total_ms": 29.26723200000001,
+      "gpu_ms_per_call": 5.853446400000002,
+      "calls_total": 430,
+      "calls_per_policy": 86.0
+    },
+    {
+      "phase": "vision",
+      "operation": "gemm",
+      "gpu_total_ms": 26.021945000000045,
+      "gpu_ms_per_call": 5.204389000000009,
+      "calls_total": 850,
+      "calls_per_policy": 170.0
+    },
+    {
+      "phase": "language",
+      "operation": "rotation",
+      "gpu_total_ms": 12.562358999999999,
+      "gpu_ms_per_call": 2.5124717999999997,
+      "calls_total": 840,
+      "calls_per_policy": 168.0
+    },
+    {
+      "phase": "language",
+      "operation": "other_compute",
+      "gpu_total_ms": 9.638374999999975,
+      "gpu_ms_per_call": 1.927674999999995,
+      "calls_total": 2410,
+      "calls_per_policy": 482.0
+    },
+    {
+      "phase": "vision",
+      "operation": "copy_cast_kernel",
+      "gpu_total_ms": 8.301218999999973,
+      "gpu_ms_per_call": 1.6602437999999948,
+      "calls_total": 2225,
+      "calls_per_policy": 445.0
+    },
+    {
+      "phase": "vision",
+      "operation": "other_compute",
+      "gpu_total_ms": 5.980610000000001,
+      "gpu_ms_per_call": 1.1961220000000004,
+      "calls_total": 885,
+      "calls_per_policy": 177.0
+    },
+    {
+      "phase": "language",
+      "operation": "copy_cast_kernel",
+      "gpu_total_ms": 3.2081580000000076,
+      "gpu_ms_per_call": 0.6416316000000015,
+      "calls_total": 750,
+      "calls_per_policy": 150.0
+    },
+    {
+      "phase": "language",
+      "operation": "quantization_pack",
+      "gpu_total_ms": 2.416253999999995,
+      "gpu_ms_per_call": 0.483250799999999,
+      "calls_total": 420,
+      "calls_per_policy": 84.0
+    },
+    {
+      "phase": "language",
+      "operation": "gemm_scale_epilogue",
+      "gpu_total_ms": 1.768334999999999,
+      "gpu_ms_per_call": 0.35366699999999984,
+      "calls_total": 420,
+      "calls_per_policy": 84.0
+    },
+    {
+      "phase": "prepare_input",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.3731540000000001,
+      "gpu_ms_per_call": 0.07463080000000002,
+      "calls_total": 70,
+      "calls_per_policy": 14.0
+    },
+    {
+      "phase": "backbone_other",
+      "operation": "other_compute",
+      "gpu_total_ms": 0.18957000000000004,
+      "gpu_ms_per_call": 0.03791400000000001,
+      "calls_total": 60,
+      "calls_per_policy": 12.0
+    },
+    {
+      "phase": "backbone_other",
+      "operation": "gemm",
+      "gpu_total_ms": 0.15648099999999998,
+      "gpu_ms_per_call": 0.031296199999999996,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    },
+    {
+      "phase": "vision",
+      "operation": "gpu_memset",
+      "gpu_total_ms": 0.11571599999999983,
+      "gpu_ms_per_call": 0.023143199999999968,
+      "calls_total": 145,
+      "calls_per_policy": 29.0
+    },
+    {
+      "phase": "action_head",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.06076799999999999,
+      "gpu_ms_per_call": 0.012153599999999997,
+      "calls_total": 45,
+      "calls_per_policy": 9.0
+    },
+    {
+      "phase": "backbone_other",
+      "operation": "copy_cast_kernel",
+      "gpu_total_ms": 0.0152,
+      "gpu_ms_per_call": 0.0030399999999999997,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    },
+    {
+      "phase": "action_head",
+      "operation": "other_compute",
+      "gpu_total_ms": 0.014145000000000001,
+      "gpu_ms_per_call": 0.0028290000000000004,
+      "calls_total": 15,
+      "calls_per_policy": 3.0
+    },
+    {
+      "phase": "other_policy",
+      "operation": "copy_cast_kernel",
+      "gpu_total_ms": 0.011040000000000001,
+      "gpu_ms_per_call": 0.0022080000000000003,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    },
+    {
+      "phase": "backbone_other",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.008609,
+      "gpu_ms_per_call": 0.0017218,
+      "calls_total": 10,
+      "calls_per_policy": 2.0
+    },
+    {
+      "phase": "postprocess",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.005024,
+      "gpu_ms_per_call": 0.0010048,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    },
+    {
+      "phase": "language",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.003968,
+      "gpu_ms_per_call": 0.0007936,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    }
+  ],
+  "phase_gpu_work_ms_per_call": {
+    "backbone_other": 0.073972,
+    "vision": 8.083898000000003,
+    "language": 11.772936199999997,
+    "action_head": 0.014982599999999997,
+    "other_policy": 0.0022080000000000003,
+    "prepare_input": 0.07463080000000002,
+    "postprocess": 0.0010048
+  },
+  "means": {
+    "profiled_wall_ms": 76.52574599999998,
+    "gpu_activity_sum_ms": 20.023632399999084,
+    "gpu_busy_union_ms": 20.023632399999084,
+    "gpu_overlap_excess_ms": -1.4551915228366853e-15,
+    "gpu_idle_within_policy_ms": null,
+    "cpu_sync_blocked_ms": 0.8503761999999953,
+    "cpu_sync_overlapping_gpu_busy_ms": 0.7466713999999741,
+    "cpu_sync_during_gpu_idle_ms": null,
+    "sync_calls": 18.0
+  },
+  "per_call": [
+    {
+      "call": "holoq/get_action/0",
+      "profiled_wall_ms": 77.840486,
+      "gpu_activity_sum_ms": 19.991885999999912,
+      "gpu_busy_union_ms": 19.99188599999992,
+      "gpu_overlap_excess_ms": -7.275957614183426e-15,
+      "gpu_idle_within_policy_ms": null,
+      "cpu_sync_blocked_ms": 0.38130200000000697,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.28024999999999817,
+      "cpu_sync_during_gpu_idle_ms": null,
+      "sync_calls": 18
+    },
+    {
+      "call": "holoq/get_action/1",
+      "profiled_wall_ms": 76.86013199999998,
+      "gpu_activity_sum_ms": 19.986875000000175,
+      "gpu_busy_union_ms": 19.986875000000175,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": null,
+      "cpu_sync_blocked_ms": 0.763829999999958,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.664630999999994,
+      "cpu_sync_during_gpu_idle_ms": null,
+      "sync_calls": 18
+    },
+    {
+      "call": "holoq/get_action/2",
+      "profiled_wall_ms": 78.91455900000001,
+      "gpu_activity_sum_ms": 20.049726999998878,
+      "gpu_busy_union_ms": 20.049726999998878,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": null,
+      "cpu_sync_blocked_ms": 0.4852989999999991,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.40432500000012805,
+      "cpu_sync_during_gpu_idle_ms": null,
+      "sync_calls": 18
+    },
+    {
+      "call": "holoq/get_action/3",
+      "profiled_wall_ms": 75.34114299999999,
+      "gpu_activity_sum_ms": 20.047340999999317,
+      "gpu_busy_union_ms": 20.047340999999317,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": null,
+      "cpu_sync_blocked_ms": 1.0183219999999855,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.9120350000000035,
+      "cpu_sync_during_gpu_idle_ms": null,
+      "sync_calls": 18
+    },
+    {
+      "call": "holoq/get_action/4",
+      "profiled_wall_ms": 73.67240999999997,
+      "gpu_activity_sum_ms": 20.042332999997132,
+      "gpu_busy_union_ms": 20.042332999997132,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": null,
+      "cpu_sync_blocked_ms": 1.603128000000026,
+      "cpu_sync_overlapping_gpu_busy_ms": 1.472115999999747,
+      "cpu_sync_during_gpu_idle_ms": null,
+      "sync_calls": 18
+    }
+  ],
+  "sync_api_count": {
+    "cudaStreamSynchronize_v3020": 90,
+    "cudaDeviceSynchronize_v3020": 1
+  },
+  "host_api_overlap": [
+    {
+      "api": "cudaGraphLaunch_v10000",
+      "count_per_call": 1.0,
+      "cpu_api_elapsed_ms_per_call": 1.612523199999999,
+      "overlap_gpu_busy_ms_per_call": 1.612523199999999,
+      "during_observed_gpu_idle_ms_per_call": null,
+      "note": "host API elapsed, includes implicit synchronization for pageable DtoH; not additive to GPU compute; incomplete graph coverage: GPU overlap is a lower bound"
+    },
+    {
+      "api": "cudaMemcpyAsync_v3020",
+      "count_per_call": 27.0,
+      "cpu_api_elapsed_ms_per_call": 44.12818400000001,
+      "overlap_gpu_busy_ms_per_call": 1.6457152000000286,
+      "during_observed_gpu_idle_ms_per_call": null,
+      "note": "host API elapsed, includes implicit synchronization for pageable DtoH; not additive to GPU compute; incomplete graph coverage: GPU overlap is a lower bound"
+    },
+    {
+      "api": "cudaStreamSynchronize_v3020",
+      "count_per_call": 18.0,
+      "cpu_api_elapsed_ms_per_call": 0.8503761999999951,
+      "overlap_gpu_busy_ms_per_call": 0.7466713999999741,
+      "during_observed_gpu_idle_ms_per_call": null,
+      "note": "host API elapsed, includes implicit synchronization for pageable DtoH; not additive to GPU compute; incomplete graph coverage: GPU overlap is a lower bound"
+    }
+  ],
+  "data_preparation_cpu": [],
+  "unattributed_gpu_ms_per_call": 0.0022080000000000003,
+  "unattributed_kernels": {
+    "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 3)]::operator ()() const::[lambda() (instance 7)]::operator ()() const::[lambda(float) (instance 1)], at::detail::Array<char *, (int)2>, TrivialOffsetCalculator<(int)1, unsigned int>, TrivialOffsetCalculator<(int)1, unsigned int>, at::native::memory::LoadWithCast<(int)1>, at::native::memory::StoreWithCast<(int)1>>(int, T1, T2, T3, T4, T5, T6)": 11.040000000000001
+  },
+  "step_operation": [],
+  "notes": [
+    "Only actual CUDA activity is summed; gpu_user_annotation excluded.",
+    "CPU synchronization blocking overlaps GPU compute; never add it to GPU busy.",
+    "GPU idle contains CPU preprocessing/launch gaps and profiler overhead, not necessarily synchronization.",
+    "Kernel sums are work; GPU unions and excess overlap reconcile wall time.",
+    "Copy/cast is a cross-cutting phase/operation cell. CPU contiguous/to/copy ranges are nested and not additive.",
+    "INCOMPLETE GRAPH GPU COVERAGE: graph launch APIs present but graph body activities absent. Observed GPU work is a lower bound. Idle cannot be inferred; use the complete node-level capture."
+  ],
+  "gpu_coverage_complete": false
+}

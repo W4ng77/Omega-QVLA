@@ -1,0 +1,13 @@
+{
+  "before": {
+    "output": 1.0,
+    "graph_entries": 1
+  },
+  "fixed": {
+    "output": 2.0,
+    "graph_entries": 2
+  },
+  "expected": 2.0,
+  "before_source_commit": "57d8d3e",
+  "before_source_sha256": "277c01cedfde415b4ed0c205d9c1aafbc8939566a8e748845fae49ca1121e92a"
+}

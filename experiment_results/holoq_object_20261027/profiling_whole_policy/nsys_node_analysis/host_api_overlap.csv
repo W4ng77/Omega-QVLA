@@ -1,0 +1,4 @@
+api,count_per_call,cpu_api_elapsed_ms_per_call,overlap_gpu_busy_ms_per_call,during_observed_gpu_idle_ms_per_call,note
+cudaGraphLaunch_v10000,1.0,4.1959072000000015,4.184809,0.011098200000001815,"host API elapsed, includes implicit synchronization for pageable DtoH; not additive to GPU compute"
+cudaMemcpyAsync_v3020,27.0,42.264724599999994,41.88752359999799,0.3772010000020033,"host API elapsed, includes implicit synchronization for pageable DtoH; not additive to GPU compute"
+cudaStreamSynchronize_v3020,18.0,1.4843147999999782,1.350134599999915,0.13418020000006328,"host API elapsed, includes implicit synchronization for pageable DtoH; not additive to GPU compute"

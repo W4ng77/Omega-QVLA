@@ -1,0 +1,1332 @@
+{
+  "purpose": "accuracy only, no floating speed benchmark",
+  "rotations": [
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.q_proj",
+      "shape": [
+        2048,
+        2048
+      ],
+      "unquantized_rotation_roundtrip_nmse": 2.418224767097854e-07,
+      "output_rotation_stride": [
+        4096,
+        1,
+        64
+      ]
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.down_proj",
+      "shape": [
+        2048,
+        6144
+      ],
+      "unquantized_rotation_roundtrip_nmse": 2.8769161986019753e-07,
+      "output_rotation_stride": [
+        4096,
+        1,
+        64
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "shape": [
+        1536,
+        2048
+      ],
+      "unquantized_rotation_roundtrip_nmse": 2.573115693849104e-07,
+      "output_rotation_stride": [
+        4096,
+        1,
+        64
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "shape": [
+        6144,
+        1536
+      ],
+      "unquantized_rotation_roundtrip_nmse": 1.8937745949187956e-07,
+      "output_rotation_stride": [
+        4096,
+        1,
+        64
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "shape": [
+        1536,
+        6144
+      ],
+      "unquantized_rotation_roundtrip_nmse": 2.075479699215066e-07,
+      "output_rotation_stride": [
+        4096,
+        1,
+        64
+      ]
+    }
+  ],
+  "native_real_bank_comparisons": [
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "step": 0,
+      "nmse": 2.2536063726957822e-14,
+      "shape": [
+        49,
+        2048
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "step": 1,
+      "nmse": 2.2743679972659324e-14,
+      "shape": [
+        49,
+        2048
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "step": 2,
+      "nmse": 2.392583134109942e-14,
+      "shape": [
+        49,
+        2048
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "step": 3,
+      "nmse": 2.3429085481050348e-14,
+      "shape": [
+        49,
+        2048
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "step": 4,
+      "nmse": 2.629620391607964e-14,
+      "shape": [
+        49,
+        2048
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "step": 5,
+      "nmse": 2.244859741075845e-14,
+      "shape": [
+        49,
+        2048
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "step": 6,
+      "nmse": 2.3352339213831425e-14,
+      "shape": [
+        49,
+        2048
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "step": 7,
+      "nmse": 2.2697968992627798e-14,
+      "shape": [
+        49,
+        2048
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "step": 0,
+      "nmse": 6.806775060047218e-14,
+      "shape": [
+        49,
+        1536
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "step": 1,
+      "nmse": 6.942425014857742e-14,
+      "shape": [
+        49,
+        1536
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "step": 2,
+      "nmse": 6.914891700687473e-14,
+      "shape": [
+        49,
+        1536
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "step": 3,
+      "nmse": 7.031751754222465e-14,
+      "shape": [
+        49,
+        1536
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "step": 4,
+      "nmse": 7.031601321171033e-14,
+      "shape": [
+        49,
+        1536
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "step": 5,
+      "nmse": 6.995705420119111e-14,
+      "shape": [
+        49,
+        1536
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "step": 6,
+      "nmse": 7.059852241654216e-14,
+      "shape": [
+        49,
+        1536
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "step": 7,
+      "nmse": 7.122123393430921e-14,
+      "shape": [
+        49,
+        1536
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "step": 0,
+      "nmse": 4.7407421006418274e-14,
+      "shape": [
+        49,
+        6144
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "step": 1,
+      "nmse": 4.508535133228818e-14,
+      "shape": [
+        49,
+        6144
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "step": 2,
+      "nmse": 4.104278155943157e-14,
+      "shape": [
+        49,
+        6144
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "step": 3,
+      "nmse": 4.2040803211731634e-14,
+      "shape": [
+        49,
+        6144
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "step": 4,
+      "nmse": 4.2183494382026093e-14,
+      "shape": [
+        49,
+        6144
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "step": 5,
+      "nmse": 4.6593066590269044e-14,
+      "shape": [
+        49,
+        6144
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "step": 6,
+      "nmse": 4.605837873638066e-14,
+      "shape": [
+        49,
+        6144
+      ],
+      "scale_dtype": "torch.float32"
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "step": 7,
+      "nmse": 4.2138947225264095e-14,
+      "shape": [
+        49,
+        6144
+      ],
+      "scale_dtype": "torch.float32"
+    }
+  ],
+  "real_policy_non_tensor_inputs": [
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ],
+    [
+      {},
+      {}
+    ]
+  ],
+  "current_protocol_uses_tensor_only_graph_inputs": true,
+  "per_step_capture_counts": {
+    "action_head.model.transformer_blocks.0.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.0.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.0.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.0.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.0.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.0.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.1.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.1.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.1.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.1.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.1.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.1.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.2.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.2.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.2.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.2.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.2.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.2.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.3.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.3.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.3.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.3.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.3.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.3.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.4.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.4.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.4.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.4.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.4.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.4.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.5.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.5.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.5.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.5.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.5.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.5.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.6.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.6.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.6.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.6.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.6.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.6.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.7.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.7.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.7.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.7.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.7.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.7.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.8.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.8.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.8.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.8.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.8.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.8.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.9.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.9.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.9.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.9.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.9.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.9.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.10.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.10.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.10.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.10.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.10.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.10.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.11.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.11.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.11.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.11.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.11.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.11.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.12.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.12.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.12.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.12.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.12.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.12.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.13.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.13.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.13.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.13.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.13.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.13.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.14.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.14.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.14.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.14.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.14.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.14.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.15.attn1.to_q": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.15.attn1.to_k": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.15.attn1.to_v": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.15.attn1.to_out.0": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.15.ff.net.0.proj": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    },
+    "action_head.model.transformer_blocks.15.ff.net.2": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
+      "7": 12
+    }
+  },
+  "all_96_DiT_layers_capture_distinct_8_scale_rows": true,
+  "graph_count": 3,
+  "graph_vs_eager_action_nmse": [
+    0.0001568332046080524,
+    0.0002113962691840738,
+    0.0002352244647789493,
+    0.00027806177941985523,
+    0.00014507353547058165,
+    0.00015689656124147653,
+    0.0003500799323075974,
+    0.00024228035516620958,
+    0.00017012791220801445,
+    0.00017617579425941514
+  ],
+  "passed": true
+}

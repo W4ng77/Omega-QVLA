@@ -1,0 +1,38 @@
+{
+  "replay_remeasure.log.gz": {
+    "bytes": 1366,
+    "sha256": "d6f4509d4f81e6e77f2c009e1fbabca546776bf7a92f3017034758251478b386"
+  },
+  "REPORT.md": {
+    "bytes": 3386,
+    "sha256": "9d1f9159f9f62fd7c9621b05d85c20741aefa9f28bc6c3aa41bbd8d9e63047eb"
+  },
+  "primary_results_audit.json": {
+    "bytes": 10697,
+    "sha256": "963c339ba96d7392fe823d55eeb8aa13460364c6ee9781780bb1da2ad53e4760"
+  },
+  "real_math_provenance.json": {
+    "bytes": 527,
+    "sha256": "4fa247cf982ec4febd39bd068d3b177ae2d5b18985ce663e769dbf0d03281934"
+  },
+  "real_math.json": {
+    "bytes": 25641,
+    "sha256": "f1524376d18c0f8506d9b221a727e76490b25bfaaf47886fec40b2d6adf24035"
+  },
+  "regression_tests.log.gz": {
+    "bytes": 72,
+    "sha256": "9d4b25915eb0fa0e3944098b05d16c37223ebe4379d9107412abda696ccebdd0"
+  },
+  "graph_bug_reproduction.json": {
+    "bytes": 274,
+    "sha256": "971106da13d58ba0383aa4ef8dafeedbebd3cc4a52380a5990e14076bedb492e"
+  },
+  "rotation_results_audit.json": {
+    "bytes": 4786,
+    "sha256": "c45413ea95bc56ec3139c27687a8565c7b219beca9e56c20e49abaa38487ced2"
+  },
+  "journal_audit.json": {
+    "bytes": 1738,
+    "sha256": "3157e308c8ad14042cb930093a6e7874294db018b61073cfe3113bd33e2a3e19"
+  }
+}

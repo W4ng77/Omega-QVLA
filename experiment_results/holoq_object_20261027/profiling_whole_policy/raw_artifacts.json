@@ -1,0 +1,24 @@
+{
+  "torch_head_graph": {
+    "raw_local_path": "/home/xinyu/holoq-vla-baselines/results/holoq_object/profiling_full_policy_v2/torch_head_graph/policy_trace.json",
+    "raw_sha256": "6e317ae0f337dc837d2bbfa65b55decbcb26bde7f29f979ab6432ba4a0dfe2e5",
+    "published_gzip_sha256": "ae223fee5b942602dff1497c563c8030f7c669d2a1766f8b0cd3db954cfb8768"
+  },
+  "torch_eager": {
+    "raw_local_path": "/home/xinyu/holoq-vla-baselines/results/holoq_object/profiling_full_policy_v2/torch_eager/policy_trace.json",
+    "raw_sha256": "5e8084064c83fa731f9e756a1a8b39f46c1dbab547d925c59d72671ff00edc49",
+    "published_gzip_sha256": "cb99a9280e5b2c8e0d948dd7b4bb7bd46b7617753faacd8f62098f54758b9011"
+  },
+  "nsys_node": {
+    "raw_local_path": "/home/xinyu/holoq-vla-baselines/results/holoq_object/profiling_full_policy_v2/nsys_node.nsys-rep",
+    "raw_sha256": "bef08ce5408ea403cb9b2776dc08abcbd327af1914e43b536372798800ae0927",
+    "published_activity_gzip_sha256": "6e307b28ce6855af2de4008f6296db1185d0b8d85e6e49d979ba9b3ad21d589f",
+    "note": "Original .nsys-rep retained locally; portable published trace contains NVTX/CUDA activity rows and correlation IDs."
+  },
+  "nsys_graph": {
+    "raw_local_path": "/home/xinyu/holoq-vla-baselines/results/holoq_object/profiling_full_policy_v2/nsys_graph.nsys-rep",
+    "raw_sha256": "19d250cce761e970cea89ce14d7b86d833fdf5068e7400f3dfee5ab8b766c3ff",
+    "published_activity_gzip_sha256": "9f13bf9aeedfdfe9b51cac194437313c77eb1a99bae11781c866f51601a2f843",
+    "note": "Original .nsys-rep retained locally; portable published trace contains NVTX/CUDA activity rows and correlation IDs."
+  }
+}

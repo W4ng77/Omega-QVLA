@@ -1,0 +1,37 @@
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                holoq/stage/action_head         0.00%       0.000us         0.00%       0.000us       0.000us     697.501ms       217.64%     697.501ms     139.500ms             5  
+                                   holoq/stage/language         0.00%       0.000us         0.00%       0.000us       0.000us     101.964ms        31.82%     101.964ms      20.393ms             5  
+void Marlin<256, 4, 16, 4, 4, -1>(int4 const*, int4 ...         0.00%       0.000us         0.00%       0.000us       0.000us      95.673ms        29.85%      95.673ms      24.915us          3840  
+                                           holoq/step/3         0.00%       0.000us         0.00%       0.000us       0.000us      86.367ms        26.95%      86.367ms      17.273ms             5  
+                                           holoq/step/4         0.00%       0.000us         0.00%       0.000us       0.000us      86.001ms        26.83%      86.001ms      17.200ms             5  
+                                           holoq/step/7         0.00%       0.000us         0.00%       0.000us       0.000us      85.647ms        26.72%      85.647ms      17.129ms             5  
+                                           holoq/step/1         0.00%       0.000us         0.00%       0.000us       0.000us      85.178ms        26.58%      85.178ms      17.036ms             5  
+                                           holoq/step/2         0.00%       0.000us         0.00%       0.000us       0.000us      84.330ms        26.31%      84.330ms      16.866ms             5  
+                                           holoq/step/5         0.00%       0.000us         0.00%       0.000us       0.000us      84.039ms        26.22%      84.039ms      16.808ms             5  
+                                           holoq/step/6         0.00%       0.000us         0.00%       0.000us       0.000us      83.967ms        26.20%      83.967ms      16.793ms             5  
+                                           holoq/step/0         0.00%       0.000us         0.00%       0.000us       0.000us      65.746ms        20.51%      65.746ms      13.149ms             5  
+                                            aten::addmm         1.98%      17.357ms         2.43%      21.268ms      12.119us      49.797ms        15.54%      49.797ms      28.374us          1755  
+                             holoq/stage/backbone_other         0.00%       0.000us         0.00%       0.000us       0.000us      45.885ms        14.32%      45.885ms       9.177ms             5  
+                                                _rotate         0.00%       0.000us         0.00%       0.000us       0.000us      45.628ms        14.24%      45.628ms       5.355us          8520  
+                                     holoq/stage/vision         0.00%       0.000us         0.00%       0.000us       0.000us      44.223ms        13.80%      44.223ms       8.845ms             5  
+void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816...         0.00%       0.000us         0.00%       0.000us       0.000us      22.398ms         6.99%      22.398ms     895.914us            25  
+                                            aten::copy_         1.98%      17.379ms         3.95%      34.632ms       4.474us      22.183ms         6.92%      22.514ms       2.909us          7740  
+                                               aten::mm         0.02%     212.004us         0.03%     243.442us      24.344us      18.575ms         5.80%      18.575ms       1.857ms            10  
+                                              aten::add         2.94%      25.787ms         4.62%      40.520ms       5.297us      17.731ms         5.53%      17.731ms       2.318us          7650  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      12.671ms         3.95%      12.671ms       2.851us          4445  
+ampere_fp16_s16816gemm_fp16_128x128_ldg8_relu_f2f_st...         0.00%       0.000us         0.00%       0.000us       0.000us      12.120ms         3.78%      12.120ms      55.093us           220  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us      11.635ms         3.63%      11.635ms      16.159us           720  
+                         aten::_flash_attention_forward         0.75%       6.553ms         1.86%      16.343ms      19.115us      11.420ms         3.56%      11.420ms      13.357us           855  
+void Marlin<256, 3, 16, 4, 4, -1>(int4 const*, int4 ...         0.00%       0.000us         0.00%       0.000us       0.000us      11.304ms         3.53%      11.304ms      17.662us           640  
+_ZN7cutlass6KernelINS_4gemm6kernel4GemmINS1_11thread...         0.00%       0.000us         0.00%       0.000us       0.000us      10.848ms         3.38%      10.848ms      25.829us           420  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us      10.134ms         3.16%      10.134ms       2.803us          3615  
+                                               _prepare         0.00%       0.000us         0.00%       0.000us       0.000us       9.793ms         3.06%       9.793ms       2.550us          3840  
+ampere_fp16_s16816gemm_fp16_128x64_ldg8_relu_f2f_sta...         0.00%       0.000us         0.00%       0.000us       0.000us       9.040ms         2.82%       9.040ms      16.740us           540  
+ampere_fp16_s1688gemm_fp16_128x128_ldg8_relu_f2f_sta...         0.00%       0.000us         0.00%       0.000us       0.000us       7.936ms         2.48%       7.936ms      58.787us           135  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us       6.199ms         1.93%       6.199ms       2.431us          2550  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 876.399ms
+Self CUDA time total: 320.485ms
+

@@ -1,0 +1,588 @@
+{
+  "profiled_calls": 5,
+  "phase_operation": [
+    {
+      "phase": "action_head",
+      "operation": "gemm",
+      "gpu_total_ms": 132.63769399999975,
+      "gpu_ms_per_call": 26.527538799999952,
+      "calls_total": 5610,
+      "calls_per_policy": 1122.0
+    },
+    {
+      "phase": "action_head",
+      "operation": "other_compute",
+      "gpu_total_ms": 34.584485999999906,
+      "gpu_ms_per_call": 6.916897199999981,
+      "calls_total": 13385,
+      "calls_per_policy": 2677.0
+    },
+    {
+      "phase": "action_head",
+      "operation": "rotation",
+      "gpu_total_ms": 33.02400099999978,
+      "gpu_ms_per_call": 6.604800199999955,
+      "calls_total": 7680,
+      "calls_per_policy": 1536.0
+    },
+    {
+      "phase": "language",
+      "operation": "gemm",
+      "gpu_total_ms": 29.270788999999983,
+      "gpu_ms_per_call": 5.854157799999997,
+      "calls_total": 430,
+      "calls_per_policy": 86.0
+    },
+    {
+      "phase": "vision",
+      "operation": "gemm",
+      "gpu_total_ms": 26.02587800000002,
+      "gpu_ms_per_call": 5.205175600000004,
+      "calls_total": 850,
+      "calls_per_policy": 170.0
+    },
+    {
+      "phase": "language",
+      "operation": "rotation",
+      "gpu_total_ms": 12.604359000000022,
+      "gpu_ms_per_call": 2.5208718000000045,
+      "calls_total": 840,
+      "calls_per_policy": 168.0
+    },
+    {
+      "phase": "action_head",
+      "operation": "copy_cast_kernel",
+      "gpu_total_ms": 10.324129000000147,
+      "gpu_ms_per_call": 2.0648258000000292,
+      "calls_total": 4295,
+      "calls_per_policy": 859.0
+    },
+    {
+      "phase": "action_head",
+      "operation": "quantization_pack",
+      "gpu_total_ms": 9.793421000000022,
+      "gpu_ms_per_call": 1.9586842000000044,
+      "calls_total": 3840,
+      "calls_per_policy": 768.0
+    },
+    {
+      "phase": "language",
+      "operation": "other_compute",
+      "gpu_total_ms": 9.737898000000001,
+      "gpu_ms_per_call": 1.9475796000000003,
+      "calls_total": 2410,
+      "calls_per_policy": 482.0
+    },
+    {
+      "phase": "vision",
+      "operation": "copy_cast_kernel",
+      "gpu_total_ms": 8.276895999999999,
+      "gpu_ms_per_call": 1.6553791999999998,
+      "calls_total": 2225,
+      "calls_per_policy": 445.0
+    },
+    {
+      "phase": "vision",
+      "operation": "other_compute",
+      "gpu_total_ms": 5.972231999999995,
+      "gpu_ms_per_call": 1.1944463999999988,
+      "calls_total": 885,
+      "calls_per_policy": 177.0
+    },
+    {
+      "phase": "language",
+      "operation": "copy_cast_kernel",
+      "gpu_total_ms": 3.2154850000000046,
+      "gpu_ms_per_call": 0.6430970000000009,
+      "calls_total": 750,
+      "calls_per_policy": 150.0
+    },
+    {
+      "phase": "language",
+      "operation": "quantization_pack",
+      "gpu_total_ms": 2.4149659999999975,
+      "gpu_ms_per_call": 0.4829931999999995,
+      "calls_total": 420,
+      "calls_per_policy": 84.0
+    },
+    {
+      "phase": "language",
+      "operation": "gemm_scale_epilogue",
+      "gpu_total_ms": 1.7755350000000003,
+      "gpu_ms_per_call": 0.35510700000000006,
+      "calls_total": 420,
+      "calls_per_policy": 84.0
+    },
+    {
+      "phase": "prepare_input",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.3483600000000001,
+      "gpu_ms_per_call": 0.06967200000000003,
+      "calls_total": 70,
+      "calls_per_policy": 14.0
+    },
+    {
+      "phase": "backbone_other",
+      "operation": "other_compute",
+      "gpu_total_ms": 0.18870500000000004,
+      "gpu_ms_per_call": 0.03774100000000001,
+      "calls_total": 60,
+      "calls_per_policy": 12.0
+    },
+    {
+      "phase": "backbone_other",
+      "operation": "gemm",
+      "gpu_total_ms": 0.157827,
+      "gpu_ms_per_call": 0.0315654,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    },
+    {
+      "phase": "vision",
+      "operation": "gpu_memset",
+      "gpu_total_ms": 0.08630899999999986,
+      "gpu_ms_per_call": 0.01726179999999997,
+      "calls_total": 145,
+      "calls_per_policy": 29.0
+    },
+    {
+      "phase": "backbone_other",
+      "operation": "copy_cast_kernel",
+      "gpu_total_ms": 0.015359999999999999,
+      "gpu_ms_per_call": 0.003072,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    },
+    {
+      "phase": "action_head",
+      "operation": "gpu_memset",
+      "gpu_total_ms": 0.01392,
+      "gpu_ms_per_call": 0.002784,
+      "calls_total": 20,
+      "calls_per_policy": 4.0
+    },
+    {
+      "phase": "backbone_other",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.008545,
+      "gpu_ms_per_call": 0.001709,
+      "calls_total": 10,
+      "calls_per_policy": 2.0
+    },
+    {
+      "phase": "postprocess",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.004256,
+      "gpu_ms_per_call": 0.0008512000000000001,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    },
+    {
+      "phase": "language",
+      "operation": "gpu_memcpy",
+      "gpu_total_ms": 0.003744,
+      "gpu_ms_per_call": 0.0007488,
+      "calls_total": 5,
+      "calls_per_policy": 1.0
+    }
+  ],
+  "phase_gpu_work_ms_per_call": {
+    "action_head": 44.075530199999925,
+    "postprocess": 0.0008512000000000001,
+    "prepare_input": 0.06967200000000003,
+    "backbone_other": 0.07408740000000003,
+    "vision": 8.072263000000003,
+    "language": 11.804555200000003
+  },
+  "means": {
+    "profiled_wall_ms": 174.99164501953126,
+    "gpu_activity_sum_ms": 64.0970240234375,
+    "gpu_busy_union_ms": 64.0970240234375,
+    "gpu_overlap_excess_ms": 0.0,
+    "gpu_idle_within_policy_ms": 110.89462099609375,
+    "cpu_sync_blocked_ms": 0.11969033203124999,
+    "cpu_sync_overlapping_gpu_busy_ms": 0.07213037109375,
+    "cpu_sync_during_gpu_idle_ms": 0.04755996093749999,
+    "sync_calls": 18.0
+  },
+  "per_call": [
+    {
+      "call": "holoq/get_action/0",
+      "profiled_wall_ms": 175.003380859375,
+      "gpu_activity_sum_ms": 64.1102138671875,
+      "gpu_busy_union_ms": 64.1102138671875,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": 110.8931669921875,
+      "cpu_sync_blocked_ms": 0.1138095703125,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.066466796875,
+      "cpu_sync_during_gpu_idle_ms": 0.0473427734375,
+      "sync_calls": 18
+    },
+    {
+      "call": "holoq/get_action/1",
+      "profiled_wall_ms": 172.807955078125,
+      "gpu_activity_sum_ms": 64.09089794921876,
+      "gpu_busy_union_ms": 64.09089794921876,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": 108.71705712890625,
+      "cpu_sync_blocked_ms": 0.1214345703125,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.07376171875,
+      "cpu_sync_during_gpu_idle_ms": 0.0476728515625,
+      "sync_calls": 18
+    },
+    {
+      "call": "holoq/get_action/2",
+      "profiled_wall_ms": 174.27475390625,
+      "gpu_activity_sum_ms": 64.08445849609375,
+      "gpu_busy_union_ms": 64.08445849609375,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": 110.19029541015625,
+      "cpu_sync_blocked_ms": 0.12055126953125,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.07315478515625,
+      "cpu_sync_during_gpu_idle_ms": 0.047396484375,
+      "sync_calls": 18
+    },
+    {
+      "call": "holoq/get_action/3",
+      "profiled_wall_ms": 178.7779072265625,
+      "gpu_activity_sum_ms": 64.0944794921875,
+      "gpu_busy_union_ms": 64.0944794921875,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": 114.683427734375,
+      "cpu_sync_blocked_ms": 0.120916015625,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.0729619140625,
+      "cpu_sync_during_gpu_idle_ms": 0.0479541015625,
+      "sync_calls": 18
+    },
+    {
+      "call": "holoq/get_action/4",
+      "profiled_wall_ms": 174.09422802734375,
+      "gpu_activity_sum_ms": 64.1050703125,
+      "gpu_busy_union_ms": 64.1050703125,
+      "gpu_overlap_excess_ms": 0.0,
+      "gpu_idle_within_policy_ms": 109.98915771484376,
+      "cpu_sync_blocked_ms": 0.121740234375,
+      "cpu_sync_overlapping_gpu_busy_ms": 0.074306640625,
+      "cpu_sync_during_gpu_idle_ms": 0.04743359375,
+      "sync_calls": 18
+    }
+  ],
+  "sync_api_count": {
+    "cudaStreamSynchronize": 90,
+    "cudaDeviceSynchronize": 2
+  },
+  "host_api_overlap": [
+    {
+      "api": "cudaMemcpyAsync",
+      "count_per_call": 18.0,
+      "cpu_api_elapsed_ms_per_call": 0.0961859375,
+      "overlap_gpu_busy_ms_per_call": 0.00215078125,
+      "during_observed_gpu_idle_ms_per_call": 0.09403515625,
+      "note": "host API elapsed, includes implicit synchronization for pageable DtoH; not additive to GPU compute"
+    },
+    {
+      "api": "cudaStreamSynchronize",
+      "count_per_call": 18.0,
+      "cpu_api_elapsed_ms_per_call": 0.11969033203125,
+      "overlap_gpu_busy_ms_per_call": 0.07213037109375,
+      "during_observed_gpu_idle_ms_per_call": 0.0475599609375,
+      "note": "host API elapsed, includes implicit synchronization for pageable DtoH; not additive to GPU compute"
+    }
+  ],
+  "data_preparation_cpu": [
+    {
+      "operator": "aten::to",
+      "cpu_inclusive_ms_per_call": 10.805282200000002,
+      "count_per_call": 1968.0,
+      "note": "nested inclusive CPU times; not additive; may include GPU wait"
+    },
+    {
+      "operator": "aten::_to_copy",
+      "cpu_inclusive_ms_per_call": 10.163977400000014,
+      "count_per_call": 1330.0,
+      "note": "nested inclusive CPU times; not additive; may include GPU wait"
+    },
+    {
+      "operator": "aten::copy_",
+      "cpu_inclusive_ms_per_call": 6.926340199999991,
+      "count_per_call": 1548.0,
+      "note": "nested inclusive CPU times; not additive; may include GPU wait"
+    },
+    {
+      "operator": "aten::item",
+      "cpu_inclusive_ms_per_call": 0.019331000000000004,
+      "count_per_call": 20.0,
+      "note": "nested inclusive CPU times; not additive; may include GPU wait"
+    },
+    {
+      "operator": "aten::_local_scalar_dense",
+      "cpu_inclusive_ms_per_call": 0.0113426,
+      "count_per_call": 20.0,
+      "note": "nested inclusive CPU times; not additive; may include GPU wait"
+    },
+    {
+      "operator": "aten::contiguous",
+      "cpu_inclusive_ms_per_call": 1.2465336,
+      "count_per_call": 188.0,
+      "note": "nested inclusive CPU times; not additive; may include GPU wait"
+    },
+    {
+      "operator": "aten::clone",
+      "cpu_inclusive_ms_per_call": 1.3796595999999992,
+      "count_per_call": 213.0,
+      "note": "nested inclusive CPU times; not additive; may include GPU wait"
+    }
+  ],
+  "unattributed_gpu_ms_per_call": 0.0,
+  "unattributed_kernels": {},
+  "step_operation": [
+    {
+      "step": "holoq/step/4",
+      "operation": "copy_cast_kernel",
+      "gpu_ms_per_call": 0.23792819999999998,
+      "count_per_call": 100.0
+    },
+    {
+      "step": "holoq/step/4",
+      "operation": "other_compute",
+      "gpu_ms_per_call": 0.7196273999999998,
+      "count_per_call": 296.0
+    },
+    {
+      "step": "holoq/step/4",
+      "operation": "rotation",
+      "gpu_ms_per_call": 0.8249365999999981,
+      "count_per_call": 192.0
+    },
+    {
+      "step": "holoq/step/4",
+      "operation": "quantization_pack",
+      "gpu_ms_per_call": 0.2443428000000003,
+      "count_per_call": 96.0
+    },
+    {
+      "step": "holoq/step/4",
+      "operation": "gemm",
+      "gpu_ms_per_call": 2.9786602,
+      "count_per_call": 132.0
+    },
+    {
+      "step": "holoq/step/5",
+      "operation": "other_compute",
+      "gpu_ms_per_call": 0.7205949999999992,
+      "count_per_call": 296.0
+    },
+    {
+      "step": "holoq/step/5",
+      "operation": "copy_cast_kernel",
+      "gpu_ms_per_call": 0.23833659999999987,
+      "count_per_call": 100.0
+    },
+    {
+      "step": "holoq/step/5",
+      "operation": "gemm",
+      "gpu_ms_per_call": 2.976697199999995,
+      "count_per_call": 132.0
+    },
+    {
+      "step": "holoq/step/5",
+      "operation": "rotation",
+      "gpu_ms_per_call": 0.8249793999999978,
+      "count_per_call": 192.0
+    },
+    {
+      "step": "holoq/step/5",
+      "operation": "quantization_pack",
+      "gpu_ms_per_call": 0.2452122000000005,
+      "count_per_call": 96.0
+    },
+    {
+      "step": "holoq/step/6",
+      "operation": "other_compute",
+      "gpu_ms_per_call": 0.720454999999998,
+      "count_per_call": 296.0
+    },
+    {
+      "step": "holoq/step/6",
+      "operation": "copy_cast_kernel",
+      "gpu_ms_per_call": 0.23851020000000003,
+      "count_per_call": 100.0
+    },
+    {
+      "step": "holoq/step/6",
+      "operation": "gemm",
+      "gpu_ms_per_call": 2.977005399999998,
+      "count_per_call": 132.0
+    },
+    {
+      "step": "holoq/step/6",
+      "operation": "rotation",
+      "gpu_ms_per_call": 0.8270817999999994,
+      "count_per_call": 192.0
+    },
+    {
+      "step": "holoq/step/6",
+      "operation": "quantization_pack",
+      "gpu_ms_per_call": 0.2461342000000004,
+      "count_per_call": 96.0
+    },
+    {
+      "step": "holoq/step/7",
+      "operation": "other_compute",
+      "gpu_ms_per_call": 0.7204508000000002,
+      "count_per_call": 296.0
+    },
+    {
+      "step": "holoq/step/7",
+      "operation": "copy_cast_kernel",
+      "gpu_ms_per_call": 0.2383201999999999,
+      "count_per_call": 100.0
+    },
+    {
+      "step": "holoq/step/7",
+      "operation": "gemm",
+      "gpu_ms_per_call": 2.9763513999999973,
+      "count_per_call": 132.0
+    },
+    {
+      "step": "holoq/step/7",
+      "operation": "rotation",
+      "gpu_ms_per_call": 0.825699199999998,
+      "count_per_call": 192.0
+    },
+    {
+      "step": "holoq/step/7",
+      "operation": "quantization_pack",
+      "gpu_ms_per_call": 0.24403920000000034,
+      "count_per_call": 96.0
+    },
+    {
+      "step": "holoq/step/0",
+      "operation": "other_compute",
+      "gpu_ms_per_call": 0.7231140000000008,
+      "count_per_call": 296.0
+    },
+    {
+      "step": "holoq/step/0",
+      "operation": "copy_cast_kernel",
+      "gpu_ms_per_call": 0.23669019999999974,
+      "count_per_call": 100.0
+    },
+    {
+      "step": "holoq/step/0",
+      "operation": "gemm",
+      "gpu_ms_per_call": 2.9703825999999967,
+      "count_per_call": 132.0
+    },
+    {
+      "step": "holoq/step/0",
+      "operation": "rotation",
+      "gpu_ms_per_call": 0.8235267999999988,
+      "count_per_call": 192.0
+    },
+    {
+      "step": "holoq/step/0",
+      "operation": "quantization_pack",
+      "gpu_ms_per_call": 0.24437440000000016,
+      "count_per_call": 96.0
+    },
+    {
+      "step": "holoq/step/1",
+      "operation": "other_compute",
+      "gpu_ms_per_call": 0.7203903999999992,
+      "count_per_call": 296.0
+    },
+    {
+      "step": "holoq/step/1",
+      "operation": "copy_cast_kernel",
+      "gpu_ms_per_call": 0.23810040000000013,
+      "count_per_call": 100.0
+    },
+    {
+      "step": "holoq/step/1",
+      "operation": "gemm",
+      "gpu_ms_per_call": 2.9785960000000014,
+      "count_per_call": 132.0
+    },
+    {
+      "step": "holoq/step/1",
+      "operation": "rotation",
+      "gpu_ms_per_call": 0.8253967999999985,
+      "count_per_call": 192.0
+    },
+    {
+      "step": "holoq/step/1",
+      "operation": "quantization_pack",
+      "gpu_ms_per_call": 0.2459490000000002,
+      "count_per_call": 96.0
+    },
+    {
+      "step": "holoq/step/2",
+      "operation": "other_compute",
+      "gpu_ms_per_call": 0.720280399999998,
+      "count_per_call": 296.0
+    },
+    {
+      "step": "holoq/step/2",
+      "operation": "copy_cast_kernel",
+      "gpu_ms_per_call": 0.2382616000000002,
+      "count_per_call": 100.0
+    },
+    {
+      "step": "holoq/step/2",
+      "operation": "gemm",
+      "gpu_ms_per_call": 2.979058199999999,
+      "count_per_call": 132.0
+    },
+    {
+      "step": "holoq/step/2",
+      "operation": "rotation",
+      "gpu_ms_per_call": 0.8278515999999992,
+      "count_per_call": 192.0
+    },
+    {
+      "step": "holoq/step/2",
+      "operation": "quantization_pack",
+      "gpu_ms_per_call": 0.24519260000000026,
+      "count_per_call": 96.0
+    },
+    {
+      "step": "holoq/step/3",
+      "operation": "other_compute",
+      "gpu_ms_per_call": 0.7203793999999991,
+      "count_per_call": 296.0
+    },
+    {
+      "step": "holoq/step/3",
+      "operation": "copy_cast_kernel",
+      "gpu_ms_per_call": 0.23827340000000014,
+      "count_per_call": 100.0
+    },
+    {
+      "step": "holoq/step/3",
+      "operation": "gemm",
+      "gpu_ms_per_call": 2.9756919999999973,
+      "count_per_call": 132.0
+    },
+    {
+      "step": "holoq/step/3",
+      "operation": "rotation",
+      "gpu_ms_per_call": 0.8253279999999981,
+      "count_per_call": 192.0
+    },
+    {
+      "step": "holoq/step/3",
+      "operation": "quantization_pack",
+      "gpu_ms_per_call": 0.24343980000000065,
+      "count_per_call": 96.0
+    }
+  ],
+  "notes": [
+    "Only actual CUDA activity is summed; gpu_user_annotation excluded.",
+    "CPU synchronization blocking overlaps GPU compute; never add it to GPU busy.",
+    "GPU idle contains CPU preprocessing/launch gaps and profiler overhead, not necessarily synchronization.",
+    "Kernel sums are work; GPU unions and excess overlap reconcile wall time.",
+    "Copy/cast is a cross-cutting phase/operation cell. CPU contiguous/to/copy ranges are nested and not additive."
+  ],
+  "gpu_coverage_complete": true
+}

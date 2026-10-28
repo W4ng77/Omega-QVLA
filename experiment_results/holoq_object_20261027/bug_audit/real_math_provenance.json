@@ -1,0 +1,13 @@
+{
+  "source_script_sha256": "d27ce31c944584162724c1b9ad9701546b3adf76d11f2e286fcb0d6767da3eba",
+  "command": [
+    "python",
+    "-m",
+    "research.holoq_bench.audit_real_math",
+    "--output",
+    "results/holoq_object/bug_audit_v2/real_math.json"
+  ],
+  "original_grid_pack_sha256": "11e781eb3fabf1ba0a35deca6c862c5319b750bad83599d9ec5d562f9422b320",
+  "conversion_pack_sha256": "535d559bbe74bc914a627f4c0b73de400e4ba795ca4f6808877c2833dc83d289",
+  "current_tensor_only_protocol_unchanged_by_graph_constant_key_fix": true
+}

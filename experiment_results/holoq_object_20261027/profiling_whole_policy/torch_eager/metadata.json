@@ -1,0 +1,2842 @@
+{
+  "command": [
+    "/home/xinyu/holoq-vla-baselines/research/holoq_bench/profile_policy.py",
+    "--deployment",
+    "results/holoq_object/deployments/holoq_llm_s4_rotv2",
+    "--observations",
+    "results/holoq_object/heldout_init10_19/observations.pt",
+    "--output",
+    "results/holoq_object/profiling_full_policy_v2/torch_eager",
+    "--mode",
+    "eager",
+    "--engine",
+    "torch"
+  ],
+  "code_commit": "57d8d3e62d162aa9062ae5b285f1c6a76b739d0e",
+  "deployment": "results/holoq_object/deployments/holoq_llm_s4_rotv2",
+  "source_pack_sha256": "489777f5f2c91df17c6b5a45c5290c7251350090df5ff445432ba97a3b1fe9b5",
+  "profiler_source_sha256": "cd58f090bb9c555163bd296761f447a5374c7b1cb158079bb57ce9636621775d",
+  "engine": "torch",
+  "mode": "eager",
+  "profiled_calls": 5,
+  "warmup": 32,
+  "denoising_steps": 8,
+  "action_horizon": 16,
+  "sample": {
+    "task_id": 0,
+    "init_index": 10
+  },
+  "unprofiled_fixed_input_latency": {
+    "count": 20,
+    "mean_ms": 103.3002276206389,
+    "p50_ms": 102.88082459010184,
+    "p95_ms": 107.28780877543613
+  },
+  "unprofiled_boundary": "synchronize; perf_counter; complete get_action; synchronize; perf_counter; RNG reset outside timer",
+  "profile_note": "Profiler timings diagnose work/overlap, not deployment latency. Fixed observation and identical per-call noise seed. RNG reset is outside each annotated policy range.",
+  "graph_count_before": 0,
+  "hardware": "index, uuid, name, utilization.gpu [%], memory.used [MiB]\n0, GPU-383ef11d-aff7-fa0d-ff08-831bc7227771, NVIDIA GeForce RTX 4080 SUPER, 65 %, 4443 MiB\n1, GPU-eeaf225e-aa04-b1bf-fe80-e85f74656c70, NVIDIA GeForce RTX 4080 SUPER, 0 %, 12 MiB\n",
+  "packed_layers": {
+    "backbone.eagle_model.language_model.model.layers.0.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.0.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.0.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.0.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.0.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.0.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.0.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.1.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.1.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.1.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.1.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.1.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.1.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.1.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.2.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.2.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.2.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.2.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.2.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.2.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.2.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.3.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.3.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.3.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.3.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.3.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.3.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.3.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.4.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.4.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.4.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.4.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.4.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.4.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.4.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.5.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.5.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.5.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.5.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.5.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.5.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.5.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.6.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.6.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.6.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.6.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.6.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.6.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.6.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.7.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.7.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.7.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.7.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.7.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.7.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.7.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.8.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.8.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.8.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.8.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.8.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.8.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.8.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.9.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.9.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.9.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.9.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.9.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.9.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.9.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.10.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.10.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.10.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.10.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.10.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.10.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.10.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.11.self_attn.q_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.11.self_attn.k_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.11.self_attn.v_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.11.self_attn.o_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.11.mlp.gate_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.11.mlp.up_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "backbone.eagle_model.language_model.model.layers.11.mlp.down_proj": {
+      "backend": "cutlass_s4",
+      "shapes": [
+        [
+          1,
+          557,
+          6144
+        ],
+        [
+          1,
+          558,
+          6144
+        ],
+        [
+          1,
+          559,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.0.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.0.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.0.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.0.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.0.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.0.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.1.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.1.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.1.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.1.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.1.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.1.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.2.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.2.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.2.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.2.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.2.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.2.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.3.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.3.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.3.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.3.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.3.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.3.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.4.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.4.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.4.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.4.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.4.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.4.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.5.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.5.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.5.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.5.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.5.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.5.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.6.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.6.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.6.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.6.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.6.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.6.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.7.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.7.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.7.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.7.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.7.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.7.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.8.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.8.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.8.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.8.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.8.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.8.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.9.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.9.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.9.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.9.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.9.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.9.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.10.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.10.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.10.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.10.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.10.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.10.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.11.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.11.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.11.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.11.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.11.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.11.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.12.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.12.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.12.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.12.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.12.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.12.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.13.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.13.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.13.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.13.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.13.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.13.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.14.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.14.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.14.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          557,
+          2048
+        ],
+        [
+          1,
+          558,
+          2048
+        ],
+        [
+          1,
+          559,
+          2048
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.14.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.14.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.14.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.15.attn1.to_q": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.15.attn1.to_k": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.15.attn1.to_v": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.15.attn1.to_out.0": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.15.ff.net.0.proj": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          1536
+        ]
+      ]
+    },
+    "action_head.model.transformer_blocks.15.ff.net.2": {
+      "backend": "marlin",
+      "shapes": [
+        [
+          1,
+          49,
+          6144
+        ]
+      ]
+    }
+  },
+  "graph_count_after": 0
+}

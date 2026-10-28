@@ -1,0 +1,190 @@
+{
+  "nsys_node_activities.json.gz": {
+    "bytes": 887197,
+    "sha256": "6e307b28ce6855af2de4008f6296db1185d0b8d85e6e49d979ba9b3ad21d589f"
+  },
+  "REPORT.zh.md": {
+    "bytes": 5653,
+    "sha256": "d542d60c6134a1c0e0f0e9b78978733149f60fe58191715bca1dcba28cbbe6d9"
+  },
+  "raw_artifacts.json": {
+    "bytes": 1625,
+    "sha256": "908645c26c334041d14d7abd2e986615e09656a42e9dbcb642585e91395f7ce0"
+  },
+  "torch_eager.log.gz": {
+    "bytes": 2603,
+    "sha256": "2f15e0e2bdce6f50f54bc32cdba7d447d814b78e26408dbea33b04075bb30c99"
+  },
+  "torch_head_graph.log.gz": {
+    "bytes": 2687,
+    "sha256": "ff69aefb7d82b62c373aa5c7fb313bc0da09bb20321fc9e763e327237f6ab239"
+  },
+  "nsys_graph_export.log.gz": {
+    "bytes": 467,
+    "sha256": "6b6cf960bfb22c282ede9e0747fd3b10f2f092a8f60c4e713d1faa0ade63523f"
+  },
+  "nsys_graph_activities.json.gz": {
+    "bytes": 338931,
+    "sha256": "9f13bf9aeedfdfe9b51cac194437313c77eb1a99bae11781c866f51601a2f843"
+  },
+  "nsys_node.log.gz": {
+    "bytes": 1567,
+    "sha256": "3d21bfdd750c0adf784cc516be0c7e62c2c92f0facdb10f5a12c179e1de51be9"
+  },
+  "nsys_graph.log.gz": {
+    "bytes": 1536,
+    "sha256": "1b296e005fe1fccda376c8ba7e2e3148f770fe6593d61c68211af86cb6230800"
+  },
+  "torch_head_graph/policy_trace.json.gz": {
+    "bytes": 2955679,
+    "sha256": "ae223fee5b942602dff1497c563c8030f7c669d2a1766f8b0cd3db954cfb8768"
+  },
+  "torch_head_graph/metadata.json": {
+    "bytes": 49056,
+    "sha256": "3ceab9b3943ced7515605e3f6fb0342b3edffa1c51c79c36806324be1737302a"
+  },
+  "torch_head_graph/top_shapes.txt": {
+    "bytes": 17985,
+    "sha256": "2f85149325b47040d65725fd261671cd2c3687ddb86462f1c882af0075c39f3a"
+  },
+  "torch_head_graph/top_self_cuda.txt": {
+    "bytes": 6797,
+    "sha256": "28cc89a61e21ff2aedac699bd6250ece7db3b1b30965b4ad9cb2c3dbfa970d5f"
+  },
+  "torch_head_graph/analysis/breakdown.json": {
+    "bytes": 12711,
+    "sha256": "fa9bc0de4393195acf260a8039ab367d0a0e2f82d4667164b46019798ebb0c94"
+  },
+  "torch_head_graph/analysis/phase_operation.csv": {
+    "bytes": 1845,
+    "sha256": "ccb7d4b7d95d5215718729fabe7ec024fdf94518c31541c4bc856590231e031a"
+  },
+  "torch_head_graph/analysis/kernels_by_total_time.csv": {
+    "bytes": 108560,
+    "sha256": "0baca3d45c24b1586a39b1b512149631373016a14300b1a7d6ec66758da3ec3f"
+  },
+  "torch_head_graph/analysis/largest_gpu_idle_gaps.csv": {
+    "bytes": 11494,
+    "sha256": "b916a777a2852e61b1a3422fc397ba6dd3c3ea307017bbbd0653dbcb88fc6eed"
+  },
+  "torch_head_graph/analysis/per_call_overlap.csv": {
+    "bytes": 975,
+    "sha256": "cf4dbda2a241f41aa5bc48585fc23f0668ceeb6067a5c5738dd5435c1c360723"
+  },
+  "torch_head_graph/analysis/data_preparation_cpu.csv": {
+    "bytes": 772,
+    "sha256": "e4f7d4601c516fe39410eb6ad124c40dfc417a0197afbdf45077212f38bd1f6f"
+  },
+  "torch_head_graph/analysis/host_api_overlap.csv": {
+    "bytes": 640,
+    "sha256": "922914f92efe09e7d35483311301db7450f5d38b687f677a350a692afa542354"
+  },
+  "torch_eager/policy_trace.json.gz": {
+    "bytes": 8685311,
+    "sha256": "cb99a9280e5b2c8e0d948dd7b4bb7bd46b7617753faacd8f62098f54758b9011"
+  },
+  "torch_eager/metadata.json": {
+    "bytes": 49043,
+    "sha256": "76d9418dc4246685e538314852fb58a66a0c80be3d67781dfb81f4462cb9ed7d"
+  },
+  "torch_eager/top_shapes.txt": {
+    "bytes": 17985,
+    "sha256": "e96b6692c389cd920af6b9e2685035d93dcfb9aaada440e2944cc8f93fb99cb4"
+  },
+  "torch_eager/top_self_cuda.txt": {
+    "bytes": 6797,
+    "sha256": "2567f5cec4bfb6c787c546bfb7559bf2b308162ecef39f903f206f2205beded4"
+  },
+  "torch_eager/analysis/breakdown.json": {
+    "bytes": 17075,
+    "sha256": "6aace6c9f0823440d5762f2c41faa0c8c03724b3656b581ef61a94d3acf51c01"
+  },
+  "torch_eager/analysis/phase_operation.csv": {
+    "bytes": 1618,
+    "sha256": "1b85c9576b46a7dcf38a5172a17da51513a39254c8c3321ce3ce1a0841b66760"
+  },
+  "torch_eager/analysis/kernels_by_total_time.csv": {
+    "bytes": 107521,
+    "sha256": "bf95743527e3d1e13f5759c3c809bd890b98fed09af58d5aa1a669cc4de432da"
+  },
+  "torch_eager/analysis/largest_gpu_idle_gaps.csv": {
+    "bytes": 10390,
+    "sha256": "6785f88de26cb62726d26b04af23aebcf956dee94f5cdeb915727e057fae3ed9"
+  },
+  "torch_eager/analysis/per_call_overlap.csv": {
+    "bytes": 916,
+    "sha256": "b1d9e3fa49a9bc506f305b911b0780b0ce0f65510f954d1badbedeaa9e53b5db"
+  },
+  "torch_eager/analysis/data_preparation_cpu.csv": {
+    "bytes": 765,
+    "sha256": "6d1056bbaa45d9c437031c39113ac204edf5cbd633c2dd2758b058b8cfa9a829"
+  },
+  "torch_eager/analysis/host_api_overlap.csv": {
+    "bytes": 462,
+    "sha256": "050b0d8531bf17026f13f34bf7c94654b4cef5bca849cc38b60ea7af68b86dd6"
+  },
+  "nsys_graph_analysis/breakdown.json": {
+    "bytes": 10102,
+    "sha256": "3ae14b86728587cabe0dde1b1f9c8db0d552bb5f4fadc9abee4672219584e2c7"
+  },
+  "nsys_graph_analysis/phase_operation.csv": {
+    "bytes": 1433,
+    "sha256": "981f1cdb3883e7ea06dc1324cc4fd8aca5dee4d6990361166eba2d6b1738b279"
+  },
+  "nsys_graph_analysis/kernels_by_total_time.csv": {
+    "bytes": 51383,
+    "sha256": "55a2b6d3ae8f430cae41f1d5696b671b1c349bd500632fc21c550c34f3de7ac5"
+  },
+  "nsys_graph_analysis/largest_gpu_idle_gaps.csv": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "nsys_graph_analysis/per_call_overlap.csv": {
+    "bytes": 825,
+    "sha256": "a2ccbe5a0eef4c165caf907a93baff9e1704e9b62185bae13f0101118436427a"
+  },
+  "nsys_graph_analysis/data_preparation_cpu.csv": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "nsys_graph_analysis/host_api_overlap.csv": {
+    "bytes": 797,
+    "sha256": "d690728f9e1b431c0788c1888f9d6670706591e4335cbff995a409e2138b560e"
+  },
+  "nsys_graph_worker/metadata.json": {
+    "bytes": 49055,
+    "sha256": "b66881c3d3ad8fa70cffc95595018a40fb85b6039676d3329dbcef6ebaeac243"
+  },
+  "nsys_node_analysis/breakdown.json": {
+    "bytes": 11036,
+    "sha256": "3bcce3c2b752c2587fe06aed427d16958e96eb9f6bddff15b21f3573b740fa55"
+  },
+  "nsys_node_analysis/phase_operation.csv": {
+    "bytes": 1808,
+    "sha256": "6c16667b7c46d0e5eeca3bf5c25b6b6547b97f37495b21a42fd3a3b2752f5b3b"
+  },
+  "nsys_node_analysis/kernels_by_total_time.csv": {
+    "bytes": 84448,
+    "sha256": "74e1ec605dccedb3aca6b0810514d70839736e7e9c7d7c5ad4260574c34cd5c5"
+  },
+  "nsys_node_analysis/largest_gpu_idle_gaps.csv": {
+    "bytes": 10694,
+    "sha256": "38831f43b2cbe392cc000d7ae31d4d83d416d8df3f0d8439c9cd118cb07047da"
+  },
+  "nsys_node_analysis/per_call_overlap.csv": {
+    "bytes": 998,
+    "sha256": "39bd949337be92ed3f56ad8e738d98a7e6ddbf7de59012310202503b242a28b7"
+  },
+  "nsys_node_analysis/data_preparation_cpu.csv": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "nsys_node_analysis/host_api_overlap.csv": {
+    "bytes": 674,
+    "sha256": "cccaf96e13220b9c4a4a7fc6ec07199f75d73d687b8ee2e9add68ea9e6a36267"
+  },
+  "nsys_node_worker/metadata.json": {
+    "bytes": 49054,
+    "sha256": "3517c8151b7614994aeae12f4fdb9ae51ba473318a62fe80674fc8125b39bb0d"
+  }
+}
