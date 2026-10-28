@@ -34,5 +34,9 @@
   "journal_audit.json": {
     "bytes": 1738,
     "sha256": "3157e308c8ad14042cb930093a6e7874294db018b61073cfe3113bd33e2a3e19"
+  },
+  "PAPER_AUDIT_ADDENDUM.md": {
+    "bytes": 2441,
+    "sha256": "0dfe434619356b58bbf24f606acdc0b95a835af931febe38c02ae9b801d27bee"
   }
 }
