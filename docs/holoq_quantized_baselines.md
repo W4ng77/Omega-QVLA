@@ -189,7 +189,7 @@ pack, whose calibration/protocol cannot be fully verified. FP16 weight scale
 metadata and finite-precision Gram-eigen versus direct SVD are stated deployment
 choices. The separately named step_weight conversion absorbs each activation
 scale row into weights, requantizes group128 W, and stores eight step banks plus
-one fallback bank. It is not strictly equivalent to the original method.
+one fallback bank. Its DiT W uses MSE-clipped signed[-8,7] codes and FP32 group scales; LLM W/A and DiT A remain[-7,7]. It is not strictly equivalent to the original method.
 
 The GPTQ block size is 128; deployment weight group size is separately 128 for
 the GPTQ baseline, whereas original-definition HoloQ uses per-output weight
@@ -571,3 +571,20 @@ main final table uses the contiguous confirmation block. Frozen backend choices
 remain unchanged, and every confirmation uses the same 100 observations x3,
 32 warmups, full policy timer and packed kernels. Confirmation commands and
 GPU monitoring are archived separately and merged into the final audit.
+
+
+## Paper input-only runtime overflow gate
+
+The first input-only pack export used Marlin per-output scale metadata. Its
+actual held-out layer2.mlp.down_proj produced infinity while the independent
+FP32 canonical-grid diagnostic was finite (reference peak6092). Evaluation
+stopped before accepting timings or task scores. All failed bytes are retained
+in `evaluation_paper_holoq_row_scale_overflow_v1`.
+
+`reencode_paper_scales.py` exports distinct `holoq_paper_g128*` packs: the SAME
+per-output coefficient is repeated for every128 weights. No codes or scales
+are learned/requantized. This changes when Marlin applies a coefficient inside
+its reduction and avoids overflowing an unscaled FP16 intermediate. The fresh
+8,520-real-call canonical diagnostic passed with all values finite and maximum
+layer NMSE3.8544e-7. Full-action NMSE0.00052–0.00897 still requires independent
+task evaluation. Storage includes the repeated scale entries.

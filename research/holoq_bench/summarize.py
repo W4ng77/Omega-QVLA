@@ -147,7 +147,9 @@ for _converted in (False, True):
             "HoloQ-VLA conversion" if _converted else "HoloQ-VLA paper math",
             ("step_weight native S4 DiT" if _converted else "original grid / Marlin DiT")
             + (" + CUTLASS S4 LLM" if _native else " + Marlin LLM")
-            + "; input-only UDH, signed[-7,7], fixed block64; same teacher budget",
+            + "; input-only UDH, "
+            + ("LLM W/A[-7,7], DiT A[-7,7] and requantized W[-8,7] G128" if _converted else "W/A signed[-7,7]")
+            + "; fixed block64; same teacher budget",
             "4/4", "180 (84 LLM + 96 DiT)",
         )
         _g128 = _case.replace("holoq_paper", "holoq_paper_g128", 1)

@@ -47,6 +47,8 @@ def publish(source, destination, case):
     meta = read_json(source / "torch_head_graph/metadata.json")
     rows = graph["phase_operation"]
     lines = ["# 完整 policy 实测剖析", "", f"目标：`{case}`。这是论文输入侧旋转配置的独立 trace；与旧双侧旋转对照分别保存。", "", "32 次 warmup 后采集 5 次完整 get_action，含 8 个去噪 step。部署延迟另用无 profiler 的 300 次重放统计；下面累计 GPU 工作时间来自 profiler，不能当作正式延迟。", "", "| 阶段 | GPU 总工作 ms/调用 | GEMM | 旋转 | 量化 | 拷贝/dtype |", "|---|---:|---:|---:|---:|---:|"]
+    if "step_weight" in case:
+        lines[2] += " 此 case 是独立 step_weight 转换：DiT 每步吸收 A scale 后重新量化 W 为 G128[-8,7]，存储9组权重，不是原方法的严格等价执行。"
     for phase in ("vision", "language", "action_head", "prepare_input", "backbone_other", "other_policy"):
         values = {row["operation"]: row["gpu_ms_per_call"] for row in rows if row["phase"] == phase}
         if values:

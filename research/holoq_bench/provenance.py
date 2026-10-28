@@ -29,6 +29,7 @@ def main():
         "heldout_init10_19/manifest.json": "heldout_manifest.json",
         "teacher_capture/fp16_model_state.json": "original_model_tensor_manifest.json",
         "paper_cfg_build/configuration.json": "paper_holoq_configuration.json",
+        "paper_cfg_reencoding/metadata.json": "paper_holoq_exact_grid_reencoding.json",
     }
     for source, target in paths.items():
         shutil.copy2(a.root / source, a.output / target)
