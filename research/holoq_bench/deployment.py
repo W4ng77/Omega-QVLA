@@ -97,6 +97,10 @@ def load(directory, device, horizon):
         from research.holoq_bench.nunchaku_runtime import enable
 
     metadata = enable(model, str(directory / "packed.pt"))
+    if metadata.get("runtime_plugin") == "released_exact_grid":
+        from research.holoq_bench.released_grid import install
+
+        install(model)
     if metadata.get("rotation_plugin") == "triton_block64":
         from research.holoq_bench.fused_rotation import install
 
