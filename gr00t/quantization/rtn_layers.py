@@ -56,6 +56,7 @@ class RTNLinear(nn.Module):
         group_size: int,
         wbits: int,
         abits: int,
+        prequantized: bool = False,
     ) -> None:
         super().__init__()
         self.name = name
@@ -74,7 +75,7 @@ class RTNLinear(nn.Module):
 
         W = lin.weight.data
 
-        W_deq = _quant_dequant_weight_groupwise(W, self.group_size, self.wbits)
+        W_deq = W.detach() if prequantized else _quant_dequant_weight_groupwise(W, self.group_size, self.wbits)
         # Keep dequantized weight in the original dtype/device.
         self.register_buffer("weight", W_deq.to(dtype=W.dtype, device=W.device))
 
@@ -134,6 +135,7 @@ def enable_rtn_if_configured(model: nn.Module) -> None:
       GR00T_RTN_GROUP_SIZE   weight group size (default 64)
       GR00T_RTN_WBITS        weight bits (default 4)
       GR00T_RTN_ABITS        activation bits (default 4, set 16 to disable A quant)
+      GR00T_RTN_PREQUANTIZED 1 = keep W4-dequantized weights loaded from a packed checkpoint
       GR00T_RTN_DRYRUN       1 = list matched layers only, don't wrap
     """
     env = os.environ
@@ -153,6 +155,7 @@ def enable_rtn_if_configured(model: nn.Module) -> None:
     group_size = int(env.get("GR00T_RTN_GROUP_SIZE", "64"))
     wbits = int(env.get("GR00T_RTN_WBITS", "4"))
     abits = int(env.get("GR00T_RTN_ABITS", "4"))
+    prequantized = env.get("GR00T_RTN_PREQUANTIZED", "0") not in ("0", "false", "False")
     dry_run = env.get("GR00T_RTN_DRYRUN", "0") not in ("0", "false", "False")
 
     targets = _select_targets(model, include, exclude)
@@ -178,7 +181,7 @@ def enable_rtn_if_configured(model: nn.Module) -> None:
             skipped += 1
             continue
         parent, attr = _get_parent_module_and_attr(model, name)
-        rtn = RTNLinear(mod, name=name, group_size=group_size, wbits=wbits, abits=abits)
+        rtn = RTNLinear(mod, name=name, group_size=group_size, wbits=wbits, abits=abits, prequantized=prequantized)
         setattr(parent, attr, rtn)
         print(
             f"[GR00T-RTN][REPLACED] {name}: Linear({mod.in_features}->{mod.out_features}) "

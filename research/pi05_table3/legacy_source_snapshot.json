@@ -1,0 +1,21 @@
+{
+  "source": "/home/xinyu/omegaqvla",
+  "base_commit": "46c3020",
+  "note": "Copies of relevant existing modified/untracked files; original workspace untouched",
+  "sha256": {
+    "gr00t/quantization/gptq_layers.py": "b54cfcc51d82b93975a7793ad5d0de61b80c054c01465fdbdcc597ac1265183d",
+    "gr00t/quantization/rtn_layers.py": "6bfaa4f3a46e22d62214feacd1a0579ca127aed3c2499984270b2aeb15577c7a",
+    "gr00t/quantization/int4_storage.py": "3bd6dcb7d40c5dd61888312107b443917344f1849661009ed5f55a58dab27e3c",
+    "gr00t/quantization/packed_w4a4.py": "1344836d17746d473fce24b4bcc81234989af492773596f302f62d80e4ef5a57",
+    "gr00t/quantization/packed_w4a4_fast.py": "0d065b86bac053e395a71b83a04747bc767b853edcdf858af942b151ca31bea7",
+    "gr00t/quantization/pi05_step_context.py": "7dac3a4602e2d5b6cb99250996eca5e1b7c99a97e1bebc2fb7cd0f6570ed154a",
+    "gr00t/quantization/pi05_cuda_graph.py": "85117f050f9e29d92b37d52f5625fe8d69ef53514f50b0120c9c579ca3e45668",
+    "tools/pack_pi05_414_w4a4.py": "117ea965d0f124d36db700f3d3421194a9af8139da9822e6468805ac9c648f17",
+    "tools/materialize_pi05_414_w4a4.py": "3834710dae8cc591f04562f118a8404235a60dbac64f6b08c4a5874bb0f56d3f",
+    "tools/bench_pi05_w4a4.py": "f2a699d09defacc3b4677bcc55e9049a399b4f192eca3d5d248cdda682495a7b",
+    "tests/test_int4_storage.py": "e3a999c8706da3716be2e65d86637e267ba1f0c96b3d98f0a243013b039a24c9",
+    "tests/test_packed_w4a4.py": "afbfd2cefdcea4a42fdba1b535520796ce339713dade603e7f478164e65973c0",
+    "tests/test_pi05_step_context.py": "b9cfeea39ac7379b491c71574b52c6922e8912a59e87b0c2735662486ccda070",
+    "tests/test_pi05_cuda_graph.py": "740e97df7a055c9d3835be8eda3717aeff8f7d31524a588264b26f0d6c342273"
+  }
+}

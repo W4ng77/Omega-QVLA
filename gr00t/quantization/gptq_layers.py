@@ -31,6 +31,7 @@ from .duquant_preprocess import (
     qmax,
     sanitize_name,
 )
+from .int4_storage import unpack_int4
 
 
 _GPTQ_CACHE: Dict[str, Any] = {}
@@ -569,7 +570,11 @@ class GptqLinear(nn.Module):
         """
         # SVDQuant residual format: dense W_res_q stored at "weight_res_q".
         # The lowrank branch (A, B) is loaded as separate buffers in __init__.
-        weight_res_q = _record_get(record, ("weight_res_q",))
+        packed_weight = _record_get(record, ("weight_res_q_int4",))
+        if packed_weight is not None:
+            weight_res_q = unpack_int4(packed_weight)
+        else:
+            weight_res_q = _record_get(record, ("weight_res_q",))
         if weight_res_q is not None:
             wrq_t = _to_tensor(weight_res_q).to(dtype=ref_weight.dtype)
             if tuple(wrq_t.shape) != tuple(ref_weight.shape):
@@ -954,6 +959,12 @@ class GptqLinear(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         if getattr(self, "_fast", False):
             return self._forward_fast(x)
+        if getattr(self, "_strict_perstep", False) and self._act_scale_table.shape[0] > 1:
+            from .dit_step_context import get_current_dit_step
+
+            step = get_current_dit_step()
+            if step is None or not 0 <= step < self._act_scale_table.shape[0]:
+                raise RuntimeError(f"{self.name}: missing/out-of-range denoising step {step}")
         if self._gram_collect and x.numel() // x.shape[-1] <= self._gram_max_m:
             xf = x.detach().reshape(-1, x.shape[-1]).float()
             g = xf.t() @ xf
@@ -1032,7 +1043,10 @@ class GptqLinear(nn.Module):
         if not did_fused and self._has_duquant_rotation_blocks:
             # Fast path: x[:, perm].view(..., n_blocks, B) @ R_blocks (bmm).
             # Equivalent to x @ (P @ block_diag(R_b)) where P is perm matrix.
-            blocks = self._duquant_rotation_blocks.to(dtype=x.dtype, device=x.device)  # [n, B, B]
+            blocks = getattr(self, "_rot_in_blocks_cast", None)
+            if blocks is None or blocks.dtype != x.dtype or blocks.device != x.device:
+                blocks = self._duquant_rotation_blocks.to(dtype=x.dtype, device=x.device)
+                self._rot_in_blocks_cast = blocks
             perm = self._duquant_rotation_perm.to(device=x.device)
             in_f = blocks.shape[0] * blocks.shape[1]
             B = blocks.shape[1]
@@ -1061,6 +1075,8 @@ class GptqLinear(nn.Module):
             x if self._has_svdquant else None
         )
         x_q = x
+        used_act_scale = None
+        direct_a4_pack = getattr(self, "_packed_w4a4_version", 1) in (2, 3)
         # Per-record a_bits override: SVDQuant records store their own a_bits
         # (e.g. 4 for W4A4 DiT pack) so that mixed-precision packs can use
         # cfg.act_bits for non-record layers (e.g. LLM A8) and the record's
@@ -1093,7 +1109,9 @@ class GptqLinear(nn.Module):
                     )
                     self._act_table_oob_warned = True
             if step_scale is not None:
-                x_q = fake_quantize_sym(x, step_scale, eff_act_bits, label="gptq_activation_per_step")
+                used_act_scale = step_scale
+                if not direct_a4_pack:
+                    x_q = fake_quantize_sym(x, step_scale, eff_act_bits, label="gptq_activation_per_step")
             elif self._has_act_scale_table:
                 # Deterministic fallback for DiT layers that have a table but
                 # the step context is missing/oob: use the step-mean scale.
@@ -1104,9 +1122,12 @@ class GptqLinear(nn.Module):
                     mean_scale = self._act_scale_table.mean(dim=0)
                     self.register_buffer("_act_scale_table_mean_buf", mean_scale, persistent=False)
                 fb = self._act_scale_table_mean_buf.to(dtype=x.dtype, device=x.device)
-                x_q = fake_quantize_sym(x, fb, eff_act_bits, label="gptq_activation_table_fallback")
+                used_act_scale = fb
+                if not direct_a4_pack:
+                    x_q = fake_quantize_sym(x, fb, eff_act_bits, label="gptq_activation_table_fallback")
             else:
                 s_a = self._get_act_scale(x)
+                used_act_scale = s_a
                 x_q = fake_quantize_sym(x, s_a, eff_act_bits, label="gptq_activation")
         weight = self._weight_q if self._quant_available else self._weight_fp
         # Promote main matmul to avoid FP16 overflow: q99.9 × W4_max ×
@@ -1123,13 +1144,34 @@ class GptqLinear(nn.Module):
             else torch.float32
         )
         x_q_p = x_q.to(promote_dtype)
-        w_p = self._w_promoted_cache
-        if w_p is None or w_p.dtype != promote_dtype or w_p.device != x_q.device:
-            w_p = weight.to(dtype=promote_dtype, device=x_q.device)
-            self._w_promoted_cache = w_p
-        y = torch.nn.functional.linear(x_q_p, w_p, None)
+        if getattr(self, "_packed_w4a4_enabled", False):
+            from .packed_w4a4 import packed_w4a4_linear
+
+            if eff_act_bits != 4 or used_act_scale is None:
+                raise RuntimeError(f"{self.name}: packed W4A4 requires an explicit A4 scale")
+            shape = x_q.shape
+            if direct_a4_pack:
+                from .packed_w4a4_fast import packed_w4a4_fast_linear, packed_w4a4_decode_cublas
+
+                op = packed_w4a4_decode_cublas if self._packed_w4a4_version == 3 else packed_w4a4_fast_linear
+                y = op(
+                    x_q.reshape(-1, self.in_features).contiguous(), used_act_scale.contiguous(),
+                    self._w4a4_packed_weight, self._w4a4_scales, self._w4a4_fallback_map,
+                    self._w4a4_fallback_codebook, self._w4a4_group_size, self._w4a4_stored_kind,
+                ).reshape(*shape[:-1], self.out_features)
+            else:
+                y = packed_w4a4_linear(
+                    x_q.reshape(-1, self.in_features).contiguous(), used_act_scale.contiguous(),
+                    self._w4a4_packed_weight, self._w4a4_codebook, self._w4a4_group_size,
+                ).reshape(*shape[:-1], self.out_features)
+        else:
+            w_p = self._w_promoted_cache
+            if w_p is None or w_p.dtype != promote_dtype or w_p.device != x_q.device:
+                w_p = weight.to(dtype=promote_dtype, device=x_q.device)
+                self._w_promoted_cache = w_p
+            y = torch.nn.functional.linear(x_q_p, w_p, None)
         # SVDQuant: add lowrank correction y += (x_s @ B) @ A.T (also promoted)
-        if self._has_svdquant and x_s_for_lowrank is not None:
+        if self._has_svdquant and x_s_for_lowrank is not None and self._lowrank_A.numel() > 0:
             B = self._lowrank_B.to(dtype=promote_dtype, device=x_q.device)
             A = self._lowrank_A.to(dtype=promote_dtype, device=x_q.device)
             x_s_p = x_s_for_lowrank.to(promote_dtype)
@@ -1140,7 +1182,10 @@ class GptqLinear(nn.Module):
         # Applied BEFORE bias (bias lives in the un-rotated output basis).
         if self._has_duquant_rotation_out_blocks:
             # Fast path: bmm over n_out blocks of size B_out.
-            blocks_out = self._duquant_rotation_out_blocks.to(dtype=y.dtype, device=y.device)
+            blocks_out = getattr(self, "_rot_out_blocks_cast", None)
+            if blocks_out is None or blocks_out.dtype != y.dtype or blocks_out.device != y.device:
+                blocks_out = self._duquant_rotation_out_blocks.to(dtype=y.dtype, device=y.device)
+                self._rot_out_blocks_cast = blocks_out
             out_f = blocks_out.shape[0] * blocks_out.shape[1]
             B_out = blocks_out.shape[1]
             n_out = blocks_out.shape[0]
