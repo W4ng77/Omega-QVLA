@@ -420,6 +420,9 @@ class FlowmatchingActionHead(nn.Module):
         # Set initial actions as the sampled noise.
         batch_size = vl_embs.shape[0]
         device = vl_embs.device
+        # The context can be FP32 after residual/normalization even when the
+        # backbone input was FP16. A Graph adapter must preserve THIS dtype.
+        self._holoq_noise_dtype = vl_embs.dtype
         external_noise = getattr(self, "_holoq_external_noise", None)
         if external_noise is None:
             actions = torch.randn(

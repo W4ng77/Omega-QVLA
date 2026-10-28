@@ -46,7 +46,7 @@ class HeadGraphs:
             noise = torch.zeros(
                 (features.shape[0], self.head.config.action_horizon, self.head.config.action_dim),
                 device=features.device,
-                dtype=features.dtype,
+                dtype=getattr(self.head, "_holoq_noise_dtype", features.dtype),
             )
 
             def invoke():
@@ -64,6 +64,15 @@ class HeadGraphs:
                 for _ in range(3):
                     invoke()
             side.synchronize()
+            actual_noise_dtype = getattr(self.head, "_holoq_noise_dtype", noise.dtype)
+            if actual_noise_dtype != noise.dtype:
+                # First-ever Graph call may precede any eager invocation.
+                # Warmup reveals the original post-conditioning noise dtype.
+                noise = torch.zeros(noise.shape, device=noise.device, dtype=actual_noise_dtype)
+                side.wait_stream(torch.cuda.current_stream())
+                with torch.cuda.stream(side):
+                    invoke()
+                side.synchronize()
             graph = torch.cuda.CUDAGraph()
             with torch.cuda.graph(graph, stream=side, pool=self.pool):
                 output = invoke()

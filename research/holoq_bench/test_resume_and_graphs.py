@@ -92,3 +92,27 @@ def test_graph_copies_changed_tensor_inputs_with_same_shape():
     torch.testing.assert_close(a, x)
     torch.testing.assert_close(b, x * 6)
     assert len(graphs.cache) == 1
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="Actual CUDA Graph required")
+def test_graph_preserves_noise_dtype_after_context_promotes_backbone_input():
+    class PromotedHead:
+        config = SimpleNamespace(action_horizon=2, action_dim=4)
+
+        def get_action(self, backbone, action):
+            self._holoq_noise_dtype = torch.float32
+            context = backbone["backbone_features"].float()
+            external = getattr(self, "_holoq_external_noise", None)
+            noise = torch.randn(context.shape, dtype=context.dtype, device=context.device) if external is None else external.clone()
+            return {"action_pred": context + noise}
+
+    head = PromotedHead()
+    graphs = HeadGraphs(head)
+    x = torch.ones((1, 2, 4), device="cuda", dtype=torch.float16)
+    with torch.inference_mode():
+        torch.manual_seed(53)
+        actual = graphs({"backbone_features": x}, {})["action_pred"].clone()
+        torch.manual_seed(53)
+        expected = head.get_action({"backbone_features": x}, {})["action_pred"]
+    assert next(iter(graphs.cache.values()))[1].dtype == torch.float32
+    torch.testing.assert_close(actual, expected, rtol=0, atol=0)
