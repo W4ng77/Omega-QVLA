@@ -1,0 +1,56 @@
+{
+  "stage": "paper_and_implementation_alignment_before_any_final_evaluation",
+  "paper": {
+    "path": "/home/xinyu/holoq-vla-rebuttal/research/holoq_bench/paper/holoq_v3.pdf",
+    "sha256": "c4d3217172a88c6b08885826a42bc9749a851efbc6fd0731c9ec550775ebb627",
+    "version": "arXiv2605.28803v3",
+    "submission_identity": "User supplied page-verified authoritative8-page submission specification on2026-10-28; local arXiv PDF is a separate nonauthoritative version",
+    "authoritative_source": "docs/rebuttal_20261028/submission_contract.md"
+  },
+  "source_branch": "experiment/holoq-paper-rebuttal-4080",
+  "base_commit": "56bfc4a",
+  "prior_results_policy": "Preserve all old packs, failures and partially run journals; 70/72 and prior paper_cfg builds are controls/provisional until individually verified",
+  "calibration": {
+    "source": "/home/xinyu/holoq-vla-rebuttal/results/rebuttal_object_20261028/source_teacher_trajectories",
+    "trajectory_count": 10,
+    "teacher_dtype": "torch.float16",
+    "trajectory_initial_state": 0,
+    "proposal": "10 evenly spaced frames from each of10 actual saved teacher trajectories; retain ALL observed layer-input tokens, no52-row cap",
+    "status": "Explicit reconstruction protocol; submission does not specify frame/token budget. Not asserted to reproduce historical data selection.",
+    "previous100frames52tokens": "not treated as automatically equivalent to paper calibration"
+  },
+  "evaluation": {
+    "diagnostic_seen_indices": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "proposed_final_initial_indices": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "reason": "10..19 already inspected during implementation; reserve a fresh fixed window for final frozen-method validation",
+    "final_window_status": "predeclared, not yet scored; exact state hashes must be generated before final evaluation"
+  },
+  "prohibited": [
+    "new PTX optimization",
+    "backend speed search",
+    "choosing signs/seeds/configurations from heldout scores"
+  ],
+  "reviewer_texts": "Only user-provided question topics available; exact reviews requested, not invented"
+}

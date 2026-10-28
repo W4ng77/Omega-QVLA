@@ -1,0 +1,124 @@
+{
+  "purpose": "Only correctness audit; no deployment timing claim",
+  "rows": [
+    {
+      "task_id": 0,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 4.138133391506926e-08,
+      "action_nmse": 4.6152579775638876e-05
+    },
+    {
+      "task_id": 1,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 4.909113116013941e-08,
+      "action_nmse": 5.844538411236042e-05
+    },
+    {
+      "task_id": 2,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 3.8455894468825136e-08,
+      "action_nmse": 4.694879710441013e-05
+    },
+    {
+      "task_id": 3,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 4.1671903261431e-08,
+      "action_nmse": 0.00010643044447164959
+    },
+    {
+      "task_id": 4,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 4.432872202642102e-08,
+      "action_nmse": 5.210616865355972e-05
+    },
+    {
+      "task_id": 5,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 5.154931059792034e-08,
+      "action_nmse": 6.95840069234064e-05
+    },
+    {
+      "task_id": 6,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 3.998456321596677e-08,
+      "action_nmse": 0.00010091001859455108
+    },
+    {
+      "task_id": 7,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 4.563145594715934e-08,
+      "action_nmse": 8.196355419190987e-05
+    },
+    {
+      "task_id": 8,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 4.552755328290914e-08,
+      "action_nmse": 6.754691575901702e-05
+    },
+    {
+      "task_id": 9,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float16",
+      "noise_bitwise_equal": false,
+      "noise_nmse": 3.935473813498902e-08,
+      "action_nmse": 7.223958662747056e-05
+    }
+  ],
+  "eager_conditioning_dtypes": [
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32"
+  ],
+  "graph_conditioning_dtypes": [
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32"
+  ],
+  "all_noise_values_equal": false,
+  "graph_count": 3,
+  "source_sha256": "48b56c4e8df49a77c555a0c54c94acf5230fbd7dbd5b2e4fd640129c74232f2f"
+}

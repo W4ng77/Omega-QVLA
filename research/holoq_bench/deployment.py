@@ -95,6 +95,8 @@ def load(directory, device, horizon):
     ensure_dit_attention_patch(model)
     if manifest.get("runtime_plugin") == "nunchaku_s4":
         from research.holoq_bench.nunchaku_runtime import enable
+    elif manifest.get("runtime_plugin") == "submission_contract_v2":
+        from research.rebuttal.runtime import enable
 
     metadata = enable(model, str(directory / "packed.pt"))
     if metadata.get("runtime_plugin") in ("released_exact_grid", "released_token_ablation"):

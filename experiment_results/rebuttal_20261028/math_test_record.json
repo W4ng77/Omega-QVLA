@@ -1,0 +1,11 @@
+{
+  "command": "flock -x /tmp/holoq-vla-policy-timing.lock env CUDA_VISIBLE_DEVICES=0 PYTHONPATH=/home/xinyu/holoq-vla-rebuttal OMP_NUM_THREADS=1 /home/xinyu/miniconda3/envs/groot_test/bin/python -m pytest -q research/rebuttal/test_method.py",
+  "observed_result": "6 passed in 2.12s",
+  "exit_code": 0,
+  "scope": "Local mathematical and packed-layer tests only; no full-policy accuracy claim",
+  "source_sha256": {
+    "research/rebuttal/method.py": "291cc996ebdbefc806ee29f3fad32a97a16b6af965b3513a8978a0321db4cf3d",
+    "research/rebuttal/runtime.py": "b45f19ba9f07324040abf87d4873295c5a90412017ee9963bc2d5f9b9ff827e5",
+    "research/rebuttal/test_method.py": "0fd26fcd529beb6d9cf39f09d0378835b0a9e74c7780ccc89d2ef9ff3aace876"
+  }
+}

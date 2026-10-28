@@ -1,0 +1,236 @@
+{
+  "source": "user-verified8-page submission specification",
+  "rows": [
+    {
+      "item": "Matrix convention/SVD direction",
+      "submission_rule": "p4 \u00a74.1 Eqs1\u20135: W[Cin,Cout], use LEFT U of input-row blocks",
+      "unspecified": "Sign convention within SVD basis",
+      "historical_implementation": "compute_block_rotation applies SVD(weight_input_block.T), correct direction",
+      "rebuild_70_72": "Gram eigenvectors of weight_block.T@weight_block",
+      "prior_build_paper_holoq": "Same Gram eigenvector shortcut, not directly audited on all real blocks",
+      "adopted_implementation": "Direct thin SVD on permuted weight.T input blocks; explicit basis sign convention and frozen coefficients",
+      "verification_evidence": "duquant_preprocess.py:compute_block_rotation; new unquantized transform and orthogonality audit",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Input/output rotation",
+      "submission_rule": "Input-side XPR and R.T P.T W only",
+      "unspecified": "No additional output SVD is specified",
+      "historical_implementation": "LLM input-only; DiT input+output restore",
+      "rebuild_70_72": "Input+output rotation on both LLM and DiT",
+      "prior_build_paper_holoq": "Input-only on all180 targets",
+      "adopted_implementation": "Input-only; bias remains in original output basis; no low-rank branch",
+      "verification_evidence": "Historical pack key census; quantizers.rotations; user-verified Eq4\u20135",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Hadamard random signs",
+      "submission_rule": "R=U D H64/sqrt64; Figure1 only omitsD for visualization",
+      "unspecified": "D seed is unspecified",
+      "historical_implementation": "svd_hadamard uses deterministic U H; random_hadamard is a separate option",
+      "rebuild_70_72": "Deterministic U H",
+      "prior_build_paper_holoq": "U D H,seed42+layer index",
+      "adopted_implementation": "Freeze D once per layer,seed42+frozen layer index; no seed/config selection from evaluation scores",
+      "verification_evidence": "duquant_preprocess.py:_rotation_for_block; new frozen sign tensors",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Permutation",
+      "submission_rule": "Descending input-channel weight energy, zigzag ACROSS blocks",
+      "unspecified": "No unique pseudocode; row/column wording inconsistent",
+      "historical_implementation": "LLM README does not request permutation; DiT helper globally alternates extremes before chunking",
+      "rebuild_70_72": "Legacy global high/low helper",
+      "prior_build_paper_holoq": "Serpentine across blocks, claimed too strongly as definitive",
+      "adopted_implementation": "Use disclosed serpentine_descending_input_energy_v1; explicitly one interpretation, not uniquely prescribed; retain exact permutation tensors",
+      "verification_evidence": "Historical rotation coefficient audit and source; new permutation bijection/group-energy audit",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Signed grid",
+      "submission_rule": "Eqs6\u20137: W/A[-7,7]",
+      "unspecified": "Tie-breaking not specified",
+      "historical_implementation": "Code clamps[-8,7]",
+      "rebuild_70_72": "LLM official GPTQ16-level; DiT RTN max-scale effectively15-level but clamp supports16; A[-7,7]",
+      "prior_build_paper_holoq": "Custom GPTQ15 and RTN15; A15",
+      "adopted_implementation": "All paper W/A explicitly15-level; torch round-to-nearest-even disclosed",
+      "verification_evidence": "Frozen code min/max/count census; tests distinguish\u22128 from\u22127",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Weight scale granularity",
+      "submission_rule": "Per-output channel across FULL Cin",
+      "unspecified": "Storage layout is unspecified",
+      "historical_implementation": "Block-local GPTQ/RTN code recomputes output scales every128 columns; sampled artifact rows tested independently",
+      "rebuild_70_72": "Per-output in HoloQ rebuild",
+      "prior_build_paper_holoq": "Per-output canonical; G128 Marlin metadata repeats the SAME coefficient",
+      "adopted_implementation": "One FP32 coefficient/output; distinguish processing block128 from quantization group; no group128 quantizer in original method",
+      "verification_evidence": "Historical >16-values/output-row audit; canonical scale shape[N,1]; deployment decode checks",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "LLM activation",
+      "submission_rule": "Per-token maxabs/7",
+      "unspecified": "Zero-vector guard unspecified",
+      "historical_implementation": "Missing from artifact; runtime freezes per-channel scale on first call; actual84 calibrators observe1 batch after32 warmups",
+      "rebuild_70_72": "Per-token",
+      "prior_build_paper_holoq": "Per-token but scale rounded toFP16",
+      "adopted_implementation": "Per-token FP32 scale; zero-vector scale1 with zero codes; quant arithmeticFP32",
+      "verification_evidence": "Historical scale_freeze_audit; source _get_act_scale; new reference/deployment exact scale sharing",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "DiT activation",
+      "submission_rule": "Per-layer/per-step/per-input-channel robust_peak/7 for8 steps",
+      "unspecified": "Robust estimator and exact percentile not stated",
+      "historical_implementation": "q99.9 with lower-bound guards;8-row table",
+      "rebuild_70_72": "q99.9 on captured52-row/token subsets",
+      "prior_build_paper_holoq": "Same sampled capture, q99.9,clamp1e-8",
+      "adopted_implementation": "q99.9 explicitly sourced from CODE, not submission; use all tokens from disclosed100 frames; log zero-peak guards and clipping",
+      "verification_evidence": "Original builder source; new calibration token counts, ordered8 rows and saturation statistics",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "GPTQ damping/block",
+      "submission_rule": "p5 \u00a75.1: damping.01, processing block128",
+      "unspecified": "GPTQ-style propagation/ordering details are not unique",
+      "historical_implementation": "Damping.05; independent blocks and MSE scales in source",
+      "rebuild_70_72": "Official GPTQ .01/block128/global propagation",
+      "prior_build_paper_holoq": "Official GPTQ .01/block128, but input weights and scales rounded toFP16",
+      "adopted_implementation": "Pinned official GPTQ .01/block128 with per-output signed15 scale; full-H propagation explicitly chosen to preserve declared per-output granularity; noactorder",
+      "verification_evidence": "Original gptq_quantize_weight versus pinned fasterquant; new serialized solver settings",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "DiT RTN",
+      "submission_rule": "Plain RTN weight quantization",
+      "unspecified": "Clipping search not specified",
+      "historical_implementation": "use_rtn disables error compensation but still block-wise MSE scale search",
+      "rebuild_70_72": "Per-output maxabs RTN, half scale",
+      "prior_build_paper_holoq": "Per-output maxabs15 RTN, half scale",
+      "adopted_implementation": "Literal maxabs/7 per-output RTN inFP32; no MSE clipping search",
+      "verification_evidence": "Original gamma0 code versus frozen literal RTN code",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Scale inside K reduction",
+      "submission_rule": "Sa[t,k] must remain INSIDE sum_k",
+      "unspecified": "Eq9 scalar shorthand is insufficient",
+      "historical_implementation": "Fake-quant reconstructs x with per-column table before linear",
+      "rebuild_70_72": "F32 prepare then FP16 MMA or separate converted variant",
+      "prior_build_paper_holoq": "Marlin dequantized A4 inputs or changed step_weight",
+      "adopted_implementation": "Independent oracle Sw[n]*sum_k(Qx*Sa[t,k]*Qw)+bias; packed implementation applies per-column factors before existing tile GEMM",
+      "verification_evidence": "New oracle counterexample to scalar epilogue; actual operator graph",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Calibration trajectories",
+      "submission_rule": "10 unlabeled trajectories",
+      "unspecified": "Origins, frame/token sampling, state indexes/seeds/revision unresolved in submission",
+      "historical_implementation": "README builders default10 settled initial observations, not teacher rollouts; artifact provenance incomplete",
+      "rebuild_70_72": "New10 teacher trajectories (9 successful,1 unsuccessful),10 uniform frames each;52 rows/layer/step",
+      "prior_build_paper_holoq": "Reuses the same100-frame/52-row dataset without proving historical equivalence",
+      "adopted_implementation": "Disclosed reconstruction: reuse verified10 FP16 teacher trajectories atstate0;10 uniform frames each, ALL actual tokens; no claim of exact historical calibration identity",
+      "verification_evidence": "Source trajectory files/manifests/SHA; original load_libero_samples behavior; new full-token ledger",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Compute dtype",
+      "submission_rule": "Submission high-precision comparator namedFP16",
+      "unspecified": "Rotation/scale/accumulator dtype not uniquely given",
+      "historical_implementation": "Default modelBF16; quantized linear casts toBF16 within outerautocast; behavior must be measured",
+      "rebuild_70_72": "Common modelFP16; R/scales half before quantization",
+      "prior_build_paper_holoq": "FP16 R and weight scales imposed by backend contract; FP16 W before GPTQ",
+      "adopted_implementation": "Preserve FP32 R/scales during construction; FP16 base-input cast disclosed; reference equationFP32/outputFP16; packed W4 decoded in-register toFP16 MMA with quantified error",
+      "verification_evidence": "Frozen tensor dtype census; unquantized transform tests; reference-versus-packed step/action checks",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Reference implementation",
+      "submission_rule": "Correct formula with SAME frozen codes/scales/rotations as deployment",
+      "unspecified": "Exact arithmetic implementation unspecified",
+      "historical_implementation": "Historical dense quantized weight path is a separate implementation",
+      "rebuild_70_72": "Existing oracle tests rebuilt half-rounded grid, not unique paper method",
+      "prior_build_paper_holoq": "Existing oracle also rounds dequantized operands tohalf",
+      "adopted_implementation": "New explicit F32 equation oracle; compare same input first, then whole policy; never use dense reference as optimized quantized speed baseline",
+      "verification_evidence": "Layer/step/noise/action error ledger with source hashes",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Deployment truth",
+      "submission_rule": "Report actual implementation",
+      "unspecified": "No nativeINT4 kernel is prescribed by submission",
+      "historical_implementation": "Earlier QServe speed path is W4A8/BF16 hybrid; historical packs store dense FP16 quantized weights",
+      "rebuild_70_72": "Marlin/CUTLASS mixed; native step_weight is changed algorithm",
+      "prior_build_paper_holoq": "Marlin DiT + optional nativeLLM; step_weight requantizes weights",
+      "adopted_implementation": "Freeze one existing packed W4 tile backend, no search: numerical A4 with FP16 transient operands andFP16 MMA. Do NOT claim whole-policy nativeINT4xINT4. No full float-weight cache",
+      "verification_evidence": "Raw packed-kernel launch trace, buffer dtype/storage inventory, operator graph",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Scope",
+      "submission_rule": "Language+full DiT target attention/MLP linears",
+      "unspecified": "Vision/auxiliary/nonlinear INT4 is not prescribed",
+      "historical_implementation": "180 records=84LLM+96DiT; low-rank rank0",
+      "rebuild_70_72": "180 targets;391 nn.Linear total audited",
+      "prior_build_paper_holoq": "180 targets",
+      "adopted_implementation": "Actual180-name/shape ledger; vision and auxiliary modules stayFP16; avoid calling every action-head operationINT4",
+      "verification_evidence": "Module census with excluded names/parameter-byte split",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Graph initial noise",
+      "submission_rule": "Same observation/noise protocol across references/deployment",
+      "unspecified": "Graph execution not specified",
+      "historical_implementation": "Original Eager noiseFP32 after conditioning",
+      "rebuild_70_72": "Old Graph used inputfeaturesFP16 noise",
+      "prior_build_paper_holoq": "Same inherited Graph dtype issue",
+      "adopted_implementation": "Correct Graph to post-conditioning FP32 dtype; fresh validation before accepting strict paired results",
+      "verification_evidence": "graph_noise.json mismatch; graph_noise_fixed.json10/10noise+actions exact;6 regression tests passed",
+      "status": "verified Graph fix"
+    },
+    {
+      "item": "Evaluation independence",
+      "submission_rule": "Same frozen policy/protocol across compared implementations",
+      "unspecified": "Episode indexes/seeds/details unspecified",
+      "historical_implementation": "Historical88/90 protocol differs and is not reused",
+      "rebuild_70_72": "10..19 already observed during implementation",
+      "prior_build_paper_holoq": "Partially run10..19 is diagnostic, not fresh final evidence",
+      "adopted_implementation": "Pre-register20..29 for all new primary cases; keepstate0 calibration disjoint; seed schedule fixed before scores; do not tune toward92",
+      "verification_evidence": "New preregistration and future state-hash manifest",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Eight versus ten steps",
+      "submission_rule": "8 Euler calibration steps",
+      "unspecified": "Submitted timing details must be recovered",
+      "historical_implementation": "Old Pi0.5 speed scripts often used10; mismatched table fallback exists",
+      "rebuild_70_72": "GR00T8",
+      "prior_build_paper_holoq": "GR00T8",
+      "adopted_implementation": "GR00T primary8 for calibration AND rollout/timing; any Pi0.5 T10 result requires separate calibrated config and label",
+      "verification_evidence": "Protocol/effective step trace; no arXiv appendix used to fill missing submission details",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Per-step benefit",
+      "submission_rule": "Table4 Object92 both; Long75\u219282",
+      "unspecified": "Static no-per-step aggregation rule unspecified",
+      "historical_implementation": "Legacy fallback often step-mean or first-call scale",
+      "rebuild_70_72": "Object cannot isolate benefit",
+      "prior_build_paper_holoq": "Object only so far",
+      "adopted_implementation": "After Object freeze, Long paired per-step versus predeclared pooled-static robust scale; same W/R and data; name new controlled ablation",
+      "verification_evidence": "Future Long paired100 and per-task report; do not infer per-step benefit fromObject",
+      "status": "frozen interpretation; implementation validation pending"
+    },
+    {
+      "item": "Paper score inconsistency",
+      "submission_rule": "Table2 GR00T FP16 average86.5",
+      "unspecified": "Narrative87.0 is inconsistent",
+      "historical_implementation": "No new run resolves a paper arithmetic typo",
+      "rebuild_70_72": "70/72 are controls, not targets",
+      "prior_build_paper_holoq": "Do not target92 through choices",
+      "adopted_implementation": "Use86.5 for submitted table comparator and explicitly correct narrative; report actual new counts independently",
+      "verification_evidence": "Arithmetic of user-supplied table2 and submission_contract.md",
+      "status": "verified document inconsistency"
+    }
+  ]
+}

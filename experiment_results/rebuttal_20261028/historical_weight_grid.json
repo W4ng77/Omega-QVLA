@@ -1,0 +1,5552 @@
+{
+  "source_pack_sha256": "0fa5f367e7ed6e7be25efce25fce967078cb5dc86b39ae5dd53b9dac4ec107ba",
+  "sampled_layers": 180,
+  "layers_with_sampled_output_row_over16_values": 180,
+  "evidence_meaning": "More than16 unique weight values within a single output row rules out one uniform4-bit per-output coefficient; original code recomputes MSE row scales inside each128 processing block. Sampling cannot recover missing build settings.",
+  "layers": [
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 232,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.0.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 648,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 640,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 652,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 205,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 230,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 206,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.1.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 640,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 648,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 657,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 213,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 232,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.2.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 631,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 628,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 633,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 208,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 228,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 208,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.3.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 614,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 631,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 631,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 210,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 210,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 211,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 201,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 228,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 205,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 204,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.4.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 654,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 646,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 663,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 234,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 206,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 231,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 201,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 194,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 212,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 210,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 216,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 211,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 232,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 211,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 216,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.5.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 641,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 636,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 656,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 231,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 211,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 205,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 209,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 211,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.6.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 636,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 649,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 660,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 216,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 212,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 230,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.7.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 635,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 621,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 570,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 210,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 228,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 233,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 216,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.8.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 621,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 632,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 632,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 228,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 211,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 213,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.9.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 647,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 624,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 648,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 201,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 210,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.10.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 609,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 651,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 643,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.q_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 214,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.k_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 230,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.v_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 512,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1023,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.self_attn.o_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.gate_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 210,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.up_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 205,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "backbone.eagle_model.language_model.model.layers.11.mlp.down_proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 638,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1024,
+          "whole_row_distinct_values": 643,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 2047,
+          "whole_row_distinct_values": 623,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": false,
+      "a_bits": null,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": 128,
+      "n_calib_tokens": 5579,
+      "n_calib_per_step": null
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 174,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 198,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 218,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 228,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 205,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 172,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 153,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.0.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 622,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 650,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 660,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 162,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 173,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 175,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 176,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 173,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.1.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 662,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 646,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 637,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 213,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.2.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 624,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 655,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 619,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 158,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 155,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 153,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 158,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 166,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 159,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.3.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 648,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 634,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 619,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 174,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 208,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 227,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.4.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 647,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 639,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 629,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 155,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 139,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 156,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 174,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 152,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.5.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 651,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 631,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 633,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 175,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 216,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 223,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 173,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 172,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.6.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 632,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 644,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 651,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 174,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 160,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 162,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 172,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 173,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 149,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 172,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.7.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 653,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 626,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 638,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 209,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 209,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 208,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 157,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 172,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.8.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 645,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 623,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 643,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 160,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 176,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 175,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 146,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 177,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.9.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 647,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 620,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 646,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 232,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 229,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 215,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 219,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 217,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 153,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 174,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 176,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.10.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 631,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 634,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 662,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 159,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 154,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 155,
+          "max_distinct_per128": 15
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 174,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 160,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 161,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.11.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 633,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 629,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 624,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 162,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 175,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 211,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.12.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 572,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 650,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 665,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 166,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 161,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 157,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 176,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 160,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 166,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 165,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.13.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 593,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 625,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 625,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 173,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 166,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 161,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 224,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 225,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 226,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 220,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 222,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 221,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579,
+        5579
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 171,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 166,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 153,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 170,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 150,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.14.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 561,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 643,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 649,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_q",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 162,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 167,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_k",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 174,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_v",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 163,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 168,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.attn1.to_out.0",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 154,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 169,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.ff.net.0.proj",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 3072,
+          "whole_row_distinct_values": 164,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 6143,
+          "whole_row_distinct_values": 157,
+          "max_distinct_per128": 15
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    },
+    {
+      "name": "action_head.model.transformer_blocks.15.ff.net.2",
+      "sampled_rows": [
+        {
+          "output_row": 0,
+          "whole_row_distinct_values": 519,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 768,
+          "whole_row_distinct_values": 645,
+          "max_distinct_per128": 16
+        },
+        {
+          "output_row": 1535,
+          "whole_row_distinct_values": 645,
+          "max_distinct_per128": 16
+        }
+      ],
+      "has_output_rotation": true,
+      "a_bits": 4,
+      "gptq_damp_percent": 0.05,
+      "gptq_block_size": null,
+      "n_calib_tokens": null,
+      "n_calib_per_step": [
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490,
+        490
+      ]
+    }
+  ]
+}

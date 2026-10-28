@@ -1,0 +1,124 @@
+{
+  "purpose": "Only correctness audit; no deployment timing claim",
+  "rows": [
+    {
+      "task_id": 0,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 1,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 2,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 3,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 4,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 5,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 6,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 7,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 8,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    },
+    {
+      "task_id": 9,
+      "init_index": 10,
+      "eager_noise_dtype": "torch.float32",
+      "graph_noise_dtype": "torch.float32",
+      "noise_bitwise_equal": true,
+      "noise_nmse": 0.0,
+      "action_nmse": 0.0
+    }
+  ],
+  "eager_conditioning_dtypes": [
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32"
+  ],
+  "graph_conditioning_dtypes": [
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32",
+    "torch.float32"
+  ],
+  "all_noise_values_equal": true,
+  "graph_count": 3,
+  "source_sha256": "48b56c4e8df49a77c555a0c54c94acf5230fbd7dbd5b2e4fd640129c74232f2f"
+}

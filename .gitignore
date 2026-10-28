@@ -158,6 +158,7 @@ results/**/logs/
 
 # Pinned experiment dependencies and generated kernels
 /third_party/
+/third_party
 /.kernel_sources/
 /research/holoq_bench/paper/
 
