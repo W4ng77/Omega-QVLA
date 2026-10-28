@@ -101,6 +101,10 @@ def load(directory, device, horizon):
         from research.holoq_bench.fused_rotation import install
 
         install(model)
+    elif metadata.get("rotation_plugin") == "triton_block64_strided_v2":
+        from research.holoq_bench.fused_rotation_strided import install
+
+        install(model)
     elif metadata.get("rotation_plugin") == "nunchaku_and_triton_block64":
         assert manifest.get("runtime_plugin") == "nunchaku_s4", "Explicit Nunchaku loader required"
     elif metadata.get("rotation_plugin") is not None:

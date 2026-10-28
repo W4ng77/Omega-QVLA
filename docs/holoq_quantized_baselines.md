@@ -1,3 +1,5 @@
+> **WITHDRAWAL: legacy fused rotation is invalid.** `holoq_fusedrot` completed 0/100. Serialized output rotations are transposed, noncontiguous tensors; the legacy kernel incorrectly assumed contiguous storage. All legacy `triton_block64` and dependent hybrid performance/selection claims below are historical, withdrawn pending an explicit strided-v2 revalidation. Unfused baselines remain valid. No failed records are deleted.
+
 # HoloQ-VLA: GR00T Object quantized-baseline experiment
 
 HoloQ-VLA is the renamed Omega-QVLA, not a separate method. This experiment
