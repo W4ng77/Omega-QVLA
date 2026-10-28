@@ -23,7 +23,8 @@ def main():
                    for r in cohorts]
         common_path = args.root / "common_logits_confirmed/queue.json"
         common = json.loads(common_path.read_text()) if common_path.exists() else {}
-        if all(r.get("finished") for r in records) and common.get("finished"):
+        profiles = args.root / "profiling_paper_selected/finished.json"
+        if all(r.get("finished") for r in records) and common.get("finished") and profiles.exists():
             break
         time.sleep(15)
     # Let the smoke reuse worker merge the inference peaks before snapshotting.
@@ -83,6 +84,8 @@ def main():
     shutil.copytree(paper / "canonical_math", merged / "paper_canonical_math", dirs_exist_ok=True)
     shutil.copytree(paper / "canonical_math_candidates", merged / "paper_canonical_math_candidates", dirs_exist_ok=True)
     shutil.copy2(args.root / "paper_cfg_build/configuration.json", merged / "paper_configuration.json")
+    shutil.copytree(args.root / "evaluation_paper_holoq_row_scale_overflow_v1", merged / "paper_row_scale_overflow_regression", dirs_exist_ok=True)
+    shutil.copy2(args.root / "paper_cfg_build/paper_recipe_tests.log", merged / "paper_recipe_tests.log")
     shutil.copytree(extra / "strided_tests", merged / "strided_tests", dirs_exist_ok=True)
     shutil.copytree(args.root / "common_logits_confirmed", merged / "common_logits", dirs_exist_ok=True)
     publish = Path("experiment_results/holoq_object_20261027")
