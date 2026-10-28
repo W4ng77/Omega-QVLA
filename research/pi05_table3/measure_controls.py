@@ -18,11 +18,15 @@ from research.pi05_table3.measure import sha, write, memory, sample_gpu
 
 def main():
     p = argparse.ArgumentParser(__doc__)
-    p.add_argument("--kind", choices=["bf16", "fp16", "gptq_marlin252", "smoothquant_qserve414"], required=True)
+    p.add_argument(
+        "--kind",
+        choices=["bf16", "fp16", "gptq_marlin252", "gptq_awq252", "gptq_awq_bf16252", "smoothquant_qserve414"],
+        required=True,
+    )
     p.add_argument("--repeats", type=int, default=10)
     p.add_argument("--steps", type=int, default=10, choices=[8, 10])
     p.add_argument("--output-group", default="controls")
-    p.add_argument("--ieee-matmul",action="store_true")
+    p.add_argument("--ieee-matmul", action="store_true")
     a = p.parse_args()
     root = Path(__file__).resolve().parents[2]
     data = root / "results/pi05_table3_414_20261028"
@@ -68,7 +72,7 @@ def main():
     if a.ieee_matmul:
         # The model constructor calls set_float32_matmul_precision('high').
         # Set this AFTER loading, matching the definition8 oracle/deployment.
-        torch.backends.cuda.matmul.allow_tf32=False
+        torch.backends.cuda.matmul.allow_tf32 = False
     install_pi05_step_context(policy._model, fixed_loop=True)
     policy._sample_actions = policy._model.sample_actions
     path = Path("/home/xinyu/omegaqvla/deploy_extras/pi05_calib_obs.pt")
@@ -84,14 +88,15 @@ def main():
     report = {
         "method": a.kind,
         "role": role,
+        "marlin_max_par": 1 if a.kind == "gptq_marlin252" else None,
         "quantized_layers": len(modules),
         "backend_counts": dict(Counter(m.backend for m in modules.values())),
         "checkpoint": "/home/xinyu/models/pi05_libero_pytorch",
         "observations_sha256": sha(path),
         "sample_indices": list(range(10, 20)),
         "steps": a.steps,
-        "matmul_allow_tf32":torch.backends.cuda.matmul.allow_tf32,
-        "cudnn_allow_tf32":torch.backends.cudnn.allow_tf32,
+        "matmul_allow_tf32": torch.backends.cuda.matmul.allow_tf32,
+        "cudnn_allow_tf32": torch.backends.cudnn.allow_tf32,
         "calibration_steps": 10 if modules else None,
         "action_horizon": cfg.model.action_horizon,
         "batch": 1,
@@ -104,6 +109,16 @@ def main():
     }
     if modules:
         report["deployment_manifest_sha256"] = sha(data / "baseline_deployments" / a.kind / "deployment.json")
+    if a.kind.startswith("gptq_awq"):
+        oracle = data / (
+            "gptq_awq_bf16_full_policy_oracle.json"
+            if a.kind == "gptq_awq_bf16252"
+            else "gptq_awq_full_policy_oracle.json"
+        )
+        checked = json.loads(oracle.read_text())
+        assert checked["passed"] and checked["deployment_manifest_sha256"] == report["deployment_manifest_sha256"]
+        assert checked["runtime_sha256"] == sha(root / "research/pi05_table3/baseline_runtime.py")
+        report["frozen_grid_oracle_sha256"] = sha(oracle)
     write(out / "report.json", report)
     stop = threading.Event()
     sampler = threading.Thread(target=sample_gpu, args=(stop, out / "gpu_samples.jsonl"), daemon=True)
@@ -134,18 +149,19 @@ def main():
                         for i, v in enumerate(outputs)
                     ]
                     if a.kind == "gptq_marlin252":
-                        diagnostic = data / "marlin_graph_diagnostic.json"
+                        diagnostic = data / "marlin_maxpar1_full_policy_oracle.json"
                         check = json.loads(diagnostic.read_text())
-                        assert check["passed"] and check["nonzero_workspace_elements"] == 0
-                        # The unchanged Marlin kernel also differs between eager
-                        # repeats. Use the predeclared action-NMSE guard instead
-                        # of incorrectly requiring bitwise reduction order.
-                        assert max(nmse) <= check["limit_nmse"], nmse
+                        assert check["passed"] and check["max_par"] == 1
+                        assert check["runtime_sha256"] == sha(root / "research/pi05_table3/baseline_runtime.py")
+                        assert check["deployment_manifest_sha256"] == report["deployment_manifest_sha256"]
+                        # Use the same predeclared complete-action numerical
+                        # guard as HoloQ, after independent per-call1e-4 checks.
+                        assert max(nmse) <= 0.01, nmse
                         nonzero = sum(int(torch.count_nonzero(m.workspace)) for m in modules.values())
                         assert nonzero == 0, nonzero
                         report["graph_guard"] = {
                             "diagnostic_sha256": sha(diagnostic),
-                            "limit_nmse": check["limit_nmse"],
+                            "limit_nmse": 0.01,
                             "nonzero_workspace_elements": nonzero,
                             "note": "Numerical execution guard, not task-success equivalence",
                         }

@@ -25,10 +25,14 @@ def union(intervals):
 
 
 def main():
-    parser=argparse.ArgumentParser(__doc__)
-    parser.add_argument('--definition8', action='store_true')
-    args=parser.parse_args()
-    root = Path(__file__).resolve().parents[2] / "results/pi05_table3_414_20261028" / ("definition8_profile" if args.definition8 else "scope_controls/both")
+    parser = argparse.ArgumentParser(__doc__)
+    parser.add_argument("--definition8", action="store_true")
+    args = parser.parse_args()
+    root = (
+        Path(__file__).resolve().parents[2]
+        / "results/pi05_table3_414_20261028"
+        / ("definition8_profile" if args.definition8 else "scope_controls/both")
+    )
     events = json.loads((root / "eager_policy_trace.json").read_text())["traceEvents"]
     kernels = [x for x in events if x.get("cat") == "kernel"]
     activities = [x for x in events if x.get("cat") in ["kernel", "gpu_memcpy", "gpu_memset"]]
@@ -38,8 +42,11 @@ def main():
     }
     expected = {"_vision_gemm": 2430, "_gemm_a4w4_arithmetic": 6930, "_quant_pack_a4": 6930}
     if args.definition8:
-        counts={name:sum(name in x['name'] for x in kernels) for name in ['_vision_gemm','_channel_a4w4','integer_subbyteILi4ELb1E']}
-        expected={'_vision_gemm':2430,'_channel_a4w4':5040,'integer_subbyteILi4ELb1E':630}
+        counts = {
+            name: sum(name in x["name"] for x in kernels)
+            for name in ["_vision_gemm", "_channel_a4w4", "integer_subbyteILi4ELb1E"]
+        }
+        expected = {"_vision_gemm": 2430, "_channel_a4w4": 5040, "integer_subbyteILi4ELb1E": 630}
     assert counts == expected, {
         "observed": counts,
         "expected": expected,
@@ -68,27 +75,29 @@ def main():
             values.sort(key=lambda x: x["ts"])
     scope_starts = {t: [x["ts"] for x in v] for t, v in scopes.items()}
     op_starts = {t: [x["ts"] for x in v] for t, v in ops.items()}
+
     # Prefix maximum end provides a quick proof that no earlier interval can
     # contain a launch. Native extension launches often have no aten owner;
     # scanning all previous closed ops for each such launch is quadratic.
     def prefix_ends(store):
-        result={}
-        for tid,values in store.items():
-            bound=float('-inf')
-            ends=[]
+        result = {}
+        for tid, values in store.items():
+            bound = float("-inf")
+            ends = []
             for event in values:
-                bound=max(bound,event['ts']+event.get('dur',0))
+                bound = max(bound, event["ts"] + event.get("dur", 0))
                 ends.append(bound)
-            result[tid]=ends
+            result[tid] = ends
         return result
-    scope_ends=prefix_ends(scopes)
-    op_ends=prefix_ends(ops)
+
+    scope_ends = prefix_ends(scopes)
+    op_ends = prefix_ends(ops)
 
     def containing(store, starts, ends, tid, ts):
         values = store.get(tid, [])
         index = bisect_right(starts.get(tid, []), ts) - 1
         while index >= 0:
-            if ends[tid][index]<ts:
+            if ends[tid][index] < ts:
                 break
             e = values[index]
             if e["ts"] <= ts <= e["ts"] + e.get("dur", 0):
@@ -109,7 +118,10 @@ def main():
             missing[e.get("cat")] += 1
         phase = label.split("/")[1] if label.startswith(("layer/", "stage/")) else "other"
         name = e["name"]
-        if any(t in name for t in ['_vision_gemm','_gemm_a4w4_arithmetic','_channel_a4w4','integer_subbyteILi4ELb1E']):
+        if any(
+            t in name
+            for t in ["_vision_gemm", "_gemm_a4w4_arithmetic", "_channel_a4w4", "integer_subbyteILi4ELb1E"]
+        ):
             category = "GEMM_with_W_decode_scales"
         elif "_quant_pack_a4" in name:
             category = "A4_quantize_pack"
@@ -123,7 +135,7 @@ def main():
             category = "data_copy_dtype_contiguous"
         elif label.startswith("layer/vision/"):
             category = "vision_A4_quantize_prepare"
-        elif args.definition8 and label.startswith(('layer/language/','layer/expert/')):
+        elif args.definition8 and label.startswith(("layer/language/", "layer/expert/")):
             category = "A4_quantize_pack_scale_epilogue_or_bias"
         else:
             category = "other_compute"

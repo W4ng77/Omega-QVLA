@@ -128,7 +128,7 @@ def pack_marlin(q, scales):
     return {"backend": "marlin", "B": layer.B.cpu(), "s": layer.s.cpu(), "group": group}
 
 
-def pack_awq(q, scales, zeros):
+def pack_awq(q, scales, zeros, dtype=torch.float16):
     """Official AWQ uint4 interleave; vectorize only the code preparation."""
     awq()
     spec = importlib.util.spec_from_file_location(
@@ -142,10 +142,10 @@ def pack_awq(q, scales, zeros):
     if group != 128:
         raise ValueError("Official AWQ selected kernel requires G128")
     padded = ((scales.shape[1] + 7) // 8) * 8
-    s = torch.zeros((padded, n), dtype=torch.float16)
+    s = torch.zeros((padded, n), dtype=dtype)
     z = torch.zeros_like(s)
-    s[: scales.shape[1]] = scales.half().cpu().t()
-    z[: scales.shape[1]] = -(scales.half().cpu() * zeros.cpu()).half().t()
+    s[: scales.shape[1]] = scales.to(dtype).cpu().t()
+    z[: scales.shape[1]] = -(scales.to(dtype).cpu() * zeros.cpu()).to(dtype).t()
     return {"backend": "awq", "B": module.pack_intweight(q.cpu().int(), 4, 64), "s": s, "z": z, "group": group}
 
 

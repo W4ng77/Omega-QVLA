@@ -35,7 +35,7 @@ class BaselineLinear(nn.Module):
         self.in_features, self.out_features = record["original_K"], record["original_N"]
         self.k, self.n = record["K"], record["N"]
         self.external_dtype = getattr(torch, record["external_dtype"].removeprefix("torch."))
-        for key in ["B", "s", "s2", "z2", "bias"]:
+        for key in ["B", "s", "s2", "z2", "z", "bias"]:
             self.register_buffer(key, record.get(key) if record.get(key) is not None else torch.empty(0))
         self.register_buffer("_dtype_only", torch.empty(0, dtype=self.external_dtype))
         self.calls = 0
@@ -43,6 +43,10 @@ class BaselineLinear(nn.Module):
         if self.backend == "marlin":
             self._kernel = kernels.marlin()
             self.register_buffer("workspace", torch.zeros(self.n // 128 * 16, dtype=torch.int32), persistent=False)
+        elif self.backend == "awq":
+            self._kernel = kernels.awq()
+            self.group = record["group"]
+            self.compute_dtype = getattr(torch, record.get("compute_dtype", "float16"))
         else:
             assert self.backend == "qserve"
             self._kernel = kernels.qserve()
@@ -62,10 +66,20 @@ class BaselineLinear(nn.Module):
         if self.k != self.in_features:
             xx = F.pad(xx, (0, self.k - self.in_features))
         m = len(xx)
-        y = torch.empty((m, self.n), device=x.device, dtype=torch.float16)
         if self.backend == "marlin":
-            self._kernel.mul(xx.half(), self.B, y, self.s, self.workspace)
+            y = torch.empty((m, self.n), device=x.device, dtype=torch.float16)
+            # Pinned upstream's parallel-M G128 path fails the frozen-weight
+            # oracle on SM89 (e.g. M128+). Keep its existing verified kernel
+            # with independent M64 problems, never a dense floating fallback.
+            self._kernel.mul(xx.half(), self.B, y, self.s, self.workspace, max_par=1)
+        elif self.backend == "awq":
+            aa = xx.to(self.compute_dtype)
+            if m < 8:
+                y = self._kernel.gemv_forward_cuda_new(aa, self.B, self.s, self.z, m, self.n, self.k, self.group)
+            else:
+                y = self._kernel.gemm_forward_cuda_new(aa, self.B, self.s, self.z)
         else:
+            y = torch.empty((m, self.n), device=x.device, dtype=torch.float16)
             q = torch.empty((m, self.k), device=x.device, dtype=torch.int8)
             asc = torch.empty(m, device=x.device, dtype=torch.float16)
             _prepare8[(m,)](
